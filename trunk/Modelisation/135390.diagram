@@ -1,0 +1,182 @@
+format 70
+
+activitynodecanvas 128094 activitynode_ref 128094 // initial
+  xyz 507 48 2000
+end
+activityactioncanvas 128478 activityaction_ref 128222 // activity action Analyse de la demande
+  show_infonote default drawing_language default show_stereotype_properties default
+  show_opaque_action_definition default
+  xyzwh 467 149 2000 100 60
+end
+activitynodecanvas 128734 activitynode_ref 128222 // decision
+  xyz 503 229 2000
+end
+activityactioncanvas 129118 activityaction_ref 128350 // activity action Passage à RDF
+  show_infonote default drawing_language default show_stereotype_properties default
+  show_opaque_action_definition default
+  xyzwh 152 215 2000 100 60
+end
+activityactioncanvas 129374 activityaction_ref 128478 // activity action Analyse des champs
+  show_infonote default drawing_language default show_stereotype_properties default
+  show_opaque_action_definition default
+  xyzwh 811 218 2000 100 60
+end
+activityactioncanvas 129630 activityaction_ref 128606 // activity action Choix des Bases de données
+  show_infonote default drawing_language default show_stereotype_properties default
+  show_opaque_action_definition default
+  xyzwh 808 327 2000 106 62
+end
+activityactioncanvas 129886 activityaction_ref 128734 // activity action Découpage de la requête
+  show_infonote default drawing_language default show_stereotype_properties default
+  show_opaque_action_definition default
+  xyzwh 812 450 2000 100 60
+end
+note 130142 "Arrivée de la requête dans le système"
+  xyzwh 188 79 2000 167 55
+activityactioncanvas 130526 activityaction_ref 128862 // activity action Chaque sous-requête est envoyée au SGBD correspondant
+  show_infonote default drawing_language default show_stereotype_properties default
+  show_opaque_action_definition default
+  xyzwh 773 577 2000 179 84
+end
+activityactioncanvas 130782 activityaction_ref 128990 // activity action Attente des réponses
+  show_infonote default drawing_language default show_stereotype_properties default
+  show_opaque_action_definition default
+  xyzwh 814 726 2000 100 60
+end
+activitynodecanvas 131294 activitynode_ref 128478 // activity_final
+  xyz 546 746 2000
+end
+activitynodecanvas 131422 activitynode_ref 128606 // decision
+  xyz 663 738 2000
+end
+activitynodecanvas 131934 activitynode_ref 128734 // flow_final
+  xyz 549 628 2000
+end
+note 132446 "A préciser"
+  xyzwh 25 224 2000 89 35
+activityactioncanvas 132702 activityaction_ref 129118 // activity action Union du résultat
+  show_infonote default drawing_language default show_stereotype_properties default
+  show_opaque_action_definition default
+  xyzwh 151 558 2000 100 60
+end
+activitynodecanvas 133086 activitynode_ref 128862 // decision
+  xyz 188 391 2000
+end
+activityactioncanvas 133982 activityaction_ref 129246 // activity action Retour à l'utilisateur
+  show_infonote default drawing_language default show_stereotype_properties default
+  show_opaque_action_definition default
+  xyzwh 151 729 2000 100 60
+end
+note 134366 "Fait par les adaptateurs."
+  xyzwh 1033 452 2000 107 57
+note 135518 "Implicite par les adaptateurs"
+  xyzwh 570 328 2000 119 57
+note 135774 "Une analyse / adaptateur...
+Bof..."
+  xyzwh 764 87 2000 195 51
+flowcanvas 128606 flow_ref 128094 // <flow>
+  decenter_begin 526
+  
+  from ref 128094 z 2001 to ref 128478
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 128862 flow_ref 128222 // <flow>
+  
+  from ref 128478 z 2001 to ref 128734
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 129246 flow_ref 128350 // SELECT
+  decenter_end 519
+  
+  from ref 128734 z 2001 label "SELECT" xyz 350.5 228.5 3000 to ref 129118
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 129502 flow_ref 128478 // UPDATE | INSERT
+  
+  from ref 128734 z 2001 label "UPDATE | INSERT" xyz 624.5 228.5 3000 to ref 129374
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 129758 flow_ref 128606 // <flow>
+  
+  from ref 129374 z 2001 to ref 129630
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 130014 flow_ref 128734 // <flow>
+  
+  from ref 129630 z 2001 to ref 129886
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 130654 flow_ref 128862 // <flow>
+  
+  from ref 129886 z 2001 to ref 130526
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 130910 flow_ref 128990 // <flow>
+  
+  from ref 130526 z 2001 to ref 130782
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 131550 flow_ref 129246 // <flow>
+  decenter_end 486
+  
+  from ref 130782 z 2001 to ref 131422
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 131678 flow_ref 129374 // OK
+  decenter_end 439
+  
+  from ref 131422 z 2001 label "OK" xyz 602.5 764 3000 to ref 131294
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 132062 flow_ref 129502 // Erreur
+  geometry HVr
+  
+  from ref 131422 z 2001 label "Erreur" xyz 626 619 3000 to point 673 635
+  line 132318 z 2001 to ref 131934
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 133214 flow_ref 129758 // <flow>
+  
+  from ref 129118 z 2001 to ref 133086
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 133342 flow_ref 129886 // Erreur
+  geometry HVH
+  
+  from ref 133086 z 2001 label "Erreur" xyz 278 392 3000 to point 378 407
+  line 133470 z 2001 to point 378 635
+  line 133598 z 2001 to ref 131934
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 133726 flow_ref 130014 // <flow>
+  
+  from ref 133086 z 2001 to ref 132702
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 134110 flow_ref 130142 // <flow>
+  
+  from ref 132702 z 2001 to ref 133982
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+flowcanvas 134238 flow_ref 130270 // <flow>
+  
+  from ref 133982 z 2001 to ref 131294
+  show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
+end
+line 130398 -_-_
+  from ref 128606 z 2002 to ref 130142
+line 132574 -_-_
+  from ref 132446 z 2001 to ref 129118
+line 134494 -_-_
+  from ref 134366 z 2001 to ref 129886
+line 134622 -_-_ geometry HVr
+  from ref 134366 z 2001 to point 1084 616
+  line 135390 z 2001 to ref 130526
+line 135006 -_-_ geometry HV
+  from ref 129374 z 2001 to point 1084 245
+  line 135134 z 2001 to ref 134366
+line 135646 -_-_
+  from ref 135518 z 2001 to ref 129630
+line 135902 -_-_
+  from ref 135774 z 2001 to ref 129374
+end

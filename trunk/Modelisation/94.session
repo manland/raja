@@ -1,0 +1,13 @@
+window_sizes 1598 820 375 1217 626 120
+diagrams
+  activitydiagram_ref 135390 // Requête
+    975 504 100 18 0 0
+  active  collaborationdiagram_ref 128222 // test
+    1219 631 100 18 180 0
+end
+show_stereotypes
+selected collaborationdiagram_ref 128222 // test
+open
+  classview_ref 128094 // Class View
+end
+end
