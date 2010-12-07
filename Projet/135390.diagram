@@ -71,9 +71,6 @@ note 134366 "Fait par les adaptateurs."
   xyzwh 1033 452 2000 107 57
 note 135518 "Implicite par les adaptateurs"
   xyzwh 570 328 2000 119 57
-note 135774 "Une analyse / adaptateur...
-Bof..."
-  xyzwh 764 87 2000 195 51
 flowcanvas 128606 flow_ref 128094 // <flow>
   decenter_begin 526
   
@@ -86,14 +83,14 @@ flowcanvas 128862 flow_ref 128222 // <flow>
   show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
 end
 flowcanvas 129246 flow_ref 128350 // SELECT
-  decenter_end 519
+  decenter_end 518
   
-  from ref 128734 z 2001 label "SELECT" xyz 350.5 228.5 3000 to ref 129118
+  from ref 128734 z 2001 label "SELECT" xyz 350 228 2001 to ref 129118
   show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
 end
 flowcanvas 129502 flow_ref 128478 // UPDATE | INSERT
   
-  from ref 128734 z 2001 label "UPDATE | INSERT" xyz 624.5 228.5 3000 to ref 129374
+  from ref 128734 z 2001 label "UPDATE | INSERT" xyz 624 228 2001 to ref 129374
   show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
 end
 flowcanvas 129758 flow_ref 128606 // <flow>
@@ -125,13 +122,13 @@ end
 flowcanvas 131678 flow_ref 129374 // OK
   decenter_end 439
   
-  from ref 131422 z 2001 label "OK" xyz 602.5 764 3000 to ref 131294
+  from ref 131422 z 2001 label "OK" xyz 602 764 2001 to ref 131294
   show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
 end
 flowcanvas 132062 flow_ref 129502 // Erreur
   geometry HVr
   
-  from ref 131422 z 2001 label "Erreur" xyz 626 619 3000 to point 673 635
+  from ref 131422 z 2001 label "Erreur" xyz 626 619 2001 to point 673 635
   line 132318 z 2001 to ref 131934
   show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
 end
@@ -143,7 +140,7 @@ end
 flowcanvas 133342 flow_ref 129886 // Erreur
   geometry HVH
   
-  from ref 133086 z 2001 label "Erreur" xyz 278 392 3000 to point 378 407
+  from ref 133086 z 2001 label "Erreur" xyz 278 392 2001 to point 378 407
   line 133470 z 2001 to point 378 635
   line 133598 z 2001 to ref 131934
   show_infonote default drawing_language default show_stereotype_properties default write_horizontally default
@@ -172,11 +169,6 @@ line 134494 -_-_
 line 134622 -_-_ geometry HVr
   from ref 134366 z 2001 to point 1084 616
   line 135390 z 2001 to ref 130526
-line 135006 -_-_ geometry HV
-  from ref 129374 z 2001 to point 1084 245
-  line 135134 z 2001 to ref 134366
 line 135646 -_-_
   from ref 135518 z 2001 to ref 129630
-line 135902 -_-_
-  from ref 135774 z 2001 to ref 129374
 end
