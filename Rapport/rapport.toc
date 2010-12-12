@@ -20,6 +20,7 @@
 \contentsline {subsection}{\numberline {3.1}Serveur pseudos-m\IeC {\'e}diateurs}{7}
 \contentsline {subsection}{\numberline {3.2}Adaptateurs}{7}
 \contentsline {subsection}{\numberline {3.3}Traducteurs}{7}
+\contentsline {subsection}{\numberline {3.4}Diagramme de classes}{7}
 \contentsline {section}{\numberline {4}Glossaire}{8}
 \contentsline {section}{\numberline {5}Annexes}{9}
 \contentsline {subsection}{\numberline {5.1}Sch\IeC {\'e}ma des tables des bases de donn\IeC {\'e}es}{9}
