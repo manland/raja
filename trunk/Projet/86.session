@@ -1,0 +1,12 @@
+window_sizes 1366 691 320 1040 553 64
+diagrams
+  active  classdiagram_ref 141918 // System
+    1041 553 59 3 219 0
+end
+show_stereotypes
+selected 
+  package_ref 129 // Projet
+open
+  class_ref 130014 // DataBase
+end
+end
