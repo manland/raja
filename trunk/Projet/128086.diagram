@@ -1,0 +1,35 @@
+format 74
+
+classcanvas 128086 class_ref 128086 // Utilisateur
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 18 72 2000
+end
+usecasecanvas 128214 usecase_ref 128086 // rechercher
+  xyzwh 196 23 3005 64 32 label_xy 193 55
+end
+usecasecanvas 128342 usecase_ref 128214 // gestion
+  xyzwh 196 122 3005 64 32 label_xy 204 154
+end
+usecasecanvas 128470 usecase_ref 128342 // ajouter
+  xyzwh 362 60 3005 64 32 label_xy 371 92
+end
+usecasecanvas 128598 usecase_ref 128470 // modifier
+  xyzwh 362 121 3005 64 32 label_xy 368 153
+end
+usecasecanvas 128726 usecase_ref 128598 // supprimer
+  xyzwh 362 190 3005 64 32 label_xy 361 222
+end
+line 128854 ----
+  from ref 128086 z 3006 to ref 128214
+line 128982 ----
+  from ref 128086 z 3006 to ref 128342
+simplerelationcanvas 129110 simplerelation_ref 128086
+  from ref 128470 z 3006 stereotype "<<extend>>" xyz 278 108 3000 to ref 128342
+end
+simplerelationcanvas 129238 simplerelation_ref 128214
+  from ref 128598 z 3006 stereotype "<<extend>>" xyz 272 138.5 3000 to ref 128342
+end
+simplerelationcanvas 129366 simplerelation_ref 128342
+  from ref 128726 z 3006 stereotype "<<extend>>" xyz 265 185 3000 to ref 128342
+end
+end
