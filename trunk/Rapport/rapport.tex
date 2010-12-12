@@ -63,6 +63,7 @@
 \newpage
 
 \tableofcontents
+\listoffigures
 
 \newpage
 
@@ -100,7 +101,11 @@
 \subsection{Besoins}
 
 	Notre serveur offrira à un utilisateur la possibilité de chercher des renseignements sur des maladies. Plus exactement il pourra demander au système des informations sur une maladie : son nom, son facteur de transmission, le virus associé à cette maladie et un nombre de cas rencensés pour une zone (voir le schéma des tables des bases de données pour de plus amples informations). Pour cela nous avons mis en place un système de requêtes basées sur sql. Ces informations seront récupérées par nos soins auprès de l'OMS.\\
-	Scéma Use case très simple !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+\begin{center}
+	\includegraphics[scale=0.70]{images/SimpleUseCase.png}
+	\captionof{figure}{Diagramme de cas d'utilisation}
+\end{center}
 
 \subsection{Requêtes}
 
@@ -110,7 +115,12 @@
 - insert into tabel\_name values(value\_table, value\_table2...) [where column\_name = value and column\_name2 = value2...];\\
 - update table\_name set column\_name = value1 [, column\_name2  = value2] [where column\_name = value...];\\
 - delete from table\_name [, table\_name2] [where column\_name = value...];\\
-	Nous avons donc mis en place un type requête particulier : SChéma UML des IQuery (avec la hiérarchie)
+	Nous avons donc mis en place un type requête particulier :\\
+
+\begin{center}
+	\includegraphics[scale=0.70]{images/QueryHierarchie.png}
+	\captionof{figure}{Diagramme de classes : Query}
+\end{center}
 
 \subsection{Bases de données}
 
@@ -126,7 +136,11 @@
 	Maintenant que nous avons réparties nos données sur différents SGBD avec une approche dite de dérivation. Nous devons nous demander comment allons nous rendre possible la recherche sur ces différentes bases. Deux méthodes s'offrent à nous : nous continuons à dériver, ou nous intégrons nos différents schémas de bases.\\
 	La première solution revient à découper notre schéma global de façon à ce qu'il colle à nos schémas locaux : donc à chaque base de données. Cette solution est la plus simple des deux mais nécessite de gros efforts d'implémentation puisque le schéma global doit être découpé en schémas locaux "à la main" pour chaque base de données. De plus cette solution devient inmaintenable lors du changement de schémas de base : en d'autres termes il faut se replonger dans la programmation.\\
 	La deuxième revient à prendre tous les schémas locaux pour faire émerger un schéma global. Cette solution est bien plus compliquée au niveau de la réflexion et de la logique qu'il y a derrière. Mais la généricité de l'implémentation permet de perdre moins de temps en cas de changement des schémas des bases de données. En effet nous avons imaginé une solution entièrement basée sur les méta-tables, ce qui nous permet d'abstraire tout notre code afin de le rendre réutilisable et modulable. Nous avons donc en toute logique retenu cette deuxième solution.\\
-	Schéma explicatif !!!!!!!!!!!!!!!!!!!!!!!!!!
+
+\begin{center}
+	\includegraphics[scale=0.50]{images/initialisationSysteme.png}
+	\captionof{figure}{Schéma d'initialisation serveur}
+\end{center}
 
 \subsection{Intégration}
 	
@@ -139,9 +153,22 @@
 	Le seul problème de D2RQ est qu'il permet de faire tout ce travail qu'en sélection. En effet nous ne pouvons pas insérer, mettre à jour ou supprimer des données d'une base. Il faudra donc trouver un autre moyen.\\
 	Nous nous servirons donc de RDF aussi bien pour réaliser les requêtes de sélection de nos utilisateurs, que pour diriger nos requêtes vers telle ou telle base de données en fonction des schémas locaux.\\
 
-\subsubsection{Schéma RDF Maladies}
+\subsubsection{Schéma ontologique des Maladies de leur transmission et de leur facteur}
 
-\subsubsection{Schéma RDF Facteurs}
+\begin{center}
+	\includegraphics[scale=0.70]{../rdf/rdf-virusTransmission.png}
+	\captionof{figure}{Schéma RDF MaladiesTransmission}
+\end{center}
+
+\begin{center}
+	\includegraphics[scale=0.70]{../rdf/rdf-MaladieFacteur.png}
+	\captionof{figure}{Schéma RDF MaladieFacteurs}
+\end{center}
+
+\begin{center}
+	\includegraphics[scale=0.70]{../rdf/rdf-schemaMaladie.png}
+	\captionof{figure}{Schéma ontologique Maladie}
+\end{center}
 
 \subsubsection{Schéma RDF CIM}
 
@@ -157,7 +184,10 @@
 
 \section{Modèle de conception}
 
-	Schéma global simple : requête -> serveur -> adaptateur -> traducteur -> bd\\
+\begin{center}
+	\includegraphics[scale=0.50]{images/selectQuerySysteme.png}
+	\captionof{figure}{Schéma de requête}
+\end{center}
 
 \subsection{Serveur pseudos-médiateurs}
 
@@ -178,7 +208,10 @@
 
 \subsection{Diagramme de classes}
 
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\begin{center}
+	\includegraphics[scale=0.75]{images/Serveur.png}
+	\captionof{figure}{Diagramme de classe du serveur}
+\end{center}
 
 \newpage
 
