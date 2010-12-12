@@ -1,12 +1,13 @@
-window_sizes 1366 691 320 1040 553 64
+window_sizes 1364 690 320 1038 552 64
 diagrams
   active  classdiagram_ref 141918 // System
-    1041 553 59 3 219 0
+    1041 553 58 3 177 0
+  usecasediagram_ref 128086 // UseCase
+    830 441 100 4 0 0
 end
 show_stereotypes
-selected 
-  package_ref 129 // Projet
+selected usecaseview_ref 128086 // SimpleUseCase
 open
-  class_ref 130014 // DataBase
+  classview_ref 128094 // System
 end
 end
