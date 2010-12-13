@@ -1,0 +1,50 @@
+-- SQL: CREATION DES TUPLES pour la base MaladieFacteur --
+
+-- Table FACTEUR
+INSERT INTO FACTEUR VALUES ('HAV', 'Hepatitis A Virus', 'Virus');
+INSERT INTO FACTEUR VALUES ('HBV', 'Hepatitis B Virus', 'Virus');
+INSERT INTO FACTEUR VALUES ('HCV', 'Hepatitis C Virus', 'Virus');
+INSERT INTO FACTEUR VALUES ('DENV', 'Dengue Virus', 'Virus');
+INSERT INTO FACTEUR VALUES ('YFV', 'Yellow Fever Virus', 'Virus');
+INSERT INTO FACTEUR VALUES ('WNV', 'West Nile Virus', 'Virus');
+INSERT INTO FACTEUR VALUES ('FLUAV', 'Influenzavirus A', 'Virus');
+INSERT INTO FACTEUR VALUES ('HHV-5','Cytomegalovirus','Virus');
+INSERT INTO FACTEUR VALUES ('Meningococcus', 'Neisseria meningitidis', 'Bacterie');
+INSERT INTO FACTEUR VALUES ('Bacille de Koch', 'Mycobacterium tuberculosis', 'Bacterie');
+ 
+-- Table MALADIE
+INSERT INTO MALADIE VALUES ('Hepatite A');
+INSERT INTO MALADIE VALUES ('Hepatite B');
+INSERT INTO MALADIE VALUES ('Hepatite C');
+INSERT INTO MALADIE VALUES ('Dengue');
+INSERT INTO MALADIE VALUES ('Fievre du Nil');
+INSERT INTO MALADIE VALUES ('Meningite');
+INSERT INTO MALADIE VALUES ('Fievre Jaune');
+INSERT INTO MALADIE VALUES ('Grippe A');
+INSERT INTO MALADIE VALUES ('Grippe B');
+INSERT INTO MALADIE VALUES ('Grippe C');
+INSERT INTO MALADIE VALUES ('Tuberculose');
+
+-- Table APRORIGINE
+INSERT INTO APRORIGINE VALUES ('Hepatite A','HAV','AEV');
+INSERT INTO APRORIGINE VALUES ('Hepatite B','HBV','');
+INSERT INTO APRORIGINE VALUES ('Hepatite C','HCV','');
+INSERT INTO APRORIGINE VALUES ('Dengue','DENV','DENV-4');
+INSERT INTO APRORIGINE VALUES ('Dengue','DENV','DENV-4');
+INSERT INTO APRORIGINE VALUES ('Dengue','DENV','DENV-4');
+INSERT INTO APRORIGINE VALUES ('Dengue','DENV','DENV-4');
+INSERT INTO APRORIGINE VALUES ('Fievre Jaune','YFV','');
+INSERT INTO APRORIGINE VALUES ('Fievre du Nil','WNV','');
+INSERT INTO APRORIGINE VALUES ('Grippe A','FLUAV','H1-N1');
+INSERT INTO APRORIGINE VALUES ('Grippe A','FLUAV','H5-N1');
+INSERT INTO APRORIGINE VALUES ('Grippe A','FLUAV','H3-N2');
+INSERT INTO APRORIGINE VALUES ('Meningite','Meningococcus','B');
+INSERT INTO APRORIGINE VALUES ('Meningite','Meningococcus','C');
+INSERT INTO APRORIGINE VALUES ('Meningite','Meningococcus','A');
+INSERT INTO APRORIGINE VALUES ('Meningite','Meningococcus','Y');
+INSERT INTO APRORIGINE VALUES ('Meningite','Meningococcus','W135');
+INSERT INTO APRORIGINE VALUES ('Tuberculose','Bacille de Koch','');
+INSERT INTO APRORIGINE VALUES ('Meningite','Bacille de Koch','');
+INSERT INTO APRORIGINE VALUES ('Meningite','HHV-5','');
+
+
