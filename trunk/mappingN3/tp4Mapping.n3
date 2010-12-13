@@ -24,34 +24,34 @@ d2rq:password "audreybd";
 # Table Maladie :
 map:MALADIE a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@MALADIE.NOM_MALADIE|urlify@@";
+	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@MALADIE.MM_NOM_MALADIE|urlify@@";
 	d2rq:class v:MALADIE;
 	.
 	
 # Table Facteur : 
 map:FACTEUR a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.ABREV_FACTEUR|urlify@@";
+	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.MF_ABREV_FACTEUR|urlify@@";
 	d2rq:class v:FACTEUR;
 	.
 	
-map:NOMFACTEUR a d2rq:PropertyBridge;
+map:MF_NOMFACTEUR a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:FACTEUR;
-	d2rq:property v:NOMFACTEUR;
-	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.NOM_FACTEUR|urlify@@";
+	d2rq:property v:MF_NOMFACTEUR;
+	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.MF_NOM_FACTEUR|urlify@@";
 	.
 	
-map:TYPEFACTEUR a d2rq:PropertyBridge;
+map:MF_TYPEFACTEUR a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:FACTEUR;
-	d2rq:property v:TYPEFACTEUR;
-	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.TYPE_FACTEUR|urlify@@";
+	d2rq:property v:MF_TYPEFACTEUR;
+	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.MF_TYPE_FACTEUR|urlify@@";
 	.
 	
 # Table APrOrigine :
 # relation n:m
 map:APRORIGINE a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@APRORIGINE.ABREVF|urlify@@_@@APRORIGINE.SOUCHE|urlify@@";
+	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@APRORIGINE.MA_ABREVF|urlify@@_@@APRORIGINE.MA_SOUCHE|urlify@@";
 	d2rq:class v:APRORIGINE;
 	.
 	
@@ -59,12 +59,12 @@ map:ESTORIGINEDE a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:APRORIGINE;
 	d2rq:property v:ESTORIGINEDE;
 	d2rq:refersToClassMap map:MALADIE;
-	d2rq:join "APRORIGINE.NOMM = MALADIE.NOM_MALADIE";
+	d2rq:join "APRORIGINE.MA_NOMM = MALADIE.MM_NOM_MALADIE";
 	.
 	
 map:ESTFACTEURDE a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:FACTEUR;
 	d2rq:property v:ESTFACTEURDE;
 	d2rq:refersToClassMap map:APRORIGINE;
-	d2rq:join "APRORIGINE.ABREVF = FACTEUR.ABREV_FACTEUR";
+	d2rq:join "APRORIGINE.MA_ABREVF = FACTEUR.MF_ABREV_FACTEUR";
 	.

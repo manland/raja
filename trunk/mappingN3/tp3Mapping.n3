@@ -23,46 +23,46 @@ d2rq:password "audreybd";
 
 
 # Table Transmission :
-map:Transmission a d2rq:ClassMap;
+map:TRANSMISSION a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/virus#@@Transmission.modeT|urlify@@";
-	d2rq:class v:Transmission;
+	d2rq:uriPattern "http://www.lirmm.fr/virus#@@TRANSMISSION.VT_MODET|urlify@@";
+	d2rq:class v:TRANSMISSION;
 	.
 	
 # Table Virus : 
-map:Virus a d2rq:ClassMap;
+map:VIRUS a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/virus#@@Virus.abrev@@";
-	d2rq:class v:Virus;
+	d2rq:uriPattern "http://www.lirmm.fr/virus#@@VIRUS.VV_ABREV@@";
+	d2rq:class v:VIRUS;
 	.
 
-map:nomV a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Virus;
-	d2rq:property v:nomV;
-	d2rq:uriPattern "http://www.lirmm.fr/virus#@@Virus.NomV|urlify@@";
+map:VV_NOMV a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:VIRUS;
+	d2rq:property v:VV_NOMV;
+	d2rq:uriPattern "http://www.lirmm.fr/virus#@@VIRUS.VV_NOMV|urlify@@";
 	.
 
-map:typeGenome a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Virus;
-	d2rq:property v:typeGenome;
-	d2rq:uriPattern "http://www.lirmm.fr/virus#@@Virus.typeGenome@@";
+map:VV_TYPEGENOME a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:VIRUS;
+	d2rq:property v:VV_TYPEGENOME;
+	d2rq:uriPattern "http://www.lirmm.fr/virus#@@VIRUS.VV_TYPEGENOME@@";
 	.
 	
-map:nomFa a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Virus;
-	d2rq:property v:nomFa;
-	d2rq:uriPattern "http://www.lirmm.fr/virus#@@Virus.nomFa@@";
+map:VV_NOMFA a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:VIRUS;
+	d2rq:property v:VV_NOMFA;
+	d2rq:uriPattern "http://www.lirmm.fr/virus#@@VIRUS.VV_NOMFA@@";
 	.
 
 
 # Table Virus_Transmission :
 # relation n:m
-map:Virus_Transmission a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Virus;
-	d2rq:property v:Virus_Transmission;
-	d2rq:refersToClassMap map:Transmission;
-	d2rq:join "Virus_Transmission.abrevV = Virus.abrev";
-	d2rq:join "Virus_Transmission.modeT = Transmission.modeT";
+map:VIRUS_TRANSMISSION a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:VIRUS;
+	d2rq:property v:VIRUS_TRANSMISSION;
+	d2rq:refersToClassMap map:TRANSMISSION;
+	d2rq:join "VIRUS_TRANSMISSION.VVT_ABREV = VIRUS.VV_ABREV";
+	d2rq:join "VIRUS_TRANSMISSION.VVT_MODET = TRANSMISSION.VT_MODET";
 	.
 
 
