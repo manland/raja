@@ -1,0 +1,3 @@
+
+class IndoorConsole implements IInDoor {
+}
