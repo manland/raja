@@ -5,6 +5,9 @@
 
 Chacun peu m'être ce qu'il fait à chaque moment pour pas faire deux fois la même chose. De plus je propose de laisser tout comme ça ça fera un historique !!
 
+= Mercredi 15 Décembre =
+
+Romain : encore un poil d'uml (ajout des packages + réflexion sur les fabriques + réflexion sur le parsing fichier de config) + débuggage virtualBox (réinstallation du grub = croisons les doigts)
 
 = Mardi 14 Décembre =
 
