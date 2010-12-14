@@ -1,15 +1,13 @@
-window_sizes 1598 820 375 1217 626 120
+window_sizes 1600 825 375 1219 631 120
 diagrams
   active  classdiagram_ref 141918 // System
-    1219 631 100 3 0 0
+    1219 631 100 3 58 0
 end
 show_stereotypes
-selected operation_ref 149342 // FileInterface
+selected operation_ref 142302 // OurException
 open
   class_ref 136798 // IAdapter
   class_ref 145630 // MalformedQueryException
   class_ref 145758 // OurException
-  class_ref 152286 // ConsoleInterface
-  class_ref 152414 // FileInterface
 end
 end
