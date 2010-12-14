@@ -1,0 +1,11 @@
+#summary Qui fait quoi en ce moment ?
+#labels Phase-QA,Featured
+
+= Introduction =
+
+Chacun peu m'être ce qu'il fait à chaque moment pour pas faire deux fois la même chose. De plus je propose de laisser tout comme ça ça fera un historique !!
+
+
+= Mardi 14 Décembre =
+
+Romain : je modifie l'UML et je fais la génération !! Attention alois j'espère que t'as eu mon message !! ++
