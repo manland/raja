@@ -4,6 +4,7 @@
 = Server =
 
   * IndoorConsole
+  * IndoorFile
 
 = Server.Adapter =
 
