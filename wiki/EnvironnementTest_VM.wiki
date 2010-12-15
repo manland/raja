@@ -5,15 +5,15 @@
 
 =Problèmes rencontrés=
 
-==Databases Login==
+==Data-bases Login==
 
-===FacteurMaladie===
+===Facteur Maladie===
 
 Utilisez les identifiants de la base de donnée oracle pour se connecter comme utilisateur : dbuser/dbuser.
 
 ----
 
-==BootDevice - non résolu==
+==Boot Device - non résolu==
 
 Il faut vérifier dans /boot/grub/menu.lst que les périphériques correspondent bien à ceux listés dans /etc/fstab.
 
