@@ -1,0 +1,16 @@
+#summary Les pages déjà traitée
+#labels Featured,Phase-Implementation
+
+= Server =
+
+  * IndoorConsole
+
+= Server.Adapter =
+
+= Server.Translator =
+
+= Server.DataBase =
+
+= Query =
+
+= Exception =
