@@ -1,15 +1,14 @@
 window_sizes 1364 690 320 1038 616 0
 diagrams
   active  classdiagram_ref 141918 // System
-    1038 616 69 3 8 0
+    1040 617 68 3 0 0
   usecasediagram_ref 128086 // UseCase
     830 441 100 4 0 0
 end
 show_stereotypes
-selected 
-  package_ref 128086 // net
+selected operation_ref 142166 // globalSchema
 open
-  classview_ref 128094 // System
-  deploymentview_ref 128086 // Deployement
+  class_ref 136542 // Server
+  class_ref 138590 // Translator
 end
 end

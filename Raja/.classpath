@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="src/libs/antlr-2.7.5.jar"/>
+	<classpathentry kind="lib" path="src/libs/arq-extra.jar"/>
+	<classpathentry kind="lib" path="src/libs/arq.jar"/>
+	<classpathentry kind="lib" path="src/libs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="src/libs/concurrent.jar"/>
+	<classpathentry kind="lib" path="src/libs/d2rq-0.5.1.jar"/>
+	<classpathentry kind="lib" path="src/libs/icu4j_3_4.jar"/>
+	<classpathentry kind="lib" path="src/libs/iri.jar"/>
+	<classpathentry kind="lib" path="src/libs/jena-2.5.1-rdql.jar"/>
+	<classpathentry kind="lib" path="src/libs/jena.jar"/>
+	<classpathentry kind="lib" path="src/libs/jenatest.jar"/>
+	<classpathentry kind="lib" path="src/libs/json.jar"/>
+	<classpathentry kind="lib" path="src/libs/junit.jar"/>
+	<classpathentry kind="lib" path="src/libs/log4j-1.2.12.jar"/>
+	<classpathentry kind="lib" path="src/libs/lucene-core-2.2.0.jar"/>
+	<classpathentry kind="lib" path="src/libs/mysql-connector-java-3.1.12-bin.jar"/>
+	<classpathentry kind="lib" path="src/libs/stax-api-1.0.jar"/>
+	<classpathentry kind="lib" path="src/libs/wstx-asl-3.0.0.jar"/>
+	<classpathentry kind="lib" path="src/libs/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="src/libs/xml-apis.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

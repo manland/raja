@@ -2,127 +2,127 @@ format 74
 
 classcanvas 128094 class_ref 136542 // Server
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 179.86 79 2000
+  xyz 180.12 77.68 2000
 end
 classcanvas 128222 class_ref 136670 // IInDoor
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 56.84 331.86 2000
+  xyz 56.04 331.62 2000
 end
 classcanvas 128478 class_ref 136798 // IAdapter
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 505.52 249.76 2000
+  xyz 505.12 249.76 2000
 end
 classcanvas 128606 class_ref 136926 // Query
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 119.98 1297.18 2000
+  xyz 119.6 1297.74 2000
 end
 classcanvas 128990 class_ref 137182 // Factory
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 483.52 117.66 2000
+  xyz 484.88 117.66 2000
 end
 classcanvas 129118 class_ref 137310 // SelectQuery
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 413.96 1591.24 2000
+  xyz 413.14 1591.44 2000
 end
 classcanvas 129374 class_ref 137438 // ConditionalQuery
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 216.08 1457.2 2000
+  xyz 216.48 1457.24 2000
 end
 classcanvas 129758 class_ref 137566 // DeleteQuery
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 212.2 1597.24 2000
+  xyz 212.64 1597.44 2000
 end
 classcanvas 130014 class_ref 137694 // UpdateQuery
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 12.2 1591.24 2000
+  xyz 12.64 1591.44 2000
 end
 classcanvas 130398 class_ref 137822 // InsertQuery
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 9.1 1457.2 2000
+  xyz 9.32 1457.24 2000
 end
 classcanvas 130654 class_ref 137950 // IQuery
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 120.9 1160.7 2000
+  xyz 120.26 1160.92 2000
 end
 classcanvas 131038 class_ref 138078 // TerminalAdapter
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 632.1 498.9 2000
+  xyz 632.68 498.5 2000
 end
 classcanvas 131294 class_ref 138206 // DataBaseNotAccessibleException
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 522.7 1456.16 2000
+  xyz 522.52 1456.8 2000
 end
 classcanvas 131550 class_ref 138334 // DataBaseType
   draw_all_relations default hide_attributes default hide_operations yes hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 19.96 989.94 2000
+  xyz 19.98 989.54 2000
 end
 classcanvas 132054 class_ref 134614 // N3Translator
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 103.48 721.7 2000
+  xyz 103.88 721.74 2000
 end
 classcanvas 132318 class_ref 138462 // ITranslator
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 667.04 640.98 2000
+  xyz 666.68 639.32 2000
 end
 classcanvas 132446 class_ref 138590 // Translator
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 627.08 848.42 2000
+  xyz 626.3 850.1 2000
 end
 classcanvas 132702 class_ref 138718 // OracleTranslator
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 447.78 998.92 2000
+  xyz 447.78 998.52 2000
 end
 classcanvas 132958 class_ref 138846 // PostGreTranslator
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 664.06 998.72 2000
+  xyz 664.64 998.32 2000
 end
 note 133078 "If(!isSQL)
      from.size() == 0
 (tout est dans getQuery())"
-  xyzwh 384.4 1286.4 2000 181 67
+  xyzwh 384.16 1286.46 2000 181 67
 classcanvas 133214 class_ref 138974 // MySqlTranslator
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 877.16 998.92 2000
+  xyz 877.36 998.52 2000
 end
 classcanvas 133334 class_ref 141142 // IndoorFile
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 146.96 461.93 2000
+  xyz 146.6 461.13 2000
 end
 classcanvas 133462 class_ref 141270 // IndoorConsole
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 13.53 461.92 2000
+  xyz 13.11 461.12 2000
 end
 classcanvas 133726 class_ref 139102 // CompositeAdapter
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 315.72 484.32 2000
+  xyz 315.72 484.56 2000
 end
 classcanvas 134230 class_ref 141398 // Adapter
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 606.3 405.2 2000
+  xyz 606.16 405.96 2000
 end
 classcanvas 134742 class_ref 141526 // IN3Translator
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 103.2 593.1 2000
+  xyz 103.4 595.3 2000
 end
 classcanvas 134870 class_ref 141654 // N3TranslatorVertical
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 34.8 822 2000
+  xyz 34.2 822.78 2000
 end
 classcanvas 134998 class_ref 141782 // N3TranslatorHorizontal
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 218.5 822.1 2005
+  xyz 218.72 822.88 2005
 end
 classcanvas 138334 class_ref 130014 // DataBase
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 222.26 976.74 2000
+  xyz 222.66 976.34 2000
 end
 classcanvas 139742 class_ref 145630 // MalformedQueryException
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 818.2 1386.14 2000
+  xyz 818.2 1386.98 2000
 end
 classcanvas 139870 class_ref 145758 // OurException
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 719.76 1209.14 2000
+  xyz 719.56 1209 2000
 end
 relationcanvas 128342 relation_ref 128342 // <realization>
   from ref 128606 z 2001 to ref 130654
@@ -131,15 +131,15 @@ relationcanvas 128342 relation_ref 128342 // <realization>
 end
 relationcanvas 128350 relation_ref 128094 // <unidirectional association>
   from ref 128094 z 2001 to ref 128222
-  role_a_pos 168 312 3000 no_role_b
+  role_a_pos 171 311 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129110 relation_ref 128470 // <unidirectional association>
   geometry VHr
-  from ref 132446 z 2001 to point 307 888
+  from ref 132446 z 2001 to point 307 897
   line 131670 z 2001 to ref 138334
-  role_a_pos 323 959 3000 no_role_b
-  multiplicity_a_pos 287 959 3000 no_multiplicity_b
+  role_a_pos 325 956 3000 no_role_b
+  multiplicity_a_pos 287 956 3000 no_multiplicity_b
 end
 relationcanvas 129502 relation_ref 128478 // <generalisation>
   from ref 129118 z 2001 to ref 129374
@@ -183,8 +183,8 @@ relationcanvas 133086 relation_ref 130398 // <generalisation>
 end
 relationcanvas 133470 relation_ref 130654 // <unidirectional association>
   from ref 131038 z 2001 to ref 132318
-  role_a_pos 780 623 3000 no_role_b
-  multiplicity_a_pos 745 623 3000 no_multiplicity_b
+  role_a_pos 780 621 3000 no_role_b
+  multiplicity_a_pos 744 621 3000 no_multiplicity_b
 end
 relationcanvas 133590 relation_ref 141910 // <realization>
   from ref 133462 z 2001 to ref 128222
@@ -198,9 +198,9 @@ relationcanvas 133718 relation_ref 142038 // <realization>
 end
 relationcanvas 133854 relation_ref 130910 // <directional aggregation>
   geometry VH
-  from ref 133726 z 2001 to point 448 297
+  from ref 133726 z 2001 to point 448 297.64
   line 131926 z 2001 to ref 128478
-  role_a_pos 414 279 3000 no_role_b
+  role_a_pos 408 279 3000 no_role_b
   multiplicity_a_pos 491 304 3000 no_multiplicity_b
 end
 relationcanvas 134358 relation_ref 142166 // <realization>
@@ -243,19 +243,17 @@ relationcanvas 135518 relation_ref 131166 // <dependency>
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end
-relationcanvas 135638 relation_ref 143062 // <unidirectional association>
-  decenter_begin 59
-  decenter_end 684
-  from ref 132318 z 2001 to ref 134742
-  role_a_pos 326 632 3000 no_role_b
+relationcanvas 135766 relation_ref 149590 // <unidirectional association>
+  from ref 132446 z 2001 to ref 134742
+  role_a_pos 315 665 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 136030 relation_ref 131294 // <unidirectional association>
   geometry VH
-  from ref 128094 z 2001 to point 258 524
+  from ref 128094 z 2001 to point 260 524
   line 131030 z 2001 to ref 133726
-  role_a_pos 220 506 3000 no_role_b
-  multiplicity_a_pos 298 532 3000 no_multiplicity_b
+  role_a_pos 214 506 3000 no_role_b
+  multiplicity_a_pos 294 533 3000 no_multiplicity_b
 end
 relationcanvas 138462 relation_ref 129630 // <unidirectional association>
   from ref 138334 z 2001 to ref 131550

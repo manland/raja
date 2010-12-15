@@ -1,6 +1,6 @@
 format 74
 "raja" // net::raja
-  revision 2
+  revision 4
   modified_by 86 "manland"
   // class settings
   //class diagram settings
@@ -248,17 +248,6 @@ Singleton"
 	comment "Path of config file"
       end
 
-      attribute 131166 "globalSchema"
-	protected explicit_type "RDF"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	comment "Global Schema RDF to offer a view on the databases. "
-      end
-
       classrelation 131294 // mediatorLike (<unidirectional association>)
 	relation 131294 --->
 	  a role_name "mediatorLike" multiplicity "1" protected
@@ -267,6 +256,18 @@ Singleton"
 "
 	    classrelation_ref 131294 // mediatorLike (<unidirectional association>)
 	  b parent class_ref 139102 // CompositeAdapter
+      end
+
+      operation 142166 "globalSchema"
+	public explicit_return_type "RDF"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
       end
     end
 
@@ -504,7 +505,6 @@ ${members}}
 	
 	comment "Create and return the Traductor matching with the given database."
       end
-
     end
 
     class 137310 "SelectQuery"
@@ -1119,14 +1119,6 @@ ${members}};
 	comment "Execute the given query"
       end
 
-      classrelation 143062 // selectTranslator (<unidirectional association>)
-	relation 143062 --->
-	  a role_name "selectTranslator" protected
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 143062 // selectTranslator (<unidirectional association>)
-	  b parent class_ref 141526 // IN3Translator
-      end
     end
 
     class 138590 "Translator"
@@ -1202,6 +1194,28 @@ ${members}}
 	
 	
 	comment "Execute a select query."
+      end
+
+      classrelation 149590 // selectTranslator (<unidirectional association>)
+	relation 149590 --->
+	  a role_name "selectTranslator" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 149590 // selectTranslator (<unidirectional association>)
+	  b parent class_ref 141526 // IN3Translator
+      end
+
+      operation 141910 "getMetaInfo"
+	public explicit_return_type "RDF"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Return the RDF shema containing meta-information on the database."
       end
     end
 
@@ -1467,7 +1481,6 @@ These are the sub-adapters managed by this adapter."
 	    classrelation_ref 142422 // <generalisation>
 	  b parent class_ref 141398 // Adapter
       end
-
     end
 
     class 145630 "MalformedQueryException"
@@ -1646,7 +1659,6 @@ ${members}}
 	    classrelation_ref 142166 // <realization>
 	  b parent class_ref 136798 // IAdapter
       end
-
     end
 
     class 141526 "IN3Translator"
