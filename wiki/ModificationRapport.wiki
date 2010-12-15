@@ -12,3 +12,5 @@ Adapter.CompositeAdapter : constructor(file OWL)
 Translator.N3 : suppression des sous classes Horizontal et Vertical (pb déplacé dans le xml avec getMetaInfo)
 
 Query Architecture : rajout des constructeurs par défaut : instanciation des vector.
+
+InsertQuery : extends ConditionalQuery (pour la clause where optionnel).
