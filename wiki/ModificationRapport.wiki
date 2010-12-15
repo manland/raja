@@ -10,3 +10,5 @@ Adapter.CompositeAdapter : parse(List xml)
 Adapter.CompositeAdapter : constructor(file OWL)
 
 Translator.N3 : suppression des sous classes Horizontal et Vertical (pb déplacé dans le xml avec getMetaInfo)
+
+Query Architecture : rajout des constructeurs par défaut : instanciation des vector.
