@@ -7,4 +7,6 @@ Server.Server : init(String fileConfig, IIndoor indoor)
 
 Adapter.CompositeAdapter : parse(List xml)
 
-Adapter.Adapter : constructor(file N3/OWL)
+Adapter.CompositeAdapter : constructor(file OWL)
+
+Translator.N3 : suppression des sous classes Horizontal et Vertical (pb déplacé dans le xml avec getMetaInfo)
