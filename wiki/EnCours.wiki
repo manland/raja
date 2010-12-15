@@ -7,6 +7,8 @@ Chacun peu m'être ce qu'il fait à chaque moment pour pas faire deux fois la m�
 
 = Mercredi 15 Décembre =
 
+Aloys : Je m'occupe de l'architecture de Query, ajout des constructeurs, reconstruction des requêtes puis parsage des requêtes, avec des regex je pense (puisque le pattern est bien spécifié dans le rapport), je vois juste ?
+
 Romain : ~~encore un poil d'uml (ajout des packages + réflexion sur les fabriques + réflexion sur le parsing fichier de config) + débuggage virtualBox (réinstallation du grub = croisons les doigts)~~ 
 ~~UML ne sera plus touché pour générer le code !! Pas réussi à faire marcher vm (ON DOIT EN REPARLER TOUS ENSEMBLE) du coup je met en place le code source java (package et résolution d'erreur dû à l'autogénération !!~~
 Je m'occupe du parsage XML (donc peu être que j'empièterais sur la fabrique !! Merci de me la laisser (notemment Aloys^^) !!
