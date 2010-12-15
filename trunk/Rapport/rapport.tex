@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{amsthm}
+\usepackage{listings}
 
 \title{Raja - Bases de données distribuées}
 
@@ -230,56 +231,79 @@ Si l'utilisateur ne fait une recherche que sur une partie des adaptateurs, il r�
 
 \subsection{XML de configuration}
 
+\begin{lstlisting}[language=XML]
 <raja>
-	<CompositeAdapter><!-- Adaptateur général : contenant le schéma global -->
-		<OWL url="" />
-		<CompositeAdapter><!-- Adaptateur MaladieVirus -->
-			<OWL url="" />
-			<CompositeAdapter><!-- Adaptateur Maladie -->
-				<OWL url="" />
-				<TerminalAdapter><!-- Traducteur ???? -->
-					<Traducteur>Vertical</Traducteur>
-					<N3 url="" />
-					<Database>
-						<dataBaseName></dataBaseName>
-						<address></address>
-						<userName></userName>
-						<port></port>
-						<password></password>
-					</Database>
-				</TerminalAdapter>
-			</CompositeAdapter>
-			<CompositeAdapter><!-- Adaptateur Virus -->
-				<OWL url="" />
-				<TerminalAdapter><!-- Traducteur ???? -->
-					<Traducteur>Vertical</Traducteur>
-					<N3 url="" />
-					<Database>
-						<dataBaseName></dataBaseName>
-						<address></address>
-						<userName></userName>
-						<port></port>
-						<password></password>
-					</Database>
-				</TerminalAdapter>
-			</CompositeAdapter>
-		</CompositeAdapter>
-		<CompositeAdapter><!-- Adaptateur Recenssement -->
-			<OWL url="" />
-			<TerminalAdapter><!-- Traducteur ???? -->
-				<Traducteur>Horizontal</Traducteur>
-				<N3 url="" />
-				<Database>
-					<dataBaseName></dataBaseName>
-					<address></address>
-					<userName></userName>
-					<port></port>
-					<password></password>
-				</Database>
-			</TerminalAdapter>
-		</CompositeAdapter>
-	</CompositeAdapter>
+  <CompositeAdapter><!-- Adaptateur général : contenant le schéma global -->
+    <OWL url="" />
+      <CompositeAdapter><!-- Adaptateur MaladieVirus -->
+        <OWL url="" />
+        <CompositeAdapter><!-- Adaptateur Maladie -->
+          <OWL url="" />
+          <TerminalAdapter><!-- Traducteur ???? -->
+            <Traducteur>Vertical</Traducteur>
+            <N3 url="" />
+            <Database>
+              <dataBaseName></dataBaseName>
+                <address></address>
+                <userName></userName>
+                <port></port>
+                <password></password>
+              </Database>
+          </TerminalAdapter>
+        </CompositeAdapter>
+        <CompositeAdapter><!-- Adaptateur Virus -->
+          <OWL url="" />
+          <TerminalAdapter><!-- Traducteur ???? -->
+            <Traducteur>Vertical</Traducteur>
+            <N3 url="" />
+            <Database>
+              <dataBaseName></dataBaseName>
+              <address></address>
+              <userName></userName>
+              <port></port>
+              <password></password>
+            </Database>
+          </TerminalAdapter>
+        </CompositeAdapter>
+      </CompositeAdapter>
+      <CompositeAdapter><!-- Adaptateur Recenssement -->
+        <OWL url="" />
+        <TerminalAdapter>
+          <Traducteur>Horizontal</Traducteur><!-- Traducteur ???? -->
+          <N3 url="" />
+          <Database>
+            <dataBaseName></dataBaseName>
+            <address></address>
+            <userName></userName>
+            <port></port>
+            <password></password>
+          </Database>
+        </TerminalAdapter>
+          <Traducteur>Horizontal</Traducteur><!-- Traducteur ???? -->
+          <N3 url="" />
+          <Database>
+            <dataBaseName></dataBaseName>
+            <address></address>
+            <userName></userName>
+            <port></port>
+            <password></password>
+          </Database>
+        </TerminalAdapter>
+        </TerminalAdapter>
+          <Traducteur>Horizontal</Traducteur><!-- Traducteur ???? -->
+          <N3 url="" />
+          <Database>
+            <dataBaseName></dataBaseName>
+            <address></address>
+            <userName></userName>
+            <port></port>
+            <password></password>
+          </Database>
+        </TerminalAdapter>
+      </CompositeAdapter>
+  </CompositeAdapter>
 </raja>
+\end{lstlisting}
 
 \subsection{Fabrique}
 

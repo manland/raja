@@ -1,33 +1,33 @@
 \select@language {french}
-\contentsline {section}{\numberline {1}Introduction}{3}
-\contentsline {subsection}{\numberline {1.1}Projet}{3}
-\contentsline {subsection}{\numberline {1.2}Equipe}{3}
-\contentsline {subsection}{\numberline {1.3}Organisation}{3}
-\contentsline {subsection}{\numberline {1.4}Mat\IeC {\'e}riel}{3}
-\contentsline {section}{\numberline {2}Mod\IeC {\`e}le d'analyse}{4}
-\contentsline {subsection}{\numberline {2.1}Besoins}{4}
-\contentsline {subsection}{\numberline {2.2}Requ\IeC {\^e}tes}{4}
-\contentsline {subsection}{\numberline {2.3}Bases de donn\IeC {\'e}es}{5}
-\contentsline {subsection}{\numberline {2.4}D\IeC {\'e}rivation puis Int\IeC {\'e}gration}{5}
-\contentsline {subsection}{\numberline {2.5}Int\IeC {\'e}gration}{6}
-\contentsline {subsubsection}{\numberline {2.5.1}Sch\IeC {\'e}ma ontologique des Maladies de leur transmission et de leur facteur}{7}
-\contentsline {subsubsection}{\numberline {2.5.2}Sch\IeC {\'e}ma RDF CIM}{9}
-\contentsline {subsubsection}{\numberline {2.5.3}Sch\IeC {\'e}ma RDF Recencement}{9}
-\contentsline {subsubsection}{\numberline {2.5.4}Sch\IeC {\'e}ma RDF Global}{9}
-\contentsline {subsection}{\numberline {2.6}Insertion, Modification et Suppression}{9}
-\contentsline {section}{\numberline {3}Mod\IeC {\`e}le de conception}{10}
-\contentsline {subsection}{\numberline {3.1}Serveur pseudos-m\IeC {\'e}diateurs}{10}
-\contentsline {subsection}{\numberline {3.2}Adaptateurs}{11}
-\contentsline {subsection}{\numberline {3.3}Traducteurs}{11}
-\contentsline {subsection}{\numberline {3.4}Diagramme de classes}{11}
-\contentsline {section}{\numberline {4}Impl\IeC {\'e}mentation}{11}
-\contentsline {subsection}{\numberline {4.1}Initialisation}{11}
-\contentsline {subsection}{\numberline {4.2}Requ\IeC {\^e}te}{11}
-\contentsline {subsection}{\numberline {4.3}Inconv\IeC {\'e}nients}{12}
-\contentsline {subsection}{\numberline {4.4}XML de configuration}{12}
-\contentsline {subsection}{\numberline {4.5}Fabrique}{13}
-\contentsline {subsubsection}{\numberline {4.5.1}Requ\IeC {\^e}te}{13}
-\contentsline {subsubsection}{\numberline {4.5.2}Traducteur}{13}
-\contentsline {section}{\numberline {5}Glossaire}{14}
-\contentsline {section}{\numberline {6}Annexes}{15}
-\contentsline {subsection}{\numberline {6.1}Sch\IeC {\'e}ma des tables des bases de donn\IeC {\'e}es}{15}
+\contentsline {section}{\numberline {1}Introduction}{4}
+\contentsline {subsection}{\numberline {1.1}Projet}{4}
+\contentsline {subsection}{\numberline {1.2}Equipe}{4}
+\contentsline {subsection}{\numberline {1.3}Organisation}{4}
+\contentsline {subsection}{\numberline {1.4}Mat\IeC {\'e}riel}{4}
+\contentsline {section}{\numberline {2}Mod\IeC {\`e}le d'analyse}{5}
+\contentsline {subsection}{\numberline {2.1}Besoins}{5}
+\contentsline {subsection}{\numberline {2.2}Requ\IeC {\^e}tes}{5}
+\contentsline {subsection}{\numberline {2.3}Bases de donn\IeC {\'e}es}{6}
+\contentsline {subsection}{\numberline {2.4}D\IeC {\'e}rivation puis Int\IeC {\'e}gration}{6}
+\contentsline {subsection}{\numberline {2.5}Int\IeC {\'e}gration}{7}
+\contentsline {subsubsection}{\numberline {2.5.1}Sch\IeC {\'e}ma ontologique des Maladies de leur transmission et de leur facteur}{8}
+\contentsline {subsubsection}{\numberline {2.5.2}Sch\IeC {\'e}ma RDF CIM}{10}
+\contentsline {subsubsection}{\numberline {2.5.3}Sch\IeC {\'e}ma RDF Recencement}{10}
+\contentsline {subsubsection}{\numberline {2.5.4}Sch\IeC {\'e}ma RDF Global}{10}
+\contentsline {subsection}{\numberline {2.6}Insertion, Modification et Suppression}{10}
+\contentsline {section}{\numberline {3}Mod\IeC {\`e}le de conception}{11}
+\contentsline {subsection}{\numberline {3.1}Serveur pseudos-m\IeC {\'e}diateurs}{11}
+\contentsline {subsection}{\numberline {3.2}Adaptateurs}{12}
+\contentsline {subsection}{\numberline {3.3}Traducteurs}{12}
+\contentsline {subsection}{\numberline {3.4}Diagramme de classes}{12}
+\contentsline {section}{\numberline {4}Impl\IeC {\'e}mentation}{12}
+\contentsline {subsection}{\numberline {4.1}Initialisation}{12}
+\contentsline {subsection}{\numberline {4.2}Requ\IeC {\^e}te}{12}
+\contentsline {subsection}{\numberline {4.3}Inconv\IeC {\'e}nients}{13}
+\contentsline {subsection}{\numberline {4.4}XML de configuration}{13}
+\contentsline {subsection}{\numberline {4.5}Fabrique}{15}
+\contentsline {subsubsection}{\numberline {4.5.1}Requ\IeC {\^e}te}{15}
+\contentsline {subsubsection}{\numberline {4.5.2}Traducteur}{15}
+\contentsline {section}{\numberline {5}Glossaire}{16}
+\contentsline {section}{\numberline {6}Annexes}{17}
+\contentsline {subsection}{\numberline {6.1}Sch\IeC {\'e}ma des tables des bases de donn\IeC {\'e}es}{17}
