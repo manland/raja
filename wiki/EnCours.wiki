@@ -7,7 +7,7 @@ Chacun peu m'être ce qu'il fait à chaque moment pour pas faire deux fois la m�
 
 = Mercredi 15 Décembre =
 
-Romain : encore un poil d'uml (ajout des packages + réflexion sur les fabriques + réflexion sur le parsing fichier de config) + débuggage virtualBox (réinstallation du grub = croisons les doigts)
+Romain : ~~encore un poil d'uml (ajout des packages + réflexion sur les fabriques + réflexion sur le parsing fichier de config) + débuggage virtualBox (réinstallation du grub = croisons les doigts)~~ UML ne sera plus touché pour générer le code !! Pas réussi à faire marcher vm (ON DOIT EN REPARLER TOUS ENSEMBLE) du coup je met en place le code source java (package et résolution d'errer dû à l'autogénération !!
 
 = Mardi 14 Décembre =
 
