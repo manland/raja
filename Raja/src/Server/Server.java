@@ -1,6 +1,7 @@
 package Server;
+import Exception.DataBaseNotAccessibleException;
 import Server.Adapter.CompositeAdapter;
-
+import com.hp.hpl.jena.query.ResultSet;
 
 /**
  * Server class.
@@ -39,7 +40,12 @@ public class Server {
 			String line = indoor.read();
 			if(!line.equals(""))
 			{
-				mediatorLike.execute(Factory.makeQuery(line));
+				try {
+					mediatorLike.execute(Factory.makeQuery(line));
+				} catch (DataBaseNotAccessibleException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			else
 			{
@@ -53,6 +59,7 @@ public class Server {
 	 */
 	public static int main(String[] args)
 	{
+		return 0;
 	}
 
 	/**
@@ -74,9 +81,10 @@ public class Server {
 	 */
 	public boolean init(IInDoor indoor) {
 		this.indoor = indoor;
+		return false;
 	}
 	
-	public RDF getGlobalSchema()
+	public ResultSet getGlobalSchema()
 	{
 		return mediatorLike.getLocalSchema();
 	}

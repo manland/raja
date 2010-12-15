@@ -2,13 +2,19 @@ package Server.Translator;
 import Query.DeleteQuery;
 import Query.InsertQuery;
 import Query.UpdateQuery;
+import Server.DataBase.DataBase;
 
 
 /**
  * This is our PostGre Tanslator.
  */
 public class PostGreTranslator extends Translator {
-  /**
+  public PostGreTranslator(DataBase dataBase, String n3File) {
+		super(dataBase, n3File);
+		// TODO Auto-generated constructor stub
+	}
+
+/**
    * Execute a delete query.
    */
   public boolean delete(DeleteQuery query) {

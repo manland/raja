@@ -241,7 +241,7 @@
 
 Lorsque tout est initalisé le serveur rentre dans sa boucle run(), cette méthode doit appeler successivement interface.read() et afficher le résultat en appellant interface.write(). \\
 
-\indent Lorsqu'une requête arrive le serveur doit construire une IQuery à l'aide de la fabrique. Il n'a ensuite qu'à appeler mediatorLike.exec(). Celui-ci va appeler sur tous ces sous-adaptateurs isQueryMatching() et si c'est vrai il appellera alors exec(). \\
+\indent Lorsqu'une requête arrive le serveur doit construire une IQuery à l'aide de la fabrique. Il n'a ensuite qu'à appeler mediatorLike.exec(). Celui-ci va appeler sur tous ces sous-adaptateurs isQueryMatching() et si c'est vrai il appellera alors exec() de celui-ci. \\
 \indent Lorsqu'un traducteur final sera appelé il passera la requête à son traducteur par le biais de la fonction exec(). Celui-ci devra tout d'abord vérifier de quel type est la requête, si elle de type select le traducteur N3 sera appelé sinon ce sera la fonction abstraite, qui aboutira dans le bon traducteur correspondant au bon sgbd. \\
 
 \\ Lorsque le résultat de la requête sera retourné à l'adaptateur-composite celui-ci devra ajouter à son modèle ontologique les triplets récupérés (toujours dans le cas où c'est un select). En remontant toute la hiérarchie notre modèle ontologique global se construira. Et ainsi nous retournerons le résultat de la requête à l'utilisateur.

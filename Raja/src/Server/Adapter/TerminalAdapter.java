@@ -2,7 +2,7 @@ package Server.Adapter;
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
 import Server.Translator.ITranslator;
-
+import com.hp.hpl.jena.query.ResultSet;
 
 /**
  * Adapter directly linked to a database.
@@ -16,7 +16,8 @@ public class TerminalAdapter extends Adapter {
   /**
    * Return the RDF schema of the databas linked by the adapter.
    */
-  public RDF getLocalSchema() {
+  public ResultSet getLocalSchema() {
+	return null;
   }
 
   /**
@@ -29,7 +30,8 @@ public class TerminalAdapter extends Adapter {
   /**
    * Execute the query. 
    */
-  public RDF execute(IQuery query) throws DataBaseNotAccessibleException {
+  public ResultSet execute(IQuery query) throws DataBaseNotAccessibleException {
+	return null;
   }
 
 }

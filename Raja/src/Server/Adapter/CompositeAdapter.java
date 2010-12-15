@@ -1,7 +1,7 @@
 package Server.Adapter;
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
-
+import com.hp.hpl.jena.query.ResultSet;
 
 /**
  * Adaptor of several Adaptor. Needed to merge RDF informations from under Adaptor.
@@ -23,13 +23,16 @@ public class CompositeAdapter extends Adapter {
   /**
    * Give the query to all sub adaptor which execute it and check if no errors occurs.
    */
-  public RDF execute(IQuery query) throws DataBaseNotAccessibleException {
+  public ResultSet execute(IQuery query) throws DataBaseNotAccessibleException {
+	return null;
+	  
   }
 
   /**
    * Return the global RDF schema of sub adapters.
    */
-  public RDF getLocalSchema() {
+  public ResultSet getLocalSchema() {
+	return null;
   }
 
 }

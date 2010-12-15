@@ -5,6 +5,7 @@ import Query.IQuery;
 import Query.InsertQuery;
 import Query.SelectQuery;
 import Query.UpdateQuery;
+import com.hp.hpl.jena.query.ResultSet;
 
 
 /**
@@ -14,12 +15,12 @@ public interface ITranslator {
   /**
    * Return the RDF shema containing meta-information on the database.
    */
-  RDF getMetaInfo() ;
+	ResultSet getMetaInfo() throws DataBaseNotAccessibleException ;
 
   /**
    * Execute a select query.
    */
-  RDF select(SelectQuery query) throws DataBaseNotAccessibleException ;
+	ResultSet select(SelectQuery query) throws DataBaseNotAccessibleException ;
 
   /**
    * Execute a insert query.
@@ -39,6 +40,6 @@ public interface ITranslator {
   /**
    * Execute the given query
    */
-  RDF exec(IQuery query) throws DataBaseNotAccessibleException ;
+  ResultSet exec(IQuery query) throws DataBaseNotAccessibleException ;
 
 }
