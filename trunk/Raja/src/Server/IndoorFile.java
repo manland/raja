@@ -12,14 +12,12 @@ import java.io.PrintWriter;
 
 public class IndoorFile implements IInDoor {
 
-	private String inFile;
 	private String outFile;
 	
 	private BufferedReader brIn;
 	
 	public IndoorFile(String inFile, String outFile)
 	{
-		this.inFile = inFile;
 		this.outFile = outFile;
 		InputStream ips = null;
 		try {
