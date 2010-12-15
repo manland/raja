@@ -4,3 +4,4 @@
 = Mercredi 15 =
 
 Server.Server : init(String fileConfig, IIndoor indoor)
+Adapter.CompositeAdapter : parse(List xml)
