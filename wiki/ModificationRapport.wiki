@@ -6,3 +6,5 @@
 Server.Server : init(String fileConfig, IIndoor indoor)
 
 Adapter.CompositeAdapter : parse(List xml)
+
+Adapter.Adapter : constructor(file N3/OWL)
