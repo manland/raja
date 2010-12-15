@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.12.15)  15 DEC 2010 11:51
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.12.15)  15 DEC 2010 12:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\nonstopmode \input{"/home/audrey/Rapport/rapport.tex"}
-(/home/audrey/Rapport/rapport.tex
+**\nonstopmode \input{"/home/audrey/raportBD2/Rapport/rapport.tex"}
+(/home/audrey/raportBD2/Rapport/rapport.tex
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size12.clo
@@ -392,7 +392,7 @@ File: listings.cfg 2007/02/22 1.4 listings configuration
 ))
 Package: listings 2007/02/22 1.4 (Carsten Heinz)
 
-(/home/audrey/Rapport/rapport.aux)
+(/home/audrey/raportBD2/Rapport/rapport.aux)
 \openout1 = `rapport.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
@@ -497,16 +497,16 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(/home/audrey/Rapport/rapport.toc)
+(/home/audrey/raportBD2/Rapport/rapport.toc)
 \tf@toc=\write3
 \openout3 = `rapport.toc'.
 
- (/home/audrey/Rapport/rapport.lof)
+
+(/home/audrey/raportBD2/Rapport/rapport.lof)
 \tf@lof=\write4
 \openout4 = `rapport.lof'.
 
- [2]
-[3]
+ [2] [3]
 Underfull \hbox (badness 10000) in paragraph at lines 83--85
 
  []
@@ -572,8 +572,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 123--124
 <images/QueryHierarchie.png, id=25, 617.30624pt x 495.8525pt>
 File: images/QueryHierarchie.png Graphic file (type png)
 
-<use images/QueryHierarchie.png> [6 </home/audrey/Rapport/images/SimpleUseCase.
-png (PNG copy)>]
+<use images/QueryHierarchie.png> [6 </home/audrey/raportBD2/Rapport/images/Simp
+leUseCase.png (PNG copy)>]
 Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
@@ -603,7 +603,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 143--146
 
  []
 
-[7 </home/audrey/Rapport/images/QueryHierarchie.png>]
+[7 </home/audrey/raportBD2/Rapport/images/QueryHierarchie.png>]
 <images/initialisationSysteme.png, id=35, 597.73312pt x 845.40843pt>
 File: images/initialisationSysteme.png Graphic file (type png)
 
@@ -612,7 +612,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 154--157
 
  []
 
-[8 </home/audrey/Rapport/images/initialisationSysteme.png>]
+[8 </home/audrey/raportBD2/Rapport/images/initialisationSysteme.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 159--160
 
  []
@@ -627,14 +627,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 162--164
 
  []
 
-<rdf/rdf-virusTransmission.png, id=39, 443.6575pt x 485.815pt>
-File: rdf/rdf-virusTransmission.png Graphic file (type png)
+<images/rdf-virusTransmission.png, id=39, 443.6575pt x 485.815pt>
+File: images/rdf-virusTransmission.png Graphic file (type png)
 
-<use rdf/rdf-virusTransmission.png> [9]
-<rdf/rdf-MaladieFacteur.png, id=43, 471.7625pt x 482.80376pt>
-File: rdf/rdf-MaladieFacteur.png Graphic file (type png)
+<use images/rdf-virusTransmission.png> [9]
+<images/rdf-MaladieFacteur.png, id=43, 471.7625pt x 482.80376pt>
+File: images/rdf-MaladieFacteur.png Graphic file (type png)
 
-<use rdf/rdf-MaladieFacteur.png>
+<use images/rdf-MaladieFacteur.png>
 ! Missing $ inserted.
 <inserted text> 
                 $
@@ -669,17 +669,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 177--186
 
  []
 
-[10 </home/audrey/Rapport/rdf/rdf-virusTransmission.png> </home/audrey/Rapport/
-rdf/rdf-MaladieFacteur.png>]
-<rdf/rdf-schema.png, id=49, 582.175pt x 395.4775pt>
-File: rdf/rdf-schema.png Graphic file (type png)
- <use rdf/rdf-schema.png>
-[11 </home/audrey/Rapport/rdf/rdf-schema.png>]
-<images/selectQuerySysteme.png, id=57, 597.73312pt x 845.40843pt>
+[10 </home/audrey/raportBD2/Rapport/images/rdf-virusTransmission.png> </home/au
+drey/raportBD2/Rapport/images/rdf-MaladieFacteur.png>]
+<images/rdf-schema.png, id=49, 582.175pt x 395.4775pt>
+File: images/rdf-schema.png Graphic file (type png)
+
+<use images/rdf-schema.png> [11 </home/audrey/raportBD2/Rapport/images/rdf-sche
+ma.png>] <images/selectQuerySysteme.png, id=57, 597.73312pt x 845.40843pt>
 File: images/selectQuerySysteme.png Graphic file (type png)
 
-<use images/selectQuerySysteme.png> [12 </home/audrey/Rapport/images/selectQuer
-ySysteme.png>]
+<use images/selectQuerySysteme.png> [12 </home/audrey/raportBD2/Rapport/images/
+selectQuerySysteme.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 236--237
 
  []
@@ -826,7 +826,7 @@ Overfull \hbox (42.89125pt too wide) in paragraph at lines 336--337
  [] 
  []
 
-[15] [16 </home/audrey/Rapport/images/Serveur.png>]
+[15] [16 </home/audrey/raportBD2/Rapport/images/Serveur.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 345--346
 
  []
@@ -851,27 +851,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 349--350
 
  []
 
-[17] [18] (/home/audrey/Rapport/rapport.aux) ) 
+[17] [18] (/home/audrey/raportBD2/Rapport/rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 5275 strings out of 495061
- 72615 string characters out of 1182620
- 154969 words of memory out of 3000000
+ 5274 strings out of 495061
+ 72757 string characters out of 1182620
+ 154979 words of memory out of 3000000
  8394 multiletter control sequences out of 15000+50000
  14048 words of font info for 35 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 37i,10n,51p,723b,1651s stack positions out of 5000i,500n,10000p,200000b,50000s
- </home/audrey/.texmf-var/fonts/p
-k/ljfour/jknappen/ec/ecti1200.600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecbx1440.600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecbx1200.600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.
-600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> </h
-ome/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/audrey
-/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/audrey/.texmf-va
-r/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb>
-Output written on rapport.pdf (18 pages, 471176 bytes).
+ 37i,10n,51p,733b,1651s stack positions out of 5000i,500n,10000p,200000b,50000s
+ </home/audrey/.texmf-v
+ar/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/audrey/.texmf-var/fonts/p
+k/ljfour/jknappen/ec/ecbx1440.600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecbx1200.600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec
+/ecbx1728.600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.
+600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </h
+ome/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/audrey
+/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk></usr/share/texmf-texliv
+e/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/typ
+e1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb>
+Output written on rapport.pdf (18 pages, 471167 bytes).
 PDF statistics:
  403 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
