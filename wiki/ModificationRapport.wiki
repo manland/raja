@@ -1,6 +1,6 @@
 #summary Dès que dans le code vous modifiez quelque chose (rajout d'un attribut, d'une méthode public ou protected, ou une classe) vous devez le signifier ici !!
 #labels Featured
 
-= Date =
+= Mercredi 15 =
 
-Package.Classe : l'ajout réalisé
+Server.Server : init(String fileConfig, IIndoor indoor)
