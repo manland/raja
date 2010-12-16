@@ -5,10 +5,7 @@
 
 ~~Server.Server : init(String fileConfig, IIndoor indoor)~~
 
-~~Factory :~~
-~~ *  xmlToDataBase~~
-~~ *  xmlToAdapters~~
-~~ *  xmlToTerminalAdapter~~
+~~Factory : xmlToDataBase, xmlToAdapters, xmlToTerminalAdapter~~
 
 Adapter.CompositeAdapter : constructor(file OWL)
 
