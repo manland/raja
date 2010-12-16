@@ -1,4 +1,4 @@
-#summary Dès que dans le code vous modifiez quelque chose (rajout d'un attribut, d'une méthode public ou protected, ou une classe) vous devez le signifier ici !!
+#summary Dès que dans le code vous modifiez quelque chose (rajout d'un attribut, d'une méthode public ou protected, ou une classe) vous devez le signifier ici !! Tous ce qui ~~comme ça~~ est déjà reporté dans l'UML
 #labels Featured
 
 = Mercredi 15 =
@@ -7,15 +7,14 @@
 
 ~~Factory : xmlToDataBase, xmlToAdapters, xmlToTerminalAdapter~~
 
-Adapter.CompositeAdapter : constructor(file OWL)
+~~Adapter.CompositeAdapter : constructor(file OWL)~~
 
-Server.Factory : ajout de xmlToDataBase(xml)
-ServerdataBase remove parse(config)
+~~ServerdataBase remove parse(config)~~
 
-Translator.N3 : suppression des sous classes Horizontal et Vertical (pb déplacé dans le xml avec getMetaInfo)
+~~Translator.N3 : suppression des sous classes Horizontal et Vertical (pb déplacé dans le xml avec getMetaInfo)~~
 
-Query Architecture : rajout des constructeurs par défaut : instanciation des vector.
+~~Query Architecture : rajout des constructeurs par défaut : instanciation des vector.~~
 
-Query.SelectQuery : herite de IQuery et non plus de ConditionalQuery, l'attribut est String query, donc
+~~Query.SelectQuery : herite de IQuery et non plus de ConditionalQuery, l'attribut est String query, donc~~
 
-Query.Query : on vire le booleen isSql
+~~Query.Query : on vire le booleen isSql~~
