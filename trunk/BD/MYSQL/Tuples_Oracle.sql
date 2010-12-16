@@ -1,0 +1,27 @@
+
+INSERT INTO VIRUS VALUES ('HAV', 'Hepatitis A VIRUS', 'ARN', 'Picornaviridae');
+INSERT INTO VIRUS VALUES ('HBV','Hepatitis B VIRUS',  'ADN', 'Hepadnanaviridae');
+INSERT INTO VIRUS VALUES ('HCV', 'Hepatitis C VIRUS', 'ARN', 'Flaviviridae');
+INSERT INTO VIRUS VALUES ('DENV', 'Dengue VIRUS','ARN', 'Flaviviridae');
+INSERT INTO VIRUS VALUES ('YFV', 'Yellow Fever VIRUS','ARN', 'Flaviviridae');
+INSERT INTO VIRUS VALUES ('WNV', 'West Nile VIRUS','ARN', 'Flaviviridae');
+INSERT INTO VIRUS VALUES ('FLUA', 'Influenza A VIRUS', 'ARN', 'Orthomyxoviridae');
+
+
+INSERT INTO TRANSMISSION VALUES ('voie aerienne');
+INSERT INTO TRANSMISSION VALUES ('voie sexuelle');
+INSERT INTO TRANSMISSION VALUES ('voie sanguine');
+INSERT INTO TRANSMISSION VALUES ('in utero');
+INSERT INTO TRANSMISSION VALUES ('voie digestive');
+INSERT INTO TRANSMISSION VALUES ('voie transcutanee');
+
+
+INSERT INTO VIRUS_TRANSMISSION VALUES ('voie aerienne','FLUA');
+INSERT INTO VIRUS_TRANSMISSION VALUES ('voie transcutanee','YFV');
+INSERT INTO VIRUS_TRANSMISSION VALUES ('voie transcutanee','WNV');
+INSERT INTO VIRUS_TRANSMISSION VALUES ('voie sanguine','HCV');
+INSERT INTO VIRUS_TRANSMISSION VALUES ('voie transcutanee','HCV');
+INSERT INTO VIRUS_TRANSMISSION VALUES ('voie sexuelle','HCV');
+INSERT INTO VIRUS_TRANSMISSION VALUES ('voie digestive','HAV');
+INSERT INTO VIRUS_TRANSMISSION VALUES ('voie sanguine','HBV');
+INSERT INTO VIRUS_TRANSMISSION VALUES ('voie transcutanee','DENV');
