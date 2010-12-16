@@ -1,10 +1,10 @@
 \select@language {french}
-\contentsline {figure}{\numberline {1}{\ignorespaces Diagramme de cas d'utilisation\relax }}{5}
-\contentsline {figure}{\numberline {2}{\ignorespaces Diagramme de classes : Query\relax }}{6}
-\contentsline {figure}{\numberline {3}{\ignorespaces Sch\IeC {\'e}ma d'initialisation serveur\relax }}{7}
-\contentsline {figure}{\numberline {4}{\ignorespaces Sch\IeC {\'e}ma RDF de la base MaladieFacteur et de la base VirusTransmission\relax }}{9}
-\contentsline {figure}{\numberline {5}{\ignorespaces Sch\IeC {\'e}ma ontologique Maladie\relax }}{10}
-\contentsline {figure}{\numberline {6}{\ignorespaces Sch\IeC {\'e}ma ontologique de la base recensement\relax }}{10}
-\contentsline {figure}{\numberline {7}{\ignorespaces Sch\IeC {\'e}ma global du mod\IeC {\`e}le ontologique\relax }}{11}
-\contentsline {figure}{\numberline {8}{\ignorespaces Sch\IeC {\'e}ma de requ\IeC {\^e}te\relax }}{12}
-\contentsline {figure}{\numberline {9}{\ignorespaces Diagramme de classe du serveur\relax }}{15}
+\contentsline {figure}{\numberline {1}{\ignorespaces Diagramme de cas d'utilisation\relax }}{7}
+\contentsline {figure}{\numberline {2}{\ignorespaces Diagramme de classes : Query\relax }}{8}
+\contentsline {figure}{\numberline {3}{\ignorespaces Sch\IeC {\'e}ma d'initialisation serveur\relax }}{9}
+\contentsline {figure}{\numberline {4}{\ignorespaces Sch\IeC {\'e}ma RDF de la base MaladieFacteur et de la base VirusTransmission\relax }}{11}
+\contentsline {figure}{\numberline {5}{\ignorespaces Sch\IeC {\'e}ma ontologique Maladie\relax }}{12}
+\contentsline {figure}{\numberline {6}{\ignorespaces Sch\IeC {\'e}ma ontologique de la base recensement\relax }}{12}
+\contentsline {figure}{\numberline {7}{\ignorespaces Sch\IeC {\'e}ma global du mod\IeC {\`e}le ontologique\relax }}{13}
+\contentsline {figure}{\numberline {8}{\ignorespaces Sch\IeC {\'e}ma de requ\IeC {\^e}te\relax }}{14}
+\contentsline {figure}{\numberline {9}{\ignorespaces Diagramme de classe du serveur\relax }}{17}
