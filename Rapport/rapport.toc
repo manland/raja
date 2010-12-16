@@ -1,24 +1,23 @@
 \select@language {french}
-\contentsline {section}{\numberline {1}Introduction}{5}
-\contentsline {subsection}{\numberline {1.1}Projet}{5}
-\contentsline {subsection}{\numberline {1.2}Equipe}{5}
-\contentsline {subsection}{\numberline {1.3}Organisation}{5}
-\contentsline {subsection}{\numberline {1.4}Mat\IeC {\'e}riel}{5}
-\contentsline {section}{\numberline {2}Mod\IeC {\`e}le d'analyse}{7}
-\contentsline {subsection}{\numberline {2.1}Besoins}{7}
-\contentsline {subsection}{\numberline {2.2}Requ\IeC {\^e}tes}{7}
-\contentsline {subsection}{\numberline {2.3}Bases de donn\IeC {\'e}es}{8}
-\contentsline {subsection}{\numberline {2.4}D\IeC {\'e}rivation puis Int\IeC {\'e}gration}{8}
-\contentsline {subsection}{\numberline {2.5}Int\IeC {\'e}gration}{10}
-\contentsline {subsubsection}{\numberline {2.5.1}Sch\IeC {\'e}ma ontologique des Maladies de leur transmission et de leur facteur}{11}
-\contentsline {subsubsection}{\numberline {2.5.2}Sch\IeC {\'e}ma RDF Recensement}{12}
-\contentsline {subsubsection}{\numberline {2.5.3}Sch\IeC {\'e}ma RDF Global}{13}
-\contentsline {subsection}{\numberline {2.6}Insertion, Modification et Suppression}{13}
-\contentsline {section}{\numberline {3}Mod\IeC {\`e}le de conception}{14}
-\contentsline {subsection}{\numberline {3.1}Serveur pseudos-m\IeC {\'e}diateurs}{14}
-\contentsline {subsection}{\numberline {3.2}Adaptateurs}{15}
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {subsection}{\numberline {1.1}Projet}{3}
+\contentsline {subsection}{\numberline {1.2}Equipe}{3}
+\contentsline {subsection}{\numberline {1.3}Organisation}{3}
+\contentsline {subsection}{\numberline {1.4}Mat\IeC {\'e}riel}{3}
+\contentsline {section}{\numberline {2}Mod\IeC {\`e}le d'analyse}{5}
+\contentsline {subsection}{\numberline {2.1}Besoins}{5}
+\contentsline {subsection}{\numberline {2.2}Requ\IeC {\^e}tes}{5}
+\contentsline {subsection}{\numberline {2.3}Bases de donn\IeC {\'e}es}{6}
+\contentsline {subsection}{\numberline {2.4}D\IeC {\'e}rivation puis Int\IeC {\'e}gration}{6}
+\contentsline {subsection}{\numberline {2.5}Int\IeC {\'e}gration}{8}
+\contentsline {subsubsection}{\numberline {2.5.1}Sch\IeC {\'e}ma ontologique des Maladies de leur transmission et de leur facteur}{9}
+\contentsline {subsubsection}{\numberline {2.5.2}Sch\IeC {\'e}ma RDF Recensement}{10}
+\contentsline {subsubsection}{\numberline {2.5.3}Sch\IeC {\'e}ma RDF Global}{11}
+\contentsline {subsection}{\numberline {2.6}Insertion, Modification et Suppression}{11}
+\contentsline {section}{\numberline {3}Mod\IeC {\`e}le de conception}{12}
+\contentsline {subsection}{\numberline {3.1}Serveur pseudos-m\IeC {\'e}diateurs}{13}
+\contentsline {subsection}{\numberline {3.2}Adaptateurs}{14}
 \contentsline {subsection}{\numberline {3.3}Traducteurs}{15}
-\contentsline {subsection}{\numberline {3.4}Diagramme de classes}{15}
 \contentsline {section}{\numberline {4}Impl\IeC {\'e}mentation}{16}
 \contentsline {subsection}{\numberline {4.1}Initialisation}{16}
 \contentsline {subsection}{\numberline {4.2}Requ\IeC {\^e}te}{16}
