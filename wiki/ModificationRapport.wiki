@@ -15,3 +15,7 @@ ServerdataBase remove parse(config)
 Translator.N3 : suppression des sous classes Horizontal et Vertical (pb déplacé dans le xml avec getMetaInfo)
 
 Query Architecture : rajout des constructeurs par défaut : instanciation des vector.
+
+SelectQuery : herite de IQuery et non plus de ConditionalQuery donc
+
+Query : on vire le booleen isSql
