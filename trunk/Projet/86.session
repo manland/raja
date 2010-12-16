@@ -1,17 +1,17 @@
-window_sizes 1364 690 320 1038 616 0
+window_sizes 1364 690 210 1148 616 0
 diagrams
   active  classdiagram_ref 141918 // System
-    1038 616 68 3 555 0
+    1148 616 69 3 0 0
   usecasediagram_ref 128086 // UseCase
     830 441 100 4 0 0
+  sequencediagram_ref 134614 // Requete
+    918 492 100 4 0 0
+  sequencediagram_ref 134742 // Initialisation
+    918 492 100 4 0 0
 end
 show_stereotypes
-selected operation_ref 149334 // getMetaInfo
+selected classdiagram_ref 141918 // System
 open
-  class_ref 130014 // DataBase
-  class_ref 137182 // Factory
-  class_ref 138078 // TerminalAdapter
-  classrelation_ref 142422 // <generalisation>
-  class_ref 134614 // N3Translator
+  classview_ref 128094 // System
 end
 end

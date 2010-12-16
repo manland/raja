@@ -1,0 +1,96 @@
+format 74
+
+classinstance 128086 class_ref 136542 // Server
+  name ""   xyz 33 4 2005 life_line_z 2000
+classinstance 128214 class_ref 137182 // Factory
+  name ""   xyz 155 5 2005 life_line_z 2000
+classinstance 128342 class_ref 139102 // CompositeAdapter
+  name ""   xyz 315 4 2010 life_line_z 2000
+classinstance 128470 class_ref 138590 // Translator
+  name ""   xyz 664 4 2005 life_line_z 2000
+classinstance 129878 class_ref 138078 // TerminalAdapter
+  name ""   xyz 496 4 2015 life_line_z 2000
+durationcanvas 128598 classinstance_ref 128086 // :Server
+  xyzwh 55 86 2010 11 269
+end
+durationcanvas 128726 classinstance_ref 128214 // :Factory
+  xyzwh 180 82 2010 11 58
+  overlappingdurationcanvas 129238
+    xyzwh 186 96 2020 11 38
+  end
+end
+durationcanvas 129494 classinstance_ref 128342 // :CompositeAdapter
+  xyzwh 373 169 2010 11 186
+  overlappingdurationcanvas 131030
+    xyzwh 379 317 2020 11 25
+  end
+end
+durationcanvas 130006 classinstance_ref 129878 // :TerminalAdapter
+  xyzwh 548 182 2010 11 104
+end
+durationcanvas 130390 classinstance_ref 128470 // :Translator
+  xyzwh 696 198 2010 11 52
+end
+msg 128854 synchronous
+  from durationcanvas_ref 128598
+  to durationcanvas_ref 128726
+  yz 87 2015 msg operation_ref 148822 // "xmlToAdapters(in xml : XML) : vector<IAdapter>"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 71 72
+msg 128982 return
+  from durationcanvas_ref 128726
+  to durationcanvas_ref 128598
+  yz 113 2020 explicitmsg "adapters"
+  stereotype "<<vector>>" xyz 82 128 3000
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 95 98
+reflexivemsg 129366 synchronous
+  to durationcanvas_ref 129238
+  yz 96 2025 msg operation_ref 148950 // "xmlToTerminalAdapter(in xml : XML) : TerminalAdapter"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 219 93
+msg 129622 synchronous
+  from durationcanvas_ref 128598
+  to durationcanvas_ref 129494
+  yz 170 2015 msg operation_ref 134878 // "getLocalSchema() : RDF"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 175 155
+msg 129750 return
+  from durationcanvas_ref 129494
+  to durationcanvas_ref 128598
+  yz 344 2020 explicitmsg "ResultSet"
+  stereotype "<<rdf>>" xyz 202 359 3000
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 202 329
+msg 130134 synchronous
+  from durationcanvas_ref 129494
+  to durationcanvas_ref 130006
+  yz 182 2025 msg operation_ref 135006 // "getLocalSchema() : RDF"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 396 167
+msg 130262 return
+  from durationcanvas_ref 130006
+  to durationcanvas_ref 129494
+  yz 272 2030 explicitmsg "ResultSet"
+  stereotype "<<rdf>>" xyz 423 287 3000
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 423 257
+msg 130518 synchronous
+  from durationcanvas_ref 130006
+  to durationcanvas_ref 130390
+  yz 198 2035 msg operation_ref 141910 // "getMetaInfo() : RDF"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 584 183
+msg 130646 return
+  from durationcanvas_ref 130390
+  to durationcanvas_ref 130006
+  yz 237 2040 explicitmsg "ResultSet"
+  stereotype "<<rdf>>" xyz 597 252 3000
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 597 222
+reflexivemsg 131158 synchronous
+  to durationcanvas_ref 131030
+  yz 317 2025 explicitmsg "addToLocalSchema()"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 413 315
+end
