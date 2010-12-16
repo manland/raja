@@ -13,8 +13,11 @@ Utilisez les identifiants de la base de donnée oracle pour se connecter comme u
 
 ----
 
-==Boot Device - non résolu==
+==Boot Device [résolu]==
 
-Il faut vérifier dans /boot/grub/menu.lst que les périphériques correspondent bien à ceux listés dans /etc/fstab.
-
-à confirmer
+Il faut aller dans la configuration de la vm puis :
+ *  Stockage
+ *  Click droit sur Contrôleur SATA -> supprimer
+ *  Click sur l'icone disque dur de contrôleur IDE
+ * OK
+Et ça marche !!! GG Aloys
