@@ -63,6 +63,9 @@
 \newpage
 
 \tableofcontents
+
+\newpage
+
 \listoffigures
 
 \newpage
@@ -254,11 +257,21 @@ Comme nous pouvons le voir sur le schéma ci-dessus, la base de recensement poss
 
 \subsection{Initialisation}
 
+\begin{center}
+	\includegraphics[scale=0.60]{images/sequence_init.png}
+	\captionof{figure}{Diagramme de séquence : Initialisation}
+\end{center}
+
 	Lorsque le serveur est instancié il charge le fichier de configuration en xml et créé un adaptateur composite. Celui-ci va chercher dans le fichier de configuration les informations nécessaires à la mise en place des sous-adaptateurs. Chaque adaptateur composite devra avoir un fichier owl pour lui signifier l'ontologie permettant de créer le schéma global. Ce fichier ne devra comporter que les points de liaisons des divers schémas locaux. Il construira alors les sous-adaptateurs. \\
 
 \indent Lorsque l'adapteur est terminal un fichier N3 lui sera alors fourni pour qu'il puisse construire son traducteur. De plus il devra avoir la configuration nécessaire à la création d'une DataBase. Il pourra donc utiliser la fabrique pour créer le bon traducteur.
 
 \subsection{Requête}
+
+\begin{center}
+	\includegraphics[scale=0.60]{images/sequence_requete.png}
+	\captionof{figure}{Diagramme de séquence : Initialisation}
+\end{center}
 
 Lorsque tout est initalisé le serveur rentre dans sa boucle run(), cette méthode doit appeler successivement interface.read() et afficher le résultat en appellant interface.write(). \\
 
@@ -272,8 +285,8 @@ Lorsque tout est initalisé le serveur rentre dans sa boucle run(), cette métho
 Nous avons mis en place une fabrique pour faciliter la création des divers objets : base de données, requêtes, traducteurs et adaptateurs. En effet chaque instance de ces objets seront presques équivalentes. Les différences seront chargées par le biais d'un fichier xml ce qui permettra de paramétrer notre système.
 
 \begin{center}
-	\includegraphics[scale=0.75]{images/Serveur.png}
-	\captionof{figure}{Diagramme de classe du serveur}
+	\includegraphics[scale=0.75]{images/Factory.png}
+	\captionof{figure}{Diagramme de classe de la fabrique}
 \end{center}
 
 \newpage
@@ -290,79 +303,126 @@ Nous avons mis en place une fabrique pour faciliter la création des divers obje
 \newpage
 \section{Annexes}
 
+\subsection{Diagramme UML}
+
+\begin{center}
+	\includegraphics[scale=0.50]{images/uml.png}
+	\captionof{figure}{Diagramme de classes}
+\end{center}
+
 \subsection{Schéma des tables des bases de données}
+
+\begin{center}
+	\includegraphics[scale=0.70]{images/SchemaDesTables.png}
+	\captionof{figure}{Schéma des tables}
+\end{center}
 
 \subsection{XML de configuration}
 
 \begin{lstlisting}[language=XML]
 <?xml version="1.0" encoding="UTF-8"?>
 <raja>
-  <CompositeAdapter><!-- Adaptateur général : contenant le schéma global -->
+  <CompositeAdapter>
     <OWL url="" />
-      <CompositeAdapter><!-- Adaptateur MaladieVirus -->
+      <CompositeAdapter>
         <OWL url="" />
-        <CompositeAdapter><!-- Adaptateur Maladie -->
-          <OWL url="" />
-          <TerminalAdapter><!-- Traducteur ???? -->
-            <Traducteur>Vertical</Traducteur>
-            <N3 url="" />
-            <Database>
-              <dataBaseName></dataBaseName>
+          <TerminalAdapter>
+            <Traducteur>
+              <N3>
+                <URL></URL>
+                <GetMetaInfo></GetMetaInfo>
+                <Prefix>
+                  <P></P><P></P><P></P>
+                </Prefix>
+              </N3>
+              <Database>
+                <dataBaseName></dataBaseName>
                 <address></address>
                 <userName></userName>
                 <port></port>
                 <password></password>
+                <type></type>
               </Database>
+            </Traducteur>  
           </TerminalAdapter>
-        </CompositeAdapter>
-        <CompositeAdapter><!-- Adaptateur Virus -->
-          <OWL url="" />
-          <TerminalAdapter><!-- Traducteur ???? -->
-            <Traducteur>Vertical</Traducteur>
-            <N3 url="" />
+          <TerminalAdapter>
+            <Traducteur>
+              <N3>
+                <URL></URL>
+                <GetMetaInfo></GetMetaInfo>
+                <Prefix>
+                  <P></P><P></P><P></P>
+                </Prefix>
+              </N3>
+              <Database>
+                <dataBaseName></dataBaseName>
+                <address></address>
+                <userName></userName>
+                <port></port>
+                <password></password>
+                <type></type>
+              </Database>
+            </Traducteur>
+          </TerminalAdapter>
+      </CompositeAdapter>
+      <CompositeAdapter>
+        <OWL url="" />
+        <TerminalAdapter>
+          <Traducteur>
+            <N3>
+              <URL></URL>
+              <GetMetaInfo></GetMetaInfo>
+              <Prefix>
+                <P></P><P></P><P></P>
+              </Prefix>
+            </N3>
             <Database>
               <dataBaseName></dataBaseName>
               <address></address>
               <userName></userName>
               <port></port>
               <password></password>
+              <type></type>
             </Database>
-          </TerminalAdapter>
-        </CompositeAdapter>
-      </CompositeAdapter>
-      <CompositeAdapter><!-- Adaptateur Recenssement -->
-        <OWL url="" />
+          </Traducteur>
+        </TerminalAdapter>
         <TerminalAdapter>
-          <Traducteur>Horizontal</Traducteur><!-- Traducteur ???? -->
-          <N3 url="" />
-          <Database>
-            <dataBaseName></dataBaseName>
-            <address></address>
-            <userName></userName>
-            <port></port>
-            <password></password>
-          </Database>
+          <Traducteur>
+            <N3>
+              <URL></URL>
+              <GetMetaInfo></GetMetaInfo>
+              <Prefix>
+                <P></P><P></P><P></P>
+              </Prefix>
+            </N3>
+            <Database>
+              <dataBaseName></dataBaseName>
+              <address></address>
+              <userName></userName>
+              <port></port>
+              <password></password>
+              <type></type>
+            </Database>
+          </Traducteur>
         </TerminalAdapter>
-          <Traducteur>Horizontal</Traducteur><!-- Traducteur ???? -->
-          <N3 url="" />
-          <Database>
-            <dataBaseName></dataBaseName>
-            <address></address>
-            <userName></userName>
-            <port></port>
-            <password></password>
-          </Database>
-        </TerminalAdapter>
-        </TerminalAdapter>
-          <Traducteur>Horizontal</Traducteur><!-- Traducteur ???? -->
-          <N3 url="" />
-          <Database>
-            <dataBaseName></dataBaseName>
-            <address></address>
-            <userName></userName>
-            <port></port>
-            <password></password>
-          </Database>
+        <TerminalAdapter>
+          <Traducteur>
+            <N3>
+              <URL></URL>
+              <GetMetaInfo></GetMetaInfo>
+              <Prefix>
+                <P></P><P></P><P></P>
+              </Prefix>
+            </N3>
+            <Database>
+              <dataBaseName></dataBaseName>
+              <address></address>
+              <userName></userName>
+              <port></port>
+              <password></password>
+              <type></type>
+            </Database>
+          </Traducteur>
         </TerminalAdapter>
       </CompositeAdapter>
   </CompositeAdapter>
