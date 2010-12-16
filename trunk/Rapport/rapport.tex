@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[top=1.5cm,bottom=1.5cm,right=2.5cm,left=2.5cm]{geometry}
+\usepackage[top=1.2cm,bottom=1.5cm,right=2.5cm,left=2.5cm]{geometry}
 \usepackage[francais]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -123,6 +123,7 @@
 	\item update table\_name set column\_name = value1 [, column\_name2  = value2] [where column\_name = value...];\\
 	\item delete from table\_name [, table\_name2] [where column\_name = value...];\\
 	\end{itemize}
+	\newpage
 	Nous avons donc mis en place un type de requête particulier :\\
 
 \begin{center}
@@ -139,7 +140,8 @@
 		\item le nom des maladies\\
 		\item le nombre de cas recensés d'une maladie par zone, cette base de donnée sera une base virtuelle et sera donc découpée horizontalement par zone OMS (ici nous en prendrons deux : Europe et Europe de l'est)\\
 	\end{itemize}
-	Ce qui donne le schéma de tables suivant :
+	
+	\indent Le schéma des tables se trouve dans la partie annexe de ce rapport.
 
 \subsection{Dérivation puis Intégration}
 
@@ -155,13 +157,14 @@
 \subsection{Intégration}
 	
 	Puisque notre système repose sur les méta-informations des schémas locaux, le problème suivant est de pouvoir les rassembler pour faire émerger un schéma global correspondant à toutes les informations accessibles par un utilisateur.\\
-	Pour réaliser cela, nous avons immédiatement choisi la technologie RDF. En effet elle nous permet de représenter nos données sous forme de triplets : deux entités et une relation entre eux. Ce système nous permet d'ajouter à volonté des relations de tous types entre toutes nos entités. Vous comprendrez donc qu'il devient facile de regrouper des entités de différentes bases de données pour faire émerger notre fameux schéma global, en précisant que les données d'une base sont équivalentes aux mêmes données d'une autre.\\
-	De plus RDF nous est fourni avec plusieurs outils très utiles :\\
+	\indet Pour réaliser cela, nous avons immédiatement choisi la technologie RDF. En effet elle nous permet de représenter nos données sous forme de triplets : deux entités et une relation entre eux. Ce système nous permet d'ajouter à volonté des relations de tous types entre toutes nos entités. Vous comprendrez donc qu'il devient facile de regrouper des entités de différentes bases de données pour faire émerger notre fameux schéma global, en précisant que les données d'une base sont équivalentes aux mêmes données d'une autre.\\
+	\indent De plus RDF nous est fourni avec plusieurs outils très utiles :\\
 	\begin{itemize}
 		\item D2RQ : traducteur d'objet relationnel en objet rdf.
 		\item N3 : cette notation qui va de paire avec D2RQ permet de lier des bases de données avec des objets rdf. En décrivant le mappage entre les tables et colonnes d'un côté et les types RDF de l'autre. D2RQ peut construire tout le schéma RDF correspondant à une base de données. Nous utiliserons donc D2RQ comme traducteur pour toutes nos bases de données.\\
 		\item SparQL : ce langage permet de réaliser très simplement des requêtes complexes dans nos triplets RDF. Et notamment de faire émerger des connaissances plus subtilement que par des recherches "classiques" basées sur la comparaison de valeurs.\\
 	\end{itemize}
+	
 	\indent Le seul problème de D2RQ est qu'il permet de faire tout ce travail qu'en sélection. En effet nous ne pouvons pas insérer, mettre à jour ou supprimer des données d'une base. Il faudra donc trouver un autre moyen.\\
 	\indent Nous nous servirons donc de RDF aussi bien pour réaliser les requêtes de sélection de nos utilisateurs, que pour diriger nos requêtes vers telle ou telle base de données en fonction des schémas locaux. En effet puisque SparQl nous permet de récupérer sous forme RDF les informations des tables, nous pourrons construire un schéma ontologique regroupant les méta-informations des bases de données. Celui-ci pourra nous renseigner sur la localisation des informations.\\
 
@@ -238,14 +241,14 @@ Comme nous pouvons le voir sur le schéma ci-dessus, la base de recensement poss
 \end{center}
 
 	Nos adaptateurs sont les pièces principales du projet. Ils devront publier le schéma local des bases de données dont ils ont la responsabilité. Ces schémas seront sous la forme RDF pour faciliter la recherche. Ils contiendront le noms des tables et des colonnes des bases.\\
-	\indent Pour faciliter l'implémentation, nous avons imaginé deux types d'adaptateur : les composites et les finaux.
+	\indent Pour faciliter l'implémentation, nous avons imaginé deux types d'adaptateur : les composites et les finaux. \\
 	\indent Les adaptateurs composites, sont des adaptateurs qui ont à leur charge non pas une base de données mais des adaptateurs qui peuvent être eux aussi composites ou finaux. Ces adaptateurs devront donc pouvoir faire émerger un schéma rassemblant l'ensemble de leurs sous-adaptateurs.\\
 	\indent Puisqu'un adaptateur permet de faire tout cela, nous avons décidé d'utiliser un adaptateur composite dans notre serveur. Celui-ci devra alors faire émerger le schéma global de nos bases de données.
 
 \subsection{Traducteurs}
 
 \begin{center}
-	\includegraphics[scale=0.50]{images/Translator.png}
+	\includegraphics[scale=0.45]{images/Translator.png}
 	\captionof{figure}{Diagramme de classes : Translator}
 \end{center}
 
@@ -259,10 +262,10 @@ Comme nous pouvons le voir sur le schéma ci-dessus, la base de recensement poss
 
 \begin{center}
 	\includegraphics[scale=0.60]{images/sequence_init.png}
-	\captionof{figure}{Diagramme de séquence : Initialisation}
+	\captionof{figure}{Diagramme de séquences : Initialisation}
 \end{center}
 
-	Lorsque le serveur est instancié, il charge le fichier de configuration en xml et crée un adaptateur composite. Celui-ci va chercher dans le fichier de configuration les informations nécessaires à la mise en place des sous-adaptateurs. Chaque adaptateur composite devra avoir un fichier owl pour lui signifier l'ontologie permettant de créer le schéma global. Ce fichier ne devra comporter que les points de liaisons des divers schémas locaux. Il construira alors les sous-adaptateurs. \\
+	Lorsque le serveur est instancié, il charge le fichier de configuration en xml et créé un adaptateur composite. Celui-ci va chercher dans le fichier de configuration les informations nécessaires à la mise en place des sous-adaptateurs. Chaque adaptateur composite devra avoir un fichier owl pour lui signifier l'ontologie permettant de créer le schéma global. Ce fichier ne devra comporter que les points de liaisons des divers schémas locaux. Il construira alors les sous-adaptateurs. \\
 
 \indent Lorsque l'adaptateur est terminal un fichier N3 lui sera alors fourni pour qu'il puisse construire son traducteur. De plus il devra avoir la configuration nécessaire à la création d'une DataBase. Il pourra donc utiliser la fabrique pour créer le bon traducteur.
 
@@ -270,10 +273,10 @@ Comme nous pouvons le voir sur le schéma ci-dessus, la base de recensement poss
 
 \begin{center}
 	\includegraphics[scale=0.60]{images/sequence_requete.png}
-	\captionof{figure}{Diagramme de séquence : Initialisation}
+	\captionof{figure}{Diagramme de séquences : Initialisation}
 \end{center}
 
-Lorsque tout est initalisé le serveur rentre dans sa boucle run(), cette méthode doit appeler successivement interface.read() et afficher le résultat en appellant interface.write(). \\
+Lorsque tout est initalisé le serveur rentre dans sa boucle run(), cette méthode doit appeler successivement interface.read() et afficher le résultat en appelant interface.write(). \\
 
 \indent Lorsqu'une requête arrive, le serveur doit construire une IQuery à l'aide de la fabrique. Il n'a ensuite qu'à appeler mediatorLike.exec(). Celui-ci va appeler sur tous ces sous-adaptateurs isQueryMatching(), et si c'est vrai, il appellera alors exec() de celui-ci. \\
 \indent Lorsqu'un traducteur final sera appelé, il passera la requête à son traducteur par le biais de la fonction exec(). Celui-ci devra tout d'abord vérifier de quel type est la requête, si elle de type select le traducteur N3 sera appelé sinon ce sera la fonction abstraite, qui aboutira dans le bon traducteur correspondant au bon SGBD. \\
@@ -285,7 +288,7 @@ Lorsque tout est initalisé le serveur rentre dans sa boucle run(), cette métho
 Nous avons mis en place une fabrique pour faciliter la création des divers objets : base de données, requêtes, traducteurs et adaptateurs. En effet chaque instance de ces objets seront presques équivalentes. Les différences seront chargées par le biais d'un fichier xml ce qui permettra de paramétrer notre système.
 
 \begin{center}
-	\includegraphics[scale=0.75]{images/Factory.png}
+	\includegraphics[scale=0.6]{images/Factory.png}
 	\captionof{figure}{Diagramme de classes de la fabrique}
 \end{center}
 
