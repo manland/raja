@@ -4,8 +4,8 @@ package Server.DataBase;
 /**
  * Enumeration of the database types.
  */
-public class DataBaseType {
-	public final static String MYSQL = "MySql";
-	public final static String ORACLE = "Oracle";
-	public final static String POSTGRE = "Postgre";
+public final class DataBaseType {
+	public static final String MYSQL = "";
+	public static final String ORACLE = "Oracle";
+	public static final String POSTGRE = "Postgre";
 }

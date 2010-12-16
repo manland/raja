@@ -4,9 +4,13 @@ import com.hp.hpl.jena.query.ResultSet;
 
 public abstract class N3Translator implements IN3Translator {
 	
-	public N3Translator(String n3File)
+	private String n3File;
+	private String getMetaInfo;
+	
+	public N3Translator(String n3File, String getMetaInfo)
 	{
-		
+		this.n3File = n3File;
+		this.getMetaInfo = getMetaInfo;
 	}
 	
 	public ResultSet select(SelectQuery query) 
@@ -17,6 +21,9 @@ public abstract class N3Translator implements IN3Translator {
 	}
 
 	@Override
-	public abstract ResultSet getMetaInfo();
+	public ResultSet getMetaInfo()
+	{
+		return null;
+	}
 
 }

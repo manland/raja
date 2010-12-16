@@ -1,4 +1,6 @@
 package Server.Adapter;
+import java.util.List;
+
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
 import com.hp.hpl.jena.query.ResultSet;
