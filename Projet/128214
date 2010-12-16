@@ -1,6 +1,6 @@
 format 74
 "raja" // net::raja
-  revision 6
+  revision 7
   modified_by 86 "manland"
   // class settings
   //class diagram settings
@@ -119,19 +119,6 @@ ${members}}
 	comment "Name of database."
       end
 
-      operation 129758 "parse"
-	public explicit_return_type ""
-	nparams 1
-	  param in name "configline" explicit_type "string"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	comment "Parse information from the config file to fill information on the database."
-      end
     end
 
     classdiagram 141918 "System"
@@ -209,9 +196,11 @@ Singleton"
 
       operation 128350 "init"
 	public explicit_return_type "bool"
-	nparams 0
+	nparams 2
+	  param in name "fileConfig" explicit_type "string"
+	  param in name "inddor" type class_ref 136670 // IInDoor
 	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -494,6 +483,45 @@ ${members}}
 	
 	
 	comment "Create and return the Traductor matching with the given database."
+      end
+
+      operation 148694 "xmlToDataBase"
+	public return_type class_ref 130014 // DataBase
+	nparams 1
+	  param in name "xml" explicit_type "XML"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148822 "xmlToAdapters"
+	public explicit_return_type "vector<IAdapter>"
+	nparams 1
+	  param in name "xml" explicit_type "XML"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148950 "xmlToTerminalAdapter"
+	public return_type class_ref 138078 // TerminalAdapter
+	nparams 1
+	  param in name "xml" explicit_type "XML"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
       end
     end
 
@@ -907,6 +935,19 @@ ${members}}
 	    java "${type}"
 	    classrelation_ref 142294 // <generalisation>
 	  b parent class_ref 141398 // Adapter
+      end
+
+      operation 149206 "TerminalAdapter"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "translator" type class_ref 138462 // ITranslator
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
       end
     end
 
@@ -1420,6 +1461,19 @@ These are the sub-adapters managed by this adapter."
 	  b parent class_ref 136798 // IAdapter
       end
 
+      operation 149078 "CompositeAdapter"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "fileOwl" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+      end
+
       operation 132958 "isQueryMatching"
 	public explicit_return_type "bool"
 	nparams 1
@@ -1588,6 +1642,18 @@ ${members}}
 	    classrelation_ref 142934 // <realization>
 	  b parent class_ref 141526 // IN3Translator
       end
+
+      operation 149334 "getMetaInfo"
+	public explicit_return_type "RDF"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
     end
 
     class 141142 "IndoorFile"
@@ -1691,69 +1757,6 @@ ${members}};
       end
     end
 
-    class 141654 "N3TranslatorVertical"
-      visibility package 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      classrelation 142678 // <generalisation>
-	relation 142678 ---|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 142678 // <generalisation>
-	  b parent class_ref 134614 // N3Translator
-      end
-
-      operation 134998 "getMetaInfo"
-	public explicit_return_type "RDF"
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-    end
-
-    class 141782 "N3TranslatorHorizontal"
-      visibility package 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      classrelation 142806 // <generalisation>
-	relation 142806 ---|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 142806 // <generalisation>
-	  b parent class_ref 134614 // N3Translator
-      end
-
-      operation 135126 "getMetaInfo"
-	public explicit_return_type "RDF"
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-    end
   end
 
   deploymentview 128086 "Deployement"
@@ -2176,7 +2179,6 @@ ${package}
 ${imports}
 ${definition}"
       associated_classes
-	class_ref 141654 // N3TranslatorVertical
       end
     end
 
@@ -2187,7 +2189,6 @@ ${package}
 ${imports}
 ${definition}"
       associated_classes
-	class_ref 141782 // N3TranslatorHorizontal
       end
     end
   end
