@@ -218,11 +218,21 @@ Comme nous pouvons le voir sur le schéma ci-dessus, la base de recensement poss
 
 \subsection{Serveur pseudos-médiateurs}
 
+\begin{center}
+	\includegraphics[scale=0.70]{images/Serveur.png}
+	\captionof{figure}{Diagramme de classes : Server}
+\end{center}
+
 	Comme nous pouvons le voir sur ce schéma, le serveur sera le premier maillon de la chaine à recevoir la requête de l'utilisateur. Il aura alors la charge de transformer la requête qui arrive sous forme de chaine de caractères en type Query. Pour cela nous mettrons en place une fabrique à Query. Ensuite le serveur demandera à l'adapteur principal si la requête le concerne, si c'est le cas il lui transmettra la partie de la requête qui lui correspond.\\
 	\indent Il n'aura plus alors qu'à attendre le résultat, qui lui sera retourné par l'adaptateur, et au besoin transformer celui-ci du format rdf au format souhaité.\\
 	\indent Puisque notre serveur est au centre de la recherche : il prend la recherche et retourne le résultat, nous avons décidé de le caractériser par le nom pseudo-médiateur. En effet dans une architecture classique le médiateur est celui qui fractionne les requêtes pour que celles-ci correspondent au schéma local des adaptateurs. C'est ce que fait notre serveur, mais un médiateur au sens propre du terme, à d'autres exsigences que nous ne traiterons pas dans ce projet, d'où le nom de pseudo-médiateur.
 
 \subsection{Adaptateurs}
+
+\begin{center}
+	\includegraphics[scale=0.70]{images/Adapter.png}
+	\captionof{figure}{Diagramme de classes : Adapter}
+\end{center}
 
 	Nos adaptateurs sont les pièces principales du projet. Ils devront publier le schéma local des bases de données dont ils ont la responsabilité. Ces schémas seront sous la forme RDF pour faciliter la recherche. Ils contiendront le noms des tables et des colonnes des bases.\\
 	\indent Pour faciliter l'implémentation nous avons immaginé deux types d'adaptateur : les composites et les finaux.
@@ -231,13 +241,16 @@ Comme nous pouvons le voir sur le schéma ci-dessus, la base de recensement poss
 
 \subsection{Traducteurs}
 
-	Comme son nom l'indique un traducteur permet tout simplement de convertir une requête de notre système en requête compréhensible pour le SGBD. Dans le cas de la sélection nous utiliserons D2RQ comme traducteur. Pour tout le reste nous l'implémenterons nous même.
+\begin{center}
+	\includegraphics[scale=0.50]{images/Translator.png}
+	\captionof{figure}{Diagramme de classes : Translator}
+\end{center}
 
-\subsection{Diagramme de classes}
+	Comme son nom l'indique un traducteur permet tout simplement de convertir une requête de notre système en requête compréhensible pour le SGBD. Dans le cas de la sélection nous utiliserons D2RQ comme traducteur. Pour tout le reste nous l'implémenterons nous même.
 
 \newpage
 
-\section{Implémentation}
+\section{Modèle d'implémentation}
 
 \subsection{Initialisation}
 
