@@ -1,6 +1,6 @@
 format 74
 "raja" // net::raja
-  revision 7
+  revision 8
   modified_by 86 "manland"
   // class settings
   //class diagram settings
@@ -118,7 +118,6 @@ ${members}}
 	idl_decl ""
 	comment "Name of database."
       end
-
     end
 
     classdiagram 141918 "System"
@@ -1757,6 +1756,15 @@ ${members}};
       end
     end
 
+    sequencediagram 134614 "Requete"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 134742 "Initialisation"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
   end
 
   deploymentview 128086 "Deployement"

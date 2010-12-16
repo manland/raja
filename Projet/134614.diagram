@@ -1,0 +1,79 @@
+format 74
+
+classinstance 128086 class_ref 136542 // Server
+  name ""   xyz 64 8 2005 life_line_z 2000
+classinstance 128214 class_ref 137182 // Factory
+  name ""   xyz 283 11 2005 life_line_z 2000
+classinstance 128342 class_ref 141398 // Adapter
+  name ""   xyz 458 11 2005 life_line_z 2000
+classinstance 128470 class_ref 138590 // Translator
+  name ""   xyz 651 14 2005 life_line_z 2000
+durationcanvas 128598 classinstance_ref 128086 // :Server
+  xyzwh 86 79 2010 11 102
+end
+durationcanvas 128726 classinstance_ref 128214 // :Factory
+  xyzwh 308 80 2010 11 55
+end
+durationcanvas 129110 classinstance_ref 128342 // :Adapter
+  xyzwh 484 133 2010 11 204
+  overlappingdurationcanvas 129878
+    xyzwh 490 229 2020 11 102
+  end
+end
+durationcanvas 129366 classinstance_ref 128086 // :Server
+  xyzwh 86 177 2010 11 181
+end
+durationcanvas 130134 classinstance_ref 128470 // :Translator
+  xyzwh 683 267 2010 11 64
+end
+msg 128854 synchronous
+  from durationcanvas_ref 128598
+  to durationcanvas_ref 128726
+  yz 80 2015 msg operation_ref 128862 // "makeQuery(in query : String) : IQuery"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 162 65
+msg 128982 return
+  from durationcanvas_ref 128726
+  to durationcanvas_ref 128598
+  yz 115 2020 explicitmsg "query"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 183 100
+msg 129238 synchronous
+  from durationcanvas_ref 128598
+  to durationcanvas_ref 129110
+  yz 164 2015 msg operation_ref 129374 // "isQueryMatching(in query : IQuery) : bool"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 233 149
+msg 129494 return
+  from durationcanvas_ref 129110
+  to durationcanvas_ref 129366
+  yz 205 3005 explicitmsg "true"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 276 190
+msg 130006 synchronous
+  from durationcanvas_ref 129366
+  to durationcanvas_ref 129878
+  yz 251 2025 msg operation_ref 128734 // "execute(in query : IQuery) : RDF"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 262 236
+msg 130262 synchronous
+  from durationcanvas_ref 129878
+  to durationcanvas_ref 130134
+  yz 268 2025 msg operation_ref 130782 // "exec(in query : IQuery) : RDF"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 571 253
+msg 130646 return
+  from durationcanvas_ref 130134
+  to durationcanvas_ref 129878
+  yz 313 2030 explicitmsg "ResultSet"
+  stereotype "<<rdf>>" xyz 562 328 3000
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 562 298
+msg 130774 return
+  from durationcanvas_ref 129878
+  to durationcanvas_ref 129366
+  yz 316 2025 explicitmsg "ResultSet"
+  stereotype "<<rdf>>" xyz 263 331 3000
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 263 301
+end
