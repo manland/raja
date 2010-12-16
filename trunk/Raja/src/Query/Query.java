@@ -13,6 +13,8 @@ abstract class Query implements IQuery {
    */
   protected Vector<String> from;
   
+  protected String query;
+  
   private boolean isSQL;
 
   /**
@@ -26,7 +28,10 @@ abstract class Query implements IQuery {
    * Rebuild and return query.
    */
   public String getQuery() {
-	  return "";
+	  return query;
   }
-
+  
+  public void setQuery(String query){
+	  this.query = query;
+  }
 }

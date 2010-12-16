@@ -19,13 +19,13 @@ public abstract class Adapter implements IAdapter {
 	}
 
 	@Override
-	public ResultSet getLocalSchema() {
+	public ResultSet getLocalSchema() throws DataBaseNotAccessibleException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean isQueryMatching(IQuery query) {
+	public boolean isQueryMatching(IQuery query) throws DataBaseNotAccessibleException  {
 		// TODO Auto-generated method stub
 		return false;
 	}
