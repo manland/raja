@@ -16,6 +16,6 @@ Translator.N3 : suppression des sous classes Horizontal et Vertical (pb déplac�
 
 Query Architecture : rajout des constructeurs par défaut : instanciation des vector.
 
-SelectQuery : herite de IQuery et non plus de ConditionalQuery donc
+Query.SelectQuery : herite de IQuery et non plus de ConditionalQuery, l'attribut est String query, donc
 
-Query : on vire le booleen isSql
+Query.Query : on vire le booleen isSql
