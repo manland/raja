@@ -112,10 +112,10 @@
 
 \subsection{Requêtes}
 
-	Notre serveur prendra en entrée une requête dont la syntaxe correspondra au langage SQL. Mais notre système ne pourra gérer toute la complexité de ce langage. Nous le limiterons donc à quelques instructions : select, insert, update, delete.\\
+	Notre serveur prendra en entrée une requête dont la syntaxe pourra correspondre soit au langage SQL soit au langage SparQL. SparQl sera réservé aux requêtes pour la sélection alors que SQL commandera l'insertion, la modification et la suppression. Mais notre système ne pourra gérer toute la complexité de ces langages. Nous le limiterons donc à quelques instructions : select, insert, update, delete.\\
 	De plus, et toujours dans un soucis d'efficacité, nous n'accepterons dans un premier temps, que des instructions dites basiques (toutes les instructions entre crochets sont optionnelles) :\\
 	\begin{itemize}
-	\item select column\_name [, column\_name2...] from table\_name [, table\_name2] [where column\_name = value...];\\
+	\item SELECT ?variable [, ?variable2...] WHERE {?variable\_ou\_valeur relation ?variable\_ou\_valeur}\\
 	\item insert into tabel\_name values(value\_table, value\_table2...) [where column\_name = value and column\_name2 = value2...];\\
 	\item update table\_name set column\_name = value1 [, column\_name2  = value2] [where column\_name = value...];\\
 	\item delete from table\_name [, table\_name2] [where column\_name = value...];\\
@@ -134,7 +134,7 @@
 		\item les facteurs de transmissions d'une maladie\\
 		\item les virus à l'origine d'une maladie\\
 		\item le nom des maladies\\
-		\item le nombre de cas recensés d'une maladie par zone, cette base de donnée sera une base virtuelle et sera donc découpée horizontalement par zone OMS (ici nous en prendrons trois : ???????, ???????, ???????)\\
+		\item le nombre de cas recensés d'une maladie par zone, cette base de donnée sera une base virtuelle et sera donc découpée horizontalement par zone OMS (ici nous en prendrons deux : Europe et Europe de l'est)\\
 	\end{itemize}
 	Ce qui donne le shéma de tables suivant :
 
@@ -160,7 +160,7 @@
 		\item SparQL : ce langage permet de réaliser très simplement des requêtes complexes dans nos triplets RDF. Et notamment de faire émerger des connaissances plus subtilement que par des recherches "classiques" basées sur la comparaison de valeurs.\\
 	\end{itemize}
 	Le seul problème de D2RQ est qu'il permet de faire tout ce travail qu'en sélection. En effet nous ne pouvons pas insérer, mettre à jour ou supprimer des données d'une base. Il faudra donc trouver un autre moyen.\\
-	Nous nous servirons donc de RDF aussi bien pour réaliser les requêtes de sélection de nos utilisateurs, que pour diriger nos requêtes vers telle ou telle base de données en fonction des schémas locaux.\\
+	Nous nous servirons donc de RDF aussi bien pour réaliser les requêtes de sélection de nos utilisateurs, que pour diriger nos requêtes vers telle ou telle base de données en fonction des schémas locaux. En effet puisque SparQl nous permet de récupérer sous forme RDF les informations des tables, nous pourrons construire un schéma ontologique regroupant les méta-informations des bases de données. Celui-ci pourra nous renseigner sur la localisation des informations.\\
 
 \subsubsection{Schéma ontologique des Maladies de leur transmission et de leur facteur}
 
@@ -229,6 +229,8 @@
 
 \subsection{Diagramme de classes}
 
+\newpage
+
 \section{Implémentation}
 
 \subsection{Initialisation}
@@ -246,9 +248,30 @@ Lorsque tout est initalisé le serveur rentre dans sa boucle run(), cette métho
 
 \\ Lorsque le résultat de la requête sera retourné à l'adaptateur-composite celui-ci devra ajouter à son modèle ontologique les triplets récupérés (toujours dans le cas où c'est un select). En remontant toute la hiérarchie notre modèle ontologique global se construira. Et ainsi nous retournerons le résultat de la requête à l'utilisateur.
 
-\subsection{Inconvénients}
+\subsection{Fabrique}
 
-Si l'utilisateur ne fait une recherche que sur une partie des adaptateurs, il récupèrera le schéma ontologique global du système.
+Nous avons mise en place un fabrique pour nous faciliter la création des divers objets : base de donnée, requête, traducteur et adaptateurs. En effet chaque instance de ces objets seront presques équivalentes. Les différences seront chargées par le biais d'un fichier xml ce qui permetra de paramétrer notre système.
+
+\begin{center}
+	\includegraphics[scale=0.75]{images/Serveur.png}
+	\captionof{figure}{Diagramme de classe du serveur}
+\end{center}
+
+\newpage
+
+\section{Glossaire}
+
+	\begin{itemize}
+		\item \textbf{SGBD} : Système de gestion de bases de données.\\
+		\item \textbf{schéma global} : le schéma de nos tables et de nos colonnes comme s'il ne s'agissait que d'une seule base de données.\\
+		\item \textbf{schéma local} : le schéma physiquement stoqué sur une base de donnée particulière.\\
+		\item \textbf{méta-informations} : les informations concernant le nom des tables et des colonnes d'une base de donnée.\\
+		\item \textbf{requête} : dans notre système nous parlons de deux sortes de requêtes différentes, les requêtes du client donc qui arrivent dans notre serveur sous forme de chaine de caractères et les requêtes internes qui sont ces même requêtes mais transformées en objet.\\
+	\end{itemize}
+\newpage
+\section{Annexes}
+
+\subsection{Schéma des tables des bases de données}
 
 \subsection{XML de configuration}
 
@@ -326,33 +349,5 @@ Si l'utilisateur ne fait une recherche que sur une partie des adaptateurs, il r�
   </CompositeAdapter>
 </raja>
 \end{lstlisting}
-
-\subsection{Fabrique}
-
-\subsubsection{Requête}
-
-\subsubsection{Traducteur}
-
-\begin{center}
-	\includegraphics[scale=0.75]{images/Serveur.png}
-	\captionof{figure}{Diagramme de classe du serveur}
-\end{center}
-
-\newpage
-
-\section{Glossaire}
-
-	\begin{itemize}
-		\item \textbf{SGBD} : Système de gestion de bases de données.\\
-		\item \textbf{schéma global} : le schéma de nos tables et de nos colonnes comme s'il ne s'agissait que d'une seule base de données.\\
-		\item \textbf{schéma local} : le schéma physiquement stoqué sur une base de donnée particulière.\\
-		\item \textbf{méta-informations} : les informations concernant le nom des tables et des colonnes d'une base de donnée.\\
-		\item \textbf{requête} : dans notre système nous parlons de deux sortes de requêtes différentes, les requêtes du client donc qui arrivent dans notre serveur sous forme de chaine de caractères et les requêtes internes qui sont ces même requêtes mais transformées en objet.\\
-	\end{itemize}
-\newpage
-\section{Annexes}
-
-\subsection{Schéma des tables des bases de données}
-
 
 \end{document}
