@@ -4,7 +4,7 @@ import java.util.Vector;
 import Query.SelectQuery;
 import com.hp.hpl.jena.query.ResultSet;
 
-public abstract class N3Translator implements IN3Translator {
+public class N3Translator implements IN3Translator {
 	
 	private String n3File;
 	private String getMetaInfo;
