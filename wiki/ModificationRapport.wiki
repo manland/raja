@@ -3,9 +3,12 @@
 
 = Mercredi 15 =
 
-Server.Server : init(String fileConfig, IIndoor indoor)
+~~Server.Server : init(String fileConfig, IIndoor indoor)~~
 
-Adapter.CompositeAdapter : parse(List xml)
+Factory : 
+ *  xmlToDataBase
+ *  xmlToAdapters
+ *  xmlToTerminalAdapter
 
 Adapter.CompositeAdapter : constructor(file OWL)
 
