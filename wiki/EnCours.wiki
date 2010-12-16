@@ -7,7 +7,9 @@ Chacun peu m'être ce qu'il fait à chaque moment pour pas faire deux fois la m�
 
 = Jeudi 16 Décembre =
 
-Romain : je continue car j'ai pas fini hier ! J'ai fais tout le reste de la fabrique mais c'est pas opérationnel donc je commit pas !! Donc je le ferais après comme ça je mergerais !
+Romain : ~~je continue car j'ai pas fini hier ! J'ai fais tout le reste de la fabrique mais c'est pas opérationnel donc je commit pas !! Donc je le ferais après comme ça je mergerais !~~
+
+Romain et Audrey : implémentation de N3 translator et les adaptaters niveau ontologique
 
 = Mercredi 15 Décembre =
 
