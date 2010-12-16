@@ -1,4 +1,6 @@
 package Server.Translator;
+import java.util.Vector;
+
 import Query.DeleteQuery;
 import Query.InsertQuery;
 import Query.UpdateQuery;
@@ -9,8 +11,8 @@ import Server.DataBase.DataBase;
  * This is our oracle translator.
  */
 public class OracleTranslator extends Translator {
-  public OracleTranslator(DataBase dataBase, String n3File) {
-		super(dataBase, n3File);
+  public OracleTranslator(DataBase dataBase, String n3File, String getMetaInfo, Vector<String> prefix) {
+		super(dataBase, n3File, getMetaInfo, prefix);
 		// TODO Auto-generated constructor stub
 	}
 

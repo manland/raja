@@ -1,4 +1,6 @@
 package Server.Translator;
+import java.util.Vector;
+
 import Server.DataBase.DataBase;
 import Server.Translator.N3.IN3Translator;
 import Exception.DataBaseNotAccessibleException;
@@ -12,7 +14,7 @@ import com.hp.hpl.jena.query.ResultSet;
  */
 public abstract class Translator implements ITranslator {
 	protected IN3Translator selectTranslator;
-	public Translator(DataBase dataBase, String n3File) {
+	public Translator(DataBase dataBase, String n3File, String getMetaInfo, Vector<String> prefix) {
 	}
 
 	/**
