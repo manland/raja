@@ -1,6 +1,10 @@
 #summary Dès que dans le code vous modifiez quelque chose (rajout d'un attribut, d'une méthode public ou protected, ou une classe) vous devez le signifier ici !! Tous ce qui ~~comme ça~~ est déjà reporté dans l'UML
 #labels Featured
 
+= Vendredi 17 = 
+
+Aloys : Rapport OK, rien à ajouter.
+
 = Mercredi 15 =
 
 ~~Server.Server : init(String fileConfig, IIndoor indoor)~~
