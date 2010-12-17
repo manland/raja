@@ -92,7 +92,7 @@
 		\item Jonathan Fhal : création des scripts d'installation et de tests des bases de données\\
 	\end{itemize}
 	
-	Cette organisation nous permet de pouvoir tous commencer en même temps. Puis au fur et à mesure que chacun aura fini sa partie, nous nous rejoindrons sur le développement des classes Java pour réaliser le serveur.
+	Cette organisation nous permet à tous de commencer en même temps. Puis au fur et à mesure que chacun aura fini sa partie, nous nous rejoindrons sur le développement des classes Java pour réaliser le serveur.
 
 \subsection{Matériel}
 
@@ -119,12 +119,13 @@
 	De plus, et toujours dans un soucis d'efficacité, nous n'accepterons, dans un premier temps, que des instructions dites basiques (toutes les instructions entre crochets sont optionnelles) :\\
 	\begin{itemize}
 	\item SELECT ?variable [, ?variable2...] WHERE {?variable\_ou\_valeur relation ?variable\_ou\_valeur}\\
-	\item insert into tabel\_name values(value\_table, value\_table2...) [where column\_name = value and column\_name2 = value2...];\\
-	\item update table\_name set column\_name = value1 [, column\_name2  = value2] [where column\_name = value...];\\
-	\item delete from table\_name [, table\_name2] [where column\_name = value...];\\
+	\item INSERT INTO table\_name VALUES(value\_table, value\_table2...);\\
+	\item UPDATE table\_name SET column\_name = value1 [, column\_name2  = value2] [WHERE column\_name = value...];\\
+	\item DELETE FROM table\_name [, table\_name2] [WHERE column\_name = value...];\\
 	\end{itemize}
 	\newpage
-	Nous avons donc mis en place un type de requête particulier :\\
+	Nous avons donc mis en place un parseur de requête afin d'extraire les champs sur lesquels elle s'applique, celà nous permettra donc de savoir sur quelles bases de données effectuer 
+	la requête :\\
 
 \begin{center}
 	\includegraphics[scale=0.70]{images/QueryHierarchie.png}
@@ -211,7 +212,8 @@ Comme nous pouvons le voir sur le schéma ci-dessus, la base de recensement poss
 
 \subsection{Insertion, Modification et Suppression}
 	
-	Le dernier problème restant est donc de savoir comment nous allons insérer, modifier ou supprimer nos données des bases. Pour cela nous utiliserons la technique classique des traducteurs. Il y aura donc un traducteur par SGBD différent afin de faire correspondre la requête entrante aux normes de la base de données.
+	Le dernier problème restant est donc de savoir comment nous allons insérer, modifier ou supprimer nos données des bases. Pour cela nous utiliserons la technique classique des traducteurs. Il y aura donc un traducteur par SGBD différent afin de faire correspondre la requête entrante aux normes de la base de données. \\
+En amont, l'adaptateur se chargera de vérifier, en faisant une recherche sur les champs de la requête qu'il comparera au schéma local qu'il possède, que la requête le concerne. Ainsi il sera capable d'adapter une requête s'appliquant sur plusieurs bases de données à celle dont il a la charge.
 
 \newpage
 
