@@ -5,6 +5,10 @@
 
 Chacun peu m'être ce qu'il fait à chaque moment pour pas faire deux fois la même chose. De plus je propose de laisser tout comme ça ça fera un historique !!
 
+= Vendredi =
+
+Aloys : M'occupant des query je ferai aussi la queryfactory vu que le code permettant de savoir quel type de requête il faut créer sera dans les classes query.
+
 = Jeudi 16 Décembre =
 
 Romain : ~~je continue car j'ai pas fini hier ! J'ai fais tout le reste de la fabrique mais c'est pas opérationnel donc je commit pas !! Donc je le ferais après comme ça je mergerais !~~
