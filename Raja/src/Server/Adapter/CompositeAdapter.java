@@ -1,9 +1,6 @@
 package Server.Adapter;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Vector;
 
-import org.jdom.Element;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 
 import Exception.DataBaseNotAccessibleException;
@@ -15,6 +12,7 @@ import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
@@ -36,6 +34,7 @@ public class CompositeAdapter extends Adapter
 {
 	private String owlFile;
 	private Model model;
+	
 	/**
 	 * Composite pattern.
 	 * These are the sub-adapters managed by this adapter.
@@ -49,9 +48,7 @@ public class CompositeAdapter extends Adapter
 		this.owlFile = owlFile;
 		subAdapters = new Vector<IAdapter>();
 		model = ModelFactory.createDefaultModel();
-        Reasoner reasoner = PelletReasonerFactory.theInstance().create();	
-
-        FileManager.get().readModel(model, "bin/maladiesVirus.owl");
+        FileManager.get().readModel(model, "maladiesVirus.owl");
 	}
 
 
@@ -62,6 +59,7 @@ public class CompositeAdapter extends Adapter
 	public boolean isQueryMatching(IQuery query) 
 	{
 		System.out.println("taille modele "+model.size()+"");
+		System.out.println("query (param): "+query.getQuery());
 		if(query.getClass().getSimpleName().equals("SelectQuery")){
 			SelectQuery sq = (SelectQuery)query;
 			try {
@@ -74,8 +72,10 @@ public class CompositeAdapter extends Adapter
 				
 				String prefix = prolog_m + NL + prolog_r + NL +  prolog_rdfs + NL +prolog_owl + NL + prolog_e + NL;
 				
-//				for(int i=0; i<getPrefix().size();i++){
-//					prefix+=getPrefix().get(i);
+//				String prefix = "";
+//				
+//				for(int i=0; i<this.getPrefix().size();i++){
+//					prefix+=this.getPrefix().get(i);
 //				}
 				
 				String str = prefix+" SELECT ?a ?b WHERE {";
@@ -99,8 +99,9 @@ public class CompositeAdapter extends Adapter
 				Query q = QueryFactory.create(str) ;
 				QueryExecution qexec = QueryExecutionFactory.create(q,model) ;
 				ResultSet result = qexec.execSelect() ;
-				System.out.println("taille"+result.getResultVars().size()+"");
-				//if(result)
+
+				// on regarde si le resultSet contient des resultats sinon
+				// on demande aux sous adapteur isQueryMatching
 				
 			} catch (MalformedQueryException e) {
 				// TODO Auto-generated catch block
