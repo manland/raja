@@ -8,6 +8,8 @@ Chacun peu mettre ce qu'il fait à chaque moment pour pas faire deux fois la mê
 = Samedi 18 Décembre =
 Audrey : implémentation de AdaptaterComposite pour la partie du select, et des requêtes permettant de faire remonter les schémas locaux de chaque base.
 
+Romain : implémentation d'Adapteur donc je toucherais au fichier XML et à la factory
+
 = Vendredi 17 Décembre=
 
 Aloys : M'occupant des query je ferai aussi la queryfactory vu que le code permettant de savoir quel type de requête il faut créer sera dans les classes query.
