@@ -3,6 +3,12 @@
 
 = Samedi 18 = 
 
+Audrey : 
+    Query.SelectQuery : ajout du getWhere et getSelection pour accèder à la partie select de la requete et à la partie where de cette requête
+    Server.Adapter.CompositeAdapter : implémentation constructeur + ajout du model en private
+
+Général : ajout de 2 librairies pour que le Reasonner de Pellet fonctionne : pellet-jena.jar ; pellet-owlapi.jar
+
 Server.Adapter : Adapter prend en charge la liste des prefix comme ça les composite ont les prefix des OWL et les terminal ont les prefix des N3
 
 = Vendredi 17 = 
