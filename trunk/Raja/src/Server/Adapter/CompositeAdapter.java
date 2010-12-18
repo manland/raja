@@ -43,14 +43,15 @@ public class CompositeAdapter extends Adapter
 	protected Vector<IAdapter> subAdapters;	
 	
 	public static final String NL = System.getProperty("line.separator");
-	public CompositeAdapter(String owlFile) 
+	public CompositeAdapter(Vector<String> prefix, String owlFile) 
 	{
+		super(prefix);
 		this.owlFile = owlFile;
 		subAdapters = new Vector<IAdapter>();
 		model = ModelFactory.createDefaultModel();
         Reasoner reasoner = PelletReasonerFactory.theInstance().create();	
 
-        FileManager.get().readModel(model, "/home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/Raja/src/maladiesVirus.owl");
+        FileManager.get().readModel(model, "bin/maladiesVirus.owl");
 	}
 
 

@@ -10,30 +10,24 @@ import com.hp.hpl.jena.query.ResultSet;
 public abstract class Adapter implements IAdapter {
 	
 	private Vector<String> prefix;
+	
+	public Adapter(Vector<String> prefix)
+	{
+		this.prefix = new Vector<String>();
+		this.prefix.addAll(prefix);
+	}
+	
 	public Vector<String> getPrefix()
 	{
 		return prefix;
 	}
 	
-	public Adapter()
-	{
-	}
-	
 	@Override
-	public ResultSet execute(IQuery query) throws DataBaseNotAccessibleException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract ResultSet execute(IQuery query) throws DataBaseNotAccessibleException;
 
 	@Override
-	public ResultSet getLocalSchema() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract ResultSet getLocalSchema() throws DataBaseNotAccessibleException;
 
 	@Override
-	public boolean isQueryMatching(IQuery query) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public abstract boolean isQueryMatching(IQuery query) throws DataBaseNotAccessibleException;
 }

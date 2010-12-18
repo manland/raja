@@ -1,6 +1,8 @@
 package Server;
 import java.io.File;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -68,7 +70,15 @@ public class Server {
 		{
 			Element element = (Element)elements.get(0);
 			String fileOWL = element.getChild("OWL").getAttributeValue("url");
-			mediatorLike = new CompositeAdapter(fileOWL);
+			Vector<String> prefix = new Vector<String>();
+			List e_prefix = element.getChild("Prefix").getChildren("P");
+			Iterator i_p = e_prefix.iterator();
+			while(i_p.hasNext())
+			{
+				Element p = (Element)i_p.next();
+				prefix.add(p.getValue());
+			}
+			mediatorLike = new CompositeAdapter(prefix, fileOWL);
 			mediatorLike.setSubAdapters(Factory.xmlToAdapters(element.getChildren()));
 		}
 	}
