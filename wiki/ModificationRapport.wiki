@@ -1,6 +1,10 @@
 #summary Dès que dans le code vous modifiez quelque chose (rajout d'un attribut, d'une méthode public ou protected, ou une classe) vous devez le signifier ici !! Tous ce qui ~~comme ça~~ est déjà reporté dans l'UML
 #labels Featured
 
+= Samedi 18 = 
+
+Server.Adapter : Adapter prend en charge la liste des prefix comme ça les composite ont les prefix des OWL et les terminal ont les prefix des N3
+
 = Vendredi 17 = 
 
 Aloys : Rapport OK, rien à ajouter.
