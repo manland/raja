@@ -17,11 +17,11 @@ public interface IAdapter {
 	/**
 	 * Return true if query match to database
 	 */
-	boolean isQueryMatching(IQuery query) throws DataBaseNotAccessibleException ;
+	boolean isQueryMatching(IQuery query) ;
 
 	/**
 	 * Return the local RDF schema of the adaptater.
 	 */
-	ResultSet getLocalSchema() throws DataBaseNotAccessibleException ;
+	ResultSet getLocalSchema() ;
 
 }
