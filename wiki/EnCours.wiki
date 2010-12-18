@@ -5,9 +5,14 @@
 
 Chacun peu m'être ce qu'il fait à chaque moment pour pas faire deux fois la même chose. De plus je propose de laisser tout comme ça ça fera un historique !!
 
-= Vendredi =
+= Samedi 18 Décembre =
+Audrey : implémentation de AdaptaterComposite, et des requêtes permettant de faire remonter les schémas locaux de chaque base.
+
+= Vendredi 17 Décembre=
 
 Aloys : M'occupant des query je ferai aussi la queryfactory vu que le code permettant de savoir quel type de requête il faut créer sera dans les classes query.
+
+Audrey : Implémentation de SelectQuery (non terminé)
 
 = Jeudi 16 Décembre =
 
