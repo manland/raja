@@ -23,8 +23,9 @@ import com.hp.hpl.jena.query.ResultSet;
 public class TerminalAdapter extends Adapter 
 {
 	
-	public TerminalAdapter(ITranslator translator) 
+	public TerminalAdapter(Vector<String> prefix, ITranslator translator) 
 	{
+		super(prefix);
 	}
 
 	/**

@@ -1,0 +1,69 @@
+@prefix map: <file:fm.n3#> .
+@prefix db: <> .
+@prefix v: <http://www.lirmm.fr/virus#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+
+
+#map:database a d2rq:Database;
+#d2rq:jdbcDriver "com.mysql.jdbc.Driver";
+#d2rq:jdbcDSN "jdbc:mysql://venus:3306/anovak";
+#d2rq:username "anovak";
+#d2rq:password "anovak";
+#.
+
+map:database a d2rq:Database;
+d2rq:jdbcDriver "com.mysql.jdbc.Driver";
+d2rq:jdbcDSN "jdbc:mysql://localhost/VIRUS";
+d2rq:username "root";
+d2rq:password "audreybd";
+.
+
+
+# Table Transmission :
+map:TRANSMISSION a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "http://www.lirmm.fr/virus#@@TRANSMISSION.VT_MODET|urlify@@";
+	d2rq:class v:TRANSMISSION;
+	.
+	
+# Table Virus : 
+map:VIRUS a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "http://www.lirmm.fr/virus#@@VIRUS.VV_ABREV@@";
+	d2rq:class v:VIRUS;
+	.
+
+map:VV_NOMV a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:VIRUS;
+	d2rq:property v:VV_NOMV;
+	d2rq:uriPattern "http://www.lirmm.fr/virus#@@VIRUS.VV_NOMV|urlify@@";
+	.
+
+map:VV_TYPEGENOME a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:VIRUS;
+	d2rq:property v:VV_TYPEGENOME;
+	d2rq:uriPattern "http://www.lirmm.fr/virus#@@VIRUS.VV_TYPEGENOME@@";
+	.
+	
+map:VV_NOMFA a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:VIRUS;
+	d2rq:property v:VV_NOMFA;
+	d2rq:uriPattern "http://www.lirmm.fr/virus#@@VIRUS.VV_NOMFA@@";
+	.
+
+
+# Table Virus_Transmission :
+# relation n:m
+map:VIRUS_TRANSMISSION a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:VIRUS;
+	d2rq:property v:VIRUS_TRANSMISSION;
+	d2rq:refersToClassMap map:TRANSMISSION;
+	d2rq:join "VIRUS_TRANSMISSION.VVT_ABREVV = VIRUS.VV_ABREV";
+	d2rq:join "VIRUS_TRANSMISSION.VVT_MODET = TRANSMISSION.VT_MODET";
+	.
+
+
+

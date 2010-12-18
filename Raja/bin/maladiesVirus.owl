@@ -1,0 +1,28 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:j.0="rdf:t">
+  <rdf:Description rdf:about="http://www.lirmm.fr/virus#BACTERIE">
+    <j.0:ype rdf:resource="owl:Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIEBACTERIENNE">
+    <j.0:ype rdf:resource="owl:Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/virus#VIRUS">
+    <j.0:ype rdf:resource="owl:Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#FACTEURVIRAUX">
+    <j.0:ype rdf:resource="owl:Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#PATHOGENE">
+    <j.0:ype rdf:resource="owl:Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIEVIRALE">
+    <j.0:ype rdf:resource="owl:Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#FACTEUR">
+    <j.0:ype rdf:resource="owl:Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIE">
+    <j.0:ype rdf:resource="owl:Class"/>
+  </rdf:Description>
+</rdf:RDF>

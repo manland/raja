@@ -2,8 +2,14 @@
 <raja>
   <CompositeAdapter><!-- Adaptateur général : contenant le schéma global -->
     <OWL url="/home/manland/..." />
+    <Prefix>
+      <P>virus</P><P>maladie</P><P>recencement</P>
+    </Prefix>
       <CompositeAdapter><!-- Adaptateur MaladieVirus -->
         <OWL url="" />
+        <Prefix>
+          <P>virus</P><P>maladie</P><P>recencement</P>
+        </Prefix>
           <TerminalAdapter><!-- Adaptateur Maladie --><!-- Traducteur ???? -->
             <Traducteur>
               <N3>
@@ -46,6 +52,9 @@
       </CompositeAdapter>
       <CompositeAdapter><!-- Adaptateur Recenssement -->
         <OWL url="" />
+        <Prefix>
+          <P>virus</P><P>maladie</P><P>recencement</P>
+        </Prefix>
         <TerminalAdapter>
           <Traducteur><!-- Traducteur ???? -->
             <N3>

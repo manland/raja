@@ -85,7 +85,15 @@ public class Factory {
 			if(element.getName().equals("CompositeAdapter"))
 			{
 				String owlFile = element.getChild("OWL").getAttributeValue("url");
-				CompositeAdapter subAdapter = new CompositeAdapter(owlFile);
+				Vector<String> prefix = new Vector<String>();
+				List e_prefix = element.getChild("Prefix").getChildren("P");
+				Iterator i_p = e_prefix.iterator();
+				while(i_p.hasNext())
+				{
+					Element p = (Element)i_p.next();
+					prefix.add(p.getValue());
+				}
+				CompositeAdapter subAdapter = new CompositeAdapter(prefix, owlFile);
 				subAdapter.setSubAdapters(xmlToAdapters(element.getChildren()));
 				subAdapters.add(subAdapter);
 			}
@@ -111,7 +119,7 @@ public class Factory {
 		}
 		DataBase dataBase = Factory.xmlToDataBase(xml.getChild("Database"));
 		ITranslator translator = Factory.makeTranslator(dataBase, n3File, getMetaInfo, prefix);
-		return new TerminalAdapter(translator);
+		return new TerminalAdapter(prefix, translator);
 	}
 }
 
