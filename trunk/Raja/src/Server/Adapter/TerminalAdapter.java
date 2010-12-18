@@ -2,16 +2,9 @@ package Server.Adapter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-import Query.SelectQuery;
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 
-import de.fuberlin.wiwiss.d2rq.ModelD2RQ;
+import org.jdom.Element;
+
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
 import Server.Factory;
@@ -29,27 +22,22 @@ import com.hp.hpl.jena.query.ResultSet;
  */
 public class TerminalAdapter extends Adapter 
 {
+	
+	public TerminalAdapter(ITranslator translator) 
+	{
+	}
+
 	/**
 	 * Translator used to convert queries to specified database.
 	 */
 	protected ITranslator translator;
-	private Model model;
-	
-	
-	public TerminalAdapter(ITranslator translator) 
-	{
-		this.translator = translator;
-		model = ModelFactory.createDefaultModel();
-	}
-
 
 	/**
 	 * Return the RDF schema of the databas linked by the adapter.
-	 * @throws DataBaseNotAccessibleException 
 	 */
-	public ResultSet getLocalSchema() throws DataBaseNotAccessibleException 
+	public ResultSet getLocalSchema() 
 	{
-		return translator.getMetaInfo();
+		return null;
 	}
 
 	/**

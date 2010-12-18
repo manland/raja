@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.12.15)  17 DEC 2010 00:17
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.11.22)  17 DEC 2010 19:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\nonstopmode \input{"/home/audrey/ProjetBD/Rapport/rapport.tex"}
-(/home/audrey/ProjetBD/Rapport/rapport.tex
+**\nonstopmode \input{"/home/manland/Raja/Rapport/rapport.tex"}
+(/home/manland/Raja/Rapport/rapport.tex
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size12.clo
@@ -44,8 +44,9 @@ Package ifvtex Info: VTeX not detected.
 \Gm@odd@mp=\dimen105
 \Gm@even@mp=\dimen106
 \Gm@dimlist=\toks15
-)
-(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+
+(/usr/share/texmf-texlive/tex/xelatex/xetexconfig/geometry.cfg))
+(/var/lib/texmf/tex/generic/babel/babel.sty
 Package: babel 2008/07/06 v3.8l The Babel package
 
 (/usr/share/texmf-texlive/tex/generic/babel/frenchb.ldf
@@ -56,12 +57,6 @@ File: babel.def 2008/07/06 v3.8l Babel common definitions
 \babel@savecnt=\count90
 \U@D=\dimen107
 )
-
-Package babel Warning: No hyphenation patterns were loaded for
-(babel)                the language `French'
-(babel)                I will use the patterns loaded for \language=0 instead.
-
-\l@french = a dialect from \language0
 Package babel Info: Making : an active character on input line 120.
 Package babel Info: Making ; an active character on input line 121.
 Package babel Info: Making ! an active character on input line 122.
@@ -70,6 +65,7 @@ Package babel Info: Making ? an active character on input line 123.
 \std@mcc=\count91
 \dec@mcc=\count92
 \parindentFFN=\dimen109
+
 *************************************
 * Local config file frenchb.cfg used
 *
@@ -335,7 +331,7 @@ File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 \Gread@gobject=\count93
 ))
 \Gin@req@height=\dimen118
@@ -392,7 +388,7 @@ File: listings.cfg 2007/02/22 1.4 listings configuration
 ))
 Package: listings 2007/02/22 1.4 (Carsten Heinz)
 
-(/home/audrey/ProjetBD/Rapport/rapport.aux)
+(/home/manland/Raja/Rapport/rapport.aux)
 \openout1 = `rapport.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
@@ -453,7 +449,7 @@ LaTeX Info: Redefining \degres on input line 38.
 LaTeX Info: Redefining \dots on input line 38.
 LaTeX Info: Redefining \up on input line 38.
 ABD: EveryShipout initializing macros
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count103
 \scratchdimen=\dimen130
@@ -497,12 +493,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(/home/audrey/ProjetBD/Rapport/rapport.toc)
+(/home/manland/Raja/Rapport/rapport.toc)
 \tf@toc=\write3
 \openout3 = `rapport.toc'.
 
  [2]
-(/home/audrey/ProjetBD/Rapport/rapport.lof)
+(/home/manland/Raja/Rapport/rapport.lof)
 \tf@lof=\write4
 \openout4 = `rapport.lof'.
 
@@ -561,6 +557,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 122--123
  []
 
 
+Overfull \hbox (13.00027pt too wide) in paragraph at lines 123--124
+[]\T1/cmr/m/n/12 UPDATE table_name SET co-lumn_name = va-lue1 [, co-lumn_name2 
+= va-lue2] [WHERE
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 123--124
 
  []
@@ -570,8 +572,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--125
 
  []
 
-[5 </home/audrey/ProjetBD/Rapport/images/SimpleUseCase.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+[5 </home/manland/Raja/Rapport/images/SimpleUseCase.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 127--129
 
  []
 
@@ -579,12 +581,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 127--128
 File: images/QueryHierarchie.png Graphic file (type png)
 
 <use images/QueryHierarchie.png>
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 138--139
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
 
  []
 
@@ -604,20 +601,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--142
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 148--151
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
-[6 </home/audrey/ProjetBD/Rapport/images/QueryHierarchie.png>]
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--152
+
+ []
+
+[6 </home/manland/Raja/Rapport/images/QueryHierarchie.png>]
 <images/initialisationSysteme.png, id=31, 597.73312pt x 845.40843pt>
 File: images/initialisationSysteme.png Graphic file (type png)
 
-<use images/initialisationSysteme.png> [7 </home/audrey/ProjetBD/Rapport/images
-/initialisationSysteme.png>]
+<use images/initialisationSysteme.png> [7 </home/manland/Raja/Rapport/images/in
+itialisationSysteme.png>]
 ! Undefined control sequence.
 <recently read> \indet 
                        
-l.160 	\indet
+l.161 	\indet
               Pour réaliser cela, nous avons immédiatement choisi la techn...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -626,12 +628,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--162
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 164--165
+Underfull \hbox (badness 10000) in paragraph at lines 160--163
 
  []
 
@@ -641,7 +638,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 165--166
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--170
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 169--171
 
  []
 
@@ -652,7 +654,7 @@ File: images/rdf-maladie+virus.png Graphic file (type png)
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.181 	VIRUS \subseteq
+l.182 	VIRUS \subseteq
                        FACTEURVIRAUX \\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -660,18 +662,18 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.187 
+l.188 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--187
+Underfull \hbox (badness 10000) in paragraph at lines 179--188
 
  []
 
 
-Overfull \hbox (15.43066pt too wide) in paragraph at lines 178--187
+Overfull \hbox (15.43066pt too wide) in paragraph at lines 179--188
 \OML/cmm/m/it/12 MALADIEVIRALE \OMS/cmsy/m/n/12 ^^R \OML/cmm/m/it/12 MALADIE \O
 MS/cmsy/m/n/12 \ \OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 ^^U \OML/cmm/m/it/12 APRORIG
 INE\OT1/cmr/m/n/12 )(\OMS/cmsy/m/n/12 9\OML/cmm/m/it/12 APRORIGINE:BACTERIE\OT1
@@ -679,11 +681,11 @@ INE\OT1/cmr/m/n/12 )(\OMS/cmsy/m/n/12 9\OML/cmm/m/it/12 APRORIGINE:BACTERIE\OT1
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--187
+Underfull \hbox (badness 10000) in paragraph at lines 179--188
 
  []
 
-[9 </home/audrey/ProjetBD/Rapport/images/rdf-maladie+virus.png>]
+[9 </home/manland/Raja/Rapport/images/rdf-maladie+virus.png>]
 <images/rdf-schema.png, id=47, 582.175pt x 395.4775pt>
 File: images/rdf-schema.png Graphic file (type png)
 
@@ -691,53 +693,53 @@ File: images/rdf-schema.png Graphic file (type png)
 <images/rdf-recensement.png, id=48, 311.1625pt x 439.6425pt>
 File: images/rdf-recensement.png Graphic file (type png)
 
-<use images/rdf-recensement.png> [10 </home/audrey/ProjetBD/Rapport/images/rdf-
-schema.png> </home/audrey/ProjetBD/Rapport/images/rdf-recensement.png>]
+<use images/rdf-recensement.png> [10 </home/manland/Raja/Rapport/images/rdf-sch
+ema.png> </home/manland/Raja/Rapport/images/rdf-recensement.png>]
 <images/rdf-global.png, id=54, 879.285pt x 431.6125pt>
 File: images/rdf-global.png Graphic file (type png)
 
-<use images/rdf-global.png> [11 </home/audrey/ProjetBD/Rapport/images/rdf-globa
-l.png>] <images/selectQuerySysteme.png, id=59, 597.73312pt x 845.40843pt>
+<use images/rdf-global.png> [11 </home/manland/Raja/Rapport/images/rdf-global.p
+ng>] <images/selectQuerySysteme.png, id=59, 597.73312pt x 845.40843pt>
 File: images/selectQuerySysteme.png Graphic file (type png)
 
 <use images/selectQuerySysteme.png>
 <images/Serveur.png, id=60, 490.83376pt x 402.50375pt>
 File: images/Serveur.png Graphic file (type png)
 
-<use images/Serveur.png> [12 </home/audrey/ProjetBD/Rapport/images/selectQueryS
-ysteme.png>] <images/Adapter.png, id=64, 599.23875pt x 347.2975pt>
+<use images/Serveur.png> [12 </home/manland/Raja/Rapport/images/selectQuerySyst
+eme.png>] <images/Adapter.png, id=64, 599.23875pt x 347.2975pt>
 File: images/Adapter.png Graphic file (type png)
 
-<use images/Adapter.png> [13 </home/audrey/ProjetBD/Rapport/images/Serveur.png>
-] <images/Translator.png, id=70, 1081.03876pt x 475.7775pt>
+<use images/Adapter.png> [13 </home/manland/Raja/Rapport/images/Serveur.png>]
+<images/Translator.png, id=70, 1081.03876pt x 475.7775pt>
 File: images/Translator.png Graphic file (type png)
 
 <use images/Translator.png>
-Overfull \hbox (14.43172pt too wide) in paragraph at lines 251--252
+Overfull \hbox (14.43172pt too wide) in paragraph at lines 253--254
  [] 
  []
 
-[14 </home/audrey/ProjetBD/Rapport/images/Adapter.png>] [15 </home/audrey/Proje
-tBD/Rapport/images/Translator.png>]
+[14 </home/manland/Raja/Rapport/images/Adapter.png>] [15 </home/manland/Raja/Ra
+pport/images/Translator.png>]
 <images/sequence_init.png, id=79, 753.81625pt x 384.43625pt>
 File: images/sequence_init.png Graphic file (type png)
 
 <use images/sequence_init.png>
-Underfull \hbox (badness 10000) in paragraph at lines 268--269
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
 
  []
 
 <images/sequence_requete.png, id=80, 740.7675pt x 370.38374pt>
 File: images/sequence_requete.png Graphic file (type png)
 
-<use images/sequence_requete.png> [16 </home/audrey/ProjetBD/Rapport/images/seq
-uence_init.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 279--280
+<use images/sequence_requete.png> [16 </home/manland/Raja/Rapport/images/sequen
+ce_init.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 281--282
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 281--283
+Underfull \hbox (badness 10000) in paragraph at lines 283--285
 
  []
 
@@ -748,7 +750,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.284 \\ L
+l.286 \\ L
           orsque le résultat de la requête sera retourné à l'adaptateur-...
 
 Your command was ignored.
@@ -758,18 +760,8 @@ or  <return>  to continue without it.
 <images/Factory.png, id=84, 346.29375pt x 136.51pt>
 File: images/Factory.png Graphic file (type png)
  <use images/Factory.png>
-[17 </home/audrey/ProjetBD/Rapport/images/sequence_requete.png (PNG copy)> </ho
-me/audrey/ProjetBD/Rapport/images/Factory.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 300--301
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 301--302
-
- []
-
-
+[17 </home/manland/Raja/Rapport/images/sequence_requete.png (PNG copy)> </home/
+manland/Raja/Rapport/images/Factory.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 302--303
 
  []
@@ -784,6 +776,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 304--305
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 305--306
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 306--307
+
+ []
+
 [18] <images/uml.png, id=92, 835.12pt x 1178.4025pt>
 File: images/uml.png Graphic file (type png)
  <use images/uml.png>
@@ -791,39 +793,39 @@ File: images/uml.png Graphic file (type png)
 File: images/SchemaDesTables.png Graphic file (type png)
 
 <use images/SchemaDesTables.png>
-Overfull \hbox (28.23434pt too wide) in paragraph at lines 319--320
+Overfull \hbox (28.23434pt too wide) in paragraph at lines 321--322
  [] 
  []
 
-[19 </home/audrey/ProjetBD/Rapport/images/uml.png (PNG copy)>]
+[19 </home/manland/Raja/Rapport/images/uml.png (PNG copy)>]
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-) [20 </home/audrey/ProjetBD/Rapport/images/SchemaDesTables.png>] [21] [22]
-(/home/audrey/ProjetBD/Rapport/rapport.aux) ) 
+) [20 </home/manland/Raja/Rapport/images/SchemaDesTables.png>] [21] [22]
+(/home/manland/Raja/Rapport/rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 5307 strings out of 495061
- 73547 string characters out of 1182620
- 156174 words of memory out of 3000000
- 8420 multiletter control sequences out of 15000+50000
+ 5312 strings out of 493848
+ 73700 string characters out of 1152822
+ 157427 words of memory out of 3000000
+ 8520 multiletter control sequences out of 15000+50000
  13364 words of font info for 34 fonts, out of 3000000 for 9000
- 28 hyphenation exceptions out of 8191
- 37i,10n,51p,732b,1643s stack positions out of 5000i,500n,10000p,200000b,50000s
- </home/audrey/.texmf-var/fonts/pk
-/ljfour/jknappen/ec/ecbx1440.600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/jk
-nappen/ec/ecbx1200.600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec/
-ecbx1728.600pk> </home/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.6
-00pk> </home/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </ho
-me/audrey/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/audrey/
-.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk></usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb>
-Output written on rapport.pdf (22 pages, 830249 bytes).
+ 714 hyphenation exceptions out of 8191
+ 37i,10n,51p,729b,1643s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf/fonts/enc/dvips/cm-
+super/cm-super-t1.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
+cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
+texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/pu
+blic/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx17
+28.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr/share/t
+exmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/pub
+lic/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm207
+4.pfb>
+Output written on rapport.pdf (22 pages, 857590 bytes).
 PDF statistics:
- 400 PDF objects out of 1000 (max. 8388607)
+ 141 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
