@@ -1,19 +1,10 @@
 package Server.Adapter;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Vector;
 
-import org.jdom.Element;
 
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
-import Server.Factory;
-import Server.DataBase.DataBase;
-import Server.DataBase.DataBaseType;
 import Server.Translator.ITranslator;
-import Server.Translator.MySqlTranslator;
-import Server.Translator.OracleTranslator;
-import Server.Translator.PostGreTranslator;
 
 import com.hp.hpl.jena.query.ResultSet;
 
@@ -22,16 +13,16 @@ import com.hp.hpl.jena.query.ResultSet;
  */
 public class TerminalAdapter extends Adapter 
 {
-	
-	public TerminalAdapter(Vector<String> prefix, ITranslator translator) 
-	{
-		super(prefix);
-	}
-
 	/**
 	 * Translator used to convert queries to specified database.
 	 */
 	protected ITranslator translator;
+	
+	public TerminalAdapter(Vector<String> prefix, ITranslator translator) 
+	{
+		super(prefix);
+		System.out.println("TerminalAdapter::constructor");
+	}
 
 	/**
 	 * Return the RDF schema of the databas linked by the adapter.

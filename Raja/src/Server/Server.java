@@ -35,8 +35,7 @@ public class Server {
 	/**
 	 * Protected constructor to implement singleton parttern.
 	 */
-	protected Server() {
-	}
+	protected Server() {}
 
 	/**
 	 * Unique instance of server.
@@ -50,6 +49,48 @@ public class Server {
 			instance = new Server();
 		}
 		return instance;
+	}
+
+	/**
+	 * Initialize the server.
+	 */
+	public boolean init(String fileConfig, IInDoor indoor) {
+		parseXML(fileConfig);
+		this.indoor = indoor;
+		return false;
+	}
+
+	public ResultSet getGlobalSchema()
+	{
+		return mediatorLike.getLocalSchema();
+	}
+
+	/**
+	 * Run the server
+	 */
+	public void run() 
+	{
+		boolean fini = false;
+
+		while(!fini)
+		{
+			String line = indoor.read();
+			if(!line.equals(""))
+			{
+				try 
+				{
+					mediatorLike.execute(Factory.makeQuery(line));
+				} 
+				catch (DataBaseNotAccessibleException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				fini = true;
+			}
+		}
 	}
 
 	private void parseXML(String fileConfig)
@@ -84,50 +125,11 @@ public class Server {
 	}
 
 	/**
-	 * Initialize the server.
+	 * Main fonction. Entry point of this program, if you don't remember i suggest you to find another job...
 	 */
-	 public boolean init(String fileConfig, IInDoor indoor) {
-		 parseXML(fileConfig);
-		 this.indoor = indoor;
-		 return false;
-	 }
-
-	 public ResultSet getGlobalSchema()
-	 {
-		 return mediatorLike.getLocalSchema();
-	 }
-
-	 /**
-	  * Run the server
-	  */
-	 public void run() {
-		 boolean fini = false;
-
-		 while(!fini)
-		 {
-			 String line = indoor.read();
-			 if(!line.equals(""))
-			 {
-				 try {
-					 mediatorLike.execute(Factory.makeQuery(line));
-				 } catch (DataBaseNotAccessibleException e) {
-					 // TODO Auto-generated catch block
-					 e.printStackTrace();
-				 }
-			 }
-			 else
-			 {
-				 fini = true;
-			 }
-		 }
-	 }
-
-	 /**
-	  * Main fonction. Entry point of this program, if you don't remember i suggest you to find another job...
-	  */
-	 public static void main(String[] args)
-	 {
-		 Server s = new Server();
-		 s.init("bin/config.xml", new IndoorConsole());
-	 }
+	public static void main(String[] args)
+	{
+		Server s = new Server();
+		s.init("bin/config.xml", new IndoorConsole());
+	}
 }

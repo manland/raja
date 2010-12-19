@@ -1,114 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <raja>
   <CompositeAdapter><!-- Adaptateur général : contenant le schéma global -->
-    <OWL url="/home/manland/..." />
+    <OWL url="bin/GeneralOnto.owl" />
     <Prefix>
-      <P>virus</P><P>maladie</P><P>recencement</P>
+      <P>http://www.lirmm.fr/maladie#</P>
+      <P>http://www.lirmm.fr/virus#</P>
+      <P>http://www.lirmm.fr/recensement#</P>
     </Prefix>
       <CompositeAdapter><!-- Adaptateur MaladieVirus -->
-        <OWL url="" />
+        <OWL url="bin/maladieVirus.owl" />
         <Prefix>
-          <P>virus</P><P>maladie</P><P>recencement</P>
+          <P>http://www.lirmm.fr/maladie#</P>
+          <P>http://www.lirmm.fr/virus#</P>
         </Prefix>
           <TerminalAdapter><!-- Adaptateur Maladie --><!-- Traducteur ???? -->
             <Traducteur>
               <N3>
-                <URL>/home/manland...</URL>
+                <URL>bin/MaladieFacteurMapping.n3</URL>
                 <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
                 <Prefix>
-                  <P>virus</P><P>maladie</P><P>recencement</P>
+                  <P>http://www.lirmm.fr/maladie#</P>
                 </Prefix>
               </N3>
-              <!--<N3 url="sdf" getMetaInfo="sdf" />-->
               <Database>
-                <dataBaseName>sdf</dataBaseName>
-                <address>ssf</address>
-                <userName>ffsd</userName>
-                <port>12</port>
-                <password>sdf</password>
-                <type>sdf</type>
+                <dataBaseName>maladiesFacteur</dataBaseName>
+                <address>localhost</address>
+                <userName>admin</userName>
+                <port>1186</port>
+                <password>admin</password>
+                <type>Mysql</type>
               </Database>
             </Traducteur>  
           </TerminalAdapter>
           <TerminalAdapter><!-- Adaptateur Virus --><!-- Traducteur ???? -->
             <Traducteur>
               <N3>
-                <URL>/home/manland...</URL>
+                <URL>bin/VirusTransmissionMapping.n3</URL>
                 <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
                 <Prefix>
-                  <P>virus</P><P>maladie</P><P>recencement</P>
+                  <P>http://www.lirmm.fr/virus#</P>
                 </Prefix>
               </N3>
               <Database>
-                <dataBaseName>sgsdf</dataBaseName>
-                <address>sdf</address>
-                <userName>sdf</userName>
-                <port>15</port>
-                <password>sdfdsf</password>
-                <type>sdf</type>
+                <dataBaseName>virusTransmission</dataBaseName>
+                <address>localhost</address>
+                <userName>admin</userName>
+                <port>1521</port>
+                <password>admin</password>
+                <type>Oracle</type>
               </Database>
             </Traducteur>
           </TerminalAdapter>
       </CompositeAdapter>
       <CompositeAdapter><!-- Adaptateur Recenssement -->
-        <OWL url="" />
+        <OWL url="bin/recencement.owl" />
         <Prefix>
-          <P>virus</P><P>maladie</P><P>recencement</P>
+          <P>http://www.lirmm.fr/recensement#</P>
         </Prefix>
         <TerminalAdapter>
           <Traducteur><!-- Traducteur ???? -->
             <N3>
-              <URL>/home/manland...</URL>
+              <URL>RecencementMapping.n3</URL>
               <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
               <Prefix>
-                <P>virus</P><P>maladie</P><P>recencement</P>
+                <P>http://www.lirmm.fr/recensement#</P>
               </Prefix>
             </N3>
             <Database>
-              <dataBaseName>sdfsfd</dataBaseName>
-              <address>gfhgh</address>
-              <userName>gkjkj</userName>
-              <port>14</port>
-              <password>jhjhk</password>
-              <type>sdf</type>
+              <dataBaseName>recencement</dataBaseName>
+              <address>localhost</address>
+              <userName>admin</userName>
+              <port>5432</port>
+              <password>admin</password>
+              <type>Postgre</type>
             </Database>
           </Traducteur>
         </TerminalAdapter>
         <TerminalAdapter>
           <Traducteur><!-- Traducteur ???? -->
             <N3>
-              <URL>/home/manland...</URL>
+              <URL>Recencement2Mapping.n3</URL>
               <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
               <Prefix>
-                <P>virus</P><P>maladie</P><P>recencement</P>
+                <P>http://www.lirmm.fr/recensement#</P>
               </Prefix>
             </N3>
             <Database>
-              <dataBaseName>dfgdg</dataBaseName>
-              <address>dfgfg</address>
-              <userName>dfgfdg</userName>
-              <port>12</port>
-              <password>dfgdfg</password>
-              <type>sdf</type>
-            </Database>
-          </Traducteur>
-        </TerminalAdapter>
-        <TerminalAdapter>
-          <Traducteur><!-- Traducteur ???? -->
-            <N3>
-              <URL>/home/manland...</URL>
-              <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
-              <Prefix>
-                <P>virus</P><P>maladie</P><P>recencement</P>
-              </Prefix>
-            </N3>
-            <Database>
-              <dataBaseName>dfgdfg</dataBaseName>
-              <address>cvb</address>
-              <userName>cvbcvb</userName>
-              <port>17</port>
-              <password>cvbcvbcb</password>
-              <type>sdf</type>
+              <dataBaseName>recencement2</dataBaseName>
+              <address>localhost</address>
+              <userName>admin</userName>
+              <port>5432</port>
+              <password>admin</password>
+              <type>Postgre</type>
             </Database>
           </Traducteur>
         </TerminalAdapter>

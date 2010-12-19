@@ -9,17 +9,18 @@ import Exception.MalformedQueryException;
 /**
  * This is a SELECT query.
  */
-public class SelectQuery implements IQuery {
+public class SelectQuery implements IQuery 
+{
 
   private String query; 
   private Vector<String> selection = new Vector<String>();
   private Vector<String> where = new Vector<String>();
-
   
   /**
    * Parse the SELECT given query.
    */
-  public void parseQuery(String query) throws MalformedQueryException {
+  public void parseQuery(String query) throws MalformedQueryException 
+  {
 	  where.removeAllElements();
 	  selection.removeAllElements();
 	  String req = "^SELECT ([\\?[a-zA-Z_]+ ]+) WHERE \\{+([[[\\??[a-zA-Z_]+ {0,1}|[a-zA-Z_]+:[a-zA-Z_]+ {0,1}]{3}] \\. ]+)\\}+";
@@ -30,13 +31,17 @@ public class SelectQuery implements IQuery {
 //	^SELECT ([\\?[a-zA-Z_]+ ]+) WHERE \\{+([((\\??[a-zA-Z_]+ {0,1}|[a-zA-Z_]+:[a-zA-Z_]+ {0,1}){3}) \\. ])+\\}+
 	  if (query.matches(req))
 	  {
-		  while(m.find()){
+		  while(m.find())
+		  {
 			  String req_where = m.group(2);
 			  String [] tab_where = req_where.split("\\.");
-			  for(int i=0; i<tab_where.length;i++){
+			  for(int i=0; i<tab_where.length;i++)
+			  {
 				  String [] tab_temp = tab_where[i].split(" ");
-				  for(int j=0; j<tab_temp.length;j++){
-					  if(tab_temp[j].matches("[a-zA-Z_]+:[a-zA-Z_]+ {0,1}")){
+				  for(int j=0; j<tab_temp.length;j++)
+				  {
+					  if(tab_temp[j].matches("[a-zA-Z_]+:[a-zA-Z_]+ {0,1}"))
+					  {
 						  where.add(tab_temp[j]);
 					  }
 				  }
@@ -44,7 +49,8 @@ public class SelectQuery implements IQuery {
 			  System.out.println("taille where : "+tab_where.length);
 			  String req_select = m.group(1);
 			  String [] tab_select = req_select.split(" ");
-			  for(int i=0; i<tab_select.length;i++){
+			  for(int i=0; i<tab_select.length;i++)
+			  {
 				  selection.add(tab_select[i]);
 			  }
 		  }
@@ -58,19 +64,23 @@ public class SelectQuery implements IQuery {
   /**
    * Rebuild and return query.
    */
-  public String getQuery() {
+  public String getQuery() 
+  {
 	  return query;
   }
 
-  public void setQuery(String query){
+  public void setQuery(String query)
+  {
 	  this.query = query;
   }
   
-  public Vector<String> getSelection(){
+  public Vector<String> getSelection()
+  {
 	  return selection;
   }
   
-  public Vector<String> getWhere(){
+  public Vector<String> getWhere()
+  {
 	  return where;
   }
   

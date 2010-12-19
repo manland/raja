@@ -10,20 +10,21 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-public class IndoorFile implements IInDoor {
-
+public class IndoorFile implements IInDoor 
+{
 	private String outFile;
-	
 	private BufferedReader brIn;
 	
 	public IndoorFile(String inFile, String outFile)
 	{
 		this.outFile = outFile;
 		InputStream ips = null;
-		try {
+		try 
+		{
 			ips = new FileInputStream(inFile);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (FileNotFoundException e) 
+		{
 			e.printStackTrace();
 		} 
 		InputStreamReader ipsr = new InputStreamReader(ips);
@@ -31,7 +32,8 @@ public class IndoorFile implements IInDoor {
 	}
 	
 	@Override
-	public String read() {
+	public String read() 
+	{
 		String line="";
 		try 
 		{
@@ -50,15 +52,18 @@ public class IndoorFile implements IInDoor {
 	}
 
 	@Override
-	public void write(String result) {
-		try {
+	public void write(String result) 
+	{
+		try 
+		{
 			FileWriter fw = new FileWriter(outFile);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter fichierSortie = new PrintWriter(bw); 
 			fichierSortie.println (result+"\n"); 
 			fichierSortie.close();
 		}
-		catch (Exception e){
+		catch (Exception e)
+		{
 			System.out.println(e.toString());
 		}
 	}
