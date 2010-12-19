@@ -1,15 +1,5 @@
 package Server.DataBase;
 
-import java.util.Iterator;
-import java.util.List;
-
-import org.jdom.Element;
-
-import Server.Translator.MySqlTranslator;
-import Server.Translator.OracleTranslator;
-import Server.Translator.PostGreTranslator;
-
-
 /**
  * Classe packaging information on a database.
  */
@@ -44,6 +34,16 @@ public class DataBase {
 	 */
 	protected String databaseName;
 
+	public DataBase()
+	{
+		address = "non renseignée";
+		userName = "non renseigné";
+		port = -1;
+		type = "non renseigné";
+		passWord = "non renseigné";
+		databaseName = "non renseignée";
+	}
+	
 	public String getType()
 	{
 		return type;

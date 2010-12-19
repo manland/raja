@@ -49,6 +49,7 @@ public class CompositeAdapter extends Adapter
 		subAdapters = new Vector<IAdapter>();
 		model = ModelFactory.createDefaultModel();
         FileManager.get().readModel(model, "maladiesVirus.owl");
+        System.out.println("CompositeAdapter::constructor::"+owlFile);
 	}
 
 
