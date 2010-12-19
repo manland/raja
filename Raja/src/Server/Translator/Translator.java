@@ -34,25 +34,25 @@ public abstract class Translator implements ITranslator
 	public ResultSet exec(IQuery query) throws DataBaseNotAccessibleException 
 	{
 		ResultSet rs = null;
-		if(query.getClass().getName().equals("SelectQuery"))
+		if(query.getClass().getSimpleName().equals("SelectQuery"))
 		{
 			rs = select((SelectQuery)query);
 		}
-		else if(query.getClass().getName().equals("InsertQuery"))
+		else if(query.getClass().getSimpleName().equals("InsertQuery"))
 		{
 			if(insert((InsertQuery)query))
 			{
 				rs = null;//??????????????????????
 			}
 		}
-		else if(query.getClass().getName().equals("UpdateQuery"))
+		else if(query.getClass().getSimpleName().equals("UpdateQuery"))
 		{
 			if(update((UpdateQuery)query))
 			{
 				rs = null;//??????????????????????
 			}
 		}
-		else if(query.getClass().getName().equals("DeleteQuery"))
+		else if(query.getClass().getSimpleName().equals("DeleteQuery"))
 		{
 			if(delete((DeleteQuery)query))
 			{
