@@ -12,6 +12,8 @@ import Query.SelectQuery;
 import Query.UpdateQuery;
 
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 
 /**
@@ -31,46 +33,47 @@ public abstract class Translator implements ITranslator
 	/**
 	 * Execute the given query. If rs = null statement isn't execute.
 	 */
-	public ResultSet exec(IQuery query) throws DataBaseNotAccessibleException 
+	public Model exec(IQuery query) throws DataBaseNotAccessibleException 
 	{
-		ResultSet rs = null;
+		Model res = null;
 		if(query.getClass().getSimpleName().equals("SelectQuery"))
 		{
-			rs = select((SelectQuery)query);
+			res = select((SelectQuery)query);
+			
 		}
 		else if(query.getClass().getSimpleName().equals("InsertQuery"))
 		{
 			if(insert((InsertQuery)query))
 			{
-				rs = null;//??????????????????????
+				res = ModelFactory.createDefaultModel();
 			}
 		}
 		else if(query.getClass().getSimpleName().equals("UpdateQuery"))
 		{
 			if(update((UpdateQuery)query))
 			{
-				rs = null;//??????????????????????
+				res = ModelFactory.createDefaultModel();
 			}
 		}
 		else if(query.getClass().getSimpleName().equals("DeleteQuery"))
 		{
 			if(delete((DeleteQuery)query))
 			{
-				return null;//??????????????????????
+				res = ModelFactory.createDefaultModel();
 			}
 		}
-		return rs;
+		return res;
 	}
 
 	/**
 	 * Execute a select query.
 	 */
-	public ResultSet select(SelectQuery query) throws DataBaseNotAccessibleException 
+	public Model select(SelectQuery query) throws DataBaseNotAccessibleException 
 	{
 		return selectTranslator.select(query);
 	}
 
-	public ResultSet getMetaInfo() throws DataBaseNotAccessibleException 
+	public Model getMetaInfo() throws DataBaseNotAccessibleException 
 	{
 		return selectTranslator.getMetaInfo();
 	}
