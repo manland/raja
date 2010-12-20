@@ -11,7 +11,7 @@ public class UpdateQuery extends ConditionalQuery {
   /**
    * Contains the fields modifications
    */
-  protected Vector<String> set;
+  protected Vector<Pair<String,String>> set;
 
   /**
    * Parse the UPDATE query.
@@ -25,6 +25,11 @@ public class UpdateQuery extends ConditionalQuery {
    */
   public String getQuery() {
 	  return "";
+  }
+  
+  public Vector<Pair<String,String>> getSet()
+  {
+	  return set;
   }
 
 }

@@ -12,7 +12,8 @@ abstract class ConditionalQuery extends Query
 	/**
 	 * Conditions on the fields
 	 */
-	protected Vector<String> where;
+	protected Vector<Pair<String, String>> where;
+	protected Vector<String> connecteur;
 
 	/**
 	 * Parse the WHERE fields
@@ -31,4 +32,11 @@ abstract class ConditionalQuery extends Query
 		return "";
 	}
 
+	public Vector<Pair<String,String>> getWhere() {
+		return where;
+	}
+	
+	public Vector<String> getConnecteur() {
+		return connecteur;
+	}
 }

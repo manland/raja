@@ -36,12 +36,12 @@ public class DataBase {
 
 	public DataBase()
 	{
-		address = "non renseignée";
-		userName = "non renseigné";
+		address = "/localhost";
+		userName = "root";
 		port = -1;
 		type = "non renseigné";
-		passWord = "non renseigné";
-		databaseName = "non renseignée";
+		passWord = "";
+		databaseName = "les_maladies";
 	}
 	
 	public String getType()
