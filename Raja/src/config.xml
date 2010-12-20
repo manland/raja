@@ -3,15 +3,21 @@
   <CompositeAdapter><!-- Adaptateur général : contenant le schéma global -->
     <OWL url="bin/GeneralOnto.owl" />
     <Prefix>
-      <P>http://www.lirmm.fr/maladie#</P>
-      <P>http://www.lirmm.fr/virus#</P>
-      <P>http://www.lirmm.fr/recensement#</P>
+      <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
+      <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
+      <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
+      <P>PREFIX maladie: &lt;http://www.lirmm.fr/maladie#&gt;</P>
+      <P>PREFIX virus: &lt;http://www.lirmm.fr/virus#&gt;</P>
+      <P>PREFIX recensement: &lt;http://www.lirmm.fr/recensement#&gt;</P>
     </Prefix>
       <CompositeAdapter><!-- Adaptateur MaladieVirus -->
         <OWL url="bin/maladieVirus.owl" />
         <Prefix>
-          <P>http://www.lirmm.fr/maladie#</P>
-          <P>http://www.lirmm.fr/virus#</P>
+        	<P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
+        	<P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
+        	<P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
+      		<P>PREFIX maladie: &lt;http://www.lirmm.fr/maladie#&gt;</P>
+      		<P>PREFIX virus: &lt;http://www.lirmm.fr/virus#&gt;</P>
         </Prefix>
           <TerminalAdapter><!-- Adaptateur Maladie --><!-- Traducteur ???? -->
             <Traducteur>
@@ -19,7 +25,10 @@
                 <URL>bin/MaladieFacteurMapping.n3</URL>
                 <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
                 <Prefix>
-                  <P>http://www.lirmm.fr/maladie#</P>
+                  <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
+                  <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
+                  <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
+                  <P>PREFIX maladie: &lt;http://www.lirmm.fr/maladie#&gt;</P>
                 </Prefix>
               </N3>
               <Database>
@@ -38,7 +47,10 @@
                 <URL>bin/VirusTransmissionMapping.n3</URL>
                 <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
                 <Prefix>
-                  <P>http://www.lirmm.fr/virus#</P>
+                  <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
+                  <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
+                  <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
+			      <P>PREFIX virus: &lt;http://www.lirmm.fr/virus#&gt;</P>
                 </Prefix>
               </N3>
               <Database>
@@ -55,7 +67,10 @@
       <CompositeAdapter><!-- Adaptateur Recenssement -->
         <OWL url="bin/recencement.owl" />
         <Prefix>
-          <P>http://www.lirmm.fr/recensement#</P>
+          <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
+          <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
+          <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
+	      <P>PREFIX recensement: &lt;http://www.lirmm.fr/recensement#&gt;</P>
         </Prefix>
         <TerminalAdapter>
           <Traducteur><!-- Traducteur ???? -->
@@ -63,7 +78,10 @@
               <URL>RecencementMapping.n3</URL>
               <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
               <Prefix>
-                <P>http://www.lirmm.fr/recensement#</P>
+                <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
+                <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
+                <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
+                <P>PREFIX recensement: &lt;http://www.lirmm.fr/recensement#&gt;</P>
               </Prefix>
             </N3>
             <Database>
@@ -82,7 +100,10 @@
               <URL>Recencement2Mapping.n3</URL>
               <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
               <Prefix>
-                <P>http://www.lirmm.fr/recensement#</P>
+                <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
+                <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
+                <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
+                <P>PREFIX recensement: &lt;http://www.lirmm.fr/recensement#&gt;</P>
               </Prefix>
             </N3>
             <Database>
