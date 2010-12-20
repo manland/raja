@@ -3,23 +3,21 @@
 
 = Lundi 20 =
 
-Romain : 
-
-Audrey : continue le compositeAdapter
+Query : Tous les vector<String> (sauf from) deviennent Vector<Pair>String, String>> où le 1er string est le nom de la colonne et le 2eme la valeure
+ConditionnaleQuery : Rajout de Vector<String> connector
+Tous les ResultSet deviennent des Model (plus facil à ajouter dans le surmodel)
+Delete de isQueryMatching car ça sert à rien de faire 2 fois le même travail
+SelectQuery : ajout de static DROITE, MILIEU et GAUCHE pour savoir dans le triplet où est ce qu'on cherche + createDescribeQuery qui permet de récupérer un model au lieu de resultSet + selectQueryToDescribe (remplace select par describe) + getQueryWithPrefix pour avoir les prefix d'un query
 
 = Samedi 18 = 
 
-Audrey : 
-    Query.SelectQuery : ajout du getWhere et getSelection pour accèder à la partie select de la requete et à la partie where de cette requête
-    Server.Adapter.CompositeAdapter : implémentation constructeur + ajout du model en private
-
-Général : ajout de 2 librairies pour que le Reasonner de Pellet fonctionne : pellet-jena.jar ; pellet-owlapi.jar
+Query.SelectQuery : ajout du getWhere et getSelection pour accèder à la partie select de la requete et à la partie where de cette requête
 
 Server.Adapter : Adapter prend en charge la liste des prefix comme ça les composite ont les prefix des OWL et les terminal ont les prefix des N3
 
 = Vendredi 17 = 
 
-Aloys : Rapport OK, rien à ajouter.
+~~Aloys : Rapport OK, rien à ajouter.~~
 
 = Mercredi 15 =
 
