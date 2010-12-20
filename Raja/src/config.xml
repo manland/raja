@@ -23,7 +23,7 @@
             <Traducteur>
               <N3>
                 <URL>bin/MaladieFacteurMapping.n3</URL>
-                <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
+                <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
                 <Prefix>
                   <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
                   <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
@@ -45,7 +45,7 @@
             <Traducteur>
               <N3>
                 <URL>bin/VirusTransmissionMapping.n3</URL>
-                <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
+                <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
                 <Prefix>
                   <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
                   <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
@@ -76,7 +76,7 @@
           <Traducteur><!-- Traducteur ???? -->
             <N3>
               <URL>RecencementMapping.n3</URL>
-              <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
+              <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
               <Prefix>
                 <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
                 <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
@@ -98,7 +98,7 @@
           <Traducteur><!-- Traducteur ???? -->
             <N3>
               <URL>Recencement2Mapping.n3</URL>
-              <GetMetaInfo>SELECT ?a ?b ?c WHERE {?a ?b ?c}</GetMetaInfo>
+              <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
               <Prefix>
                 <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
                 <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>

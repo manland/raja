@@ -5,6 +5,7 @@ import java.util.Vector;
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.rdf.model.Model;
 
 public abstract class Adapter implements IAdapter {
 	
@@ -22,11 +23,9 @@ public abstract class Adapter implements IAdapter {
 	}
 	
 	@Override
-	public abstract ResultSet execute(IQuery query) throws DataBaseNotAccessibleException;
+	public abstract Model execute(IQuery query) throws DataBaseNotAccessibleException;
 
 	@Override
-	public abstract ResultSet getLocalSchema() throws DataBaseNotAccessibleException;
+	public abstract Model getLocalSchema() throws DataBaseNotAccessibleException;
 
-	@Override
-	public abstract boolean isQueryMatching(IQuery query) throws DataBaseNotAccessibleException;
 }

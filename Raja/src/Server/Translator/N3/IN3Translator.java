@@ -1,10 +1,11 @@
 package Server.Translator.N3;
 import Query.SelectQuery;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.rdf.model.Model;
 
 public interface IN3Translator {
 
-	ResultSet select(SelectQuery query) ;
-	ResultSet getMetaInfo() ;
+	Model select(SelectQuery query) ;
+	Model getMetaInfo() ;
 
 }

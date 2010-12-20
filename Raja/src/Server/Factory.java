@@ -6,7 +6,9 @@ import java.util.Vector;
 
 import org.jdom.Element;
 
+import Exception.MalformedQueryException;
 import Query.IQuery;
+import Query.SelectQuery;
 import Server.Adapter.CompositeAdapter;
 import Server.Adapter.IAdapter;
 import Server.Adapter.TerminalAdapter;
@@ -23,10 +25,15 @@ import Server.Translator.PostGreTranslator;
 public class Factory {
 	/**
 	 * Create and return Query object matching with the given query.
+	 * @throws MalformedQueryException 
 	 */
-	public static IQuery makeQuery(String query)
+	public static IQuery makeQuery(String query) throws MalformedQueryException
 	{
-		return null;
+		SelectQuery sq = new SelectQuery();
+		sq.setQuery(query);
+		sq.parseQuery(query);
+		System.out.println("query :" +query);
+		return sq;
 	}
 
 	/**

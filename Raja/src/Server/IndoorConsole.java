@@ -8,7 +8,6 @@ class IndoorConsole implements IInDoor {
 	public String read() {
 		String line = "";
 		Scanner in = new Scanner(System.in);
-
 		line = in.nextLine();
 
 		if(line.equals("q"))

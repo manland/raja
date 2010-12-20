@@ -9,8 +9,18 @@ import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
 import Exception.DataBaseNotAccessibleException;
+import Exception.MalformedQueryException;
+import Query.SelectQuery;
 import Server.Adapter.CompositeAdapter;
+
+import com.hp.hpl.jena.query.QueryExecution;
+import com.hp.hpl.jena.query.QueryExecutionFactory;
+import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.ResultSetFormatter;
+import com.hp.hpl.jena.vocabulary.OWL;
+import com.hp.hpl.jena.query.Query;
+import com.hp.hpl.jena.rdf.model.Model;
 
 /**
  * Server class.
@@ -60,9 +70,16 @@ public class Server {
 		return false;
 	}
 
-	public ResultSet getGlobalSchema()
+	public Model getGlobalSchema()
 	{
-		return mediatorLike.getLocalSchema();
+		Model m = null;
+		try {
+			m = mediatorLike.getLocalSchema();
+		} catch (DataBaseNotAccessibleException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return m;
 	}
 
 	/**
@@ -77,12 +94,22 @@ public class Server {
 			String line = indoor.read();
 			if(!line.equals(""))
 			{
+				
 				try 
 				{
-					mediatorLike.execute(Factory.makeQuery(line));
+					Model m = mediatorLike.execute(Factory.makeQuery(line));
+					SelectQuery sq = new SelectQuery();
+					sq.setQuery(line);
+					Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), sq)) ;
+					QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
+					ResultSet rs = qexec.execSelect() ;
+					ResultSetFormatter.out(System.out, rs, q);
 				} 
 				catch (DataBaseNotAccessibleException e) 
 				{
+					e.printStackTrace();
+				} catch (MalformedQueryException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -129,7 +156,8 @@ public class Server {
 	 */
 	public static void main(String[] args)
 	{
-		Server s = new Server();
-		s.init("bin/config.xml", new IndoorConsole());
+		Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
+		Server.getInstance().run();
+		Server.getInstance().getGlobalSchema().write(System.out);
 	}
 }
