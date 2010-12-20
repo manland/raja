@@ -1,6 +1,7 @@
 package Query;
 import java.util.Vector;
 
+
 import Exception.MalformedQueryException;
 
 
@@ -11,7 +12,7 @@ public class InsertQuery extends Query {
   /**
    * List of values to insert.
    */
-  protected Vector<String> value;
+  protected Vector<Pair<String,String>> value;
 
   /**
    * Parse the INSERT query.
@@ -24,4 +25,7 @@ public class InsertQuery extends Query {
 	  return "";
   }
 
+  public Vector<Pair<String,String>> getValue() {
+	  return value;
+  }
 }

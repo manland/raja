@@ -28,5 +28,9 @@ abstract class Query implements IQuery {
   public String getQuery() {
 	  return "";
   }
+  
+  public Vector<String> getFrom() {
+	  return from;
+  }
 
 }
