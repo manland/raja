@@ -6,39 +6,31 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
 
-
-#map:database a d2rq:Database;
-#d2rq:jdbcDriver "oracle.jdbc.driver.OracleDriver";
-#d2rq:jdbcDSN "jdbc:oracle:thin:@venus:1521:master";
-#d2rq:username "mast2";
-#d2rq:password "mast2";
-#.
-
 map:database a d2rq:Database;
 d2rq:jdbcDriver "com.mysql.jdbc.Driver";
-d2rq:jdbcDSN "jdbc:mysql://localhost/MALADIE";
+d2rq:jdbcDSN "jdbc:mysql://192.168.0.22/facteurmaladie";
 d2rq:username "root";
-d2rq:password "audreybd";
+d2rq:password "root";
 .
 
 # Table Maladie :
 map:MALADIE a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@MALADIE.MM_NOM_MALADIE|urlify@@";
+	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@MALADIE.FM_NOM_MALADIE|urlify@@";
 	d2rq:class v:MALADIE;
 	.
 	
 # Table Facteur : 
 map:FACTEUR a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.MF_ABREV_FACTEUR|urlify@@";
+	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.FF_ABREV_FACTEUR|urlify@@";
 	d2rq:class v:FACTEUR;
 	.
 	
 map:MF_NOMFACTEUR a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:FACTEUR;
 	d2rq:property v:MF_NOMFACTEUR;
-	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.MF_NOM_FACTEUR|urlify@@";
+	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.FF_NOM_FACTEUR|urlify@@";
 	.
 	
 map:MF_TYPEFACTEUR a d2rq:PropertyBridge;
@@ -51,7 +43,7 @@ map:MF_TYPEFACTEUR a d2rq:PropertyBridge;
 # relation n:m
 map:APRORIGINE a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@APRORIGINE.MA_ABREVF|urlify@@_@@APRORIGINE.MA_SOUCHE|urlify@@";
+	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@APRORIGINE.FA_ABREVF|urlify@@_@@APRORIGINE.FA_SOUCHE|urlify@@";
 	d2rq:class v:APRORIGINE;
 	.
 	
@@ -59,20 +51,20 @@ map:ESTORIGINEDE a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:APRORIGINE;
 	d2rq:property v:ESTORIGINEDE;
 	d2rq:refersToClassMap map:MALADIE;
-	d2rq:join "APRORIGINE.MA_NOMM = MALADIE.MM_NOM_MALADIE";
+	d2rq:join "APRORIGINE.FA_NOMM = MALADIE.FM_NOM_MALADIE";
 	.
 	
 map:ESTFACTEURDE a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:FACTEUR;
 	d2rq:property v:ESTFACTEURDE;
 	d2rq:refersToClassMap map:APRORIGINE;
-	d2rq:join "APRORIGINE.MA_ABREVF = FACTEUR.MF_ABREV_FACTEUR";
+	d2rq:join "APRORIGINE.FA_ABREVF = FACTEUR.FF_ABREV_FACTEUR";
 	.
 	
 
 map:FACTEURVIRAUX a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.MF_ABREV_FACTEUR@@";
+	d2rq:uriPattern "http://www.lirmm.fr/maladie#@@FACTEUR.FF_ABREV_FACTEUR@@";
 	d2rq:condition "FACTEUR.MF_TYPE_FACTEUR = 'Virus'";
 	d2rq:class v:FACTEURVIRAUX;
 	.

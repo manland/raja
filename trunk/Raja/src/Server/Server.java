@@ -158,6 +158,6 @@ public class Server {
 	{
 		Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
 		Server.getInstance().run();
-		Server.getInstance().getGlobalSchema().write(System.out);
+		//Server.getInstance().getGlobalSchema().write(System.out);
 	}
 }

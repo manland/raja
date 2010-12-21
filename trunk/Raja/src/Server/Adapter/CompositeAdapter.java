@@ -39,14 +39,14 @@ public class CompositeAdapter extends Adapter
 {
 	private String owlFile;
 	private Model model;
-	
-	
+
+
 	/**
 	 * Composite pattern.
 	 * These are the sub-adapters managed by this adapter.
 	 */
 	protected Vector<IAdapter> subAdapters;	
-	
+
 	public static final String NL = System.getProperty("line.separator");
 	public CompositeAdapter(Vector<String> prefix, String owlFile) 
 	{
@@ -54,11 +54,10 @@ public class CompositeAdapter extends Adapter
 		this.owlFile = owlFile;
 		subAdapters = new Vector<IAdapter>();
 		model = ModelFactory.createDefaultModel();
-        FileManager.get().readModel(model, "maladiesVirus.owl");
-        System.out.println("CompositeAdapter::constructor::"+owlFile);
+		FileManager.get().readModel(model, "maladiesVirus.owl");
 	}
-	
-	
+
+
 
 	private Model execQueryDescribe(String query) {		
 		Model result_model = null;
@@ -68,11 +67,11 @@ public class CompositeAdapter extends Adapter
 			QueryExecution qexec = QueryExecutionFactory.create(q,model) ;
 			result_model = qexec.execDescribe() ;
 		}catch (QueryParseException e){
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
 		return result_model;
 	}
-	
+
 	public Vector<IAdapter> getSubAdapters() {
 		return subAdapters;
 	}
@@ -87,34 +86,33 @@ public class CompositeAdapter extends Adapter
 	public Model execute(IQuery query) throws DataBaseNotAccessibleException 
 	{
 		Model model_resultat = ModelFactory.createDefaultModel();
-		
+
 		if(query.getClass().getSimpleName().equals("SelectQuery")){
 			SelectQuery sq = (SelectQuery)query;
-				System.out.println(sq.getWhere().size()+"");
-				for(int i=0; i<sq.getWhere().size();i++){
-					Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery());
-					if(res_d!=null){
-						model_resultat.add(res_d);
-					}
+			for(int i=0; i<sq.getWhere().size();i++){
+				Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery());
+				if(res_d!=null){
+					model_resultat.add(res_d);
+				}
 
-					Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery());
-					if(res_g!= null){
-						model_resultat.add(res_g);
-					}
-					
-					Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery());
-					if(res_m != null){
-						model_resultat.add(res_m);
-					}
-					
-					for(int j=0; j<getSubAdapters().size();j++){
-						 Model res = subAdapters.get(j).execute(query);
-						 if(res!= null){
-							 model_resultat.add(res);
-						 }
+				Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery());
+				if(res_g!= null){
+					model_resultat.add(res_g);
+				}
+
+				Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery());
+				if(res_m != null){
+					model_resultat.add(res_m);
+				}
+
+				for(int j=0; j<getSubAdapters().size();j++){
+					Model res = subAdapters.get(j).execute(query);
+					if(res!= null){
+						model_resultat.add(res);
 					}
 				}
-				return model_resultat;
+			}
+			return model_resultat;
 		}
 		return null;
 	}
@@ -131,7 +129,7 @@ public class CompositeAdapter extends Adapter
 		}
 		return res;
 	}
-	
 
-	
+
+
 }
