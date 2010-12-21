@@ -7,8 +7,11 @@ import java.util.Vector;
 import org.jdom.Element;
 
 import Exception.MalformedQueryException;
+import Query.DeleteQuery;
 import Query.IQuery;
+import Query.InsertQuery;
 import Query.SelectQuery;
+import Query.UpdateQuery;
 import Server.Adapter.CompositeAdapter;
 import Server.Adapter.IAdapter;
 import Server.Adapter.TerminalAdapter;
@@ -29,10 +32,17 @@ public class Factory {
 	 */
 	public static IQuery makeQuery(String query) throws MalformedQueryException
 	{
-		SelectQuery sq = new SelectQuery();
-		sq.setQuery(query);
-		sq.parseQuery(query);
-		return sq;
+		IQuery res = null;
+		if(query.startsWith("SELECT"))
+			res = new SelectQuery();
+		else if(query.startsWith("UPDATE"))
+			res = new UpdateQuery();
+		else if(query.startsWith("DELETE FROM"))
+			res = new DeleteQuery();
+		else if(query.startsWith("INSERT INTO"))
+			res = new InsertQuery();
+		res.parseQuery(query);
+		return res;
 	}
 
 	/**
