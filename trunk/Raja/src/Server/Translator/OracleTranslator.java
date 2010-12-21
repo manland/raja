@@ -3,9 +3,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
-
-import com.mysql.jdbc.Statement;
 
 import Query.DeleteQuery;
 import Query.InsertQuery;
@@ -36,7 +35,7 @@ public class OracleTranslator extends Translator
 					dataBase.getAddress()+
 					":"+dataBase.getPort()+":"+dataBase.getDatabaseName(), dataBase.getUserName(), dataBase.getPassWord());
 			
-			instruction = (Statement) .createStatement();
+			instruction = (Statement) connexion.createStatement();
 		} 
 		catch (SQLException e) {
 				// TODO Auto-generated catch block
