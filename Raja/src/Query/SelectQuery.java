@@ -1,14 +1,18 @@
 package Query;
+
+
+
 import java.util.Vector;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.hp.hpl.jena.graph.query.Matcher;
 
 import Exception.MalformedQueryException;
 
 /**
  * This is a SELECT query.
  */
+
 public class SelectQuery extends Query 
 {
 
@@ -24,6 +28,7 @@ public class SelectQuery extends Query
 	/**
 	 * Parse the SELECT given query.
 	 */
+
 	public void parseQuery(String query) throws MalformedQueryException 
 	{
 		where.removeAllElements();
@@ -31,7 +36,7 @@ public class SelectQuery extends Query
 		String req = "^SELECT ([\\?[\\w]+ ]+) WHERE ((\\{+((\\?[\\w]+ ?|[\\w]+:[\\w]+ ?){3} ?\\.? ?)+ ?\\}+( UNION )?)+)";
 
 		Pattern pattern = Pattern.compile(req);
-		Matcher m = pattern.matcher(query);
+		java.util.regex.Matcher m = pattern.matcher(query);
 
 		if (query.matches(req))
 		{
@@ -71,11 +76,10 @@ public class SelectQuery extends Query
 	/**
 	 * Rebuild and return query.
 	 */
-	public String getQuery() 
-	{
+	public String getQuery() {
 		return query;
 	}
-
+	
 	public void setQuery(String query)
 	{
 		this.query = query;

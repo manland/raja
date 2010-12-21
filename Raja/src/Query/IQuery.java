@@ -1,5 +1,7 @@
 package Query;
+
 import Exception.MalformedQueryException;
+
 
 
 /**
@@ -8,12 +10,14 @@ import Exception.MalformedQueryException;
 public interface IQuery {
   /**
    * Parse the query
+   * @param query is the query to parse
  * @return 
    */
    void parseQuery(String query) throws MalformedQueryException ;
 
   /**
    * Rebuild and return query.
+   * @return the query.
    */
   String getQuery() ;
 
