@@ -29,7 +29,6 @@ public class TerminalAdapter extends Adapter
 	{
 		super(prefix);
 		this.translator = translator;
-		System.out.println("TerminalAdapter::constructor");
 	}
 
 	/**
@@ -49,17 +48,22 @@ public class TerminalAdapter extends Adapter
 	{
 		Model result_model = null;
 		Query q = null;
-		try{
-			q = QueryFactory.create(query.getQuery()) ;
+		try
+		{
+			q = QueryFactory.create(SelectQuery.selectQueryToDescribeQuery(getPrefix(), (SelectQuery)query).getQuery()) ;
 			QueryExecution qexec = QueryExecutionFactory.create(q,getLocalSchema()) ;
 			result_model = qexec.execDescribe() ;
-		}catch (QueryParseException e){
-			System.out.println(e.getMessage());
 		}
-		if(result_model!=null){
+		catch (QueryParseException e){
+			System.err.println(e.getMessage());
+			System.out.println(getPrefix());
+		}
+		if(result_model!=null)
+		{
 			return translator.exec(query);
 		}
-		else{
+		else
+		{
 			return null;
 		}
 	}

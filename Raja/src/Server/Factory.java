@@ -32,7 +32,6 @@ public class Factory {
 		SelectQuery sq = new SelectQuery();
 		sq.setQuery(query);
 		sq.parseQuery(query);
-		System.out.println("query :" +query);
 		return sq;
 	}
 

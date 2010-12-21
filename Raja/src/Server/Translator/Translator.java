@@ -27,7 +27,6 @@ public abstract class Translator implements ITranslator
 	public Translator(DataBase dataBase, String n3File, String getMetaInfo, Vector<String> prefix) 
 	{
 		selectTranslator = new N3Translator(n3File, getMetaInfo, prefix);
-		System.out.println("Translator::constructor::N3file="+n3File+"::dataBaseType="+dataBase.getType());
 	}
 
 	/**

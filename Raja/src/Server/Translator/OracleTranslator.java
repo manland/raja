@@ -1,12 +1,10 @@
 package Server.Translator;
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import oracle.jdbc.driver.OracleConnection;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 
 import Query.DeleteQuery;
@@ -31,18 +29,22 @@ public class OracleTranslator extends Translator
 		
 		// jdbc:oracle:thin@://localhost:8000:les_maladies
 		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connexion = (Connection) DriverManager.getConnection("jdbc:"+
 					DataBaseType.ORACLE+
-					":thin:@//"+
+					":thin:@"+
 					dataBase.getAddress()+
 					":"+dataBase.getPort()+":"+dataBase.getDatabaseName(), dataBase.getUserName(), dataBase.getPassWord());
 			
-			instruction = (Statement) connexion.createStatement();
+			instruction = (Statement) .createStatement();
 		} 
 		catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}

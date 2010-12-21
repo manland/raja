@@ -32,12 +32,12 @@
                 </Prefix>
               </N3>
               <Database>
-                <dataBaseName>maladiesFacteur</dataBaseName>
-                <address>localhost</address>
-                <userName>admin</userName>
+                <dataBaseName>facteurmaladie</dataBaseName>
+                <address>192.168.0.22</address>
+                <userName>root</userName>
                 <port>1186</port>
-                <password>admin</password>
-                <type>Mysql</type>
+                <password>root</password>
+                <type>mysql</type>
               </Database>
             </Traducteur>  
           </TerminalAdapter>
@@ -54,12 +54,12 @@
                 </Prefix>
               </N3>
               <Database>
-                <dataBaseName>virusTransmission</dataBaseName>
-                <address>localhost</address>
-                <userName>admin</userName>
+                <dataBaseName>XE</dataBaseName>
+                <address>192.168.0.22</address>
+                <userName>dbuser</userName>
                 <port>1521</port>
-                <password>admin</password>
-                <type>Oracle</type>
+                <password>dbuser</password>
+                <type>oracle</type>
               </Database>
             </Traducteur>
           </TerminalAdapter>
@@ -85,12 +85,12 @@
               </Prefix>
             </N3>
             <Database>
-              <dataBaseName>recencement</dataBaseName>
-              <address>localhost</address>
-              <userName>admin</userName>
+              <dataBaseName>receurope</dataBaseName>
+              <address>192.168.0.22</address>
+              <userName>root</userName>
               <port>5432</port>
-              <password>admin</password>
-              <type>Postgre</type>
+              <password>root</password>
+              <type>mysql</type>
             </Database>
           </Traducteur>
         </TerminalAdapter>
@@ -107,12 +107,12 @@
               </Prefix>
             </N3>
             <Database>
-              <dataBaseName>recencement2</dataBaseName>
-              <address>localhost</address>
-              <userName>admin</userName>
+              <dataBaseName>receasteurope</dataBaseName>
+              <address>192.168.0.22</address>
+              <userName>root</userName>
               <port>5432</port>
-              <password>admin</password>
-              <type>Postgre</type>
+              <password>root</password>
+              <type>mysql</type>
             </Database>
           </Traducteur>
         </TerminalAdapter>

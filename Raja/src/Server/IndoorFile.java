@@ -58,7 +58,7 @@ public class IndoorFile implements IInDoor
 		{
 			FileWriter fw = new FileWriter(outFile);
 			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter fichierSortie = new PrintWriter(bw); 
+			PrintWriter fichierSortie = new PrintWriter(bw);
 			fichierSortie.println (result+"\n"); 
 			fichierSortie.close();
 		}
