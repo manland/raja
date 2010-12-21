@@ -31,7 +31,7 @@ public class MySqlTranslator extends Translator {
 			
 			// ex: DriverManager.getConnection("jdbc:mysql://localhost/les_maladies","root","pass");
 			connexion = (Connection) DriverManager.getConnection(
-					"jdbc:"+DataBaseType.MYSQL.toString()+":/"+					
+					"jdbc:"+DataBaseType.MYSQL.toString()+"://"+					
 					dataBase.getAddress()+"/"+
 					dataBase.getDatabaseName(),
 					dataBase.getUserName(),

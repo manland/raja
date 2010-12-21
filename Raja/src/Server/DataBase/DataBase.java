@@ -36,9 +36,9 @@ public class DataBase {
 
 	public DataBase()
 	{
-		address = "/localhost";
+		address = "localhost";
 		userName = "root";
-		port = -1;
+		port = 8000;
 		type = "non renseigné";
 		passWord = "";
 		databaseName = "les_maladies";
