@@ -32,7 +32,7 @@ abstract class ConditionalQuery extends Query
 		return "";
 	}
 
-	public Vector<Pair<String,String>> getWhere() {
+	public Vector<Pair<String, String>> getWhere() {
 		return where;
 	}
 	
