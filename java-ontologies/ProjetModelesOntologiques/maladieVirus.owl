@@ -1,0 +1,62 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:maladie="http://www.lirmm.fr/maladie#"
+    xmlns:virus="http://www.lirmm.fr/virus#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
+  <rdf:Description rdf:about="http://www.lirmm.fr/virus#BACTERIE">
+    <owl:equivalentClass rdf:resource="http://www.lirmm.fr/maladie#FACTEURBACTERIENS"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#FACTEURBACTERIENS"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A0">
+    <owl:someValuesFrom rdf:resource="http://www.lirmm.fr/virus#BACTERIE"/>
+    <owl:onProperty rdf:resource="http://www.lirmm.fr/maladie#APRORIGINE"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIEBACTERIENNE">
+    <rdfs:subClassOf rdf:nodeID="A1"/>
+    <rdfs:subClassOf rdf:nodeID="A0"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#MALADIE"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A2">
+    <owl:someValuesFrom rdf:resource="http://www.lirmm.fr/virus#VIRUS"/>
+    <owl:onProperty rdf:resource="http://www.lirmm.fr/maladie#APRORIGINE"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#APRORIGINE">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/virus#VIRUS">
+    <owl:equivalentClass rdf:resource="http://www.lirmm.fr/maladie#FACTEURVIRAUX"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#FACTEURVIRAUX"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A1">
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://www.lirmm.fr/maladie#APRORIGINE"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#FACTEURBACTERIENS">
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#FACTEUR"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#FACTEURVIRAUX">
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#FACTEUR"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIEVIRALE">
+    <rdfs:subClassOf rdf:nodeID="A1"/>
+    <rdfs:subClassOf rdf:nodeID="A2"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#MALADIE"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#FACTEUR">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIE">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+</rdf:RDF>
