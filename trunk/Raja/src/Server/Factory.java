@@ -34,13 +34,22 @@ public class Factory {
 	{
 		IQuery res = null;
 		if(query.startsWith("SELECT"))
+		{
 			res = new SelectQuery();
+			((SelectQuery)res).setQuery(query);
+		}
 		else if(query.startsWith("UPDATE"))
+		{
 			res = new UpdateQuery();
+		}
 		else if(query.startsWith("DELETE FROM"))
+		{
 			res = new DeleteQuery();
+		}
 		else if(query.startsWith("INSERT INTO"))
+		{
 			res = new InsertQuery();
+		}
 		res.parseQuery(query);
 		return res;
 	}

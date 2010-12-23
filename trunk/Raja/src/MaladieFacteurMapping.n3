@@ -8,7 +8,7 @@
 
 map:database a d2rq:Database;
 d2rq:jdbcDriver "com.mysql.jdbc.Driver";
-d2rq:jdbcDSN "jdbc:mysql://192.168.0.22/facteurmaladie";
+d2rq:jdbcDSN "jdbc:mysql://192.168.0.15/facteurmaladie";
 d2rq:username "root";
 d2rq:password "root";
 .

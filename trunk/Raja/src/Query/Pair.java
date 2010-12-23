@@ -1,24 +1,29 @@
 package Query;
 
-public class Pair<A, B> {
+public class Pair<A, B> 
+{
     private A first;
     private B second;
 
-    public Pair(A first, B second) {
+    public Pair(A first, B second) 
+    {
         super();
         this.first = first;
         this.second = second;
     }
 
-    public int hashCode() {
+    public int hashCode() 
+    {
         int hashFirst = first != null ? first.hashCode() : 0;
         int hashSecond = second != null ? second.hashCode() : 0;
 
         return (hashFirst + hashSecond) * hashSecond + hashFirst;
     }
 
-    public boolean equals(Object other) {
-        if (other instanceof Pair) {
+    public boolean equals(Object other) 
+    {
+        if (other instanceof Pair) 
+        {
                 Pair otherPair = (Pair) other;
                 return 
                 ((  this.first == otherPair.first ||
@@ -37,19 +42,23 @@ public class Pair<A, B> {
            return "(" + first + ", " + second + ")"; 
     }
 
-    public A getFirst() {
+    public A getFirst() 
+    {
         return first;
     }
 
-    public void setFirst(A first) {
+    public void setFirst(A first) 
+    {
         this.first = first;
     }
 
-    public B getSecond() {
+    public B getSecond() 
+    {
         return second;
     }
 
-    public void setSecond(B second) {
+    public void setSecond(B second) 
+    {
         this.second = second;
     }
 }

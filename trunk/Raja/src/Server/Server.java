@@ -94,7 +94,6 @@ public class Server {
 			String line = indoor.read();
 			if(!line.equals(""))
 			{
-				
 				try 
 				{
 					Model m = mediatorLike.execute(Factory.makeQuery(line));
@@ -108,8 +107,8 @@ public class Server {
 				catch (DataBaseNotAccessibleException e) 
 				{
 					e.printStackTrace();
-				} catch (MalformedQueryException e) {
-					// TODO Auto-generated catch block
+				} catch (MalformedQueryException e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -158,6 +157,6 @@ public class Server {
 	{
 		Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
 		Server.getInstance().run();
-		Server.getInstance().getGlobalSchema().write(System.out);
+		//Server.getInstance().getGlobalSchema().write(System.out);
 	}
 }

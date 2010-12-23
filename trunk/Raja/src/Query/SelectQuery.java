@@ -1,34 +1,27 @@
 package Query;
 
-
-
 import java.util.Vector;
 import java.util.regex.Pattern;
-
-import com.hp.hpl.jena.graph.query.Matcher;
 
 import Exception.MalformedQueryException;
 
 /**
  * This is a SELECT query.
  */
-
 public class SelectQuery extends Query 
 {
 
-  private String query; 
-  private Vector<String> selection = new Vector<String>();
-  private Vector<String> where = new Vector<String>();
-  
-  public static final String DROITE = "droite";
-  public static final String GAUCHE = "gauche";
-  public static final String MILIEU = "milieu";
-   
+	private String query; 
+	private Vector<String> selection = new Vector<String>();
+	private Vector<String> where = new Vector<String>();
+
+	public static final String DROITE = "droite";
+	public static final String GAUCHE = "gauche";
+	public static final String MILIEU = "milieu";
 
 	/**
 	 * Parse the SELECT given query.
 	 */
-
 	public void parseQuery(String query) throws MalformedQueryException 
 	{
 		where.removeAllElements();
@@ -42,7 +35,6 @@ public class SelectQuery extends Query
 		{
 			while(m.find())
 			{
-
 				String req_where = m.group(2);
 				// on remplace les accolades par des espaces : 
 				String new_req = req_where.replaceAll("\\{|\\}|UNION|\\.", " ");
@@ -55,7 +47,7 @@ public class SelectQuery extends Query
 						where.add(tab_where[i]);
 					}
 				}
-				
+
 				// on remplit le select :
 				String req_select = m.group(1);
 				String [] tab_select = req_select.split(" ");
@@ -67,8 +59,6 @@ public class SelectQuery extends Query
 		}
 		else
 		{
-			System.out.println("req : "+req);
-			System.out.println("query : "+query);
 			throw new MalformedQueryException(query, "Requete mal formée requete : ");
 		}
 	}
@@ -76,10 +66,11 @@ public class SelectQuery extends Query
 	/**
 	 * Rebuild and return query.
 	 */
-	public String getQuery() {
+	public String getQuery() 
+	{
 		return query;
 	}
-	
+
 	public void setQuery(String query)
 	{
 		this.query = query;
@@ -95,56 +86,58 @@ public class SelectQuery extends Query
 		return where;
 	}
 
-	public static SelectQuery createDescribeQuery(Vector<String> prefix, String elem, String position){
+	public static SelectQuery createDescribeQuery(Vector<String> prefix, String elem, String position)
+	{
 		SelectQuery query = new SelectQuery();
 		String res = "";
 
 		String str_prefix = "";
-		for(int i=0; i<prefix.size();i++){					
+		for(int i=0; i<prefix.size();i++)
+		{					
 			str_prefix+=prefix.get(i)+"\n";
 		}
 
 		res += str_prefix+" DESCRIBE ?a ?b WHERE ";
-		if(position == DROITE){
+		if(position == DROITE)
+		{
 			res += "{?a ?b "+elem+"}";
 		}
-		else if(position == MILIEU){
+		else if(position == MILIEU)
+		{
 			res += "{?a "+elem+" ?b}";
 		}
-		else if(position == GAUCHE){
+		else if(position == GAUCHE)
+		{
 			res += "{"+elem+" ?a ?b}";
 		}
-
-		System.out.println("res : "+res);
 		query.setQuery(res);
 		return query;
 	}
 
-	public static SelectQuery selectQueryToDescribeQuery(Vector<String> prefix, SelectQuery query){
-
+	public static SelectQuery selectQueryToDescribeQuery(Vector<String> prefix, SelectQuery query)
+	{
 		SelectQuery sq = new SelectQuery();
 		String res = "";
 
 		String str_prefix = "";
-		for(int i=0; i<prefix.size();i++){					
+		for(int i=0; i<prefix.size();i++)
+		{					
 			str_prefix+=prefix.get(i)+"\n";
 		}
 
 		String fin = query.getQuery().substring(6);
-
 		String str = str_prefix + "DESCRIBE "+fin;
-
-		System.out.println("res : "+str);
 		sq.setQuery(str);
 		return sq;
 	}
 
-	public static String getQueryWithPrefix(Vector<String> prefix, SelectQuery q){
+	public static String getQueryWithPrefix(Vector<String> prefix, SelectQuery q)
+	{
 		String str_prefix = "";
-		for(int i=0; i<prefix.size();i++){					
+		for(int i=0; i<prefix.size();i++)
+		{					
 			str_prefix+=prefix.get(i)+"\n";
 		}
-		System.out.println("requte : "+str_prefix+q.getQuery());
 		return str_prefix+q.getQuery();
 	}
 }

@@ -11,7 +11,7 @@
       <P>PREFIX recensement: &lt;http://www.lirmm.fr/recensement#&gt;</P>
     </Prefix>
       <CompositeAdapter><!-- Adaptateur MaladieVirus -->
-        <OWL url="bin/maladieVirus.owl" />
+        <OWL url="/home/manland/workspace/Raja/src/maladieVirus.owl" />
         <Prefix>
         	<P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
         	<P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
@@ -33,7 +33,7 @@
               </N3>
               <Database>
                 <dataBaseName>facteurmaladie</dataBaseName>
-                <address>192.168.0.22</address>
+                <address>192.168.0.15</address>
                 <userName>root</userName>
                 <port>1186</port>
                 <password>root</password>
@@ -55,7 +55,7 @@
               </N3>
               <Database>
                 <dataBaseName>XE</dataBaseName>
-                <address>192.168.0.22</address>
+                <address>192.168.0.15</address>
                 <userName>dbuser</userName>
                 <port>1521</port>
                 <password>dbuser</password>
@@ -86,7 +86,7 @@
             </N3>
             <Database>
               <dataBaseName>receurope</dataBaseName>
-              <address>192.168.0.22</address>
+              <address>192.168.0.15</address>
               <userName>root</userName>
               <port>5432</port>
               <password>root</password>
@@ -108,7 +108,7 @@
             </N3>
             <Database>
               <dataBaseName>receasteurope</dataBaseName>
-              <address>192.168.0.22</address>
+              <address>192.168.0.15</address>
               <userName>root</userName>
               <port>5432</port>
               <password>root</password>
