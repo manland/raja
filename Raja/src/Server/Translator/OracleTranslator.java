@@ -59,9 +59,9 @@ public class OracleTranslator extends Translator
 			str += table+", ";
 		}
 		str += "VALUES (";
-		for(Pair<String, String> attribut_valeur : query.getValue()) {
-			str += attribut_valeur.getSecond()+", ";
-		}
+//		for(Pair<String, String> attribut_valeur : query.getValue()) {
+//			str += attribut_valeur.getSecond()+", ";
+//		}
 		str += ");";
 		
 		System.out.println(str);

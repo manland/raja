@@ -40,7 +40,6 @@ public class CompositeAdapter extends Adapter
 	private String owlFile;
 	private Model model;
 
-
 	/**
 	 * Composite pattern.
 	 * These are the sub-adapters managed by this adapter.
@@ -54,29 +53,33 @@ public class CompositeAdapter extends Adapter
 		this.owlFile = owlFile;
 		subAdapters = new Vector<IAdapter>();
 		model = ModelFactory.createDefaultModel();
-		FileManager.get().readModel(model, "maladiesVirus.owl");
+		FileManager.get().readModel(model, "bin/maladieVirus.owl");
 	}
 
-
-
-	private Model execQueryDescribe(String query) {		
+	private Model execQueryDescribe(String query) 
+	{		
 		Model result_model = null;
 		Query q = null;
-		try{
+		try
+		{
 			q = QueryFactory.create(query) ;
 			QueryExecution qexec = QueryExecutionFactory.create(q,model) ;
 			result_model = qexec.execDescribe() ;
-		}catch (QueryParseException e){
+		}
+		catch (QueryParseException e)
+		{
 			System.err.println(e.getMessage());
 		}
 		return result_model;
 	}
 
-	public Vector<IAdapter> getSubAdapters() {
+	public Vector<IAdapter> getSubAdapters() 
+	{
 		return subAdapters;
 	}
 
-	public void setSubAdapters(Vector<IAdapter> subAdapters) {
+	public void setSubAdapters(Vector<IAdapter> subAdapters) 
+	{
 		this.subAdapters = subAdapters;
 	}
 
@@ -87,27 +90,34 @@ public class CompositeAdapter extends Adapter
 	{
 		Model model_resultat = ModelFactory.createDefaultModel();
 
-		if(query.getClass().getSimpleName().equals("SelectQuery")){
+		if(query.getClass().getSimpleName().equals("SelectQuery"))
+		{
 			SelectQuery sq = (SelectQuery)query;
-			for(int i=0; i<sq.getWhere().size();i++){
+			for(int i=0; i<sq.getWhere().size();i++)
+			{
 				Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery());
-				if(res_d!=null){
+				if(res_d!=null)
+				{
 					model_resultat.add(res_d);
 				}
 
 				Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery());
-				if(res_g!= null){
+				if(res_g!= null)
+				{
 					model_resultat.add(res_g);
 				}
 
 				Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery());
-				if(res_m != null){
+				if(res_m != null)
+				{
 					model_resultat.add(res_m);
 				}
 
-				for(int j=0; j<getSubAdapters().size();j++){
+				for(int j=0; j<getSubAdapters().size();j++)
+				{
 					Model res = subAdapters.get(j).execute(query);
-					if(res!= null){
+					if(res!= null)
+					{
 						model_resultat.add(res);
 					}
 				}
@@ -124,12 +134,10 @@ public class CompositeAdapter extends Adapter
 	public Model getLocalSchema() throws DataBaseNotAccessibleException 
 	{
 		Model res = model;
-		for(int i=0;i<subAdapters.size();i++){
+		for(int i=0;i<subAdapters.size();i++)
+		{
 			res.add(subAdapters.get(i).getLocalSchema());
 		}
 		return res;
 	}
-
-
-
 }

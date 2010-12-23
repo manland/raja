@@ -24,7 +24,7 @@ public class TerminalAdapter extends Adapter
 	 * Translator used to convert queries to specified database.
 	 */
 	protected ITranslator translator;
-	
+
 	public TerminalAdapter(Vector<String> prefix, ITranslator translator) 
 	{
 		super(prefix);
@@ -54,9 +54,9 @@ public class TerminalAdapter extends Adapter
 			QueryExecution qexec = QueryExecutionFactory.create(q,getLocalSchema()) ;
 			result_model = qexec.execDescribe() ;
 		}
-		catch (QueryParseException e){
-			System.err.println(e.getMessage());
-			System.out.println(getPrefix());
+		catch (QueryParseException e)
+		{
+			System.err.println(e.getMessage() + " :: prefix=" + getPrefix());
 		}
 		if(result_model!=null)
 		{
@@ -67,6 +67,4 @@ public class TerminalAdapter extends Adapter
 			return null;
 		}
 	}
-
-
 }

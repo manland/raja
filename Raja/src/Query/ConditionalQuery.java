@@ -6,8 +6,6 @@ import java.util.regex.Pattern;
 
 import Exception.MalformedQueryException;
 
-
-
 /**
  * Represent a query contening WHERE
  */
@@ -19,8 +17,8 @@ abstract class ConditionalQuery extends Query
 	protected Vector<Pair<String, String>> where;
 	protected Vector<String> connecteur;
 	
-	
-	public ConditionalQuery() {
+	public ConditionalQuery() 
+	{
 		where = new Vector<Pair<String,String>>();
 		connecteur = new Vector<String>();
 	}
@@ -35,7 +33,8 @@ abstract class ConditionalQuery extends Query
 		connecteur.clear();
 		
 		String parts[] = query.split("WHERE");
-		if(parts.length == 1) {
+		if(parts.length == 1) 
+		{
 			super.parseQuery(query);
 			return;
 		}
@@ -45,12 +44,15 @@ abstract class ConditionalQuery extends Query
 //			throw new MalformedQueryException(query, "Clause WHERE expected.");
 //		query = query.replaceFirst("WHERE\\s+", "");
 		String vars[] = query.split(",");
-		for(int i=0 ; i<vars.length ; i++) {
+		for(int i=0 ; i<vars.length ; i++) 
+		{
 			vars[i] = vars[i].trim();
 			Pattern pop = Pattern.compile("=|<|>|<=|>=|!=|<>|^=|!<|!>");
 			Matcher m = pop.matcher(vars[i]);
 			if(!m.find())
+			{
 				throw new MalformedQueryException(query, "No operator found in " + vars[i]);
+			}
 			String op = m.group();
 			connecteur.add(op.trim());
 			String wheres[] = vars[i].split(op);
@@ -65,18 +67,23 @@ abstract class ConditionalQuery extends Query
 	{
 		String res = super.getQuery();
 		if(where.size() >= 1)
+		{
 			res += " WHERE " + where.get(0).getFirst() + connecteur.get(0) + where.get(0).getSecond();
-		for(int i=1 ; i<where.size() ; i++) {
+		}
+		for(int i=1 ; i<where.size() ; i++) 
+		{
 			res += ", " + where.get(i).getFirst() + connecteur.get(i) + where.get(i).getSecond();
 		}
 		return res;
 	}
 
-	public Vector<Pair<String,String>> getWhere() {
+	public Vector<Pair<String,String>> getWhere() 
+	{
 		return where;
 	}
 	
-	public Vector<String> getConnecteur() {
+	public Vector<String> getConnecteur() 
+	{
 		return connecteur;
 	}
 }
