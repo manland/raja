@@ -6,8 +6,13 @@ import org.mindswap.pellet.jena.PelletReasonerFactory;
 import Exception.DataBaseNotAccessibleException;
 import Exception.MalformedQueryException;
 import Query.IQuery;
+import Query.Pair;
 import Query.SelectQuery;
 
+import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -21,6 +26,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.reasoner.Reasoner;
@@ -56,22 +62,7 @@ public class CompositeAdapter extends Adapter
 		FileManager.get().readModel(model, owlFile);
 	}
 
-	private Model execQueryDescribe(String query) 
-	{		
-		Model result_model = null;
-		Query q = null;
-		try
-		{
-			q = QueryFactory.create(query) ;
-			QueryExecution qexec = QueryExecutionFactory.create(q,model) ;
-			result_model = qexec.execDescribe() ;
-		}
-		catch (QueryParseException e)
-		{
-			System.err.println(e.getMessage());
-		}
-		return result_model;
-	}
+	
 
 	public Vector<IAdapter> getSubAdapters() 
 	{
@@ -88,26 +79,29 @@ public class CompositeAdapter extends Adapter
 	 */
 	public Model execute(IQuery query) throws DataBaseNotAccessibleException 
 	{
-		Model model_resultat = ModelFactory.createDefaultModel();
-
+		OntModel model_resultat = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF);
+		model_resultat.setNsPrefix("maladie", "http://www.lirmm.fr/maladie#");
+		model_resultat.setNsPrefix("virus", "http://www.lirmm.fr/virus#");
+		
 		if(query.getClass().getSimpleName().equals("SelectQuery"))
 		{
 			SelectQuery sq = (SelectQuery)query;
 			for(int i=0; i<sq.getWhere().size();i++)
 			{
-				Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery());
+				Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), model);
 				if(res_d!=null)
 				{
+
 					model_resultat.add(res_d);
 				}
 
-				Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery());
+				Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery(),model);
 				if(res_g!= null)
 				{
 					model_resultat.add(res_g);
 				}
 
-				Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery());
+				Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery(),model);
 				if(res_m != null)
 				{
 					model_resultat.add(res_m);
@@ -122,11 +116,25 @@ public class CompositeAdapter extends Adapter
 					}
 				}
 			}
+			
+			ResultSet r = getEquivalentClass(model_resultat);
+			Vector<Pair<Resource, Resource>> vec = new Vector<Pair<Resource,Resource>>();
+			while(r.hasNext()){
+	            QuerySolution rb = r.nextSolution() ;
+	            
+	            Resource a = rb.getResource("a");
+	            Resource b = rb.getResource("b");
+	            Pair<Resource, Resource> paire = new Pair<Resource, Resource>(a, b);
+	            vec.add(paire);	            
+			}
+            individusIdentiques(model_resultat, vec);
+
+			
 			return model_resultat;
 		}
 		return null;
 	}
-
+	
 	/**
 	 * Return the global RDF schema of sub adapters.
 	 * @throws DataBaseNotAccessibleException 
@@ -139,5 +147,47 @@ public class CompositeAdapter extends Adapter
 			res.add(subAdapters.get(i).getLocalSchema());
 		}
 		return res;
+	}
+	
+	private ResultSet getEquivalentClass(OntModel m){
+		String str = "";
+		for(int i=0; i<getPrefix().size();i++)
+		{
+			str += getPrefix().get(i) +"\n";
+		}
+		String req = str +
+			"SELECT ?a ?b WHERE {?a owl:equivalentClass ?b}";
+		
+		Query q = QueryFactory.create(req) ;
+		QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
+		ResultSet r = qexec.execSelect() ;
+
+		return r;
+	}
+	
+	private void individusIdentiques (OntModel model, Vector<Pair<Resource, Resource>> vec)
+	{
+		for(int i=0;i<vec.size(); i++){
+			Resource r1 = vec.get(i).getFirst();
+			Resource r2 = vec.get(i).getSecond();
+			
+			String oc1_ns = r1.getNameSpace();
+			String oc2_ns = r2.getNameSpace(); 
+
+			if (r1.getNameSpace().equals(oc1_ns))
+			{ 
+				OntClass oc2 = model.getOntClass(oc2_ns+r2.getLocalName());
+				Individual is1 = oc2.createIndividual(oc2_ns + r1.getLocalName());
+				is1.setSameAs(r1);
+			}	
+			else
+			{ 
+				OntClass oc1 = model.getOntClass(oc1_ns+r1.getLocalName());
+				Individual is1 = oc1.createIndividual(oc1_ns + r1.getLocalName());
+				is1.setSameAs(r1);
+			}	
+		}
+		
+		
 	}
 }
