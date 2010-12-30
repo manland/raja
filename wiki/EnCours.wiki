@@ -5,6 +5,10 @@
 
 Chacun peu mettre ce qu'il fait à chaque moment pour pas faire deux fois la même chose. De plus je propose de laisser tout comme ça ça fera un historique !!
 
+= Jeudi 30 Décembre =
+Audrey : Equivalent class dans le composite
+Romain : Version graphique
+
 = Samedi 18 Décembre =
 Audrey : implémentation de AdaptaterComposite pour la partie du select, et des requêtes permettant de faire remonter les schémas locaux de chaque base.
 
