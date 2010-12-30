@@ -114,6 +114,35 @@ public class SelectQuery extends Query
 		return query;
 	}
 
+	
+	public static SelectQuery createSimpleSelectQuery(Vector<String> prefix, String elem, String position)
+	{
+		SelectQuery query = new SelectQuery();
+		String res = "";
+
+		String str_prefix = "";
+		for(int i=0; i<prefix.size();i++)
+		{					
+			str_prefix+=prefix.get(i)+"\n";
+		}
+
+		res += "SELECT ?a ?b WHERE ";
+		if(position == DROITE)
+		{
+			res += "{?a ?b "+elem+"}";
+		}
+		else if(position == MILIEU)
+		{
+			res += "{?a "+elem+" ?b}";
+		}
+		else if(position == GAUCHE)
+		{
+			res += "{"+elem+" ?a ?b}";
+		}
+		query.setQuery(res);
+		return query;
+	}
+	
 	public static SelectQuery selectQueryToDescribeQuery(Vector<String> prefix, SelectQuery query)
 	{
 		SelectQuery sq = new SelectQuery();
