@@ -107,18 +107,7 @@ public class Server {
 					Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), sq)) ;
 					QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
 					ResultSet rs = qexec.execSelect() ;
-					//ResultSetFormatter.out(System.out, rs, q);
-					for ( ; rs.hasNext() ; )
-		            {
-		                QuerySolution rb = rs.nextSolution() ;
-
-		                // Get title - variable names do not include the '?'
-		                System.out.println(q.getResultVars());
-		                RDFNode y = rb.get("a");
-		                Resource z = (Resource) y;
-		                System.out.println(z.getLocalName());
-
-		            }
+					ResultSetFormatter.out(System.out, rs, q);
 					indoor.write(rs, q);
 					qexec.close();
 				} 
