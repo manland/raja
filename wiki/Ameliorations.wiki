@@ -4,6 +4,8 @@
 
 ==EquivalentClass==
 
+*Audrey*
+
  * Récupérer le model du execute des sous_adaptater
  * Effectuer une requete du type :
    * SELECT ?b ?c WHERE {?a rdf:type owl:equivalentClass . ?b rdf:type ?a UNION ?c rdf:type ?a . ?c <> ?b}
@@ -15,6 +17,8 @@ Donner un préfixe différent par base : règle le pb du select
 Pour les autres vérifier que INSERT FROM XXX.table, ba XXX = préfixe
 
 = Interface graphique =
+
+*Romain*
 
 Projet externe au notre (dans eclipse) qui doit juste importer le notre. Il suffit de redéfinir IIndoor et de créer un serveur en lui passant en paramètre. Ensuite le serveur appellera successivement la fonction read() et la fonction write() (tant que read ne retourne pas "")
 
