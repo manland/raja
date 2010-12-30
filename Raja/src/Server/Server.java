@@ -12,15 +12,20 @@ import Exception.DataBaseNotAccessibleException;
 import Exception.MalformedQueryException;
 import Query.SelectQuery;
 import Server.Adapter.CompositeAdapter;
+import Server.Indoor.IInDoor;
+import Server.Indoor.IndoorFile;
 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.vocabulary.OWL;
+import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 /**
  * Server class.
@@ -102,7 +107,20 @@ public class Server {
 					Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), sq)) ;
 					QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
 					ResultSet rs = qexec.execSelect() ;
-					ResultSetFormatter.out(System.out, rs, q);
+					//ResultSetFormatter.out(System.out, rs, q);
+					for ( ; rs.hasNext() ; )
+		            {
+		                QuerySolution rb = rs.nextSolution() ;
+
+		                // Get title - variable names do not include the '?'
+		                System.out.println(q.getResultVars());
+		                RDFNode y = rb.get("a");
+		                Resource z = (Resource) y;
+		                System.out.println(z.getLocalName());
+
+		            }
+					indoor.write(rs, q);
+					qexec.close();
 				} 
 				catch (DataBaseNotAccessibleException e) 
 				{
