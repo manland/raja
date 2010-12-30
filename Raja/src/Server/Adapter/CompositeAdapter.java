@@ -53,7 +53,7 @@ public class CompositeAdapter extends Adapter
 		this.owlFile = owlFile;
 		subAdapters = new Vector<IAdapter>();
 		model = ModelFactory.createDefaultModel();
-		FileManager.get().readModel(model, "bin/maladieVirus.owl");
+		FileManager.get().readModel(model, owlFile);
 	}
 
 	private Model execQueryDescribe(String query) 
