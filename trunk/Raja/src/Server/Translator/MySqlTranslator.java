@@ -23,7 +23,7 @@ public class MySqlTranslator extends Translator
 	private Connection connexion;
 	private Statement instruction;
 
-	public MySqlTranslator(DataBase dataBase, String n3File, String getMetaInfo, Vector<String> prefix) 
+	public MySqlTranslator(DataBase dataBase, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) 
 	{
 		super(dataBase, n3File, getMetaInfo, prefix);
 

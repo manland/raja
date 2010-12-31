@@ -8,7 +8,7 @@
 
 map:database a d2rq:Database;
 d2rq:jdbcDriver "oracle.jdbc.driver.OracleDriver";
-d2rq:jdbcDSN "jdbc:oracle:thin:@192.168.0.22:1521:XE";
+d2rq:jdbcDSN "jdbc:oracle:thin:@192.168.0.15:1521:XE";
 d2rq:username "dbuser";
 d2rq:password "dbuser";
 .
@@ -56,6 +56,9 @@ map:VIRUS_TRANSMISSION a d2rq:PropertyBridge;
 	d2rq:join "VIRUS_TRANSMISSION.VVT_ABREVV = VIRUS.VV_ABREV";
 	d2rq:join "VIRUS_TRANSMISSION.VVT_MODET = TRANSMISSION.VT_MODET";
 	.
+
+
+
 
 
 

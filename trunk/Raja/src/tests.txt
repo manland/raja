@@ -1,1 +1,1 @@
-SELECT ?a ?b WHERE {{?a rdf:type maladie:FACTEURVIRAUX} UNION {?a rdf:type virus:VIRUS}}
+SELECT ?a ?b WHERE {?a rdf:type maladie:FACTEURVIRAUX}

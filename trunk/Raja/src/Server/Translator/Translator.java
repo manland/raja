@@ -8,6 +8,7 @@ import Exception.DataBaseNotAccessibleException;
 import Query.DeleteQuery;
 import Query.IQuery;
 import Query.InsertQuery;
+import Query.Pair;
 import Query.SelectQuery;
 import Query.UpdateQuery;
 
@@ -24,7 +25,7 @@ public abstract class Translator implements ITranslator
 	protected IN3Translator selectTranslator;
 	protected DataBase database;
 	
-	public Translator(DataBase dataBase, String n3File, String getMetaInfo, Vector<String> prefix) 
+	public Translator(DataBase dataBase, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) 
 	{
 		selectTranslator = new N3Translator(n3File, getMetaInfo, prefix);
 	}

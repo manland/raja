@@ -3,37 +3,82 @@
   <CompositeAdapter><!-- Adaptateur général : contenant le schéma global -->
     <OWL url="bin/GeneralOnto.owl" />
     <Prefix>
-      <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
-      <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
-      <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
-      <P>PREFIX maladie: &lt;http://www.lirmm.fr/maladie#&gt;</P>
-      <P>PREFIX virus: &lt;http://www.lirmm.fr/virus#&gt;</P>
-      <P>PREFIX recensement: &lt;http://www.lirmm.fr/recensement#&gt;</P>
+      <P>
+        <nom>rdf</nom>
+        <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+      </P>
+      <P>
+        <nom>rdfs</nom>
+        <uri>http://www.w3.org/2000/01/rdf-schema#</uri>
+      </P>
+      <P>
+        <nom>owl</nom>
+        <uri>http://www.w3.org/2002/07/owl#</uri>
+      </P>
+      <P>
+        <nom>maladie</nom>
+        <uri>http://www.lirmm.fr/maladie#</uri>
+      </P>
+      <P>
+        <nom>virus</nom>
+        <uri>http://www.lirmm.fr/virus#</uri>
+      </P>
+      <P>
+        <nom>recensement</nom>
+        <uri>http://www.lirmm.fr/recensement#</uri>
+      </P>
     </Prefix>
       <CompositeAdapter><!-- Adaptateur MaladieVirus -->
-        <OWL url="bin/maladieVirus.owl" />
+        <OWL url="maladiesVirus.owl" />
         <Prefix>
-        	<P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
-        	<P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
-        	<P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
-      		<P>PREFIX maladie: &lt;http://www.lirmm.fr/maladie#&gt;</P>
-      		<P>PREFIX virus: &lt;http://www.lirmm.fr/virus#&gt;</P>
+          <P>
+            <nom>rdf</nom>
+            <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+          </P>
+          <P>
+            <nom>rdfs</nom>
+            <uri>http://www.w3.org/2000/01/rdf-schema#</uri>
+          </P>
+          <P>
+            <nom>owl</nom>
+            <uri>http://www.w3.org/2002/07/owl#</uri>
+          </P>
+          <P>
+            <nom>maladie</nom>
+            <uri>http://www.lirmm.fr/maladie#</uri>
+          </P>
+          <P>
+            <nom>virus</nom>
+            <uri>http://www.lirmm.fr/virus#</uri>
+          </P>
         </Prefix>
-          <TerminalAdapter><!-- Adaptateur Maladie --><!-- Traducteur ???? -->
+          <TerminalAdapter><!-- Adaptateur Maladie -->
             <Traducteur>
               <N3>
                 <URL>bin/MaladieFacteurMapping.n3</URL>
                 <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
                 <Prefix>
-                  <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
-                  <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
-                  <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
-                  <P>PREFIX maladie: &lt;http://www.lirmm.fr/maladie#&gt;</P>
+                  <P>
+                    <nom>rdf</nom>
+                    <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+                  </P>
+                  <P>
+                    <nom>rdfs</nom>
+                    <uri>http://www.w3.org/2000/01/rdf-schema#</uri>
+                  </P>
+                  <P>
+                    <nom>owl</nom>
+                    <uri>http://www.w3.org/2002/07/owl#</uri>
+                  </P>
+                  <P>
+                    <nom>maladie</nom>
+                    <uri>http://www.lirmm.fr/maladie#</uri>
+                  </P>
                 </Prefix>
               </N3>
               <Database>
                 <dataBaseName>facteurmaladie</dataBaseName>
-                <address>192.168.0.22</address>
+                <address>192.168.0.15</address>
                 <userName>root</userName>
                 <port>1186</port>
                 <password>root</password>
@@ -41,21 +86,33 @@
               </Database>
             </Traducteur>  
           </TerminalAdapter>
-          <TerminalAdapter><!-- Adaptateur Virus --><!-- Traducteur ???? -->
+          <TerminalAdapter><!-- Adaptateur Virus -->
             <Traducteur>
               <N3>
                 <URL>bin/VirusTransmissionMapping.n3</URL>
                 <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
                 <Prefix>
-                  <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
-                  <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
-                  <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
-			      <P>PREFIX virus: &lt;http://www.lirmm.fr/virus#&gt;</P>
+                  <P>
+                    <nom>rdf</nom>
+                    <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+                  </P>
+                  <P>
+                    <nom>rdfs</nom>
+                    <uri>http://www.w3.org/2000/01/rdf-schema#</uri>
+                  </P>
+                  <P>
+                    <nom>owl</nom>
+                    <uri>http://www.w3.org/2002/07/owl#</uri>
+                  </P>
+                  <P>
+                    <nom>virus</nom>
+                    <uri>http://www.lirmm.fr/virus#</uri>
+                  </P>
                 </Prefix>
               </N3>
               <Database>
                 <dataBaseName>XE</dataBaseName>
-                <address>192.168.0.22</address>
+                <address>192.168.0.15</address>
                 <userName>dbuser</userName>
                 <port>1521</port>
                 <password>dbuser</password>
@@ -67,26 +124,50 @@
       <CompositeAdapter><!-- Adaptateur Recenssement -->
         <OWL url="bin/recencement.owl" />
         <Prefix>
-          <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
-          <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
-          <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
-	      <P>PREFIX recensement: &lt;http://www.lirmm.fr/recensement#&gt;</P>
+          <P>
+            <nom>rdf</nom>
+            <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+          </P>
+          <P>
+            <nom>rdfs</nom>
+            <uri>http://www.w3.org/2000/01/rdf-schema#</uri>
+          </P>
+          <P>
+            <nom>owl</nom>
+            <uri>http://www.w3.org/2002/07/owl#</uri>
+          </P>
+          <P>
+            <nom>recensement</nom>
+            <uri>http://www.lirmm.fr/recensement#</uri>
+          </P>
         </Prefix>
         <TerminalAdapter>
-          <Traducteur><!-- Traducteur ???? -->
+          <Traducteur>
             <N3>
               <URL>RecencementMapping.n3</URL>
               <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
               <Prefix>
-                <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
-                <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
-                <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
-                <P>PREFIX recensement: &lt;http://www.lirmm.fr/recensement#&gt;</P>
+                <P>
+                  <nom>rdf</nom>
+                  <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+                </P>
+                <P>
+                  <nom>rdfs</nom>
+                  <uri>http://www.w3.org/2000/01/rdf-schema#</uri>
+                </P>
+                <P>
+                  <nom>owl</nom>
+                  <uri>http://www.w3.org/2002/07/owl#</uri>
+                </P>
+                <P>
+                  <nom>recensement</nom>
+                  <uri>http://www.lirmm.fr/recensement#</uri>
+                </P>
               </Prefix>
             </N3>
             <Database>
               <dataBaseName>receurope</dataBaseName>
-              <address>192.168.0.22</address>
+              <address>192.168.0.15</address>
               <userName>root</userName>
               <port>5432</port>
               <password>root</password>
@@ -95,20 +176,32 @@
           </Traducteur>
         </TerminalAdapter>
         <TerminalAdapter>
-          <Traducteur><!-- Traducteur ???? -->
+          <Traducteur>
             <N3>
               <URL>Recencement2Mapping.n3</URL>
               <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
               <Prefix>
-                <P>PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</P>
-                <P>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</P>
-                <P>PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</P>
-                <P>PREFIX recensement: &lt;http://www.lirmm.fr/recensement#&gt;</P>
+                <P>
+                  <nom>rdf</nom>
+                  <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+                </P>
+                <P>
+                  <nom>rdfs</nom>
+                  <uri>http://www.w3.org/2000/01/rdf-schema#</uri>
+                </P>
+                <P>
+                  <nom>owl</nom>
+                  <uri>http://www.w3.org/2002/07/owl#</uri>
+                </P>
+                <P>
+                  <nom>recensement</nom>
+                  <uri>http://www.lirmm.fr/recensement#</uri>
+                </P>
               </Prefix>
             </N3>
             <Database>
               <dataBaseName>receasteurope</dataBaseName>
-              <address>192.168.0.22</address>
+              <address>192.168.0.15</address>
               <userName>root</userName>
               <port>5432</port>
               <password>root</password>

@@ -10,6 +10,7 @@ import Exception.MalformedQueryException;
 import Query.DeleteQuery;
 import Query.IQuery;
 import Query.InsertQuery;
+import Query.Pair;
 import Query.SelectQuery;
 import Query.UpdateQuery;
 import Server.Adapter.CompositeAdapter;
@@ -57,7 +58,7 @@ public class Factory {
 	/**
 	 * Create and return the Traductor matching with the given database.
 	 */
-	public static ITranslator makeTranslator(DataBase database, String n3File, String getMetaInfo, Vector<String> prefix)
+	public static ITranslator makeTranslator(DataBase database, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix)
 	{
 		ITranslator translator = null;
 		if(DataBaseType.MYSQL.equals(database.getType()))
@@ -110,13 +111,14 @@ public class Factory {
 			if(element.getName().equals("CompositeAdapter"))
 			{
 				String owlFile = element.getChild("OWL").getAttributeValue("url");
-				Vector<String> prefix = new Vector<String>();
+				Vector<Pair<String, String>> prefix = new Vector<Pair<String,String>>();
 				List e_prefix = element.getChild("Prefix").getChildren("P");
 				Iterator i_p = e_prefix.iterator();
 				while(i_p.hasNext())
 				{
 					Element p = (Element)i_p.next();
-					prefix.add(p.getValue());
+					Pair<String, String> pref = new Pair<String, String>(p.getChild("nom").getValue(), p.getChild("uri").getValue());
+					prefix.add(pref);
 				}
 				CompositeAdapter subAdapter = new CompositeAdapter(prefix, owlFile);
 				subAdapter.setSubAdapters(xmlToAdapters(element.getChildren()));
@@ -134,13 +136,14 @@ public class Factory {
 	{
 		String n3File = xml.getChild("N3").getChild("URL").getValue();
 		String getMetaInfo = xml.getChild("N3").getChild("GetMetaInfo").getValue();
-		Vector<String> prefix = new Vector<String>();
+		Vector<Pair<String, String>> prefix = new Vector<Pair<String, String>>();
 		List e_prefix = xml.getChild("N3").getChild("Prefix").getChildren("P");
 		Iterator i_p = e_prefix.iterator();
 		while(i_p.hasNext())
 		{
 			Element p = (Element)i_p.next();
-			prefix.add(p.getValue());
+			Pair<String, String> pref = new Pair<String, String>(p.getChild("nom").getValue(), p.getChild("uri").getValue());
+			prefix.add(pref);
 		}
 		DataBase dataBase = Factory.xmlToDataBase(xml.getChild("Database"));
 		ITranslator translator = Factory.makeTranslator(dataBase, n3File, getMetaInfo, prefix);
