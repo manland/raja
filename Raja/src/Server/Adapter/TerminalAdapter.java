@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
+import Query.Pair;
 import Query.SelectQuery;
 import Server.Translator.ITranslator;
 
@@ -28,7 +29,7 @@ public class TerminalAdapter extends Adapter
 	 */
 	protected ITranslator translator;
 
-	public TerminalAdapter(Vector<String> prefix, ITranslator translator) 
+	public TerminalAdapter(Vector<Pair<String, String>> prefix, ITranslator translator) 
 	{
 		super(prefix);
 		this.translator = translator;
@@ -50,8 +51,10 @@ public class TerminalAdapter extends Adapter
 	public Model execute(IQuery query) throws DataBaseNotAccessibleException 
 	{
 		Model result_model = ModelFactory.createDefaultModel();
-		result_model.setNsPrefix("maladie", "http://www.lirmm.fr/maladie#");
-		result_model.setNsPrefix("virus", "http://www.lirmm.fr/virus#");
+		for(int i=0; i<getPrefix().size(); i++)
+		{
+			result_model.setNsPrefix(getPrefix().get(i).getFirst(), getPrefix().get(i).getSecond());
+		}
 		Query q = null;
 
 		try
@@ -63,24 +66,27 @@ public class TerminalAdapter extends Adapter
 				for(int i=0; i<sq.getWhere().size();i++)
 				{
 					Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), schema_local);
-					Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery(), schema_local);
-					Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery(), schema_local);
-
 					if(res_d!=null)
 					{
 						result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE)));
-					}					
-					else if(res_g!=null)
+					}	
+					else
 					{
-						result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE)));
+						Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery(), schema_local);
+						if(res_g!=null)
+						{
+							result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE)));
+						}
+						else
+						{
+							Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery(), schema_local);
+							if(res_m!=null)
+							{
+								result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU)));
+							}
+						}
 					}
-					else if(res_m!=null)
-					{
-						result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU)));
-					}
-					
 				}
-				
 			}
 		}
 		catch (QueryParseException e)

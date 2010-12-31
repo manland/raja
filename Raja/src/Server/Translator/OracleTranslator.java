@@ -22,7 +22,7 @@ public class OracleTranslator extends Translator
 	Connection connexion;
 	Statement instruction;
 	
-	public OracleTranslator(DataBase dataBase, String n3File, String getMetaInfo, Vector<String> prefix) 
+	public OracleTranslator(DataBase dataBase, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) 
 	{
 		super(dataBase, n3File, getMetaInfo, prefix);
 		

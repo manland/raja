@@ -10,6 +10,7 @@ import org.jdom.input.SAXBuilder;
 
 import Exception.DataBaseNotAccessibleException;
 import Exception.MalformedQueryException;
+import Query.Pair;
 import Query.SelectQuery;
 import Server.Adapter.CompositeAdapter;
 import Server.Indoor.IInDoor;
@@ -144,13 +145,14 @@ public class Server {
 		{
 			Element element = (Element)elements.get(0);
 			String fileOWL = element.getChild("OWL").getAttributeValue("url");
-			Vector<String> prefix = new Vector<String>();
+			Vector<Pair<String, String>> prefix = new Vector<Pair<String, String>>();
 			List e_prefix = element.getChild("Prefix").getChildren("P");
 			Iterator i_p = e_prefix.iterator();
 			while(i_p.hasNext())
 			{
 				Element p = (Element)i_p.next();
-				prefix.add(p.getValue());
+				Pair<String, String> pref = new Pair<String, String>(p.getChild("nom").getValue(), p.getChild("uri").getValue());
+				prefix.add(pref);
 			}
 			mediatorLike = new CompositeAdapter(prefix, fileOWL);
 			mediatorLike.setSubAdapters(Factory.xmlToAdapters(element.getChildren()));

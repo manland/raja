@@ -53,7 +53,7 @@ public class CompositeAdapter extends Adapter
 	protected Vector<IAdapter> subAdapters;	
 
 	public static final String NL = System.getProperty("line.separator");
-	public CompositeAdapter(Vector<String> prefix, String owlFile) 
+	public CompositeAdapter(Vector<Pair<String, String>> prefix, String owlFile) 
 	{
 		super(prefix);
 		this.owlFile = owlFile;
@@ -80,8 +80,10 @@ public class CompositeAdapter extends Adapter
 	public Model execute(IQuery query) throws DataBaseNotAccessibleException 
 	{
 		OntModel model_resultat = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF);
-		model_resultat.setNsPrefix("maladie", "http://www.lirmm.fr/maladie#");
-		model_resultat.setNsPrefix("virus", "http://www.lirmm.fr/virus#");
+		for(int i=0; i<getPrefix().size(); i++)
+		{
+			model_resultat.setNsPrefix(getPrefix().get(i).getFirst(), getPrefix().get(i).getSecond());
+		}
 		
 		if(query.getClass().getSimpleName().equals("SelectQuery"))
 		{
@@ -153,7 +155,7 @@ public class CompositeAdapter extends Adapter
 		String str = "";
 		for(int i=0; i<getPrefix().size();i++)
 		{
-			str += getPrefix().get(i) +"\n";
+			str += "PREFIX " + getPrefix().get(i).getFirst() + ":<" + getPrefix().get(i).getSecond() +">\n";
 		}
 		String req = str +
 			"SELECT ?a ?b WHERE {?a owl:equivalentClass ?b}";
@@ -161,7 +163,7 @@ public class CompositeAdapter extends Adapter
 		Query q = QueryFactory.create(req) ;
 		QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
 		ResultSet r = qexec.execSelect() ;
-
+		qexec.close();
 		return r;
 	}
 	

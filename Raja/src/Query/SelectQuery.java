@@ -86,7 +86,7 @@ public class SelectQuery extends Query
 		return where;
 	}
 
-	public static SelectQuery createDescribeQuery(Vector<String> prefix, String elem, String position)
+	public static SelectQuery createDescribeQuery(Vector<Pair<String, String>> prefix, String elem, String position)
 	{
 		SelectQuery query = new SelectQuery();
 		String res = "";
@@ -94,7 +94,7 @@ public class SelectQuery extends Query
 		String str_prefix = "";
 		for(int i=0; i<prefix.size();i++)
 		{					
-			str_prefix+=prefix.get(i)+"\n";
+			str_prefix+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
 		}
 
 		res += str_prefix+" DESCRIBE ?a ?b WHERE ";
@@ -115,7 +115,7 @@ public class SelectQuery extends Query
 	}
 
 	
-	public static SelectQuery createSimpleSelectQuery(Vector<String> prefix, String elem, String position)
+	public static SelectQuery createSimpleSelectQuery(Vector<Pair<String, String>> prefix, String elem, String position)
 	{
 		SelectQuery query = new SelectQuery();
 		String res = "";
@@ -123,7 +123,7 @@ public class SelectQuery extends Query
 		String str_prefix = "";
 		for(int i=0; i<prefix.size();i++)
 		{					
-			str_prefix+=prefix.get(i)+"\n";
+			str_prefix+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
 		}
 
 		res += "SELECT ?a ?b WHERE ";
@@ -143,7 +143,7 @@ public class SelectQuery extends Query
 		return query;
 	}
 	
-	public static SelectQuery selectQueryToDescribeQuery(Vector<String> prefix, SelectQuery query)
+	public static SelectQuery selectQueryToDescribeQuery(Vector<Pair<String, String>> prefix, SelectQuery query)
 	{
 		SelectQuery sq = new SelectQuery();
 		String res = "";
@@ -151,7 +151,7 @@ public class SelectQuery extends Query
 		String str_prefix = "";
 		for(int i=0; i<prefix.size();i++)
 		{					
-			str_prefix+=prefix.get(i)+"\n";
+			str_prefix+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
 		}
 
 		String fin = query.getQuery().substring(6);
@@ -160,12 +160,12 @@ public class SelectQuery extends Query
 		return sq;
 	}
 
-	public static String getQueryWithPrefix(Vector<String> prefix, SelectQuery q)
+	public static String getQueryWithPrefix(Vector<Pair<String, String>> prefix, SelectQuery q)
 	{
 		String str_prefix = "";
 		for(int i=0; i<prefix.size();i++)
 		{					
-			str_prefix+=prefix.get(i)+"\n";
+			str_prefix+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
 		}
 		return str_prefix+q.getQuery();
 	}

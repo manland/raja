@@ -9,7 +9,7 @@
 
 map:database a d2rq:Database;
 d2rq:jdbcDriver "com.mysql.jdbc.Driver";
-d2rq:jdbcDSN "jdbc:mysql://192.168.0.22/receurope";
+d2rq:jdbcDSN "jdbc:mysql://192.168.0.15/receurope";
 d2rq:username "root";
 d2rq:password "root";
 .
@@ -70,7 +70,7 @@ map:RP_LIBELLE_ZO a d2rq:PropertyBridge;
 # Table MALADIE :
 map:MALADIE a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@MALADIE.RM_ID_RECENSEMENT@@";
+	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@MALADIE.RM_ID@@";
 	d2rq:class r:MALADIE;
 	.
 

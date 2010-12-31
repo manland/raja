@@ -4,26 +4,26 @@ import java.util.Vector;
 
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
+import Query.Pair;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QueryParseException;
-import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 
 public abstract class Adapter implements IAdapter {
 	
-	private Vector<String> prefix;
+	private Vector<Pair<String, String>> prefix;
 	
-	public Adapter(Vector<String> prefix)
+	public Adapter(Vector<Pair<String, String>> prefix)
 	{
-		this.prefix = new Vector<String>();
+		this.prefix = new Vector<Pair<String, String>>();
 		this.prefix.addAll(prefix);
 	}
 	
-	public Vector<String> getPrefix()
+	public Vector<Pair<String, String>> getPrefix()
 	{
 		return prefix;
 	}
@@ -38,11 +38,13 @@ public abstract class Adapter implements IAdapter {
 	{		
 		Model result_model = null;
 		Query q = null;
+		QueryExecution qexec = null;
 		try
 		{
 			q = QueryFactory.create(query) ;
-			QueryExecution qexec = QueryExecutionFactory.create(q,model) ;
+			qexec = QueryExecutionFactory.create(q,model) ;
 			result_model = qexec.execDescribe() ;
+			qexec.close();
 		}
 		catch (QueryParseException e)
 		{

@@ -1,6 +1,7 @@
 package Server.Translator.N3;
 import java.util.Vector;
 
+import Query.Pair;
 import Query.SelectQuery;
 
 import com.hp.hpl.jena.query.Query;
@@ -18,10 +19,10 @@ public class N3Translator implements IN3Translator {
 	
 	private String n3File;
 	private String getMetaInfo;
-	private Vector<String> prefix;
+	private Vector<Pair<String, String>> prefix;
 	private Model model;
 	
-	public N3Translator(String n3File, String getMetaInfo, Vector<String> prefix)
+	public N3Translator(String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix)
 	{
 		this.n3File = n3File;
 		this.getMetaInfo = getMetaInfo;
@@ -37,6 +38,7 @@ public class N3Translator implements IN3Translator {
 			q = QueryFactory.create(SelectQuery.selectQueryToDescribeQuery(prefix, query).getQuery());
 			QueryExecution qexec = QueryExecutionFactory.create(q,model) ;
 			result_model = qexec.execDescribe() ;
+			qexec.close();
 		}catch (QueryParseException e){
 			System.err.println(e.getMessage());
 		}
@@ -51,11 +53,12 @@ public class N3Translator implements IN3Translator {
 		
 		for (int i= 0; i<prefix.size();i++)
 		{
-			str_p+=prefix.get(i)+"\n";
+			str_p+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
 		}
 		
 		Query q = QueryFactory.create(str_p+getMetaInfo);
 		QueryExecution qexec = QueryExecutionFactory.create(q,model);
+		qexec.close();
 		return qexec.execDescribe();
 	}
 	
