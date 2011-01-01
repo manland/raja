@@ -1,8 +1,10 @@
 package Server.Adapter;
 import java.util.List;
+import java.util.Vector;
 
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
+import Query.Pair;
 import Query.SelectQuery;
 
 import com.hp.hpl.jena.query.ResultSet;
@@ -22,4 +24,6 @@ public interface IAdapter {
 	 */
 	Model getLocalSchema()  throws DataBaseNotAccessibleException ;
 
+	Vector<Pair<String,String>> getPrefix();
+	
 }

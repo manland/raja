@@ -120,12 +120,6 @@ public class SelectQuery extends Query
 		SelectQuery query = new SelectQuery();
 		String res = "";
 
-		String str_prefix = "";
-		for(int i=0; i<prefix.size();i++)
-		{					
-			str_prefix+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
-		}
-
 		res += "SELECT ?a ?b WHERE ";
 		if(position == DROITE)
 		{
@@ -142,6 +136,35 @@ public class SelectQuery extends Query
 		query.setQuery(res);
 		return query;
 	}
+	
+	public static SelectQuery createSimpleSelectQueryWithPrefix(Vector<Pair<String, String>> prefix, String elem, String position)
+	{
+		SelectQuery query = new SelectQuery();
+		String res = "";
+
+		String str_prefix = "";
+		for(int i=0; i<prefix.size();i++)
+		{					
+			str_prefix+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
+		}
+
+		res += str_prefix+"SELECT ?a ?b WHERE ";
+		if(position == DROITE)
+		{
+			res += "{?a ?b "+elem+"}";
+		}
+		else if(position == MILIEU)
+		{
+			res += "{?a "+elem+" ?b}";
+		}
+		else if(position == GAUCHE)
+		{
+			res += "{"+elem+" ?a ?b}";
+		}
+		query.setQuery(res);
+		return query;
+	}
+	
 	
 	public static SelectQuery selectQueryToDescribeQuery(Vector<Pair<String, String>> prefix, SelectQuery query)
 	{

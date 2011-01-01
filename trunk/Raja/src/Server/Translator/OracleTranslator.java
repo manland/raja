@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Vector;
 
 import Query.DeleteQuery;
@@ -160,6 +161,10 @@ public class OracleTranslator extends Translator
 		
 		
 		return false;
+	}
+	
+	public HashMap<String,Vector<String>> getMetaInfoFromDataBase(){
+		return null;
 	}
 
 }

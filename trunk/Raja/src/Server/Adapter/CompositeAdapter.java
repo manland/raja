@@ -6,6 +6,7 @@ import org.mindswap.pellet.jena.PelletReasonerFactory;
 import Exception.DataBaseNotAccessibleException;
 import Exception.MalformedQueryException;
 import Query.IQuery;
+import Query.InsertQuery;
 import Query.Pair;
 import Query.SelectQuery;
 
@@ -62,7 +63,7 @@ public class CompositeAdapter extends Adapter
 		FileManager.get().readModel(model, owlFile);
 	}
 
-	
+
 
 	public Vector<IAdapter> getSubAdapters() 
 	{
@@ -78,65 +79,105 @@ public class CompositeAdapter extends Adapter
 	 * Give the query to all sub adaptor which execute it and check if no errors occurs.
 	 */
 	public Model execute(IQuery query) throws DataBaseNotAccessibleException 
-	{
+	{		
+		if(query.getClass().getSimpleName().equals("SelectQuery"))
+		{
+			return executeSelect(query);
+		}
+		else if(query.getClass().getSimpleName().equals("InsertQuery")){
+			return executeInsert(query);
+		}
+		return null;
+	}
+
+
+	private Model executeSelect(IQuery query) throws DataBaseNotAccessibleException{
 		OntModel model_resultat = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF);
 		for(int i=0; i<getPrefix().size(); i++)
 		{
 			model_resultat.setNsPrefix(getPrefix().get(i).getFirst(), getPrefix().get(i).getSecond());
 		}
-		
-		if(query.getClass().getSimpleName().equals("SelectQuery"))
+
+		SelectQuery sq = (SelectQuery)query;
+		for(int i=0; i<sq.getWhere().size();i++)
 		{
-			SelectQuery sq = (SelectQuery)query;
-			for(int i=0; i<sq.getWhere().size();i++)
+			Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), model);
+			if(res_d!=null)
 			{
-				Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), model);
-				if(res_d!=null)
-				{
 
-					model_resultat.add(res_d);
+				model_resultat.add(res_d);
+			}
+
+			Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery(),model);
+			if(res_g!= null)
+			{
+				model_resultat.add(res_g);
+			}
+
+			Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery(),model);
+			if(res_m != null)
+			{
+				model_resultat.add(res_m);
+			}
+
+			for(int j=0; j<getSubAdapters().size();j++)
+			{
+				Model res = subAdapters.get(j).execute(query);
+				if(res!= null)
+				{
+					model_resultat.add(res);
 				}
+			}
+		}
 
-				Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery(),model);
-				if(res_g!= null)
-				{
-					model_resultat.add(res_g);
-				}
+		ResultSet r = getEquivalentClass(model_resultat);
+		Vector<Pair<Resource, Resource>> vec = new Vector<Pair<Resource,Resource>>();
+		while(r.hasNext()){
+			QuerySolution rb = r.nextSolution() ;
 
-				Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery(),model);
-				if(res_m != null)
-				{
-					model_resultat.add(res_m);
-				}
+			Resource a = rb.getResource("a");
+			Resource b = rb.getResource("b");
+			Pair<Resource, Resource> paire = new Pair<Resource, Resource>(a, b);
+			vec.add(paire);	            
+		}
+		individusIdentiques(model_resultat, vec);
 
-				for(int j=0; j<getSubAdapters().size();j++)
-				{
-					Model res = subAdapters.get(j).execute(query);
-					if(res!= null)
-					{
-						model_resultat.add(res);
+
+		return model_resultat;
+	}
+
+	private Model executeInsert(IQuery query) throws DataBaseNotAccessibleException{
+		InsertQuery iq = (InsertQuery)query;
+
+		for(int j=0; j<getSubAdapters().size();j++)
+		{
+			Model res = subAdapters.get(j).getLocalSchema();
+			String pref = "PREFIX rdf:<"+RDF.getURI()+"> \n PREFIX rdfs:<"+RDFS.getURI()+"> \n PREFIX m:<http://www.lirmm.fr/metaInfo#> \n";
+			if(res!= null)
+			{
+				String qry = pref+"SELECT ?b WHERE {m:TABLE rdfs:subClassOf ?b}";
+				ResultSet result = execQuerySelect(qry, res);
+
+				int cpt=0;
+				boolean ok = false;
+				for(; result.hasNext() && !ok; ){ 
+					QuerySolution qs = result.nextSolution();
+					Resource rsc = qs.getResource("b");
+					if(rsc.getLocalName().equals(iq.getFrom().get(0))){
+						cpt++;
+						ok=true;
 					}
 				}
+				if(cpt>0){
+					subAdapters.get(j).execute(query);
+				}
 			}
-			
-			ResultSet r = getEquivalentClass(model_resultat);
-			Vector<Pair<Resource, Resource>> vec = new Vector<Pair<Resource,Resource>>();
-			while(r.hasNext()){
-	            QuerySolution rb = r.nextSolution() ;
-	            
-	            Resource a = rb.getResource("a");
-	            Resource b = rb.getResource("b");
-	            Pair<Resource, Resource> paire = new Pair<Resource, Resource>(a, b);
-	            vec.add(paire);	            
-			}
-            individusIdentiques(model_resultat, vec);
-
-			
-			return model_resultat;
 		}
 		return null;
 	}
-	
+
+
+
 	/**
 	 * Return the global RDF schema of sub adapters.
 	 * @throws DataBaseNotAccessibleException 
@@ -150,7 +191,7 @@ public class CompositeAdapter extends Adapter
 		}
 		return res;
 	}
-	
+
 	private ResultSet getEquivalentClass(OntModel m){
 		String str = "";
 		for(int i=0; i<getPrefix().size();i++)
@@ -158,21 +199,21 @@ public class CompositeAdapter extends Adapter
 			str += "PREFIX " + getPrefix().get(i).getFirst() + ":<" + getPrefix().get(i).getSecond() +">\n";
 		}
 		String req = str +
-			"SELECT ?a ?b WHERE {?a owl:equivalentClass ?b}";
-		
+		"SELECT ?a ?b WHERE {?a owl:equivalentClass ?b}";
+
 		Query q = QueryFactory.create(req) ;
 		QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
 		ResultSet r = qexec.execSelect() ;
 		qexec.close();
 		return r;
 	}
-	
+
 	private void individusIdentiques (OntModel model, Vector<Pair<Resource, Resource>> vec)
 	{
 		for(int i=0;i<vec.size(); i++){
 			Resource r1 = vec.get(i).getFirst();
 			Resource r2 = vec.get(i).getSecond();
-			
+
 			String oc1_ns = r1.getNameSpace();
 			String oc2_ns = r2.getNameSpace(); 
 
@@ -189,7 +230,7 @@ public class CompositeAdapter extends Adapter
 				is1.setSameAs(r1);
 			}	
 		}
-		
-		
+
+
 	}
 }

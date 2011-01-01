@@ -1,9 +1,13 @@
 package Server.Adapter;
+import java.sql.SQLException;
 import java.util.Vector;
+
+import jena.n3;
 
 
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
+import Query.InsertQuery;
 import Query.Pair;
 import Query.SelectQuery;
 import Server.Translator.ITranslator;
@@ -87,6 +91,11 @@ public class TerminalAdapter extends Adapter
 						}
 					}
 				}
+			}
+			else if(query.getClass().getSimpleName().equals("InsertQuery"))
+			{
+				InsertQuery sq = (InsertQuery)query;
+				translator.exec(query);
 			}
 		}
 		catch (QueryParseException e)

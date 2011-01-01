@@ -1,4 +1,8 @@
 package Server.Translator;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Vector;
+
 import Exception.DataBaseNotAccessibleException;
 import Query.DeleteQuery;
 import Query.IQuery;
@@ -42,5 +46,7 @@ public interface ITranslator {
    * Execute the given query
    */
   Model exec(IQuery query) throws DataBaseNotAccessibleException ;
+  
+  HashMap<String, Vector<String>> getMetaInfoFromDataBase() throws SQLException;
 
 }
