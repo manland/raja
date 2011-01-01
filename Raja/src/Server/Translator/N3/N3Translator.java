@@ -10,6 +10,7 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QueryParseException;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
@@ -55,10 +56,8 @@ public class N3Translator implements IN3Translator {
 		{
 			str_p+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
 		}
-		
-		Query q = QueryFactory.create(str_p+getMetaInfo);
+		Query q = QueryFactory.create(str_p+"DESCRIBE ?a WHERE {?a ?b ?c}");
 		QueryExecution qexec = QueryExecutionFactory.create(q,model);
-		qexec.close();
 		return qexec.execDescribe();
 	}
 	

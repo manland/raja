@@ -2,6 +2,7 @@ package Server.Translator;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Vector;
 
 import com.mysql.jdbc.Connection;
@@ -162,6 +163,10 @@ public class PostGreTranslator extends Translator
 		
 		
 		return false;
+	}
+	
+	public HashMap<String,Vector<String>> getMetaInfoFromDataBase(){
+		return null;
 	}
 
 }

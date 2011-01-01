@@ -1,7 +1,9 @@
 package Server.Translator;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Vector;
 
 import com.mysql.jdbc.Connection;
@@ -65,26 +67,33 @@ public class MySqlTranslator extends Translator
 		str += "INSERT INTO ";
 		for(String table : query.getFrom()) 
 		{
-			str += table+", ";
+			str += table+" ";
 		}
 		str += "VALUES (";
-//		for(Pair<String, String> attribut_valeur : query.getValue()) 
-//		{
-//			str += attribut_valeur.getSecond()+", ";
-//		}
+		for(int i=0; i<query.getValue().size();i++) 
+		{
+			str += query.getValue().get(i);
+			if(i+1<query.getValue().size()){
+				str+=",";
+			}
+		}
 		str += ");";
 
 		System.out.println(str);
-
+		int resultat = -1;
 		try 
 		{
-			ResultSet resultat = (ResultSet) instruction.executeQuery(str);
+			resultat = instruction.executeUpdate(str);
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		return false;
+		if(resultat>0){
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**
@@ -114,15 +123,21 @@ public class MySqlTranslator extends Translator
 
 		System.out.println(str);
 
+		int resultat = 0;
 		try 
 		{
-			ResultSet resultat = (ResultSet) instruction.executeQuery(str);
+			 resultat = instruction.executeUpdate(str);
 		}
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
 		}
-		return false;
+		if(resultat>0){
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**
@@ -155,15 +170,42 @@ public class MySqlTranslator extends Translator
 		}
 		str += ";";
 		System.out.println(str);
+		int resultat = -1;
 		try 
 		{
-			ResultSet resultat = (ResultSet) instruction.executeQuery(str);
+			resultat =  instruction.executeUpdate(str);
 		}
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
 		}
-		return false;
+		if(resultat>0)
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
+	public HashMap<String, Vector<String>> getMetaInfoFromDataBase() throws SQLException{
+		HashMap<String, Vector<String>> res = new HashMap<String, Vector<String>>();
+		
+		Vector<String> res_col = new Vector<String>();
+		
+		DatabaseMetaData meta_donnes = connexion.getMetaData();
+	    
+		String[] types = { "TABLE" };
+	    ResultSet r = meta_donnes.getTables(null, null, "%", types);
+
+		while(r.next()){
+			res.put(r.getString(3), new Vector<String>());
+		}
+	    ResultSet rc = meta_donnes.getColumns(null, null, "%", null);
+	    while(rc.next()){
+	    	res.get(rc.getString(3)).add(rc.getString(4));
+	    }	
+		return res;
+	}
+	
 }
