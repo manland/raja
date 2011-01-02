@@ -17,13 +17,11 @@ import de.fuberlin.wiwiss.d2rq.ModelD2RQ;
 public class N3Translator implements IN3Translator 
 {
 	
-	private String getMetaInfo;
 	private Vector<Pair<String, String>> prefix;
 	private Model model;
 	
-	public N3Translator(String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix)
+	public N3Translator(String n3File, Vector<Pair<String, String>> prefix)
 	{
-		this.getMetaInfo = getMetaInfo;
 		this.prefix = prefix;
 		model = new ModelD2RQ(n3File);
 	}
@@ -43,19 +41,5 @@ public class N3Translator implements IN3Translator
 			System.err.println(e.getMessage());
 		}
 		return result_model;
-	}
-
-	@Override
-	public Model getMetaInfo()
-	{
-		String str_p ="";
-		
-		for (int i= 0; i<prefix.size();i++)
-		{
-			str_p+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
-		}
-		Query q = QueryFactory.create(str_p+getMetaInfo);
-		QueryExecution qexec = QueryExecutionFactory.create(q,model);
-		return qexec.execDescribe();
 	}
 }

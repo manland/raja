@@ -64,7 +64,6 @@
             <Traducteur>
               <N3>
                 <URL>bin/MaladieFacteurMapping.n3</URL>
-                <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
                 <Prefix>
                   <P>
                     <nom>rdf</nom>
@@ -98,7 +97,6 @@
             <Traducteur>
               <N3>
                 <URL>bin/VirusTransmissionMapping.n3</URL>
-                <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
                 <Prefix>
                   <P>
                     <nom>rdf</nom>
@@ -161,7 +159,6 @@
           <Traducteur>
             <N3>
               <URL>RecencementMapping.n3</URL>
-              <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
               <Prefix>
                 <P>
                   <nom>rdf</nom>
@@ -199,7 +196,6 @@
           <Traducteur>
             <N3>
               <URL>Recencement2Mapping.n3</URL>
-              <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
               <Prefix>
                 <P>
                   <nom>rdf</nom>

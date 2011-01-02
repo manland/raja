@@ -60,20 +60,20 @@ public class Factory {
 	 * Create and return the Traductor matching with the given database.
 	 * @throws DataBaseNotAccessibleException 
 	 */
-	public static ITranslator makeTranslator(DataBase database, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) throws DataBaseNotAccessibleException
+	public static ITranslator makeTranslator(DataBase database, String n3File, Vector<Pair<String, String>> prefix) throws DataBaseNotAccessibleException
 	{
 		ITranslator translator = null;
 		if(DataBaseType.MYSQL.equals(database.getType()))
 		{
-			translator = new MySqlTranslator(database, n3File, getMetaInfo, prefix);
+			translator = new MySqlTranslator(database, n3File, prefix);
 		}
 		else if(DataBaseType.ORACLE.equals(database.getType()))
 		{
-			translator = new OracleTranslator(database, n3File, getMetaInfo, prefix);
+			translator = new OracleTranslator(database, n3File, prefix);
 		}
 		else if(DataBaseType.POSTGRE.equals(database.getType()))
 		{
-			translator = new PostGreTranslator(database, n3File, getMetaInfo, prefix);
+			translator = new PostGreTranslator(database, n3File, prefix);
 		}
 		return translator;
 	}
@@ -137,7 +137,6 @@ public class Factory {
 	public static TerminalAdapter xmlToTerminalAdapter(Element xml) throws DataBaseNotAccessibleException 
 	{
 		String n3File = xml.getChild("N3").getChild("URL").getValue();
-		String getMetaInfo = xml.getChild("N3").getChild("GetMetaInfo").getValue();
 		Vector<Pair<String, String>> prefix = new Vector<Pair<String, String>>();
 		List e_prefix = xml.getChild("N3").getChild("Prefix").getChildren("P");
 		Iterator i_p = e_prefix.iterator();
@@ -148,7 +147,7 @@ public class Factory {
 			prefix.add(pref);
 		}
 		DataBase dataBase = Factory.xmlToDataBase(xml.getChild("Database"));
-		ITranslator translator = Factory.makeTranslator(dataBase, n3File, getMetaInfo, prefix);
+		ITranslator translator = Factory.makeTranslator(dataBase, n3File, prefix);
 		return new TerminalAdapter(prefix, translator);
 	}
 }
