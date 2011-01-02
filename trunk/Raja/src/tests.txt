@@ -1,3 +1,5 @@
 #SELECT ?a ?b ?c WHERE {?a ?b ?c}
 #SELECT ?b ?c WHERE {recensementEastEurope:Albanie ?b ?c}
-SELECT ?b ?c WHERE {recensementEurope:France ?b ?c}
+SELECT ?b ?c WHERE {?b ?c virus:ARN}
+SELECT ?b ?c WHERE {?b virus:HAV ?c}
+SELECT ?b ?c WHERE {virus:HAV ?b ?c}

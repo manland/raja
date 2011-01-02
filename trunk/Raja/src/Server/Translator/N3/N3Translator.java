@@ -42,7 +42,6 @@ public class N3Translator implements IN3Translator {
 		}catch (QueryParseException e){
 			System.err.println(e.getMessage());
 		}
-		
 		return result_model;
 	}
 

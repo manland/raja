@@ -10,6 +10,7 @@ import org.jdom.input.SAXBuilder;
 
 import Exception.DataBaseNotAccessibleException;
 import Exception.MalformedQueryException;
+import Query.IQuery;
 import Query.Pair;
 import Query.SelectQuery;
 import Server.Adapter.CompositeAdapter;
@@ -108,15 +109,14 @@ public class Server {
 					for(int i=0; i<mediatorLike.getPrefix().size();i++){
 						m.setNsPrefix(mediatorLike.getPrefix().get(i).getFirst(), mediatorLike.getPrefix().get(i).getSecond());
 					}
-					m.add(mediatorLike.execute(Factory.makeQuery(line)));
-					SelectQuery sq = new SelectQuery();
-					sq.setQuery(line);
-					Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), sq)) ;
+					IQuery req = Factory.makeQuery(line);
+					m.add(mediatorLike.execute(req));
+					m.write(System.out);
+					Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), (SelectQuery)req)) ;
 					QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
 					ResultSet rs = qexec.execSelect() ;
 					ResultSetFormatter.out(System.out, rs, q);
 					indoor.write(rs, q);
-					qexec.close();
 				} 
 				catch (DataBaseNotAccessibleException e) 
 				{
@@ -170,7 +170,7 @@ public class Server {
 	 */
 	public static void main(String[] args)
 	{
-		Server.getInstance().init("bin/config-Audrey.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
+		Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
 		Server.getInstance().run();
 		//Server.getInstance().getGlobalSchema().write(System.out);
 	}
