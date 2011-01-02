@@ -47,7 +47,7 @@ import de.fuberlin.wiwiss.d2rq.rdql.ExpressionTranslator.Result;
 public class CompositeAdapter extends Adapter 
 {
 	private String owlFile;
-	private Model model;
+	private OntModel model;
 
 	/**
 	 * Composite pattern.
@@ -61,7 +61,7 @@ public class CompositeAdapter extends Adapter
 		super(prefix);
 		this.owlFile = owlFile;
 		subAdapters = new Vector<IAdapter>();
-		model = ModelFactory.createDefaultModel();
+		model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF);
 		FileManager.get().readModel(model, owlFile);
 	}
 
@@ -117,22 +117,22 @@ public class CompositeAdapter extends Adapter
 				Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), model);
 				if(res_d!=null)
 				{
-	
+
 					model_resultat.add(res_d);
 				}
-	
+
 				Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery(),model);
 				if(res_g!= null)
 				{
 					model_resultat.add(res_g);
 				}
-	
+
 				Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery(),model);
 				if(res_m != null)
 				{
 					model_resultat.add(res_m);
 				}
-	
+
 				for(int j=0; j<getSubAdapters().size();j++)
 				{
 					Model res = subAdapters.get(j).execute(query);
@@ -141,9 +141,9 @@ public class CompositeAdapter extends Adapter
 						model_resultat.add(res);
 					}
 				}
-				
+
 			}
-	
+
 			for(int i=0;i<sq.getWhere().size();i++){
 				ResultSet rs = getEquivalentClassOfClass(model, sq.getWhere().get(i));
 				if(rs != null){
@@ -159,30 +159,11 @@ public class CompositeAdapter extends Adapter
 					}
 				}				
 			}
-			
+
 		}
-		Vector<Pair<String, String>> r = getEquivalentClass(model_resultat);
-		Vector<Pair<Resource, Resource>> vec = new Vector<Pair<Resource,Resource>>();
-//		while(r.hasNext()){
-//			QuerySolution rb = r.nextSolution() ;
-//			
-//			Resource a = rb.getResource("c");
-//			Resource b = rb.getResource("d");
-//			if(a!=null && b!=null){
-//				System.out.println("A : "+a.getLocalName());
-//				System.out.println("B : "+b.getLocalName());
-//				if(b.getLocalName().equals(a.getLocalName())){
-//					Pair<Resource, Resource> paire = new Pair<Resource, Resource>(a, b);
-//					vec.add(paire);
-//				}
-//			}
-//		}
-		
-		for(int i=0;i<r.size();i++){
-			System.out.println(r.get(i).getFirst()+" - "+r.get(i).getSecond());
-		}
-		
-		individusIdentiques(model_resultat, vec);
+		Vector<Pair<String, Resource>> r = getEquivalentClass(model_resultat);
+		Vector<Pair<OntClass, OntClass>> vect_class = getOntClassIdentique(model,r);
+		individusIdentiques(model_resultat, vect_class);
 		return model_resultat;
 	}
 
@@ -193,7 +174,7 @@ public class CompositeAdapter extends Adapter
 		}catch(ClassCastException e){
 			nom_table = ((DeleteQuery)query).getFrom().get(0);
 		}
-		
+
 		for(int j=0; j<getSubAdapters().size();j++)
 		{
 			Model res = subAdapters.get(j).getLocalSchema();
@@ -236,15 +217,12 @@ public class CompositeAdapter extends Adapter
 		return res;
 	}
 
-	private Vector<Pair<String, String>> getEquivalentClass(OntModel m){
-		Vector<Pair<String, String>> vec = new Vector<Pair<String,String>>();
-		
-		
-		
+	private Vector<Pair<String, Resource>> getEquivalentClass(OntModel m){
+		Vector<Pair<String, Resource>> vec = new Vector<Pair<String,Resource>>();
+
 		String str = "";
 		for(int i=0; i<getPrefix().size();i++)
 		{
-			System.out.println("lll "+getPrefix().get(i));
 			str += "PREFIX " + getPrefix().get(i).getFirst() + ":<" + getPrefix().get(i).getSecond() +">\n";
 		}
 		String req = str +
@@ -253,60 +231,48 @@ public class CompositeAdapter extends Adapter
 		Query q = QueryFactory.create(req) ;
 		QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
 		ResultSet r = qexec.execSelect();
-	//	ResultSetFormatter.out(r);
 		while(r.hasNext()){
 			QuerySolution qs = r.nextSolution();
-			
+
 			Resource eqClassA = qs.getResource("a");
 			Resource eqClassB = qs.getResource("b");
 
 			if(eqClassA!=null){
-				
-				System.out.println("pref : "+eqClassA.getNameSpace());
-				
 				String req2 = str +
 				"SELECT ?c WHERE {?c rdf:type "+Pair.getFirstBySecond(getPrefix(), eqClassA.getNameSpace())+":"+eqClassA.getLocalName()+"}";
-	
+
 				Query q2 = QueryFactory.create(req2) ;
 				QueryExecution qexec2 = QueryExecutionFactory.create(q2,m) ;
 				ResultSet r2 = qexec2.execSelect();
-				
+
 				while(r2.hasNext()){
 					QuerySolution qs2 = r2.nextSolution();
 					Resource c = qs2.getResource("c");
-					Pair<String, String> paire = new Pair<String, String>("", "");
-					paire.setFirst(eqClassA.getNameSpace());
-					paire.setSecond(c.getLocalName());
+					Pair<String, Resource> paire = new Pair<String, Resource>(eqClassA.getURI(), c);
 					vec.add(paire);
 				}
 			}
 			if(eqClassB!=null){
-				
-				System.out.println("prefB : "+Pair.getFirstBySecond(getPrefix(), eqClassB.getNameSpace())+":"+eqClassB.getLocalName());
-			
 				String req2 = str +
 				"SELECT ?c WHERE {?c rdf:type "+Pair.getFirstBySecond(getPrefix(), eqClassB.getNameSpace())+":"+eqClassB.getLocalName()+"}";
-	
+
 				Query q2 = QueryFactory.create(req2) ;
 				QueryExecution qexec2 = QueryExecutionFactory.create(q2,m) ;
 				ResultSet r2 = qexec2.execSelect();
-				
+
 				while(r2.hasNext()){
 					QuerySolution qs2 = r2.nextSolution();
 					Resource c = qs2.getResource("c");
-					Pair<String, String> paire = new Pair<String, String>("", "");
-					paire.setFirst(eqClassB.getNameSpace());
-					System.out.println("cccc "+c.getLocalName());
-					paire.setSecond(c.getLocalName());
+					Pair<String, Resource> paire = new Pair<String, Resource>(eqClassB.getURI(),c);
 					vec.add(paire);
 				}
 			}
 		}
 		return vec;
 	}
-	
-	
-	
+
+
+
 	private ResultSet getEquivalentClassOfClass(Model m, String classe){
 		String str = "";
 		for(int i=0; i<getPrefix().size();i++)
@@ -327,39 +293,51 @@ public class CompositeAdapter extends Adapter
 		return r;
 	}
 
-	private void individusIdentiques (OntModel model, Vector<Pair<Resource, Resource>> vec)
-	{
-		for(int i=0;i<vec.size(); i++){
-			Resource r1 = vec.get(i).getFirst();
-			Resource r2 = vec.get(i).getSecond();
 
-			String oc1_ns = r1.getNameSpace();
-			String oc2_ns = r2.getNameSpace(); 
-			
-			
-			System.out.println("r1 "+r1.getLocalName());
-			System.out.println("r2 "+r2.getLocalName());
-			
-			if (r1.getNameSpace().equals(oc1_ns))
-			{ 
-				OntClass oc2 = model.getOntClass(oc2_ns+r2.getLocalName());
-				System.out.println("océ NAME : "+oc2_ns+r2.getLocalName());
-				Individual is1 = oc2.createIndividual(oc1_ns + r1.getLocalName());
-				System.out.println("ind1 "+is1.getURI()+" R1 "+r2.getURI());
-				is1.setSameAs(r2);
-			}	
-			else
-			{ 
-				System.out.println("ELSE");
-				OntClass oc1 = model.getOntClass(oc1_ns+r1.getLocalName());
-				System.out.println("oc1 NAME : "+oc1_ns+r1.getLocalName());
-
-				Individual is1 = oc1.createIndividual(oc2_ns + r2.getLocalName());
-				System.out.println("ind2 "+is1.getLocalName()+" R1 "+r2.getURI());
-				is1.setSameAs(r1);
-			}	
+	private Vector<Pair<OntClass, OntClass>> getOntClassIdentique(OntModel modele,Vector<Pair<String, Resource>> vec){
+		Vector<Pair<OntClass, OntClass>> res = new Vector<Pair<OntClass,OntClass>>();
+		for(int i=0;i<vec.size();i++){
+			Resource r1 = vec.get(i).getSecond();
+			for(int j=0; j<vec.size();j++){
+				Resource r2 = vec.get(j).getSecond();
+				if(r1.getLocalName().equals(r2.getLocalName())){
+					if(!vec.get(i).getFirst().equals(vec.get(j).getFirst())){
+						OntClass c1 = modele.getOntClass(vec.get(i).getFirst());
+						OntClass c2 = modele.getOntClass(vec.get(j).getFirst());
+						Pair<OntClass, OntClass> paire = new Pair<OntClass,OntClass>(c1, c2);
+						res.add(paire);
+					}
+				}
+			}
 		}
+		return res;
+	}
 
+	private void individusIdentiques (OntModel model, Vector<Pair<OntClass, OntClass>> vec)
+	{
+		for(int i=0;i<vec.size();i++){
+			OntClass oc1 = model.getOntClass(vec.get(i).getFirst().getURI());
+			OntClass oc2 = model.getOntClass(vec.get(i).getSecond().getURI());
 
+			String oc1_ns = oc1.getNameSpace();
+			String oc2_ns = oc2.getNameSpace(); 
+
+			ResIterator res_i = model.listSubjectsWithProperty( RDF.type, oc1 );
+			while (res_i.hasNext())
+			{ 
+				Resource i1 = res_i.nextResource();
+
+				if (i1.getNameSpace().equals(oc1_ns))
+				{ 
+					Individual is1 = oc2.createIndividual(oc2_ns + i1.getLocalName());
+					is1.setSameAs(i1);
+				}	
+				else
+				{ 
+					Individual is1 = oc1.createIndividual(oc1_ns + i1.getLocalName());
+					is1.setSameAs(i1);
+				}	
+			}
+		}
 	}
 }
