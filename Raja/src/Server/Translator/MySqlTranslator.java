@@ -68,7 +68,6 @@ public class MySqlTranslator extends Translator
 			}
 		}
 		str += ");";
-		System.out.println(str);
 		int resultat = -1;
 		try 
 		{

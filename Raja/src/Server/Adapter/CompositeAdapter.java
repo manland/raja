@@ -163,6 +163,14 @@ public class CompositeAdapter extends Adapter
 		{
 			nom_table = ((DeleteQuery)query).getFrom().get(0);
 		}
+		
+		String baseName = "";
+		String [] temp = nom_table.split("\\.");
+		if(temp.length > 1)//horizontal mode
+		{
+			baseName = temp[0];
+			nom_table = temp[1];
+		}
 
 		for(int j=0; j<getSubAdapters().size();j++)
 		{
@@ -170,24 +178,38 @@ public class CompositeAdapter extends Adapter
 			String pref = "PREFIX rdf:<"+RDF.getURI()+"> \n PREFIX rdfs:<"+RDFS.getURI()+"> \n PREFIX m:<http://www.lirmm.fr/metaInfo#> \n";
 			if(res!= null)
 			{
-				String qry = pref+"SELECT ?b WHERE {m:TABLE rdfs:subClassOf ?b}";
-				ResultSet result = execQuerySelect(qry, res);
-
-				int cpt=0;
-				boolean ok = false;
-				for(; result.hasNext() && !ok; )
-				{ 
-					QuerySolution qs = result.nextSolution();
-					Resource rsc = qs.getResource("b");
-					if(rsc.getLocalName().equals(nom_table))
-					{
-						cpt++;
-						ok=true;
+				if(!baseName.isEmpty())//horizontal mode
+				{
+					String qry = pref+"SELECT ?d ?b WHERE {?d rdfs:subClassOf m:DATABASE . ?b rdfs:subClassOf m:TABLE}";
+					ResultSet result = execQuerySelect(qry, res);
+					boolean ok = false;
+					for(; result.hasNext() && !ok; )
+					{ 
+						QuerySolution qs = result.nextSolution();
+						Resource db = qs.getResource("d");
+						Resource t = qs.getResource("b");
+						if(db.getLocalName().equals(baseName) && t.getLocalName().equals(nom_table))
+						{
+							subAdapters.get(j).execute(query);
+							ok=true;
+						}
 					}
 				}
-				if(cpt>0)
+				else//vertical mode
 				{
-					subAdapters.get(j).execute(query);
+					String qry2 = pref+"SELECT ?b WHERE {?b rdfs:subClassOf m:TABLE}";
+					ResultSet result2 = execQuerySelect(qry2, res);
+					boolean ok2 = false;
+					for(; result2.hasNext() && !ok2; )
+					{ 
+						QuerySolution qs = result2.nextSolution();
+						Resource rsc = qs.getResource("b");
+						if(rsc.getLocalName().equals(nom_table))
+						{
+							subAdapters.get(j).execute(query);
+							ok2=true;
+						}
+					}
 				}
 			}
 		}

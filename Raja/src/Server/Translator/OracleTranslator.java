@@ -59,10 +59,11 @@ public class OracleTranslator extends Translator
 	{
 		String str = "";
 		str += "INSERT INTO ";
-		for(String table : query.getFrom()) {
-			str += table+", ";
+		for(String table : query.getFrom()) 
+		{
+			str += table+" ";
 		}
-		str += "VALUES (";
+		str += "VALUES(";
 		for(int i=0; i<query.getValue().size();i++) 
 		{
 			str += query.getValue().get(i);
@@ -71,8 +72,7 @@ public class OracleTranslator extends Translator
 				str+=",";
 			}
 		}
-		str += ");";
-		System.out.println(str);
+		str += ")";
 		int resultat = -1;
 		try 
 		{

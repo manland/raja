@@ -110,13 +110,17 @@ public class Server {
 						m.setNsPrefix(mediatorLike.getPrefix().get(i).getFirst(), mediatorLike.getPrefix().get(i).getSecond());
 					}
 					IQuery req = Factory.makeQuery(line);
-					m.add(mediatorLike.execute(req));
-					Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), (SelectQuery)req)) ;
-					QueryExecution qexec = QueryExecutionFactory.create(q,m.getBaseModel()) ;
-					ResultSet rs = qexec.execSelect() ;
-					ResultSetFormatter.out(System.out, rs, q);
-					indoor.write(rs, q);
-					qexec.close();
+					Model res = mediatorLike.execute(req);
+					if(res != null)
+					{
+						m.add(res);
+						Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), (SelectQuery)req)) ;
+						QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
+						ResultSet rs = qexec.execSelect() ;
+						ResultSetFormatter.out(System.out, rs, q);
+						indoor.write(rs, q);
+						qexec.close();
+					}
 				} 
 				catch (DataBaseNotAccessibleException e) 
 				{
@@ -173,7 +177,7 @@ public class Server {
 		if(Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt")))
 		{
 			Server.getInstance().run();
+			//Server.getInstance().getGlobalSchema().write(System.out);
 		}
-		//Server.getInstance().getGlobalSchema().write(System.out);
 	}
 }
