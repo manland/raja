@@ -111,7 +111,6 @@ public class Server {
 					}
 					IQuery req = Factory.makeQuery(line);
 					m.add(mediatorLike.execute(req));
-					m.write(System.out);
 					Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), (SelectQuery)req)) ;
 					QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
 					ResultSet rs = qexec.execSelect() ;
