@@ -6,36 +6,36 @@
     xmlns:recensementEastEurope="http://www.lirmm.fr/recensementEurope#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
   <rdf:Description rdf:about="http://www.lirmm.fr/recensementEastEurope#RECENSEMENT">
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#RECENSEMENT"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#RECENSEMENT">
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#RECENSEMENT"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/recensement#PAYS">
-    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensementEurope#PAYS"/>
-    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensementEastEurope#PAYS"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/recensementEastEurope#PAYS">
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#PAYS"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#PAYS">
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#PAYS"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/recensement#MALADIE">
-    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensementEurope#MALADIE"/>
-    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensementEastEurope#MALADIE"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#MALADIE">
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#MALADIE"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/recensementEastEurope#MALADIE">
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#MALADIE"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/recensement#RECENSEMENT">
-    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensementEurope#RECENSEMENT"/>
-    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensementEastEurope#RECENSEMENT"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
 </rdf:RDF>
