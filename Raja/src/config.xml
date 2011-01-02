@@ -31,6 +31,10 @@
         <nom>recensementEastEurope</nom>
         <uri>http://www.lirmm.fr/recensementEastEurope#</uri>
       </P>
+      <P>
+        <nom>recensement</nom>
+        <uri>http://www.lirmm.fr/recensement#</uri>
+      </P>
     </Prefix>
       <CompositeAdapter><!-- Adaptateur MaladieVirus -->
         <OWL url="maladiesVirus.owl" />
@@ -126,7 +130,7 @@
           </TerminalAdapter>
       </CompositeAdapter>
       <CompositeAdapter><!-- Adaptateur Recenssement -->
-        <OWL url="bin/recencement.owl" />
+        <OWL url="bin/recensement.owl" />
         <Prefix>
           <P>
             <nom>rdf</nom>
@@ -147,6 +151,10 @@
           <P>
             <nom>recensementEastEurope</nom>
             <uri>http://www.lirmm.fr/recensementEastEurope#</uri>
+          </P>
+          <P>
+            <nom>recensement</nom>
+            <uri>http://www.lirmm.fr/recensement#</uri>
           </P>
         </Prefix>
         <TerminalAdapter>
@@ -170,6 +178,10 @@
                 <P>
                   <nom>recensementEurope</nom>
                   <uri>http://www.lirmm.fr/recensementEurope#</uri>
+                </P>
+                <P>
+                  <nom>recensement</nom>
+                  <uri>http://www.lirmm.fr/recensement#</uri>
                 </P>
               </Prefix>
             </N3>
@@ -204,6 +216,10 @@
                 <P>
                   <nom>recensementEastEurope</nom>
                   <uri>http://www.lirmm.fr/recensementEastEurope#</uri>
+                </P>
+                <P>
+                  <nom>recensement</nom>
+                  <uri>http://www.lirmm.fr/recensement#</uri>
                 </P>
               </Prefix>
             </N3>
