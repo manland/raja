@@ -1,1 +1,3 @@
-SELECT ?a ?b WHERE {?a rdf:type maladie:FACTEURVIRAUX}
+#SELECT ?a ?b ?c WHERE {?a ?b ?c}
+#SELECT ?b ?c WHERE {recensementEastEurope:Albanie ?b ?c}
+SELECT ?b ?c WHERE {recensementEurope:France ?b ?c}
