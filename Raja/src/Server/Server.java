@@ -10,13 +10,11 @@ import org.jdom.input.SAXBuilder;
 
 import Exception.DataBaseNotAccessibleException;
 import Exception.MalformedQueryException;
-import Query.IQuery;
 import Query.Pair;
 import Query.SelectQuery;
 import Server.Adapter.CompositeAdapter;
 import Server.Indoor.IInDoor;
 import Server.Indoor.IndoorFile;
-import Server.Translator.MySqlTranslator;
 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -100,22 +98,19 @@ public class Server {
 		while(!fini)
 		{
 			String line = indoor.read();
-			if(!line.equals(""))
+			if(!line.equals("") && !line.startsWith("#"))
 			{
 				try 
 				{
-					IQuery req = Factory.makeQuery(line);
-					Model m = mediatorLike.execute(req);
-					if(req.getClass().getSimpleName().equals("SelectQuery")){
-						SelectQuery sq = new SelectQuery();
-						sq.setQuery(line);
-						Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), sq)) ;
-						QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
-						ResultSet rs = qexec.execSelect() ;
-						ResultSetFormatter.out(System.out, rs, q);
-						indoor.write(rs, q);
-						qexec.close();
-					}
+					Model m = mediatorLike.execute(Factory.makeQuery(line));
+					SelectQuery sq = new SelectQuery();
+					sq.setQuery(line);
+					Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), sq)) ;
+					QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
+					ResultSet rs = qexec.execSelect() ;
+					ResultSetFormatter.out(System.out, rs, q);
+					indoor.write(rs, q);
+					qexec.close();
 				} 
 				catch (DataBaseNotAccessibleException e) 
 				{
@@ -125,7 +120,7 @@ public class Server {
 					e.printStackTrace();
 				}
 			}
-			else
+			if(line.equals(""))
 			{
 				fini = true;
 			}
@@ -169,9 +164,8 @@ public class Server {
 	 */
 	public static void main(String[] args)
 	{
-		Server.getInstance().init("bin/config-Audrey.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
+		Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
 		Server.getInstance().run();
 		//Server.getInstance().getGlobalSchema().write(System.out);
-		
 	}
 }
