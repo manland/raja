@@ -45,12 +45,12 @@ public abstract class Adapter implements IAdapter {
 		try
 		{
 			q = QueryFactory.create(query) ;
-			qexec = QueryExecutionFactory.create(q,model) ;
+			qexec = QueryExecutionFactory.create(q, model) ;
 			result_model = qexec.execDescribe() ;
 		}
 		catch (QueryParseException e)
 		{
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 		}
 		return result_model;
 	}
