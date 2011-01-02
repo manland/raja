@@ -16,6 +16,7 @@ import Server.Adapter.CompositeAdapter;
 import Server.Indoor.IInDoor;
 import Server.Indoor.IndoorFile;
 
+import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
@@ -25,6 +26,7 @@ import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 
@@ -102,7 +104,11 @@ public class Server {
 			{
 				try 
 				{
-					Model m = mediatorLike.execute(Factory.makeQuery(line));
+					Model m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
+					for(int i=0; i<mediatorLike.getPrefix().size();i++){
+						m.setNsPrefix(mediatorLike.getPrefix().get(i).getFirst(), mediatorLike.getPrefix().get(i).getSecond());
+					}
+					m.add(mediatorLike.execute(Factory.makeQuery(line)));
 					SelectQuery sq = new SelectQuery();
 					sq.setQuery(line);
 					Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), sq)) ;
@@ -164,7 +170,7 @@ public class Server {
 	 */
 	public static void main(String[] args)
 	{
-		Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
+		Server.getInstance().init("bin/config-Audrey.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
 		Server.getInstance().run();
 		//Server.getInstance().getGlobalSchema().write(System.out);
 	}
