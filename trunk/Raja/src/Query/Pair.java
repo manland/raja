@@ -1,5 +1,7 @@
 package Query;
 
+import java.util.Vector;
+
 public class Pair<A, B> 
 {
     private A first;
@@ -61,4 +63,17 @@ public class Pair<A, B>
     {
         this.second = second;
     }
+
+    public static String getFirstBySecond(Vector<Pair<String , String>> paire, String second){
+    	String str = "";
+    	boolean ok = false;
+    	for(int i=0; i<paire.size() && !ok;i++){
+    		if(paire.get(i).getSecond().equals(second)){
+    			str = paire.get(i).getFirst();
+    			ok=true;
+    		}
+    	}
+    	return str;
+    }
+    
 }

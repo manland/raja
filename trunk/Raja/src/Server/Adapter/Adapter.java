@@ -3,6 +3,7 @@ package Server.Adapter;
 import java.util.Vector;
 
 import Exception.DataBaseNotAccessibleException;
+import Exception.MalformedQueryException;
 import Query.IQuery;
 import Query.Pair;
 
@@ -31,7 +32,7 @@ public abstract class Adapter implements IAdapter {
 	}
 	
 	@Override
-	public abstract Model execute(IQuery query) throws DataBaseNotAccessibleException;
+	public abstract Model execute(IQuery query) throws DataBaseNotAccessibleException, MalformedQueryException;
 
 	@Override
 	public abstract Model getLocalSchema() throws DataBaseNotAccessibleException;
@@ -46,7 +47,6 @@ public abstract class Adapter implements IAdapter {
 			q = QueryFactory.create(query) ;
 			qexec = QueryExecutionFactory.create(q,model) ;
 			result_model = qexec.execDescribe() ;
-			qexec.close();
 		}
 		catch (QueryParseException e)
 		{

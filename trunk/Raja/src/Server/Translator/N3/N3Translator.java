@@ -39,7 +39,6 @@ public class N3Translator implements IN3Translator {
 			q = QueryFactory.create(SelectQuery.selectQueryToDescribeQuery(prefix, query).getQuery());
 			QueryExecution qexec = QueryExecutionFactory.create(q,model) ;
 			result_model = qexec.execDescribe() ;
-			qexec.close();
 		}catch (QueryParseException e){
 			System.err.println(e.getMessage());
 		}
