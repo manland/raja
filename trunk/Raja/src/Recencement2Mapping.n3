@@ -100,3 +100,8 @@ map:RM_LIBELLE_PAYS a d2rq:PropertyBridge;
 	d2rq:join "MALADIE.RM_LIBELLE_PAYS = PAYS.RP_LIBELLE";
 	.
 
+map:MALADIENOM a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@MALADIE.RM_LIBELLE|urlify@@";
+	d2rq:class r:MALADIENOM;
+	.
