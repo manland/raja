@@ -3,7 +3,8 @@
     xmlns:maladie="http://www.lirmm.fr/maladie#"
     xmlns:virus="http://www.lirmm.fr/virus#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:recensement="http://www.lirmm.fr/recensement#"
+    xmlns:recensementEurope="http://www.lirmm.fr/recensementEurope#"
+    xmlns:recensementEastEurope="http://www.lirmm.fr/recensementEastEurope#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
   <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIEBACTERIENNE">
@@ -24,7 +25,8 @@
     <owl:someValuesFrom rdf:resource="http://www.lirmm.fr/virus#BACTERIE"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIE">
-    <owl:equivalentClass rdf:resource="http://www.lirmm.fr/recensement#MALADIE"/>
+    <owl:equivalentClass rdf:resource="http://www.lirmm.fr/recensementEurope#MALADIE"/>
+    <owl:equivalentClass rdf:resource="http://www.lirmm.fr/recensementEastEurope#MALADIE"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/virus#BACTERIE">
@@ -37,7 +39,10 @@
     <owl:onProperty rdf:resource="http://www.lirmm.fr/maladie#APRORIGINE"/>
     <owl:someValuesFrom rdf:resource="http://www.lirmm.fr/virus#VIRUS"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.lirmm.fr/recensement#MALADIE">
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#MALADIE">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEastEurope#MALADIE">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A1">

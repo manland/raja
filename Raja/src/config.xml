@@ -24,8 +24,12 @@
         <uri>http://www.lirmm.fr/virus#</uri>
       </P>
       <P>
-        <nom>recensement</nom>
-        <uri>http://www.lirmm.fr/recensement#</uri>
+        <nom>recensementEurope</nom>
+        <uri>http://www.lirmm.fr/recensementEurope#</uri>
+      </P>
+      <P>
+        <nom>recensementEastEurope</nom>
+        <uri>http://www.lirmm.fr/recensementEastEurope#</uri>
       </P>
     </Prefix>
       <CompositeAdapter><!-- Adaptateur MaladieVirus -->
@@ -137,8 +141,12 @@
             <uri>http://www.w3.org/2002/07/owl#</uri>
           </P>
           <P>
-            <nom>recensement</nom>
-            <uri>http://www.lirmm.fr/recensement#</uri>
+            <nom>recensementEurope</nom>
+            <uri>http://www.lirmm.fr/recensementEurope#</uri>
+          </P>
+          <P>
+            <nom>recensementEastEurope</nom>
+            <uri>http://www.lirmm.fr/recensementEastEurope#</uri>
           </P>
         </Prefix>
         <TerminalAdapter>
@@ -160,8 +168,8 @@
                   <uri>http://www.w3.org/2002/07/owl#</uri>
                 </P>
                 <P>
-                  <nom>recensement</nom>
-                  <uri>http://www.lirmm.fr/recensement#</uri>
+                  <nom>recensementEurope</nom>
+                  <uri>http://www.lirmm.fr/recensementEurope#</uri>
                 </P>
               </Prefix>
             </N3>
@@ -194,8 +202,8 @@
                   <uri>http://www.w3.org/2002/07/owl#</uri>
                 </P>
                 <P>
-                  <nom>recensement</nom>
-                  <uri>http://www.lirmm.fr/recensement#</uri>
+                  <nom>recensementEastEurope</nom>
+                  <uri>http://www.lirmm.fr/recensementEastEurope#</uri>
                 </P>
               </Prefix>
             </N3>
