@@ -1,7 +1,6 @@
 package Server.Adapter;
-import java.util.Vector;
 
-import org.mindswap.pellet.jena.PelletReasonerFactory;
+import java.util.Vector;
 
 import Exception.DataBaseNotAccessibleException;
 import Exception.MalformedQueryException;
@@ -22,31 +21,19 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QueryParseException;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
-import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.reasoner.Reasoner;
-import com.hp.hpl.jena.sparql.util.IndentedWriter;
 import com.hp.hpl.jena.util.FileManager;
-import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
-
-import de.fuberlin.wiwiss.d2rq.ModelD2RQ;
-import de.fuberlin.wiwiss.d2rq.rdql.ExpressionTranslator.Result;
 
 /**
  * Adaptor of several Adaptor. Needed to merge RDF informations from under Adaptor.
  */
 public class CompositeAdapter extends Adapter 
 {
-	private String owlFile;
 	private OntModel model;
 
 	/**
@@ -59,13 +46,10 @@ public class CompositeAdapter extends Adapter
 	public CompositeAdapter(Vector<Pair<String, String>> prefix, String owlFile) 
 	{
 		super(prefix);
-		this.owlFile = owlFile;
 		subAdapters = new Vector<IAdapter>();
 		model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF);
 		FileManager.get().readModel(model, owlFile);
 	}
-
-
 
 	public Vector<IAdapter> getSubAdapters() 
 	{
@@ -87,17 +71,19 @@ public class CompositeAdapter extends Adapter
 		{
 			return executeSelect(query);
 		}
-		else if(query.getClass().getSimpleName().equals("InsertQuery")){
-			return executeInsert(query);
+		else if(query.getClass().getSimpleName().equals("InsertQuery"))
+		{
+			return executeInsertAndUpdate(query);
 		}
-		else if(query.getClass().getSimpleName().equals("DeleteQuery")){
-			return executeInsert(query);
+		else if(query.getClass().getSimpleName().equals("DeleteQuery"))
+		{
+			return executeInsertAndUpdate(query);
 		}
 		return null;
 	}
 
-
-	private Model executeSelect(IQuery query) throws DataBaseNotAccessibleException, MalformedQueryException{
+	private Model executeSelect(IQuery query) throws DataBaseNotAccessibleException, MalformedQueryException
+	{
 		OntModel model_resultat = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF);
 		model_resultat.add(model);
 		for(int i=0; i<getPrefix().size(); i++)
@@ -107,17 +93,18 @@ public class CompositeAdapter extends Adapter
 
 		SelectQuery sq = (SelectQuery)query;
 		if(sq.getWhere().size()==0){
-			for(int i=0; i<subAdapters.size();i++){
+			for(int i=0; i<subAdapters.size();i++)
+			{
 				model_resultat.add(subAdapters.get(i).execute(query));
 			}
 		}
-		else{
+		else
+		{
 			for(int i=0; i<sq.getWhere().size();i++)
 			{
 				Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), model);
 				if(res_d!=null)
 				{
-
 					model_resultat.add(res_d);
 				}
 
@@ -132,7 +119,7 @@ public class CompositeAdapter extends Adapter
 				{
 					model_resultat.add(res_m);
 				}
-
+				
 				for(int j=0; j<getSubAdapters().size();j++)
 				{
 					Model res = subAdapters.get(j).execute(query);
@@ -141,13 +128,12 @@ public class CompositeAdapter extends Adapter
 						model_resultat.add(res);
 					}
 				}
-
-			}
-
-			for(int i=0;i<sq.getWhere().size();i++){
+				
 				ResultSet rs = getEquivalentClassOfClass(model, sq.getWhere().get(i));
-				if(rs != null){
-					while(rs.hasNext()){
+				if(rs != null)
+				{
+					while(rs.hasNext())
+					{
 						QuerySolution qs = rs.nextSolution();
 						Resource resource = qs.getResource("a");
 						String nom = resource.getLocalName();
@@ -157,9 +143,8 @@ public class CompositeAdapter extends Adapter
 						req.parseQuery(query.getQuery().replace(sq.getWhere().get(i), prefix+":"+nom));
 						model_resultat.add(execute(req));
 					}
-				}				
+				}	
 			}
-
 		}
 		Vector<Pair<String, Resource>> r = getEquivalentClass(model_resultat);
 		Vector<Pair<OntClass, OntClass>> vect_class = getOntClassIdentique(model,r);
@@ -167,11 +152,15 @@ public class CompositeAdapter extends Adapter
 		return model_resultat;
 	}
 
-	private Model executeInsert(IQuery query) throws DataBaseNotAccessibleException, MalformedQueryException{
+	private Model executeInsertAndUpdate(IQuery query) throws DataBaseNotAccessibleException, MalformedQueryException
+	{
 		String nom_table ="";
-		try{
+		try
+		{
 			nom_table = ((InsertQuery)query).getFrom().get(0);
-		}catch(ClassCastException e){
+		}
+		catch(ClassCastException e)
+		{
 			nom_table = ((DeleteQuery)query).getFrom().get(0);
 		}
 
@@ -186,15 +175,18 @@ public class CompositeAdapter extends Adapter
 
 				int cpt=0;
 				boolean ok = false;
-				for(; result.hasNext() && !ok; ){ 
+				for(; result.hasNext() && !ok; )
+				{ 
 					QuerySolution qs = result.nextSolution();
 					Resource rsc = qs.getResource("b");
-					if(rsc.getLocalName().equals(nom_table)){
+					if(rsc.getLocalName().equals(nom_table))
+					{
 						cpt++;
 						ok=true;
 					}
 				}
-				if(cpt>0){
+				if(cpt>0)
+				{
 					subAdapters.get(j).execute(query);
 				}
 			}
@@ -202,12 +194,11 @@ public class CompositeAdapter extends Adapter
 		return null;
 	}
 
-
 	/**
 	 * Return the global RDF schema of sub adapters.
 	 * @throws DataBaseNotAccessibleException 
 	 */
-	public Model getLocalSchema() throws DataBaseNotAccessibleException 
+	public Model getLocalSchema()
 	{
 		Model res = model;
 		for(int i=0;i<subAdapters.size();i++)
@@ -217,7 +208,8 @@ public class CompositeAdapter extends Adapter
 		return res;
 	}
 
-	private Vector<Pair<String, Resource>> getEquivalentClass(OntModel m){
+	private Vector<Pair<String, Resource>> getEquivalentClass(OntModel m)
+	{
 		Vector<Pair<String, Resource>> vec = new Vector<Pair<String,Resource>>();
 
 		String str = "";
@@ -231,13 +223,15 @@ public class CompositeAdapter extends Adapter
 		Query q = QueryFactory.create(req) ;
 		QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
 		ResultSet r = qexec.execSelect();
-		while(r.hasNext()){
+		while(r.hasNext())
+		{
 			QuerySolution qs = r.nextSolution();
 
 			Resource eqClassA = qs.getResource("a");
 			Resource eqClassB = qs.getResource("b");
 
-			if(eqClassA!=null){
+			if(eqClassA!=null)
+			{
 				String req2 = str +
 				"SELECT ?c WHERE {?c rdf:type "+Pair.getFirstBySecond(getPrefix(), eqClassA.getNameSpace())+":"+eqClassA.getLocalName()+"}";
 
@@ -245,14 +239,16 @@ public class CompositeAdapter extends Adapter
 				QueryExecution qexec2 = QueryExecutionFactory.create(q2,m) ;
 				ResultSet r2 = qexec2.execSelect();
 
-				while(r2.hasNext()){
+				while(r2.hasNext())
+				{
 					QuerySolution qs2 = r2.nextSolution();
 					Resource c = qs2.getResource("c");
 					Pair<String, Resource> paire = new Pair<String, Resource>(eqClassA.getURI(), c);
 					vec.add(paire);
 				}
 			}
-			if(eqClassB!=null){
+			if(eqClassB!=null)
+			{
 				String req2 = str +
 				"SELECT ?c WHERE {?c rdf:type "+Pair.getFirstBySecond(getPrefix(), eqClassB.getNameSpace())+":"+eqClassB.getLocalName()+"}";
 
@@ -260,7 +256,8 @@ public class CompositeAdapter extends Adapter
 				QueryExecution qexec2 = QueryExecutionFactory.create(q2,m) ;
 				ResultSet r2 = qexec2.execSelect();
 
-				while(r2.hasNext()){
+				while(r2.hasNext())
+				{
 					QuerySolution qs2 = r2.nextSolution();
 					Resource c = qs2.getResource("c");
 					Pair<String, Resource> paire = new Pair<String, Resource>(eqClassB.getURI(),c);
@@ -271,9 +268,8 @@ public class CompositeAdapter extends Adapter
 		return vec;
 	}
 
-
-
-	private ResultSet getEquivalentClassOfClass(Model m, String classe){
+	private ResultSet getEquivalentClassOfClass(Model m, String classe)
+	{
 		String str = "";
 		for(int i=0; i<getPrefix().size();i++)
 		{
@@ -296,14 +292,19 @@ public class CompositeAdapter extends Adapter
 	}
 
 
-	private Vector<Pair<OntClass, OntClass>> getOntClassIdentique(OntModel modele,Vector<Pair<String, Resource>> vec){
+	private Vector<Pair<OntClass, OntClass>> getOntClassIdentique(OntModel modele,Vector<Pair<String, Resource>> vec)
+	{
 		Vector<Pair<OntClass, OntClass>> res = new Vector<Pair<OntClass,OntClass>>();
-		for(int i=0;i<vec.size();i++){
+		for(int i=0;i<vec.size();i++)
+		{
 			Resource r1 = vec.get(i).getSecond();
-			for(int j=0; j<vec.size();j++){
+			for(int j=0; j<vec.size();j++)
+			{
 				Resource r2 = vec.get(j).getSecond();
-				if(r1.getLocalName().equals(r2.getLocalName())){
-					if(!vec.get(i).getFirst().equals(vec.get(j).getFirst())){
+				if(r1.getLocalName().equals(r2.getLocalName()))
+				{
+					if(!vec.get(i).getFirst().equals(vec.get(j).getFirst()))
+					{
 						OntClass c1 = modele.getOntClass(vec.get(i).getFirst());
 						OntClass c2 = modele.getOntClass(vec.get(j).getFirst());
 						Pair<OntClass, OntClass> paire = new Pair<OntClass,OntClass>(c1, c2);
@@ -317,7 +318,8 @@ public class CompositeAdapter extends Adapter
 
 	private void individusIdentiques (OntModel model, Vector<Pair<OntClass, OntClass>> vec)
 	{
-		for(int i=0;i<vec.size();i++){
+		for(int i=0;i<vec.size();i++)
+		{
 			OntClass oc1 = model.getOntClass(vec.get(i).getFirst().getURI());
 			OntClass oc2 = model.getOntClass(vec.get(i).getSecond().getURI());
 

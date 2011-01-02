@@ -1,6 +1,5 @@
 package Exception;
 
-
 /**
  * Exception throwed when a bad syntax is releved in a query.
  */

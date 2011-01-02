@@ -13,7 +13,6 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QueryParseException;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 
 public abstract class Adapter implements IAdapter {
@@ -35,7 +34,7 @@ public abstract class Adapter implements IAdapter {
 	public abstract Model execute(IQuery query) throws DataBaseNotAccessibleException, MalformedQueryException;
 
 	@Override
-	public abstract Model getLocalSchema() throws DataBaseNotAccessibleException;
+	public abstract Model getLocalSchema();
 
 	protected Model execQueryDescribe(String query, Model model) 
 	{		

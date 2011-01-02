@@ -1,5 +1,5 @@
-#SELECT ?a ?b ?c WHERE {?a ?b ?c}
+SELECT ?a ?b ?c WHERE {?a ?b ?c}
 #Donne pour un pays, les maladies et l'année du recensement
 #SELECT ?nomMaladie ?annee WHERE {?idMaladie ?dansPays recensementEurope:France . ?idMaladie recensementEurope:RM_LIBELLE ?nomMaladie . ?idMaladie recensementEurope:RM_ID_RECENSEMENT ?idRec . ?idRec recensementEurope:RR_ANNEE ?annee}
 #Tous les recencements pour une maladie
-SELECT ?sousClasses ?annee WHERE {?sousClasses rdfs:subClassOf recensement:RECENSEMENT}
+#SELECT ?idRec ?annee WHERE {?idRec rdf:type recensement:RECENSEMENT . ?idRec recensementEurope:RR_ANNEE ?annee}

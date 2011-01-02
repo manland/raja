@@ -1,5 +1,5 @@
 package Server.Translator;
-import java.sql.SQLException;
+
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -9,9 +9,7 @@ import Query.IQuery;
 import Query.InsertQuery;
 import Query.SelectQuery;
 import Query.UpdateQuery;
-import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
-
 
 /**
  * Interface of the Translator hierarchy.
@@ -47,6 +45,6 @@ public interface ITranslator {
    */
   Model exec(IQuery query) throws DataBaseNotAccessibleException ;
   
-  HashMap<String, Vector<String>> getMetaInfoFromDataBase() throws SQLException;
+  HashMap<String, Vector<String>> getMetaInfoFromDataBase() throws DataBaseNotAccessibleException;
 
 }

@@ -1,16 +1,13 @@
 package Server.Indoor;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.ResultSet;
@@ -18,13 +15,11 @@ import com.hp.hpl.jena.query.ResultSetFormatter;
 
 public class IndoorFile implements IInDoor 
 {
-	private String outFile;
 	private BufferedReader brIn;
 	private OutputStream ops;
 	
 	public IndoorFile(String inFile, String outFile)
 	{
-		this.outFile = outFile;
 		InputStream ips = null;
 		ops = null;
 		try 
