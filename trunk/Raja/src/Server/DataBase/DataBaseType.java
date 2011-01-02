@@ -1,6 +1,5 @@
 package Server.DataBase;
 
-
 /**
  * Enumeration of the database types.
  */

@@ -1,4 +1,5 @@
 package Server.Translator;
+
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,13 +10,13 @@ import java.util.Vector;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import Exception.DataBaseNotAccessibleException;
 import Query.DeleteQuery;
 import Query.InsertQuery;
 import Query.Pair;
 import Query.UpdateQuery;
 import Server.DataBase.DataBase;
 import Server.DataBase.DataBaseType;
-
 
 /**
  * This is our MySql Translator.
@@ -25,13 +26,12 @@ public class MySqlTranslator extends Translator
 	private Connection connexion;
 	private Statement instruction;
 
-	public MySqlTranslator(DataBase dataBase, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) 
+	public MySqlTranslator(DataBase dataBase, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) throws DataBaseNotAccessibleException 
 	{
 		super(dataBase, n3File, getMetaInfo, prefix);
 
 		try 
 		{
-
 			// ex: DriverManager.getConnection("jdbc:mysql://localhost/les_maladies","root","pass");
 			connexion = (Connection) DriverManager.getConnection(
 					"jdbc:"+DataBaseType.MYSQL.toString()+"://"+					
@@ -39,22 +39,11 @@ public class MySqlTranslator extends Translator
 					dataBase.getDatabaseName(),
 					dataBase.getUserName(),
 					dataBase.getPassWord());
-
 			instruction = (Statement) connexion.createStatement();
-
-			/*ResultSet resultat = (ResultSet) instruction.executeQuery("SELECT * FROM MALADIE");
-			while(resultat.next()){
-
-
-				System.out.println("---------------------------");
-				System.out.println("RM_ID: "+resultat.getInt("RM_ID"));
-				System.out.println("RM_LIBELLE: "+resultat.getString("RM_LIBELLE"));
-			}*/
-
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			throw new DataBaseNotAccessibleException(database, "The database isn't connectable, modify the config.xml");
 		} 
 	}
 
@@ -73,25 +62,28 @@ public class MySqlTranslator extends Translator
 		for(int i=0; i<query.getValue().size();i++) 
 		{
 			str += query.getValue().get(i);
-			if(i+1<query.getValue().size()){
+			if(i+1<query.getValue().size())
+			{
 				str+=",";
 			}
 		}
 		str += ");";
-
 		System.out.println(str);
 		int resultat = -1;
 		try 
 		{
 			resultat = instruction.executeUpdate(str);
 		}
-		catch (SQLException e) {
+		catch (SQLException e) 
+		{
 			e.printStackTrace();
 		}
-		if(resultat>0){
+		if(resultat>0)
+		{
 			return true;
 		}
-		else {
+		else 
+		{
 			return false;
 		}
 	}
@@ -101,10 +93,7 @@ public class MySqlTranslator extends Translator
 	 */
 	public boolean delete(DeleteQuery query) 
 	{
-		int position_connecteur=0;
-		String str = "";
-
-		str += "DELETE FROM ";
+		String str = "DELETE FROM ";
 		for(String table : query.getFrom()) 
 		{
 			str += table+" ";
@@ -112,19 +101,13 @@ public class MySqlTranslator extends Translator
 		str += "WHERE ";
 		for(int i=0; i<query.getWhere().size();i++) 
 		{
-			if(!query.getWhere().get(i).getFirst().equals("")){
+			if(!query.getWhere().get(i).getFirst().equals(""))
+			{
 				str += query.getWhere().get(i).getFirst()+"="+query.getWhere().get(i).getSecond();
-//				if(position_connecteur<=query.getConnecteur().size()) 
-//				{
-//					str += " "+query.getConnecteur().elementAt(position_connecteur);
-//					position_connecteur++;
-//				}
 			}
 		}
 		str += ";";
-
 		System.out.println(str);
-
 		int resultat = 0;
 		try 
 		{
@@ -134,10 +117,12 @@ public class MySqlTranslator extends Translator
 		{
 			e.printStackTrace();
 		}
-		if(resultat>0){
+		if(resultat>0)
+		{
 			return true;
 		}
-		else {
+		else 
+		{
 			return false;
 		}
 	}
@@ -185,28 +170,34 @@ public class MySqlTranslator extends Translator
 		{
 			return true;
 		}
-		else{
+		else
+		{
 			return false;
 		}
 	}
 
-	public HashMap<String, Vector<String>> getMetaInfoFromDataBase() throws SQLException{
+	public HashMap<String, Vector<String>> getMetaInfoFromDataBase() throws DataBaseNotAccessibleException
+	{
 		HashMap<String, Vector<String>> res = new HashMap<String, Vector<String>>();
-		
-		Vector<String> res_col = new Vector<String>();
-		
-		DatabaseMetaData meta_donnes = connexion.getMetaData();
-	    
-		String[] types = { "TABLE" };
-	    ResultSet r = meta_donnes.getTables(null, null, "%", types);
-
-		while(r.next()){
-			res.put(r.getString(3), new Vector<String>());
+		DatabaseMetaData meta_donnes;
+		try {
+			meta_donnes = connexion.getMetaData();
+			String[] types = { "TABLE" };
+		    ResultSet r = meta_donnes.getTables(null, null, "%", types);
+			while(r.next())
+			{
+				res.put(r.getString(3), new Vector<String>());
+			}
+		    ResultSet rc = meta_donnes.getColumns(null, null, "%", null);
+		    while(rc.next())
+		    {
+		    	res.get(rc.getString(3)).add(rc.getString(4));
+		    }	
+		} 
+		catch (SQLException e) 
+		{
+			throw new DataBaseNotAccessibleException(database, "The database don't accept getMetaData()");
 		}
-	    ResultSet rc = meta_donnes.getColumns(null, null, "%", null);
-	    while(rc.next()){
-	    	res.get(rc.getString(3)).add(rc.getString(4));
-	    }	
 		return res;
 	}
 	

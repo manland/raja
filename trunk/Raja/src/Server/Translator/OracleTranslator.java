@@ -1,6 +1,5 @@
 package Server.Translator;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,13 +10,13 @@ import java.util.Vector;
 import oracle.jdbc.OracleDatabaseMetaData;
 import oracle.jdbc.OracleResultSetMetaData;
 
+import Exception.DataBaseNotAccessibleException;
 import Query.DeleteQuery;
 import Query.InsertQuery;
 import Query.Pair;
 import Query.UpdateQuery;
 import Server.DataBase.DataBase;
 import Server.DataBase.DataBaseType;
-
 
 /**
  * This is our oracle translator.
@@ -27,12 +26,11 @@ public class OracleTranslator extends Translator
 	Connection connexion;
 	Statement instruction;
 
-	public OracleTranslator(DataBase dataBase, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) 
+	public OracleTranslator(DataBase dataBase, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) throws DataBaseNotAccessibleException 
 	{
 		super(dataBase, n3File, getMetaInfo, prefix);
-
-		// jdbc:oracle:thin@://localhost:8000:les_maladies
-		try {
+		try 
+		{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connexion = (Connection) DriverManager.getConnection("jdbc:"+
 					DataBaseType.ORACLE+
@@ -42,12 +40,13 @@ public class OracleTranslator extends Translator
 
 			instruction = (Statement) connexion.createStatement();
 		} 
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		catch (SQLException e) 
+		{
+			throw new DataBaseNotAccessibleException(database, "The database isn't connectable, modify the config.xml");
+		} 
+		catch (ClassNotFoundException e) 
+		{
+			throw new DataBaseNotAccessibleException(database, "The driver for the bd oracle isn't found");
 		}
 
 
@@ -64,25 +63,33 @@ public class OracleTranslator extends Translator
 			str += table+", ";
 		}
 		str += "VALUES (";
-		//		for(Pair<String, String> attribut_valeur : query.getValue()) {
-		//			str += attribut_valeur.getSecond()+", ";
-		//		}
-		str += ");";
-
-		System.out.println(str);
-
-		try {
-
-			ResultSet resultat = (ResultSet) instruction.executeQuery(str);
-
+		for(int i=0; i<query.getValue().size();i++) 
+		{
+			str += query.getValue().get(i);
+			if(i+1<query.getValue().size())
+			{
+				str+=",";
+			}
 		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
+		str += ");";
+		System.out.println(str);
+		int resultat = -1;
+		try 
+		{
+			resultat = instruction.executeUpdate(str);
+		}
+		catch (SQLException e) 
+		{
 			e.printStackTrace();
 		}
-
-
-		return false;
+		if(resultat>0)
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -92,9 +99,9 @@ public class OracleTranslator extends Translator
 	{
 		int position_connecteur=0;
 		String str = "";
-
 		str += "DELETE FROM ";
-		for(String table : query.getFrom()) {
+		for(String table : query.getFrom()) 
+		{
 			str += table+", ";
 		}
 		str += "WHERE ";
@@ -106,21 +113,24 @@ public class OracleTranslator extends Translator
 			}
 		}
 		str += ";";
-
 		System.out.println(str);
-
-		try {
-
-			ResultSet resultat = (ResultSet) instruction.executeQuery(str);
-
+		int resultat = -1;
+		try 
+		{
+			resultat = instruction.executeUpdate(str);
 		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
+		catch (SQLException e) 
+		{
 			e.printStackTrace();
 		}
-
-
-		return false;
+		if(resultat>0)
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -132,72 +142,85 @@ public class OracleTranslator extends Translator
 		String str = "";
 
 		str += "UPDATE ";
-		for(String table : query.getFrom()) {
+		for(String table : query.getFrom()) 
+		{
 			str += table+", ";
 		}
 
 		str += "SET ";
-		for(Pair<String, String> attribut_valeur : query.getSet()) {
+		for(Pair<String, String> attribut_valeur : query.getSet()) 
+		{
 			str += attribut_valeur.getFirst()+"="+attribut_valeur.getSecond();
-			if(position_connecteur<=query.getConnecteur().size()) {
+			if(position_connecteur<=query.getConnecteur().size()) 
+			{
 				str += " "+query.getConnecteur().elementAt(position_connecteur);
 				position_connecteur++;
 			}
 		}
 
 		str += "WHERE ";
-		for(Pair<String, String> attribut_valeur : query.getWhere()) {
+		for(Pair<String, String> attribut_valeur : query.getWhere()) 
+		{
 			str += attribut_valeur.getFirst()+"="+attribut_valeur.getSecond();
 		}
 		str += ";";
 
 		System.out.println(str);
-
-		try {
-
-			ResultSet resultat = (ResultSet) instruction.executeQuery(str);
-
+		int resultat = -1;
+		try 
+		{
+			resultat = instruction.executeUpdate(str);
 		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
+		catch (SQLException e) 
+		{
 			e.printStackTrace();
 		}
-
-
-		return false;
+		if(resultat>0)
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
 	}
 
-	public HashMap<String,Vector<String>> getMetaInfoFromDataBase() throws SQLException{
+	public HashMap<String,Vector<String>> getMetaInfoFromDataBase() throws DataBaseNotAccessibleException
+	{
 		HashMap<String, Vector<String>> res = new HashMap<String, Vector<String>>();
-
-		Vector<String> res_col = new Vector<String>();
-
-		OracleDatabaseMetaData meta_donnes_tables = (OracleDatabaseMetaData)connexion.getMetaData();
-		ResultSet r = meta_donnes_tables.getSchemas();
-		while(r.next()){
-			String table = r.getString(1);
-			if(table.equalsIgnoreCase(database.getUserName()))
+		OracleDatabaseMetaData meta_donnes_tables;
+		try 
+		{
+			meta_donnes_tables = (OracleDatabaseMetaData)connexion.getMetaData();
+			ResultSet r = meta_donnes_tables.getSchemas();
+			while(r.next())
 			{
-				ResultSet rs1 = meta_donnes_tables.getTables(null,r.getString(1),"%",null);
-				while(rs1.next()) {
-					if(!rs1.getString(3).contains("$"))
+				String table = r.getString(1);
+				if(table.equalsIgnoreCase(database.getUserName()))
+				{
+					ResultSet rs1 = meta_donnes_tables.getTables(null,r.getString(1),"%",null);
+					while(rs1.next()) 
 					{
-						res.put(rs1.getString(3), new Vector<String>());
-
-						Statement stmt = connexion.createStatement();
-						ResultSet rs = stmt.executeQuery("SELECT * from "+rs1.getString(3));
-
-						OracleResultSetMetaData meta_donnes_column = (OracleResultSetMetaData)rs.getMetaData();
-
-						int columnCount = meta_donnes_column.getColumnCount();
-						for(int i=1; i<=columnCount; i++){
-							res.get(rs1.getString(3)).add(meta_donnes_column.getColumnName(i));
+						if(!rs1.getString(3).contains("$"))
+						{
+							res.put(rs1.getString(3), new Vector<String>());
+							Statement stmt = connexion.createStatement();
+							ResultSet rs = stmt.executeQuery("SELECT * from "+rs1.getString(3));
+							OracleResultSetMetaData meta_donnes_column = (OracleResultSetMetaData)rs.getMetaData();
+							int columnCount = meta_donnes_column.getColumnCount();
+							for(int i=1; i<=columnCount; i++)
+							{
+								res.get(rs1.getString(3)).add(meta_donnes_column.getColumnName(i));
+							}
 						}
 					}
 				}
 			}
+		} 
+		catch (SQLException e) 
+		{
+			throw new DataBaseNotAccessibleException(database, "The database don't accept getMetaData()");
 		}
-
 		return res;
 	}
 

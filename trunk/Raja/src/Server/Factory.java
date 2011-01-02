@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import org.jdom.Element;
 
+import Exception.DataBaseNotAccessibleException;
 import Exception.MalformedQueryException;
 import Query.DeleteQuery;
 import Query.IQuery;
@@ -57,8 +58,9 @@ public class Factory {
 
 	/**
 	 * Create and return the Traductor matching with the given database.
+	 * @throws DataBaseNotAccessibleException 
 	 */
-	public static ITranslator makeTranslator(DataBase database, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix)
+	public static ITranslator makeTranslator(DataBase database, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) throws DataBaseNotAccessibleException
 	{
 		ITranslator translator = null;
 		if(DataBaseType.MYSQL.equals(database.getType()))
@@ -101,7 +103,7 @@ public class Factory {
 		return dataBase;
 	}
 	
-	public static Vector<IAdapter> xmlToAdapters(List xml)
+	public static Vector<IAdapter> xmlToAdapters(List xml) throws DataBaseNotAccessibleException
 	{
 		Vector<IAdapter> subAdapters = new Vector<IAdapter>();
 		Iterator i = xml.iterator();
@@ -132,7 +134,7 @@ public class Factory {
 		return subAdapters;
 	}
 	
-	public static TerminalAdapter xmlToTerminalAdapter(Element xml) 
+	public static TerminalAdapter xmlToTerminalAdapter(Element xml) throws DataBaseNotAccessibleException 
 	{
 		String n3File = xml.getChild("N3").getChild("URL").getValue();
 		String getMetaInfo = xml.getChild("N3").getChild("GetMetaInfo").getValue();

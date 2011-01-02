@@ -1,6 +1,5 @@
 package Exception;
 
-
 /**
  * Exception throwed in our system.
  */
@@ -13,7 +12,8 @@ public class OurException extends Exception {
 	/**
 	 * Constructor
 	 */
-	public OurException(String reason) {
+	public OurException(String reason) 
+	{
 		super(reason);
 	}
 

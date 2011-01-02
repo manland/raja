@@ -1,8 +1,6 @@
 package Server.Translator;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Vector;
-import java.util.Map.Entry;
 
 import Server.DataBase.DataBase;
 import Server.Translator.N3.IN3Translator;
@@ -15,21 +13,11 @@ import Query.Pair;
 import Query.SelectQuery;
 import Query.UpdateQuery;
 
-import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntProperty;
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFS;
 
 
 /**
@@ -84,7 +72,7 @@ public abstract class Translator implements ITranslator
 	/**
 	 * Execute a select query.
 	 */
-	public Model select(SelectQuery query) throws DataBaseNotAccessibleException 
+	public Model select(SelectQuery query)
 	{
 		return selectTranslator.select(query);
 	}
@@ -92,23 +80,17 @@ public abstract class Translator implements ITranslator
 	public Model getMetaInfo() throws DataBaseNotAccessibleException 
 	{
 		Model m = ModelFactory.createDefaultModel();
-		try {
-			String ns = "http://www.lirmm.fr/metaInfo#";
-			m.setNsPrefix("metaInfos", ns);
-			m.add(createModelFromDatabase());
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String ns = "http://www.lirmm.fr/metaInfo#";
+		m.setNsPrefix("metaInfos", ns);
+		m.add(createModelFromDatabase());
 		Model temp = selectTranslator.getMetaInfo();
 		m.setNsPrefixes(temp.getNsPrefixMap());
 		m.add(temp);
 		return m;
 	}
 
-	//fair fct de transfo de string en model
-	private Model createModelFromDatabase() throws SQLException{
+	private Model createModelFromDatabase() throws DataBaseNotAccessibleException
+	{
 		HashMap<String, Vector<String>> res = this.getMetaInfoFromDataBase();
 		OntModel m = ModelFactory.createOntologyModel();
 		
@@ -117,26 +99,18 @@ public abstract class Translator implements ITranslator
 		
 		OntClass maSuperClasse = m.createClass(ns+"TABLE");
 		
-		for (String cle : res.keySet()) {
+		for (String cle : res.keySet()) 
+		{
 			OntClass c = m.createClass(ns+cle);
 			c.setSubClass(maSuperClasse);
-			for(int i=0; i<res.get(cle).size();i++){
+			for(int i=0; i<res.get(cle).size();i++)
+			{
 				OntClass c2 = m.createClass(ns+res.get(cle).get(i));
 				OntProperty prop = m.createOntProperty(ns+"COLONNE_"+c.getLocalName()+"_"+c2.getLocalName());
 				prop.setRange(c2);
 				prop.setDomain(c);
 			}
 		}
-
-//		String qry ="PREFIX rdf:<"+RDF.getURI()+"> \n PREFIX rdfs:<"+RDFS.getURI()+"> \n PREFIX m:<"+ns+"> \n"+
-//	//		"SELECT ?a WHERE {?prop rdf:type rdf:Property . ?prop rdfs:range ?a}";
-//		"SELECT ?b WHERE {m:TABLE rdfs:subClassOf ?b}";
-//		Query q = QueryFactory.create(qry) ;
-//		QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
-//		
-//		ResultSet result = qexec.execSelect() ;
-//		ResultSetFormatter.out(System.out, result, q);
-		
 		return m;
 	}
 }

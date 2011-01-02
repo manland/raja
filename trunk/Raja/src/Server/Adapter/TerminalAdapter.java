@@ -1,25 +1,14 @@
 package Server.Adapter;
-import java.sql.SQLException;
+
 import java.util.Vector;
-
-import jena.n3;
-
 
 import Exception.DataBaseNotAccessibleException;
 import Query.IQuery;
-import Query.InsertQuery;
 import Query.Pair;
 import Query.SelectQuery;
 import Server.Translator.ITranslator;
 
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QueryParseException;
-import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
@@ -34,26 +23,21 @@ public class TerminalAdapter extends Adapter
 	protected ITranslator translator;
 	private Model localSchema;
 
-	public TerminalAdapter(Vector<Pair<String, String>> prefix, ITranslator translator) 
+	public TerminalAdapter(Vector<Pair<String, String>> prefix, ITranslator translator) throws DataBaseNotAccessibleException 
 	{
 		super(prefix);
 		this.translator = translator;
-		try {
-			localSchema = translator.getMetaInfo();
-		} catch (DataBaseNotAccessibleException e) {
-			System.err.println(e.getMessage());
-		}
+		localSchema = translator.getMetaInfo();
 	}
 
 	/**
 	 * Return the RDF schema of the databas linked by the adapter.
 	 * @throws DataBaseNotAccessibleException 
 	 */
-	public Model getLocalSchema() throws DataBaseNotAccessibleException 
+	public Model getLocalSchema()
 	{
 		return localSchema;
 	}
-
 
 	/**
 	 * Execute the query. 
@@ -65,15 +49,14 @@ public class TerminalAdapter extends Adapter
 		{
 			result_model.setNsPrefix(getPrefix().get(i).getFirst(), getPrefix().get(i).getSecond());
 		}
-		Query q = null;
-
 		try
 		{
 			if(query.getClass().getSimpleName().equals("SelectQuery"))
 			{
 				SelectQuery sq = (SelectQuery)query;
 				Model schema_local = getLocalSchema();
-				if(sq.getWhere().size()==0){
+				if(sq.getWhere().size()==0)
+				{
 					return translator.exec(query);
 				}
 				else{
@@ -97,7 +80,8 @@ public class TerminalAdapter extends Adapter
 					}
 				}
 			}
-			else{	// insertQuery, DeleteQuery
+			else// insertQuery, DeleteQuery
+			{	
 				translator.exec(query);
 			}
 		}

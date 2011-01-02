@@ -1,4 +1,5 @@
 package Server;
+
 import java.io.File;
 import java.util.Iterator;
 import java.util.List;
@@ -17,19 +18,16 @@ import Server.Adapter.CompositeAdapter;
 import Server.Indoor.IInDoor;
 import Server.Indoor.IndoorFile;
 
+import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSetFormatter;
-import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.Resource;
 
 /**
  * Server class.
@@ -74,21 +72,22 @@ public class Server {
 	 * Initialize the server.
 	 */
 	public boolean init(String fileConfig, IInDoor indoor) {
-		parseXML(fileConfig);
+		try 
+		{
+			parseXML(fileConfig);
+		} 
+		catch (DataBaseNotAccessibleException e) 
+		{
+			System.err.println(e.getDataBase().getDatabaseName() + " : " + e.getMessage());
+			return false;
+		}
 		this.indoor = indoor;
-		return false;
+		return true;
 	}
 
 	public Model getGlobalSchema()
 	{
-		Model m = null;
-		try {
-			m = mediatorLike.getLocalSchema();
-		} catch (DataBaseNotAccessibleException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return m;
+		return mediatorLike.getLocalSchema();
 	}
 
 	/**
@@ -105,24 +104,26 @@ public class Server {
 			{
 				try 
 				{
-					Model m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
+					System.out.println("Requête : "+line);
+					OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
 					for(int i=0; i<mediatorLike.getPrefix().size();i++){
 						m.setNsPrefix(mediatorLike.getPrefix().get(i).getFirst(), mediatorLike.getPrefix().get(i).getSecond());
 					}
 					IQuery req = Factory.makeQuery(line);
 					m.add(mediatorLike.execute(req));
 					Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), (SelectQuery)req)) ;
-					QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
+					QueryExecution qexec = QueryExecutionFactory.create(q,m.getBaseModel()) ;
 					ResultSet rs = qexec.execSelect() ;
 					ResultSetFormatter.out(System.out, rs, q);
 					indoor.write(rs, q);
+					qexec.close();
 				} 
 				catch (DataBaseNotAccessibleException e) 
 				{
-					e.printStackTrace();
+					System.err.println(e.getDataBase().getDatabaseName() + " : " + e.getMessage());
 				} catch (MalformedQueryException e) 
 				{
-					e.printStackTrace();
+					System.err.println(e.getMessage());
 				}
 			}
 			if(line.equals(""))
@@ -132,7 +133,7 @@ public class Server {
 		}
 	}
 
-	private void parseXML(String fileConfig)
+	private void parseXML(String fileConfig) throws DataBaseNotAccessibleException
 	{
 		SAXBuilder sxb = new SAXBuilder();
 		Document document = null;
@@ -169,8 +170,10 @@ public class Server {
 	 */
 	public static void main(String[] args)
 	{
-		Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
-		Server.getInstance().run();
+		if(Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt")))
+		{
+			Server.getInstance().run();
+		}
 		//Server.getInstance().getGlobalSchema().write(System.out);
 	}
 }

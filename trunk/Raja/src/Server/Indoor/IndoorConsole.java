@@ -5,7 +5,6 @@ import java.util.Scanner;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
-import com.hp.hpl.jena.sparql.resultset.ResultsFormat;
 
 class IndoorConsole implements IInDoor {
 
