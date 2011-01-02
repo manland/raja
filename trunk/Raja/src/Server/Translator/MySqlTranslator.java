@@ -26,9 +26,9 @@ public class MySqlTranslator extends Translator
 	private Connection connexion;
 	private Statement instruction;
 
-	public MySqlTranslator(DataBase dataBase, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) throws DataBaseNotAccessibleException 
+	public MySqlTranslator(DataBase dataBase, String n3File, Vector<Pair<String, String>> prefix) throws DataBaseNotAccessibleException 
 	{
-		super(dataBase, n3File, getMetaInfo, prefix);
+		super(dataBase, n3File, prefix);
 
 		try 
 		{

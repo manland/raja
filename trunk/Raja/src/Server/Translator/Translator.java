@@ -28,9 +28,9 @@ public abstract class Translator implements ITranslator
 	protected IN3Translator selectTranslator;
 	protected DataBase database;
 	
-	public Translator(DataBase dataBase, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) 
+	public Translator(DataBase dataBase, String n3File, Vector<Pair<String, String>> prefix) 
 	{
-		selectTranslator = new N3Translator(n3File, getMetaInfo, prefix);
+		selectTranslator = new N3Translator(n3File, prefix);
 		this.database = dataBase;
 	}
 
@@ -83,9 +83,6 @@ public abstract class Translator implements ITranslator
 		String ns = "http://www.lirmm.fr/metaInfo#";
 		m.setNsPrefix("metaInfos", ns);
 		m.add(createModelFromDatabase());
-		Model temp = selectTranslator.getMetaInfo();
-		m.setNsPrefixes(temp.getNsPrefixMap());
-		m.add(temp);
 		return m;
 	}
 
