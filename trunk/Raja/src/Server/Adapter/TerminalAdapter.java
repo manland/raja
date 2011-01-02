@@ -32,11 +32,17 @@ public class TerminalAdapter extends Adapter
 	 * Translator used to convert queries to specified database.
 	 */
 	protected ITranslator translator;
+	private Model localSchema;
 
 	public TerminalAdapter(Vector<Pair<String, String>> prefix, ITranslator translator) 
 	{
 		super(prefix);
 		this.translator = translator;
+		try {
+			localSchema = translator.getMetaInfo();
+		} catch (DataBaseNotAccessibleException e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 	/**
@@ -45,7 +51,7 @@ public class TerminalAdapter extends Adapter
 	 */
 	public Model getLocalSchema() throws DataBaseNotAccessibleException 
 	{
-		return translator.getMetaInfo();
+		return localSchema;
 	}
 
 
