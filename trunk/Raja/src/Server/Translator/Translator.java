@@ -43,6 +43,7 @@ public abstract class Translator implements ITranslator
 	public Translator(DataBase dataBase, String n3File, String getMetaInfo, Vector<Pair<String, String>> prefix) 
 	{
 		selectTranslator = new N3Translator(n3File, getMetaInfo, prefix);
+		this.database = dataBase;
 	}
 
 	/**
