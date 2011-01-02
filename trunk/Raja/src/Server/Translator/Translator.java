@@ -97,18 +97,23 @@ public abstract class Translator implements ITranslator
 		String ns = "http://www.lirmm.fr/metaInfo#";
 		m.setNsPrefix("metaInfos", ns);
 		
+		OntClass maDataBase = m.createClass(ns+"DATABASE");
+		OntClass nameDataBase = m.createClass(ns+database.getDatabaseName());
+		nameDataBase.addSuperClass(maDataBase);
+		
 		OntClass maSuperClasse = m.createClass(ns+"TABLE");
 		
 		for (String cle : res.keySet()) 
 		{
 			OntClass c = m.createClass(ns+cle);
-			c.setSubClass(maSuperClasse);
+			c.addSuperClass(maSuperClasse);
 			for(int i=0; i<res.get(cle).size();i++)
 			{
 				OntClass c2 = m.createClass(ns+res.get(cle).get(i));
 				OntProperty prop = m.createOntProperty(ns+"COLONNE_"+c.getLocalName()+"_"+c2.getLocalName());
 				prop.setRange(c2);
 				prop.setDomain(c);
+				c2.addSuperClass(maSuperClasse);
 			}
 		}
 		return m;
