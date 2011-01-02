@@ -287,8 +287,10 @@ public class CompositeAdapter extends Adapter
 			Query q = QueryFactory.create(req) ;
 			QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
 			r = qexec.execSelect() ;
-		}catch(QueryParseException e){
-			System.err.println(e.getMessage());
+		}
+		catch(QueryParseException e)
+		{
+			//System.err.println(e.getMessage());
 		}
 		return r;
 	}
