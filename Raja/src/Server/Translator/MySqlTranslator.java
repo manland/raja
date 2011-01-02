@@ -107,16 +107,18 @@ public class MySqlTranslator extends Translator
 		str += "DELETE FROM ";
 		for(String table : query.getFrom()) 
 		{
-			str += table+", ";
+			str += table+" ";
 		}
 		str += "WHERE ";
-		for(Pair<String, String> attribut_valeur : query.getWhere()) 
+		for(int i=0; i<query.getWhere().size();i++) 
 		{
-			str += attribut_valeur.getFirst()+"="+attribut_valeur.getSecond();
-			if(position_connecteur<=query.getConnecteur().size()) 
-			{
-				str += " "+query.getConnecteur().elementAt(position_connecteur);
-				position_connecteur++;
+			if(!query.getWhere().get(i).getFirst().equals("")){
+				str += query.getWhere().get(i).getFirst()+"="+query.getWhere().get(i).getSecond();
+//				if(position_connecteur<=query.getConnecteur().size()) 
+//				{
+//					str += " "+query.getConnecteur().elementAt(position_connecteur);
+//					position_connecteur++;
+//				}
 			}
 		}
 		str += ";";

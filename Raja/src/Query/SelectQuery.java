@@ -36,15 +36,22 @@ public class SelectQuery extends Query
 			while(m.find())
 			{
 				String req_where = m.group(2);
-				// on remplace les accolades par des espaces : 
-				String new_req = req_where.replaceAll("\\{|\\}|UNION|\\.", " ");
-				String req_where_final = new_req.replaceAll(" +"," ");
-				String [] tab_where = req_where_final.split(" ");
-				for(int i=0; i<tab_where.length;i++)
+				if(req_where.matches("\\{+((\\?[\\w]+ ?){3} ?\\}+)"))
 				{
-					if(tab_where[i].matches("[\\w]+:[\\w]+"))
+					where.removeAllElements();
+				}
+				else
+				{
+					// on remplace les accolades par des espaces : 
+					String new_req = req_where.replaceAll("\\{|\\}|UNION|\\.", " ");
+					String req_where_final = new_req.replaceAll(" +"," ");
+					String [] tab_where = req_where_final.split(" ");
+					for(int i=0; i<tab_where.length;i++)
 					{
-						where.add(tab_where[i]);
+						if(tab_where[i].matches("[\\w]+:[\\w]+"))
+						{
+							where.add(tab_where[i]);
+						}
 					}
 				}
 

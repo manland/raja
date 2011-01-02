@@ -8,7 +8,7 @@ import Exception.MalformedQueryException;
 /**
  * Abstract class representing a query.
  */
-abstract class Query implements IQuery {
+public abstract class Query implements IQuery {
 	/**
 	 * In which tables to execute query.
 	 */

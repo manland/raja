@@ -67,34 +67,31 @@ public class TerminalAdapter extends Adapter
 			{
 				SelectQuery sq = (SelectQuery)query;
 				Model schema_local = getLocalSchema();
-				for(int i=0; i<sq.getWhere().size();i++)
-				{
-					Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), schema_local);
-					if(res_d!=null)
+				if(sq.getWhere().size()==0){
+					return translator.exec(query);
+				}
+				else{
+					for(int i=0; i<sq.getWhere().size();i++)
 					{
-						result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE)));
-					}	
-					else
-					{
+						Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), schema_local);
+						if(res_d!=null)
+						{
+							result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE)));
+						}
 						Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery(), schema_local);
 						if(res_g!=null)
 						{
 							result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE)));
 						}
-						else
+						Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery(), schema_local);
+						if(res_m!=null)
 						{
-							Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery(), schema_local);
-							if(res_m!=null)
-							{
-								result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU)));
-							}
+							result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU)));
 						}
 					}
 				}
 			}
-			else if(query.getClass().getSimpleName().equals("InsertQuery"))
-			{
-				InsertQuery sq = (InsertQuery)query;
+			else{	// insertQuery, DeleteQuery
 				translator.exec(query);
 			}
 		}
