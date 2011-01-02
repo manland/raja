@@ -1,0 +1,14 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {section}{\numberline {2}Diff\IeC {\'e}rences}{3}
+\contentsline {subsection}{\numberline {2.1}getMetaInfo() d\IeC {\'e}plac\IeC {\'e}e}{3}
+\contentsline {subsection}{\numberline {2.2}Suppression isQueryMatching}{3}
+\contentsline {subsection}{\numberline {2.3}Model pl\IeC {\^u}tot que ResultSet}{3}
+\contentsline {section}{\numberline {3}Probl\IeC {\`e}mes}{4}
+\contentsline {subsection}{\numberline {3.1}EquivalentClass}{4}
+\contentsline {subsection}{\numberline {3.2}Meta-infos en variable pl\IeC {\^u}tot qu'\IeC {\`a} chaque fois}{4}
+\contentsline {section}{\numberline {4}Futur}{5}
+\contentsline {subsection}{\numberline {4.1}Update}{5}
+\contentsline {subsection}{\numberline {4.2}Raisonneur}{5}
+\contentsline {subsection}{\numberline {4.3}InterfaceGraphique}{5}
+\contentsline {section}{\numberline {5}Conclusion}{5}
