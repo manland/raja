@@ -5,7 +5,8 @@
     xmlns:map="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#"
     xmlns:recensement="http://www.lirmm.fr/recensement#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:recensementEastEurope="http://www.lirmm.fr/recensementEurope#"
+    xmlns:recensementEurope="http://www.lirmm.fr/recensementEurope#"
+    xmlns:recensementEastEurope="http://www.lirmm.fr/recensementEastEurope#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:d2rq="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#" > 
   <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RM_POPULATION">
