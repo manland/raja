@@ -199,6 +199,11 @@ public class Server {
 			mediatorLike.setSubAdapters(Factory.xmlToAdapters(element.getChildren()));
 		}
 	}
+	
+	public void acceptVisitor(IVisiteur v){
+		v.visitServer(this);
+		mediatorLike.acceptVisitor(v);
+	}
 
 	/**
 	 * Main fonction. Entry point of this program, if you don't remember i suggest you to find another job...
