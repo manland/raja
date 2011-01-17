@@ -6,6 +6,7 @@ import Exception.DataBaseNotAccessibleException;
 import Exception.MalformedQueryException;
 import Query.IQuery;
 import Query.Pair;
+import Server.IVisiteur;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
@@ -27,5 +28,7 @@ public interface IAdapter {
 	Vector<Pair<String,String>> getPrefix();
 	
 	Pair<Model,String> isProperty(String prop) throws MalformedQueryException, DataBaseNotAccessibleException;
+	
+	void acceptVisitor(IVisiteur v);
 	
 }

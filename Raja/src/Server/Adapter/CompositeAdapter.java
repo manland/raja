@@ -9,6 +9,7 @@ import Query.IQuery;
 import Query.InsertQuery;
 import Query.Pair;
 import Query.SelectQuery;
+import Server.IVisiteur;
 
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
@@ -404,4 +405,15 @@ public class CompositeAdapter extends Adapter
 		}
 		return null;
 	}
+
+	@Override
+	public void acceptVisitor(IVisiteur v) {
+		v.visitBeforeCompositeAdapter(this);
+		for(int i=0; i<subAdapters.size(); i++){
+			subAdapters.get(i).acceptVisitor(v);
+		}
+		v.visitAfterCompositeAdapter(this);
+	}
+	
+	
 }
