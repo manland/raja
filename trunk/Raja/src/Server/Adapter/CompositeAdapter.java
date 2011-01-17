@@ -14,6 +14,7 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -23,6 +24,7 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.FileManager;
@@ -41,6 +43,7 @@ public class CompositeAdapter extends Adapter
 	 * These are the sub-adapters managed by this adapter.
 	 */
 	protected Vector<IAdapter> subAdapters;	
+	private String owlfile;
 
 	public static final String NL = System.getProperty("line.separator");
 	public CompositeAdapter(Vector<Pair<String, String>> prefix, String owlFile) 
@@ -48,6 +51,7 @@ public class CompositeAdapter extends Adapter
 		super(prefix);
 		subAdapters = new Vector<IAdapter>();
 		model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF);
+		this.owlfile = owlFile;
 		FileManager.get().readModel(model, owlFile);
 	}
 
@@ -122,13 +126,36 @@ public class CompositeAdapter extends Adapter
 				
 				for(int j=0; j<getSubAdapters().size();j++)
 				{
+//					//Model resProp = subAdapters.get(j).isProperty(sq.getWhere().get(i));
+//					System.out.println("--------DEBUT-------------");
+//					System.out.println("COMPOSITE "+owlfile);
+//					String prop = sq.getWhere().get(i);
+//					String []tab = prop.split(":");
+//					String pr = tab[0];
+//					String p = tab[1];
+//					String pref = Pair.getSecondByFirst(getPrefix(), pr);
+//					
+//					Pair<Model,String> resProp = subAdapters.get(j).isProperty(prop);
+//					if(resProp != null){
+//						System.out.println("COMPOSITE VRAI "+owlfile);
+//						model_resultat.add(resProp.getFirst());
+//						System.out.println("pppp "+resProp.getSecond());
+//						System.out.println("aaaaa "+getLocalSchema().getProperty(pref+p).getLocalName());
+//						OntProperty ontP = (OntProperty)model_resultat.getProperty(resProp.getSecond());
+//						Property pp = getLocalSchema().getProperty(pref+p);
+//						ontP.addSuperProperty(pp);
+//					}
+//					else
+//					{
+//						System.out.println("COMPOSITE FAUX "+owlfile);
+//					}
+//					System.out.println("---------FIN------------");
 					Model res = subAdapters.get(j).execute(query);
 					if(res!= null)
 					{
 						model_resultat.add(res);
 					}
 				}
-				
 				ResultSet rs = getEquivalentClassOfClass(model, sq.getWhere().get(i));
 				if(rs != null)
 				{
@@ -365,5 +392,16 @@ public class CompositeAdapter extends Adapter
 				}	
 			}
 		}
+	}
+	
+	public Pair<Model,String> isProperty(String prop) throws MalformedQueryException, DataBaseNotAccessibleException{
+		for(int i=0; i<subAdapters.size();i++)
+		{
+			Pair<Model,String> m = subAdapters.get(i).isProperty(prop);
+			if(m!=null){
+				return m;
+			}
+		}
+		return null;
 	}
 }

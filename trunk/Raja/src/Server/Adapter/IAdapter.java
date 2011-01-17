@@ -26,4 +26,6 @@ public interface IAdapter {
 
 	Vector<Pair<String,String>> getPrefix();
 	
+	Pair<Model,String> isProperty(String prop) throws MalformedQueryException, DataBaseNotAccessibleException;
+	
 }

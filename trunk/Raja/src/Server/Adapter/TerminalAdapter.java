@@ -3,14 +3,20 @@ package Server.Adapter;
 import java.util.Vector;
 
 import Exception.DataBaseNotAccessibleException;
+import Exception.MalformedQueryException;
 import Query.IQuery;
 import Query.Pair;
 import Query.SelectQuery;
 import Server.Translator.ITranslator;
 
 import com.hp.hpl.jena.query.QueryParseException;
+import com.hp.hpl.jena.query.QuerySolution;
+import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.RDFS;
 
 /**
  * Adapter directly linked to a database.
@@ -90,5 +96,40 @@ public class TerminalAdapter extends Adapter
 			System.err.println(e.getMessage() + " :: prefix=" + getPrefix());
 		}
 		return result_model;
+	}
+	
+	public Pair<Model,String> isProperty(String prop) throws MalformedQueryException, DataBaseNotAccessibleException
+	{
+		String [] tab = prop.split(":");
+		String p = tab[1];
+		
+		String pref = "PREFIX rdf:<"+RDF.getURI()+"> \n PREFIX rdfs:<"+RDFS.getURI()+"> \n PREFIX m:<http://www.lirmm.fr/metaInfo#> \n";
+		String qry = pref+"SELECT ?a ?b WHERE {?a ?b m:"+p+"}";
+		ResultSet result = execQuerySelect(qry, localSchema);
+		boolean fin = false;
+		for(; result.hasNext() && !fin; )
+		{ 
+			QuerySolution qs = result.nextSolution();
+			Resource rsc = qs.getResource("a");
+			Resource b = qs.getResource("b");
+			System.out.println("TERMINAL OK"+rsc.getURI()+"   b  "+b+"  prop "+prop);
+			if(rsc.getLocalName().equals(p))
+			{
+				for(int i=0;i<getPrefix().size();i++){
+					SelectQuery q = new SelectQuery();
+					String rr = "SELECT ?a ?b WHERE {?a "+getPrefix().get(i).getFirst()+":"+p+" ?b}";
+					q.parseQuery(rr);
+					q.setQuery(rr);
+					System.out.println("reque === "+q.getQuery());
+					Model m = translator.exec(q);
+					if(m!=null){
+						if(!m.isEmpty()){
+							return new Pair<Model, String>(m,getPrefix().get(i).getSecond()+p);
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 }
