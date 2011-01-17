@@ -7,6 +7,7 @@ import Exception.MalformedQueryException;
 import Query.IQuery;
 import Query.Pair;
 import Query.SelectQuery;
+import Server.IVisiteur;
 import Server.Translator.ITranslator;
 
 import com.hp.hpl.jena.query.QueryParseException;
@@ -131,5 +132,11 @@ public class TerminalAdapter extends Adapter
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void acceptVisitor(IVisiteur v) {
+		v.visitTerminalAdapter(this);
+		translator.acceptVisitor(v);
 	}
 }

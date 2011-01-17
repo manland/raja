@@ -2,6 +2,7 @@ package Server.Translator;
 import java.util.HashMap;
 import java.util.Vector;
 
+import Server.IVisiteur;
 import Server.DataBase.DataBase;
 import Server.Translator.N3.IN3Translator;
 import Server.Translator.N3.N3Translator;
@@ -114,4 +115,9 @@ public abstract class Translator implements ITranslator
 		}
 		return m;
 	}
+	
+	public void acceptVisitor(IVisiteur v){
+		v.visitTranslator(this);
+	}
+	
 }

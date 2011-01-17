@@ -9,6 +9,8 @@ import Query.IQuery;
 import Query.InsertQuery;
 import Query.SelectQuery;
 import Query.UpdateQuery;
+import Server.IVisiteur;
+
 import com.hp.hpl.jena.rdf.model.Model;
 
 /**
@@ -47,4 +49,6 @@ public interface ITranslator {
   
   HashMap<String, Vector<String>> getMetaInfoFromDataBase() throws DataBaseNotAccessibleException;
 
+  void acceptVisitor(IVisiteur v);
+  
 }
