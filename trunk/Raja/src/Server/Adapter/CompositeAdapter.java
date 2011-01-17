@@ -71,19 +71,24 @@ public class CompositeAdapter extends Adapter
 	 * @throws MalformedQueryException 
 	 */
 	public Model execute(IQuery query) throws DataBaseNotAccessibleException, MalformedQueryException 
-	{		
+	{	
+		fireGoIn();
 		if(query.getClass().getSimpleName().equals("SelectQuery"))
 		{
+			fireGoOut();
 			return executeSelect(query);
 		}
 		else if(query.getClass().getSimpleName().equals("InsertQuery"))
 		{
+			fireGoOut();
 			return executeInsertAndUpdate(query);
 		}
 		else if(query.getClass().getSimpleName().equals("DeleteQuery"))
 		{
+			fireGoOut();
 			return executeInsertAndUpdate(query);
 		}
+		fireGoOut();
 		return null;
 	}
 

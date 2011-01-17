@@ -48,6 +48,7 @@ public abstract class Translator implements ITranslator
 	public Model exec(IQuery query) throws DataBaseNotAccessibleException 
 	{
 		Model res = null;
+		fireGoIn();
 		if(query.getClass().getSimpleName().equals("SelectQuery"))
 		{
 			res = select((SelectQuery)query);
@@ -73,6 +74,7 @@ public abstract class Translator implements ITranslator
 				res = ModelFactory.createDefaultModel();
 			}
 		}
+		fireGoOut();
 		return res;
 	}
 

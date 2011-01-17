@@ -52,6 +52,7 @@ public class TerminalAdapter extends Adapter
 	public Model execute(IQuery query) throws DataBaseNotAccessibleException 
 	{
 		Model result_model = ModelFactory.createDefaultModel();
+		fireGoIn();
 		for(int i=0; i<getPrefix().size(); i++)
 		{
 			result_model.setNsPrefix(getPrefix().get(i).getFirst(), getPrefix().get(i).getSecond());
@@ -64,6 +65,7 @@ public class TerminalAdapter extends Adapter
 				Model schema_local = getLocalSchema();
 				if(sq.getWhere().size()==0)
 				{
+					fireGoOut();
 					return translator.exec(query);
 				}
 				else{
@@ -96,6 +98,7 @@ public class TerminalAdapter extends Adapter
 		{
 			System.err.println(e.getMessage() + " :: prefix=" + getPrefix());
 		}
+		fireGoOut();
 		return result_model;
 	}
 	

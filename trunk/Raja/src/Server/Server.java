@@ -82,9 +82,11 @@ public class Server {
 		catch (DataBaseNotAccessibleException e) 
 		{
 			System.err.println(e.getDataBase().getDatabaseName() + " : " + e.getMessage());
+			fireInitialization();
 			return false;
 		}
 		this.indoor = indoor;
+		fireInitialization();
 		return true;
 	}
 
@@ -105,6 +107,7 @@ public class Server {
 		try 
 		{
 			req = Factory.makeQuery(query);
+			fireCall(req);
 			res = mediatorLike.execute(req);
 		} 
 		catch (DataBaseNotAccessibleException e) 
@@ -121,6 +124,7 @@ public class Server {
 		}
 		Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), (SelectQuery)req).replace("SELECT", "DESCRIBE")) ;
 		QueryExecution qexec = QueryExecutionFactory.create(q,m.getBaseModel()) ;
+		fireFinish(req);
 		return qexec.execDescribe() ;
 	}
 
@@ -144,6 +148,7 @@ public class Server {
 						m.setNsPrefix(mediatorLike.getPrefix().get(i).getFirst(), mediatorLike.getPrefix().get(i).getSecond());
 					}
 					IQuery req = Factory.makeQuery(line);
+					fireCall(req);
 					Model res = mediatorLike.execute(req);
 					if(res != null)
 					{
@@ -152,6 +157,7 @@ public class Server {
 						QueryExecution qexec = QueryExecutionFactory.create(q,m) ;
 						ResultSet rs = qexec.execSelect() ;
 						ResultSetFormatter.out(System.out, rs, q);
+						fireFinish(req);
 						indoor.write(rs, q);
 						qexec.close();
 					}
