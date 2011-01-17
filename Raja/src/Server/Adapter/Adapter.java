@@ -19,10 +19,13 @@ public abstract class Adapter implements IAdapter {
 	
 	private Vector<Pair<String, String>> prefix;
 	
+	private Vector<IListenerAdapter> liste_ecouteurs;
+	
 	public Adapter(Vector<Pair<String, String>> prefix)
 	{
 		this.prefix = new Vector<Pair<String, String>>();
 		this.prefix.addAll(prefix);
+		liste_ecouteurs =  new Vector<IListenerAdapter>();
 	}
 	
 	public Vector<Pair<String, String>> getPrefix()
@@ -73,4 +76,27 @@ public abstract class Adapter implements IAdapter {
 		return result;
 	}
 	
+	public void addListener(IListenerAdapter l){
+		liste_ecouteurs.add(l);
+	}
+	
+	public void removeListener(IListenerAdapter l){
+		for(int i=0;i<liste_ecouteurs.size();i++){
+			if(liste_ecouteurs.get(i).equals(l)){
+				liste_ecouteurs.remove(i);
+			}
+		}
+	}
+	
+	public void fireGoIn(){
+		for(int i=0; i<liste_ecouteurs.size();i++){
+			liste_ecouteurs.get(i).goIn(this);
+		}
+	}
+	
+	public void fireGoOut(){
+		for(int i=0;i<liste_ecouteurs.size();i++){
+			liste_ecouteurs.get(i).goOut(this);
+		}
+	}
 }

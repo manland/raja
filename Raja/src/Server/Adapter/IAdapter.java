@@ -29,6 +29,16 @@ public interface IAdapter {
 	
 	Pair<Model,String> isProperty(String prop) throws MalformedQueryException, DataBaseNotAccessibleException;
 	
+	String getFile();
+	
 	void acceptVisitor(IVisiteur v);
+	
+	void fireGoIn();
+	
+	void fireGoOut();
+	
+	void addListener(IListenerAdapter l);
+	
+	void removeListener(IListenerAdapter l);
 	
 }

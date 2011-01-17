@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import Server.IVisiteur;
+import Server.Adapter.IListenerAdapter;
 import Server.DataBase.DataBase;
 import Server.Translator.N3.IN3Translator;
 import Server.Translator.N3.N3Translator;
@@ -29,10 +30,16 @@ public abstract class Translator implements ITranslator
 	protected IN3Translator selectTranslator;
 	protected DataBase database;
 	
+	private String n3File;
+	
+	private Vector<IListenerTranslator> liste_ecouteurs;
+	
 	public Translator(DataBase dataBase, String n3File, Vector<Pair<String, String>> prefix) 
 	{
 		selectTranslator = new N3Translator(n3File, prefix);
 		this.database = dataBase;
+		this.n3File = n3File;
+		liste_ecouteurs = new Vector<IListenerTranslator>();
 	}
 
 	/**
@@ -118,6 +125,38 @@ public abstract class Translator implements ITranslator
 	
 	public void acceptVisitor(IVisiteur v){
 		v.visitTranslator(this);
+	}
+	
+	public void addListener(IListenerTranslator l){
+		liste_ecouteurs.add(l);
+	}
+	
+	public void removeListener(IListenerTranslator l){
+		for(int i=0;i<liste_ecouteurs.size();i++){
+			if(liste_ecouteurs.get(i).equals(l)){
+				liste_ecouteurs.remove(i);
+			}
+		}
+	}
+	
+	public void fireGoIn(){
+		for(int i=0; i<liste_ecouteurs.size();i++){
+			liste_ecouteurs.get(i).goIn(this);
+		}
+	}
+	
+	public void fireGoOut(){
+		for(int i=0;i<liste_ecouteurs.size();i++){
+			liste_ecouteurs.get(i).goOut(this);
+		}
+	}
+	
+	public String getN3File(){
+		return n3File;
+	}
+	
+	public DataBase getDataBase(){
+		return database;
 	}
 	
 }

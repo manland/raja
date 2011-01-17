@@ -414,6 +414,11 @@ public class CompositeAdapter extends Adapter
 		}
 		v.visitAfterCompositeAdapter(this);
 	}
+
+	@Override
+	public String getFile() {
+		return owlfile;
+	}
 	
 	
 }

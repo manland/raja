@@ -139,4 +139,9 @@ public class TerminalAdapter extends Adapter
 		v.visitTerminalAdapter(this);
 		translator.acceptVisitor(v);
 	}
+
+	@Override
+	public String getFile() {
+		return translator.getN3File();
+	}
 }
