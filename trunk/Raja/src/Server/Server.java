@@ -89,6 +89,37 @@ public class Server {
 	{
 		return mediatorLike.getLocalSchema();
 	}
+	
+	public Model call(String query)
+	{
+		OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
+		for(int i=0; i<mediatorLike.getPrefix().size();i++)
+		{
+			m.setNsPrefix(mediatorLike.getPrefix().get(i).getFirst(), mediatorLike.getPrefix().get(i).getSecond());
+		}
+		IQuery req = null;
+		Model res = null;
+		try 
+		{
+			req = Factory.makeQuery(query);
+			res = mediatorLike.execute(req);
+		} 
+		catch (DataBaseNotAccessibleException e) 
+		{
+			System.err.println(e.getDataBase().getDatabaseName() + " : " + e.getMessage());
+		} 
+		catch (MalformedQueryException e) 
+		{
+			System.err.println(e.getMessage());
+		}
+		if(res != null)
+		{
+			m.add(res);
+		}
+		Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), (SelectQuery)req).replace("SELECT", "DESCRIBE")) ;
+		QueryExecution qexec = QueryExecutionFactory.create(q,m.getBaseModel()) ;
+		return qexec.execDescribe() ;
+	}
 
 	/**
 	 * Run the server
@@ -176,8 +207,10 @@ public class Server {
 	{
 		if(Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt")))
 		{
+			System.out.println("########  GLOBAL SCHEMA  ########");
+			Server.getInstance().getGlobalSchema().write(System.out);
+			System.out.println("################################");
 			Server.getInstance().run();
-			//Server.getInstance().getGlobalSchema().write(System.out);
 		}
 	}
 }

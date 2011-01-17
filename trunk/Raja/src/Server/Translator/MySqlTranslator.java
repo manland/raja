@@ -43,6 +43,7 @@ public class MySqlTranslator extends Translator
 		}
 		catch (SQLException e) 
 		{
+			System.out.println(e.getMessage());
 			throw new DataBaseNotAccessibleException(database, "The database isn't connectable, modify the config.xml");
 		} 
 	}

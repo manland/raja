@@ -43,7 +43,6 @@ public abstract class Translator implements ITranslator
 		if(query.getClass().getSimpleName().equals("SelectQuery"))
 		{
 			res = select((SelectQuery)query);
-			
 		}
 		else if(query.getClass().getSimpleName().equals("InsertQuery"))
 		{
