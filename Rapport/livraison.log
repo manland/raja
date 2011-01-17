@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.11.22)  2 JAN 2011 23:54
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.11.22)  2 JAN 2011 23:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -503,7 +503,19 @@ Overfull \hbox (6.5643pt too wide) in paragraph at lines 81--82
 u-voir trou-ver les sous-adaptateurs
  []
 
-[3] [4] [5] (/home/manland/Raja/Rapport/livraison.aux) ) 
+[3] [4]
+Overfull \hbox (2.29163pt too wide) in paragraph at lines 126--129
+[]\T1/cmr/m/n/12 Vous pou-vez re-trou-ver ce lo-gi-ciel et plein d'in-di-ca-tio
+ns sur http ://-code.google.com/p/raja.
+ []
+
+
+Overfull \hbox (9.37056pt too wide) in paragraph at lines 126--129
+\T1/cmr/m/n/12 Pour le té-lé-char-ger il vous suf-fit d'en-trer "svn che-ckout 
+http ://-raja.googlecode.com/svn/trunk/
+ []
+
+[5] (/home/manland/Raja/Rapport/livraison.aux) ) 
 Here is how much of TeX's memory you used:
  4845 strings out of 493848
  67895 string characters out of 1152822
@@ -512,14 +524,14 @@ Here is how much of TeX's memory you used:
  13364 words of font info for 34 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  37i,10n,38p,933b,246s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts
-/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/fonts/type1/public/cm-sup
-er/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></us
-r/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/
-type1/public/cm-super/sfcc1200.pfb></usr/share/texmf/fonts/type1/public/cm-supe
-r/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr
-/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb>
-Output written on livraison.pdf (5 pages, 120762 bytes).
+{/usr/share/texmf/fonts/enc/dvi
+ps/cm-super/cm-super-t1.enc}</usr/share/texmf/fonts/type1/public/cm-super/sfbx1
+200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/
+texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/pu
+blic/cm-super/sfcc1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm12
+00.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/t
+exmf/fonts/type1/public/cm-super/sfrm2074.pfb>
+Output written on livraison.pdf (5 pages, 120889 bytes).
 PDF statistics:
  47 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

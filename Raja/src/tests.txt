@@ -17,3 +17,4 @@
 #
 # Pour toutes les maladies, le pays dans lequel elles sont
 #SELECT ?pays ?mal WHERE {?idMal recensement:RM_LIBELLE_PAYS ?pays . ?idMal recensement:RM_LIBELLE ?mal}
+SELECT ?a WHERE {?a rdf:type recensement:ZONE_OMS}
