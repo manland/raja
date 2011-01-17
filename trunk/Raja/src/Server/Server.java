@@ -48,6 +48,8 @@ public class Server {
 	 * Mediator of shared database who manages the distribution of the queries.
 	 */
 	protected CompositeAdapter mediatorLike;
+	
+	private Vector<IListenerServer> liste_ecouteur;
 
 	/**
 	 * Protected constructor to implement singleton parttern.
@@ -72,6 +74,7 @@ public class Server {
 	 * Initialize the server.
 	 */
 	public boolean init(String fileConfig, IInDoor indoor) {
+		liste_ecouteur = new Vector<IListenerServer>();
 		try 
 		{
 			parseXML(fileConfig);
@@ -204,7 +207,38 @@ public class Server {
 		v.visitServer(this);
 		mediatorLike.acceptVisitor(v);
 	}
+	
+	public void addListener(IListenerServer l){
+		liste_ecouteur.add(l);
+	}
 
+	public void removeListener(IListenerServer l){
+		for(int i=0; i<liste_ecouteur.size(); i++){
+			if(liste_ecouteur.get(i).equals(l)){
+				liste_ecouteur.remove(i);
+			}
+		}
+	}
+	
+	public void fireCall(IQuery query){
+		for(int i=0;i<liste_ecouteur.size();i++){
+			liste_ecouteur.get(i).call(this, query);
+		}
+	}
+	
+	public void fireFinish(IQuery query){
+		for(int i=0; i<liste_ecouteur.size(); i++)
+		{
+			liste_ecouteur.get(i).finish(this, query);
+		}
+	}
+	
+	public void fireInitialization(){
+		for(int i=0;i<liste_ecouteur.size(); i++){
+			liste_ecouteur.get(i).initialization(this);
+		}
+	}
+	
 	/**
 	 * Main fonction. Entry point of this program, if you don't remember i suggest you to find another job...
 	 */
