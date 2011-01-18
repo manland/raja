@@ -47,14 +47,14 @@ public class MyTabbedPane extends JTabbedPane
 	public MyTabbedPane()
 	{
 		super();
-		build();
 		Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
+		build();
 	}
 
 	private void build()
 	{
 		firstTab();
-		addClosableTab("test");
+		addClosableTab("Recherche");
 	}
 
 	private JPanel buildContentPane()
@@ -70,7 +70,7 @@ public class MyTabbedPane extends JTabbedPane
 		{
 			public void actionPerformed(ActionEvent ae) 
 			{
-				addClosableTab("test2");
+				addClosableTab("Recherche");
 			}
 		};
 		addTabButton.addActionListener(al);

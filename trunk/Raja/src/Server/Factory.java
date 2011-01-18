@@ -52,6 +52,10 @@ public class Factory {
 		{
 			res = new InsertQuery();
 		}
+		else
+		{
+			throw new MalformedQueryException(query, "Query must be start with SELECT, UPDATE, DELETE FROM or INSERT INTO.");
+		}
 		res.parseQuery(query);
 		return res;
 	}

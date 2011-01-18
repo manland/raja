@@ -147,4 +147,9 @@ public class TerminalAdapter extends Adapter
 	public String getFile() {
 		return translator.getN3File();
 	}
+	
+	public ITranslator getTranslator()
+	{
+		return translator;
+	}
 }
