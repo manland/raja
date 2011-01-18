@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JComponent;
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 public class Vue extends JComponent {
 	
@@ -64,6 +65,13 @@ public class Vue extends JComponent {
 
 	public void setY(int y) {
 		setLocation(getX(), y);
+	}
+	
+	public void clean()
+	{
+		isGoIn = false;
+		isGoOut = false;
+		repaint();
 	}
 
 }

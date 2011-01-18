@@ -1,11 +1,13 @@
 package Server.Indoor.Graphic.ViewInTab.ViewServer;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.HashMap;
 
+import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
 
 import Query.Pair;
@@ -50,6 +52,13 @@ public class ViewServerComponent extends JLayeredPane implements IVisiteur
 	{
 		x = 0;
 		y = 50;
+		
+		for(Component compo : getComponents())
+		{
+			Vue v = (Vue)compo;
+			v.clean();
+		}
+		
 		positions = new HashMap<IAdapter, Pair<Integer, Integer>>();
 		positionsTranslator = new HashMap<ITranslator, Pair<Integer,Integer>>();
 		

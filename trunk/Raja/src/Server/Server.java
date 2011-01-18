@@ -78,6 +78,7 @@ public class Server {
 		try 
 		{
 			parseXML(fileConfig);
+			configFile = fileConfig;
 		} 
 		catch (DataBaseNotAccessibleException e) 
 		{
@@ -233,7 +234,12 @@ public class Server {
 			liste_ecouteur.get(i).initialization(this);
 		}
 	}
-
+	
+	public String getConfigFile()
+	{
+		return configFile;
+	}
+	
 	/**
 	 * Main fonction. Entry point of this program, if you don't remember i suggest you to find another job...
 	 */
