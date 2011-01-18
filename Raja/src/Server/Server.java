@@ -48,7 +48,7 @@ public class Server {
 	 * Mediator of shared database who manages the distribution of the queries.
 	 */
 	protected CompositeAdapter mediatorLike;
-	
+
 	private Vector<IListenerServer> liste_ecouteur;
 
 	/**
@@ -94,8 +94,8 @@ public class Server {
 	{
 		return mediatorLike.getLocalSchema();
 	}
-	
-	public Model call(String query)
+
+	public Model call(String query) throws MalformedQueryException, DataBaseNotAccessibleException
 	{
 		OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
 		for(int i=0; i<mediatorLike.getPrefix().size();i++)
@@ -104,20 +104,9 @@ public class Server {
 		}
 		IQuery req = null;
 		Model res = null;
-		try 
-		{
-			req = Factory.makeQuery(query);
-			fireCall(req);
-			res = mediatorLike.execute(req);
-		} 
-		catch (DataBaseNotAccessibleException e) 
-		{
-			System.err.println(e.getDataBase().getDatabaseName() + " : " + e.getMessage());
-		} 
-		catch (MalformedQueryException e) 
-		{
-			System.err.println(e.getMessage());
-		}
+		req = Factory.makeQuery(query);
+		fireCall(req);
+		res = mediatorLike.execute(req);
 		if(res != null)
 		{
 			m.add(res);
@@ -208,12 +197,12 @@ public class Server {
 			mediatorLike.setSubAdapters(Factory.xmlToAdapters(element.getChildren()));
 		}
 	}
-	
+
 	public void acceptVisitor(IVisiteur v){
 		v.visitServer(this);
 		mediatorLike.acceptVisitor(v);
 	}
-	
+
 	public void addListener(IListenerServer l){
 		liste_ecouteur.add(l);
 	}
@@ -225,26 +214,26 @@ public class Server {
 			}
 		}
 	}
-	
+
 	public void fireCall(IQuery query){
 		for(int i=0;i<liste_ecouteur.size();i++){
 			liste_ecouteur.get(i).call(this, query);
 		}
 	}
-	
+
 	public void fireFinish(IQuery query){
 		for(int i=0; i<liste_ecouteur.size(); i++)
 		{
 			liste_ecouteur.get(i).finish(this, query);
 		}
 	}
-	
+
 	public void fireInitialization(){
 		for(int i=0;i<liste_ecouteur.size(); i++){
 			liste_ecouteur.get(i).initialization(this);
 		}
 	}
-	
+
 	/**
 	 * Main fonction. Entry point of this program, if you don't remember i suggest you to find another job...
 	 */

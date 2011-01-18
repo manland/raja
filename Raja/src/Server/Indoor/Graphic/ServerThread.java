@@ -2,6 +2,11 @@ package Server.Indoor.Graphic;
 
 import java.util.Vector;
 
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import Server.Server;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -11,12 +16,14 @@ public class ServerThread extends Thread implements Runnable {
 	private Model model;
 	private String requete;
 	private Vector<IEcouteurServerThread> ecouteurs;
+	private JComponent errorParent;
 	
-	public ServerThread(String requete)
+	public ServerThread(String requete, JComponent errorParent)
 	{
 		this.requete = requete;
 		setPriority(Thread.NORM_PRIORITY);
 		ecouteurs = new Vector<IEcouteurServerThread>();
+		this.errorParent = errorParent;
 	}
 	
 	public void addEcouteur(IEcouteurServerThread ecouteur)
@@ -26,7 +33,19 @@ public class ServerThread extends Thread implements Runnable {
 	
 	public void run()
 	{
-		model = Server.getInstance().call(requete);
+		try
+		{
+			model = Server.getInstance().call(requete);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(errorParent, 
+				    e.getMessage(),
+				    e.getClass().getSimpleName(),
+				    JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		fireFinish();
 	}
 	
