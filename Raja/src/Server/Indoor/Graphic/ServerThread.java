@@ -35,7 +35,14 @@ public class ServerThread extends Thread implements Runnable {
 	{
 		try
 		{
-			model = Server.getInstance().call(requete);
+			if(requete.equals("schéma global"))
+			{
+				model = Server.getInstance().getGlobalSchema();
+			}
+			else
+			{
+				model = Server.getInstance().call(requete);
+			}
 		}
 		catch(Exception e)
 		{

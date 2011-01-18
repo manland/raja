@@ -35,7 +35,7 @@ public class EntiteRDF extends JComponent {
 //			modele.setLargeur(g2d.getFontMetrics().stringWidth(modele.getFichier().getNom()));
 //		}
 		g2d.setPaint(fond);
-		g2d.drawOval(0, 0, getWidth()-1, getHeight()-1);
+		g2d.fillOval(0, 0, getWidth()-1, getHeight()-1);
 		g2d.setPaint(bordure);
 		g2d.drawOval(0, 0, getWidth()-1, getHeight()-1);
 		g2d.setPaint(texte);
