@@ -51,7 +51,7 @@ map:RZ_POPULATION a d2rq:PropertyBridge;
 map:PAYS a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
 	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@PAYS.RP_LIBELLE|urlify@@";
-	d2rq:class r:ZONE_OMS;
+	d2rq:class r:PAYS;
 	.
 
 map:RP_POPULATION a d2rq:PropertyBridge;
