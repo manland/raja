@@ -1,45 +1,20 @@
 package Server.Indoor.Graphic;
 
-import java.awt.BorderLayout;
-import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.peer.LightweightPeer;
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
 
-import Query.SelectQuery;
+import Exception.DataBaseNotAccessibleException;
 import Server.Server;
 import Server.Indoor.IndoorFile;
 import Server.Indoor.Graphic.ViewInTab.PanelInTab;
-
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.util.FileManager;
 
 public class MyTabbedPane extends JTabbedPane
 {
@@ -47,7 +22,18 @@ public class MyTabbedPane extends JTabbedPane
 	public MyTabbedPane()
 	{
 		super();
-		Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
+		try 
+		{
+			Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
+		} 
+		catch (DataBaseNotAccessibleException e) 
+		{
+			JOptionPane.showMessageDialog(this, 
+				    e.getMessage(),
+				    e.getClass().getSimpleName(),
+				    JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 		build();
 	}
 

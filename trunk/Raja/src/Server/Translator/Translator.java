@@ -34,6 +34,8 @@ public abstract class Translator implements ITranslator
 	
 	private Vector<IListenerTranslator> liste_ecouteurs;
 	
+	protected boolean isConnect;
+	
 	public Translator(DataBase dataBase, String n3File, Vector<Pair<String, String>> prefix) 
 	{
 		selectTranslator = new N3Translator(n3File, prefix);
@@ -159,6 +161,11 @@ public abstract class Translator implements ITranslator
 	
 	public DataBase getDataBase(){
 		return database;
+	}
+	
+	public boolean getIsConnect()
+	{
+		return isConnect;
 	}
 	
 }

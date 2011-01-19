@@ -7,8 +7,6 @@ import java.util.Vector;
 
 import javax.swing.JLayeredPane;
 
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -16,9 +14,7 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.NodeIterator;
-import com.hp.hpl.jena.util.FileManager;
 
 public class ViewOwlComponent extends JLayeredPane {
 
@@ -46,15 +42,10 @@ public class ViewOwlComponent extends JLayeredPane {
 	public void dessine(Model model)
 	{
 		removeAll();
-//		OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF);
-//		FileManager.get().readModel(model, "bin/GeneralOnto.owl");
-		Query q = QueryFactory.create("SELECT ?a ?b ?c WHERE {?a ?b ?c}") ;
-		QueryExecution qexec = QueryExecutionFactory.create(q,model) ;
-		ResultSet rs = qexec.execSelect() ;
+		Query q = QueryFactory.create("SELECT ?a ?b ?c WHERE {?a ?b ?c}");
+		QueryExecution qexec = QueryExecutionFactory.create(q,model);
+		ResultSet rs = qexec.execSelect();
 		QuerySolution o = null;
-		int x = -100;
-		int y = 0;
-		int count = 0;
 		entites = new HashMap<String, EntiteRDF>();
 		proprietes = new HashMap<String, Vector<ProprieteRDF>>();
 		while(rs.hasNext())
@@ -68,17 +59,9 @@ public class ViewOwlComponent extends JLayeredPane {
 			}
 			else
 			{
-				if(x >= 600)
-				{
-					x = -100;
-					y += 100;
-					count = 0;
-				}
-				x += 150;
-				entitea = new EntiteRDF(uri_entitea, x, y);
+				entitea = new EntiteRDF(this, uri_entitea);
 				entites.put(uri_entitea, entitea);
 				add(entitea);
-				count++;
 			}
 			EntiteRDF entitec = null;
 			String uri_entitec = o.get("c").toString();
@@ -88,17 +71,9 @@ public class ViewOwlComponent extends JLayeredPane {
 			}
 			else
 			{
-				if(x >= 600)
-				{
-					x = -100;
-					y += 100;
-					count = 0;
-				}
-				x += 150;
-				entitec = new EntiteRDF(uri_entitec, x, y);
+				entitec = new EntiteRDF(this, uri_entitec);
 				entites.put(uri_entitec, entitec);
 				add(entitec);
-				count++;
 			}
 			if(entitea != entitec)
 			{
@@ -114,17 +89,81 @@ public class ViewOwlComponent extends JLayeredPane {
 					v.add(entiteb);
 					proprietes.put(uri_entiteb, v);
 				}
+				entitea.addPropriete(entiteb);
+				entitec.addPropriete(entiteb);
 				add(entiteb);
-				count++;
-			}
-			if(y >= getHeight())
-			{
-				Dimension dimension = new Dimension(800, getHeight()+300);
-				setPreferredSize(dimension);
-				setSize(dimension);
-				setMinimumSize(dimension);
 			}
 		}
+		placement();
+	}
+	
+	private void placement()
+	{
+		int max_x = 0;
+		int max_y = 0;
+		Vector<EntiteRDF> v = getEntitesByNbPropriete();
+		int profondeur = 0;
+		int ecart_entre_2_rayon = 80;
+		for(int i=0; i<v.size(); i++)
+		{
+			EntiteRDF entite = v.get(i);
+			if(i%10 == 0)
+			{
+				if(profondeur < 5)
+				{
+					profondeur++;
+				}
+			}
+			int ro = profondeur*ecart_entre_2_rayon;
+			double teta = (i*50) * ((2*Math.PI)/v.size());
+			int x = (int) (ro*Math.cos(teta)) + 450;
+			entite.setX(x);
+			int y = (int) (ro*Math.sin(teta)) + 400;
+			entite.setY(y);
+			if(x > max_x)
+			{
+				max_x = x;
+			}
+			if(y > max_y)
+			{
+				max_y = y;
+			}
+			if(i==0)
+			{
+				profondeur++;
+			}
+		}
+		Dimension dimension = new Dimension(max_x+100, max_y+100);
+		setPreferredSize(dimension);
+		setSize(dimension);
+		setMinimumSize(dimension);
+
+	}
+	
+	private Vector<EntiteRDF> getEntitesByNbPropriete()
+	{
+		Vector<EntiteRDF> res = new Vector<EntiteRDF>();
+		for(EntiteRDF entite : entites.values())
+		{
+			boolean trouve = false;
+			for(int j=0; j<res.size() && !trouve; j++)
+			{
+				if(entite.getProprietes().size() > res.get(j).getProprietes().size())
+				{
+					res.add(j, entite);
+					trouve = true;
+				}
+			}
+			if(!trouve)
+			{
+				res.add(entite);
+			}
+		}
+		for(int j=0; j<res.size(); j++)
+		{
+			System.out.println(res.get(j).getProprietes().size());
+		}
+		return res;
 	}
 	
 	public void dessine2(Model model)

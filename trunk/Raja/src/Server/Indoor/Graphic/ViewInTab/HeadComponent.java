@@ -47,6 +47,7 @@ public class HeadComponent extends JPanel
 	{
 		Vector<String> res = new Vector<String>();
 		res.add("Entrez une requête...");
+		res.add("SELECT ?a ?b ?c WHERE {?a ?b ?c}");
 		res.add("schéma global");
 		InputStream ips = null;
 		try 

@@ -107,7 +107,7 @@ public class Factory {
 		return dataBase;
 	}
 	
-	public static Vector<IAdapter> xmlToAdapters(List xml) throws DataBaseNotAccessibleException
+	public static Vector<IAdapter> xmlToAdapters(List xml)
 	{
 		Vector<IAdapter> subAdapters = new Vector<IAdapter>();
 		Iterator i = xml.iterator();
@@ -132,7 +132,14 @@ public class Factory {
 			}
 			else if(element.getName().equals("TerminalAdapter"))
 			{
-				subAdapters.add(xmlToTerminalAdapter(element.getChild("Traducteur")));
+				try 
+				{
+					subAdapters.add(xmlToTerminalAdapter(element.getChild("Traducteur")));
+				} 
+				catch (DataBaseNotAccessibleException e) 
+				{
+					System.err.println(e.getMessage());
+				}
 			}
 		}
 		return subAdapters;

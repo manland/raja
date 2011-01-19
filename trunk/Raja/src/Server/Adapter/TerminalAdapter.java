@@ -34,7 +34,10 @@ public class TerminalAdapter extends Adapter
 	{
 		super(prefix);
 		this.translator = translator;
-		localSchema = translator.getMetaInfo();
+		if(this.translator.getIsConnect())
+		{
+			localSchema = translator.getMetaInfo();
+		}
 	}
 
 	/**
