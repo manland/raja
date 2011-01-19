@@ -60,6 +60,10 @@
     <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#ZONE_OMS"/>
     <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#MALADIENOM">
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#MALADIENOM"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#ZONE_OMS">
     <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#ZONE_OMS"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -125,6 +129,10 @@
   <rdf:Description rdf:about="http://www.lirmm.fr/recensement#MALADIE">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEastEurope#MALADIENOM">
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#MALADIENOM"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#database">
     <d2rq:jdbcDSN>jdbc:mysql://192.168.0.15/receurope</d2rq:jdbcDSN>
     <d2rq:password>root</d2rq:password>
@@ -156,6 +164,9 @@
     <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEastEurope#RR_ANNEE"/>
     <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RECENSEMENT"/>
     <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensement#MALADIENOM">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RP_LIBELLE_ZO">
     <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEurope#RP_LIBELLE_ZO"/>
