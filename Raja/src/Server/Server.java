@@ -72,20 +72,12 @@ public class Server {
 
 	/**
 	 * Initialize the server.
+	 * @throws DataBaseNotAccessibleException 
 	 */
-	public boolean init(String fileConfig, IInDoor indoor) {
+	public boolean init(String fileConfig, IInDoor indoor) throws DataBaseNotAccessibleException {
 		liste_ecouteur = new Vector<IListenerServer>();
-		try 
-		{
-			parseXML(fileConfig);
-			configFile = fileConfig;
-		} 
-		catch (DataBaseNotAccessibleException e) 
-		{
-			System.err.println(e.getDataBase().getDatabaseName() + " : " + e.getMessage());
-			fireInitialization();
-			return false;
-		}
+		parseXML(fileConfig);
+		configFile = fileConfig;
 		this.indoor = indoor;
 		fireInitialization();
 		return true;
@@ -245,12 +237,19 @@ public class Server {
 	 */
 	public static void main(String[] args)
 	{
-		if(Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt")))
+		try 
 		{
-			System.out.println("########  GLOBAL SCHEMA  ########");
-			Server.getInstance().getGlobalSchema().write(System.out);
-			System.out.println("################################");
-			Server.getInstance().run();
+			if(Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt")))
+			{
+				System.out.println("########  GLOBAL SCHEMA  ########");
+				Server.getInstance().getGlobalSchema().write(System.out);
+				System.out.println("################################");
+				Server.getInstance().run();
+			}
+		} 
+		catch (DataBaseNotAccessibleException e) 
+		{
+			System.err.println(e.getMessage());
 		}
 	}
 }

@@ -39,9 +39,11 @@ public class OracleTranslator extends Translator
 					":"+dataBase.getPort()+":"+dataBase.getDatabaseName(), dataBase.getUserName(), dataBase.getPassWord());
 
 			instruction = (Statement) connexion.createStatement();
+			isConnect = true;
 		} 
 		catch (SQLException e) 
 		{
+			isConnect = false;
 			throw new DataBaseNotAccessibleException(database, "The database isn't connectable, modify the config.xml");
 		} 
 		catch (ClassNotFoundException e) 
@@ -54,8 +56,9 @@ public class OracleTranslator extends Translator
 
 	/**
 	 * Execute a insert query.
+	 * @throws DataBaseNotAccessibleException 
 	 */
-	public boolean insert(InsertQuery query) 
+	public boolean insert(InsertQuery query) throws DataBaseNotAccessibleException 
 	{
 		String str = "";
 		str += "INSERT INTO ";
@@ -80,7 +83,7 @@ public class OracleTranslator extends Translator
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			throw new DataBaseNotAccessibleException(database, e.getMessage());
 		}
 		if(resultat>0)
 		{
@@ -94,8 +97,9 @@ public class OracleTranslator extends Translator
 
 	/**
 	 * Execute a delete query.
+	 * @throws DataBaseNotAccessibleException 
 	 */
-	public boolean delete(DeleteQuery query) 
+	public boolean delete(DeleteQuery query) throws DataBaseNotAccessibleException 
 	{
 		int position_connecteur=0;
 		String str = "";
@@ -121,7 +125,7 @@ public class OracleTranslator extends Translator
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			throw new DataBaseNotAccessibleException(database, e.getMessage());
 		}
 		if(resultat>0)
 		{
@@ -135,8 +139,9 @@ public class OracleTranslator extends Translator
 
 	/**
 	 * Execute a update query.
+	 * @throws DataBaseNotAccessibleException 
 	 */
-	public boolean update(UpdateQuery query) 
+	public boolean update(UpdateQuery query) throws DataBaseNotAccessibleException 
 	{
 		int position_connecteur=0;
 		String str = "";
@@ -173,7 +178,7 @@ public class OracleTranslator extends Translator
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			throw new DataBaseNotAccessibleException(database, e.getMessage());
 		}
 		if(resultat>0)
 		{
@@ -220,6 +225,10 @@ public class OracleTranslator extends Translator
 		catch (SQLException e) 
 		{
 			throw new DataBaseNotAccessibleException(database, "The database don't accept getMetaData()");
+		}
+		catch (Exception ee)
+		{
+			throw new DataBaseNotAccessibleException(database, "The database isn't connectable, modify the config.xml");
 		}
 		return res;
 	}

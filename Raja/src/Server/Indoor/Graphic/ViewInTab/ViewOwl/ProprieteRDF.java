@@ -7,7 +7,8 @@ import java.awt.Graphics2D;
 
 import javax.swing.JComponent;
 
-public class ProprieteRDF extends JComponent {
+public class ProprieteRDF extends JComponent 
+{
 	
 	private String nom;
 	private EntiteRDF rdf1;
@@ -15,6 +16,7 @@ public class ProprieteRDF extends JComponent {
 	private Color fond = Color.white;
 	private Color texte = Color.lightGray;
 	private Color bordure = Color.lightGray;
+	private boolean selectionne;
 	
 	public ProprieteRDF(String nom, EntiteRDF rdf1, EntiteRDF rdf2)
 	{
@@ -43,7 +45,8 @@ public class ProprieteRDF extends JComponent {
 		
 	}
 	
-	private void calibre() {
+	private void calibre()
+	{
 		int poignet_x_milieu = rdf2.getX()+(rdf2.getWidth()/2);
 		int rdf1_x_milieu = rdf1.getX() + (rdf1.getHeight()/2);
 		int rdf1_y_bas = rdf1.getY() + rdf1.getHeight();
@@ -67,16 +70,54 @@ public class ProprieteRDF extends JComponent {
 		setMinimumSize(dimension);
 	}
 
-	public void setX(int x) {
+	public void setX(int x) 
+	{
 		setLocation(x, getY());
 	}
 
-	public void setY(int y) {
+	public void setY(int y) 
+	{
 		setLocation(getX(), y);
 	}
 
-	public String getNom() {
+	public String getNom() 
+	{
 		return nom;
+	}
+	
+	public boolean isSelectionne() {
+		return selectionne;
+	}
+
+	public void setSelectionne(boolean selectionne) {
+		this.selectionne = selectionne;
+		if(selectionne)
+		{
+			bordure = Color.black;
+			texte = Color.black;
+		}
+		else
+		{
+			bordure = Color.lightGray;
+			texte = Color.lightGray;
+		}
+		repaint();
+	}
+	
+	public void selectionMoiEtTousMesFils(boolean selectionne)
+	{
+		if(isVisible())
+		{
+			setSelectionne(selectionne);
+			if(rdf1.isSelectionne() != selectionne)
+			{
+				rdf1.selectionMoiEtTousMesFils(selectionne);
+			}
+			if(rdf2.isSelectionne() != selectionne)
+			{
+				rdf2.selectionMoiEtTousMesFils(selectionne);
+			}
+		}
 	}
 
 }

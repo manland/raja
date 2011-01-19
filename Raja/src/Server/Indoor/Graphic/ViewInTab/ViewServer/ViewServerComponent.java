@@ -132,12 +132,15 @@ public class ViewServerComponent extends JLayeredPane implements IVisiteur
 			VueCompositeAdapter v = new VueCompositeAdapter(nom, x, y);
 			add(v);
 			compositeAdapter.addListener(v);
-			int gap = largeur/compositeAdapter.getSubAdapters().size();
-			for(int i=0; i<compositeAdapter.getSubAdapters().size(); i++)
+			if(compositeAdapter.getSubAdapters().size() > 0)
 			{
-				int x = ((gap - width_f)/2)+(i*gap);
-				Pair<Integer, Integer> p = new Pair<Integer, Integer>(x, y+100);
-				positions.put(compositeAdapter.getSubAdapters().get(i), p);
+				int gap = largeur/compositeAdapter.getSubAdapters().size();
+				for(int i=0; i<compositeAdapter.getSubAdapters().size(); i++)
+				{
+					int x = ((gap - width_f)/2)+(i*gap);
+					Pair<Integer, Integer> p = new Pair<Integer, Integer>(x, y+100);
+					positions.put(compositeAdapter.getSubAdapters().get(i), p);
+				}
 			}
 		}
 	}

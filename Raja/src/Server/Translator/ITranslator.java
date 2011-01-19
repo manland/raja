@@ -64,5 +64,7 @@ public interface ITranslator {
 	String getN3File();
 	
 	DataBase getDataBase();
+	
+	boolean getIsConnect();
 
 }
