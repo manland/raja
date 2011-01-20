@@ -1,11 +1,10 @@
 package Server.Indoor.Graphic;
 
+import java.util.Timer;
 import java.util.Vector;
 
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import Server.Server;
 
@@ -17,6 +16,7 @@ public class ServerThread extends Thread implements Runnable {
 	private String requete;
 	private Vector<IEcouteurServerThread> ecouteurs;
 	private JComponent errorParent;
+	private long time;
 	
 	public ServerThread(String requete, JComponent errorParent)
 	{
@@ -33,6 +33,7 @@ public class ServerThread extends Thread implements Runnable {
 	
 	public void run()
 	{
+		long debut = System.currentTimeMillis(); 
 		try
 		{
 			if(requete.equals("schéma global"))
@@ -53,6 +54,7 @@ public class ServerThread extends Thread implements Runnable {
 				    JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		time = System.currentTimeMillis() - debut;
 		fireFinish();
 	}
 	
@@ -67,5 +69,10 @@ public class ServerThread extends Thread implements Runnable {
 	public Model getModel()
 	{
 		return model;
+	}
+	
+	public long getTime()
+	{
+		return time;
 	}
 }

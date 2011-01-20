@@ -13,9 +13,7 @@ public class ProprieteRDF extends JComponent
 	private String nom;
 	private EntiteRDF rdf1;
 	private EntiteRDF rdf2;
-	private Color fond = Color.white;
-	private Color texte = Color.lightGray;
-	private Color bordure = Color.lightGray;
+	private Color color = Color.lightGray;
 	private boolean selectionne;
 	
 	public ProprieteRDF(String nom, EntiteRDF rdf1, EntiteRDF rdf2)
@@ -29,7 +27,7 @@ public class ProprieteRDF extends JComponent
 	protected void paintComponent(Graphics g) {
 		calibre();
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setPaint(bordure);
+		g2d.setPaint(color);
 		int poignet_x_milieu = rdf2.getX()+(rdf2.getWidth()/2);
 		int rdf1_x_milieu = rdf1.getX() + (rdf1.getHeight()/2);
 		int rdf1_y_bas = rdf1.getY() + rdf1.getHeight();
@@ -73,11 +71,29 @@ public class ProprieteRDF extends JComponent
 	public void setX(int x) 
 	{
 		setLocation(x, getY());
+		if(rdf1.getX() != x)
+		{
+			rdf1.setX(x);
+		}
+		if(rdf2.getX() != x)
+		{
+			rdf2.setX(x);
+		}
+		repaint();
 	}
 
 	public void setY(int y) 
 	{
 		setLocation(getX(), y);
+		if(rdf1.getY() != y)
+		{
+			rdf1.setY(y);
+		}
+		if(rdf2.getY() != y)
+		{
+			rdf2.setY(y);
+		}
+		repaint();
 	}
 
 	public String getNom() 
@@ -88,18 +104,25 @@ public class ProprieteRDF extends JComponent
 	public boolean isSelectionne() {
 		return selectionne;
 	}
+	
+	public void setColor(Color c)
+	{
+		color = c;
+		repaint();
+	}
+	
+	private Color beforeSelectionne;
 
 	public void setSelectionne(boolean selectionne) {
 		this.selectionne = selectionne;
 		if(selectionne)
 		{
-			bordure = Color.black;
-			texte = Color.black;
+			beforeSelectionne = color;
+			color = Color.black;
 		}
 		else
 		{
-			bordure = Color.lightGray;
-			texte = Color.lightGray;
+			color = beforeSelectionne;
 		}
 		repaint();
 	}
@@ -111,13 +134,13 @@ public class ProprieteRDF extends JComponent
 			setSelectionne(selectionne);
 			if(rdf1.isSelectionne() != selectionne)
 			{
-				rdf1.selectionMoiEtTousMesFils(selectionne);
+				rdf1.setSelectionne(selectionne);
 			}
 			if(rdf2.isSelectionne() != selectionne)
 			{
-				rdf2.selectionMoiEtTousMesFils(selectionne);
+				rdf2.setSelectionne(selectionne);
 			}
 		}
 	}
-
+	
 }
