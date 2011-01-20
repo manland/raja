@@ -13,6 +13,7 @@ import Query.IQuery;
 import Query.InsertQuery;
 import Query.Pair;
 import Query.SelectQuery;
+import Query.SelectQuery2;
 import Query.UpdateQuery;
 import Server.Adapter.CompositeAdapter;
 import Server.Adapter.IAdapter;
@@ -35,7 +36,12 @@ public class Factory {
 	public static IQuery makeQuery(String query) throws MalformedQueryException
 	{
 		IQuery res = null;
-		if(query.startsWith("SELECT"))
+		if(query.startsWith("SELECT2"))
+		{
+			res = new SelectQuery2();
+			((SelectQuery2)res).setQuery(query);
+		}
+		else if(query.startsWith("SELECT"))
 		{
 			res = new SelectQuery();
 			((SelectQuery)res).setQuery(query);

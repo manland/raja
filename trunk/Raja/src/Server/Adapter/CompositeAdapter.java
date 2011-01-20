@@ -9,6 +9,7 @@ import Query.IQuery;
 import Query.InsertQuery;
 import Query.Pair;
 import Query.SelectQuery;
+import Query.SelectQuery2;
 import Server.IVisiteur;
 
 import com.hp.hpl.jena.ontology.Individual;
@@ -31,6 +32,8 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
+
+import de.fuberlin.wiwiss.d2rq.ModelD2RQ;
 
 /**
  * Adaptor of several Adaptor. Needed to merge RDF informations from under Adaptor.
@@ -78,6 +81,11 @@ public class CompositeAdapter extends Adapter
 			fireGoOut();
 			return executeSelect(query);
 		}
+		else if(query.getClass().getSimpleName().equals("SelectQuery2"))
+		{
+			fireGoOut();
+			return execSelectQuery2(query);
+		}
 		else if(query.getClass().getSimpleName().equals("InsertQuery"))
 		{
 			fireGoOut();
@@ -112,23 +120,6 @@ public class CompositeAdapter extends Adapter
 		{
 			for(int i=0; i<sq.getWhere().size();i++)
 			{
-				Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), model);
-				if(res_d!=null)
-				{
-					model_resultat.add(res_d);
-				}
-
-				Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery(),model);
-				if(res_g!= null)
-				{
-					model_resultat.add(res_g);
-				}
-
-				Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery(),model);
-				if(res_m != null)
-				{
-					model_resultat.add(res_m);
-				}
 				
 				for(int j=0; j<getSubAdapters().size();j++)
 				{
@@ -425,5 +416,123 @@ public class CompositeAdapter extends Adapter
 		return owlfile;
 	}
 	
+	public Model execSelectQuery2(IQuery query) throws DataBaseNotAccessibleException, MalformedQueryException
+	{
+		OntModel model_resultat = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF);
+		model_resultat.add(model);
+		for(int i=0; i<getPrefix().size(); i++)
+		{
+			model_resultat.setNsPrefix(getPrefix().get(i).getFirst(), getPrefix().get(i).getSecond());
+		}
+
+		SelectQuery2 sq = (SelectQuery2)query;
+		if(sq.getWhere().size()==0){
+			for(int i=0; i<subAdapters.size();i++)
+			{
+				model_resultat.add(subAdapters.get(i).execute(query));
+			}
+		}
+		else
+		{
+			for(int i=0; i<sq.getWhere().size();i++)
+			{				
+				for(int j=0; j<getSubAdapters().size();j++)
+				{
+//					//Model resProp = subAdapters.get(j).isProperty(sq.getWhere().get(i));
+//					System.out.println("--------DEBUT-------------");
+//					System.out.println("COMPOSITE "+owlfile);
+//					String prop = sq.getWhere().get(i);
+//					String []tab = prop.split(":");
+//					String pr = tab[0];
+//					String p = tab[1];
+//					String pref = Pair.getSecondByFirst(getPrefix(), pr);
+//					
+//					Pair<Model,String> resProp = subAdapters.get(j).isProperty(prop);
+//					if(resProp != null){
+//						System.out.println("COMPOSITE VRAI "+owlfile);
+//						model_resultat.add(resProp.getFirst());
+//						System.out.println("pppp "+resProp.getSecond());
+//						System.out.println("aaaaa "+getLocalSchema().getProperty(pref+p).getLocalName());
+//						OntProperty ontP = (OntProperty)model_resultat.getProperty(resProp.getSecond());
+//						Property pp = getLocalSchema().getProperty(pref+p);
+//						ontP.addSuperProperty(pp);
+//					}
+//					else
+//					{
+//						System.out.println("COMPOSITE FAUX "+owlfile);
+//					}
+//					System.out.println("---------FIN------------");
+					Model res = subAdapters.get(j).execute(query);
+					if(res!= null)
+					{
+						model_resultat.add(res);
+					}
+				}
+				ResultSet rs = getEquivalentClassOfClass(model, sq.getWhere().get(i));
+				if(rs != null)
+				{
+					while(rs.hasNext())
+					{
+						QuerySolution qs = rs.nextSolution();
+						Resource resource = qs.getResource("a");
+						String nom = resource.getLocalName();
+						String ns = resource.getNameSpace();
+						String prefix = Pair.getFirstBySecond(getPrefix(), ns);
+						SelectQuery req = new SelectQuery();
+						req.parseQuery(query.getQuery().replace(sq.getWhere().get(i), prefix+":"+nom));
+						model_resultat.add(execute(req));
+					}
+				}	
+			}
+		}
+
+		individusIdentiques(model_resultat, getOntClassIdentique(model, getEquivalentClass(model_resultat)));
+		
+
+		String selec = "";
+		for(int j=0; j<sq.getSelection().size();j++){
+			selec+=sq.getSelection().get(j)+" ";
+		}
+		
+		Vector<Model> models = new Vector<Model>();
+		for(int i=0;i<sq.getTriplets().size();i++){
+			String str_prefix = "";
+			for(int j=0; j<getPrefix().size(); j++)
+			{
+				str_prefix+="PREFIX " + getPrefix().get(j).getFirst() + ":<" + getPrefix().get(j).getSecond() +">\n";
+			}
+			String q = str_prefix+"DESCRIBE "+selec+" WHERE {"+sq.getTriplets().get(i)+"}";
+			Model m = null;
+			Query qu = null;
+			QueryExecution qexec = null;
+			try
+			{
+				qu = QueryFactory.create(q) ;
+				qexec = QueryExecutionFactory.create(qu, model_resultat) ;
+				m = qexec.execDescribe();
+				models.add(m);
+			}
+			catch (QueryParseException e)
+			{
+//				System.err.println(e.getMessage());
+			}
+		}
+		
+		Model mres = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF);
+		for(int i=0; i<getPrefix().size(); i++)
+		{
+			mres.setNsPrefix(getPrefix().get(i).getFirst(), getPrefix().get(i).getSecond());
+		}
+		if(models.size()>1){
+			for(int i=0; i<models.size()-1; i++){
+				for(int j=i+1; j<models.size();j++){
+					mres.add(models.get(i).intersection(models.get(j)));
+				}
+			}
+		}
+		return mres;
+	}
 	
 }
+
+

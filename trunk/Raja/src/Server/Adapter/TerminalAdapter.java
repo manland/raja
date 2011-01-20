@@ -7,6 +7,7 @@ import Exception.MalformedQueryException;
 import Query.IQuery;
 import Query.Pair;
 import Query.SelectQuery;
+import Query.SelectQuery2;
 import Server.IVisiteur;
 import Server.Translator.ITranslator;
 
@@ -65,6 +66,36 @@ public class TerminalAdapter extends Adapter
 			if(query.getClass().getSimpleName().equals("SelectQuery"))
 			{
 				SelectQuery sq = (SelectQuery)query;
+				Model schema_local = getLocalSchema();
+				if(sq.getWhere().size()==0)
+				{
+					fireGoOut();
+					return translator.exec(query);
+				}
+				else{
+					for(int i=0; i<sq.getWhere().size();i++)
+					{
+						Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), schema_local);
+						if(res_d!=null)
+						{
+							result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE)));
+						}
+						Model res_g = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE).getQuery(), schema_local);
+						if(res_g!=null)
+						{
+							result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.GAUCHE)));
+						}
+						Model res_m = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU).getQuery(), schema_local);
+						if(res_m!=null)
+						{
+							result_model.add(translator.exec(SelectQuery.createSimpleSelectQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.MILIEU)));
+						}
+					}
+				}
+			}
+			else if(query.getClass().getSimpleName().equals("SelectQuery2"))
+			{
+				SelectQuery2 sq = (SelectQuery2)query;
 				Model schema_local = getLocalSchema();
 				if(sq.getWhere().size()==0)
 				{
