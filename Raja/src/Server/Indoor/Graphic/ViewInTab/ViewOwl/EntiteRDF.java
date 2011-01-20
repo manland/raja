@@ -23,10 +23,11 @@ public class EntiteRDF extends JComponent implements MouseListener, MouseMotionL
 	private JLayeredPane pere;
 	private int ancien_z_order;
 	
-	public EntiteRDF(JLayeredPane pere, String nom)
+	public EntiteRDF(JLayeredPane pere, String nom, Color fond)
 	{
 		this.pere = pere;
 		this.nom = nom;
+		this.fond = fond;
 		Dimension dimension = new Dimension(100, 50);
 		setSize(dimension);
 		setPreferredSize(dimension);
@@ -106,13 +107,21 @@ public class EntiteRDF extends JComponent implements MouseListener, MouseMotionL
 	public void setXPlusEnfants(int x)
 	{
 		setX(x);
+		for(ProprieteRDF propriete : proprietes)
+		{
+			propriete.setX(x);
+		}
 	}
 	
 	public void setYPlusEnfants(int y)
 	{
 		setY(y);
+		for(ProprieteRDF propriete : proprietes)
+		{
+			propriete.setY(y);
+		}
 	}
-
+	
 	@Override
 	public void mouseClicked(MouseEvent event) {
 		if(event.getClickCount()>=2) {
@@ -121,7 +130,6 @@ public class EntiteRDF extends JComponent implements MouseListener, MouseMotionL
 		else if(event.getClickCount() == 1 && event.getButton() == 1) {
 			setSelectionne(!isSelectionne());
 		}
-		System.out.println("Click="+event.getClickCount());
 	}
 
 	@Override
@@ -171,10 +179,10 @@ public class EntiteRDF extends JComponent implements MouseListener, MouseMotionL
 		}
 		else if(type_bouton_souris == 3) {//click gauche
 //			if(modele.getX() - (deplacement_x + decalage_x) >= 0) {
-				setXPlusEnfants(deplacement_x + decalage_x);
+				setXPlusEnfants(getX() - deplacement_x - decalage_x);
 //			}
 //			if(modele.getY() - (deplacement_y + decalage_y) >= 0) {
-				setYPlusEnfants(deplacement_y + decalage_y);
+				setYPlusEnfants(getY() - deplacement_y - decalage_y);
 //			}
 		}
 	}

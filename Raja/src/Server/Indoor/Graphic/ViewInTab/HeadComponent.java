@@ -14,6 +14,7 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Server.Server;
@@ -22,6 +23,8 @@ public class HeadComponent extends JPanel
 {
 	private JComboBox vueCombo;
 	private JComboBox queryCombo;
+	private JLabel infos;
+	private JButton refreshBtn;
 	
 	public HeadComponent()
 	{
@@ -35,12 +38,14 @@ public class HeadComponent extends JPanel
 		String[] vueStrings = { "Vue chemin", "Vue modèle", "Vue tableau" };
 		vueCombo = new JComboBox(vueStrings);
 		add(vueCombo);
-		JButton refreshBtn = new JButton("Rafraichir");
+		refreshBtn = new JButton("Rafraichir");
 		add(refreshBtn);
 		queryCombo = new JComboBox(parseForQuery("bin/tests.txt"));
 		queryCombo.setPreferredSize(new Dimension(700, 30));
 		queryCombo.setEditable(true);
 		add(queryCombo);
+		infos = new JLabel();
+		add(infos);
 	}
 	
 	private Vector<String> parseForQuery(String file)
@@ -97,5 +102,15 @@ public class HeadComponent extends JPanel
 	public JComboBox getVueCombo()
 	{
 		return vueCombo;
+	}
+	
+	public JButton getBtnRefresh()
+	{
+		return refreshBtn;
+	}
+	
+	public void setInfos(String info)
+	{
+		infos.setText(info);
 	}
 }

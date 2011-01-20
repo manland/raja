@@ -104,10 +104,11 @@ public class Server {
 		{
 			m.add(res);
 		}
-		Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), (SelectQuery)req).replace("SELECT", "DESCRIBE")) ;
-		QueryExecution qexec = QueryExecutionFactory.create(q,m.getBaseModel()) ;
+//		Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), (SelectQuery)req).replace("SELECT", "DESCRIBE")) ;
+//		QueryExecution qexec = QueryExecutionFactory.create(q,m.getBaseModel()) ;
 		fireFinish(req);
-		return qexec.execDescribe() ;
+//		return qexec.execDescribe() ;
+		return res;
 	}
 
 	/**
@@ -230,6 +231,11 @@ public class Server {
 	public String getConfigFile()
 	{
 		return configFile;
+	}
+	
+	public Vector<Pair<String, String>> getPrefix()
+	{
+		return mediatorLike.getPrefix();
 	}
 	
 	/**

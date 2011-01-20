@@ -3,6 +3,7 @@ package Server.Indoor.Graphic.ViewInTab.ViewOwl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Vector;
 
 import javax.swing.JLayeredPane;
@@ -20,11 +21,14 @@ public class ViewOwlComponent extends JLayeredPane {
 
 	private HashMap<String, EntiteRDF> entites;
 	private HashMap<String, Vector<ProprieteRDF>> proprietes;
+	private HashMap<String, Color> uriColors;
 	
 	public ViewOwlComponent()
 	{
 		super();
 		build();
+		//on garde les couleurs pour toutes les requêtes d'une même tab
+		uriColors = new HashMap<String, Color>();
 	}
 	
 	private void build()
@@ -53,25 +57,61 @@ public class ViewOwlComponent extends JLayeredPane {
 			o = rs.nextSolution();
 			EntiteRDF entitea = null;
 			String uri_entitea = o.get("a").toString();
+			String prefix_a = "";
 			if(entites.containsKey(uri_entitea))
 			{
 				entitea = entites.get(uri_entitea);
 			}
 			else
 			{
-				entitea = new EntiteRDF(this, uri_entitea);
+				Color fond = Color.white;
+				if(uri_entitea.contains("#"))
+				{
+					prefix_a = uri_entitea.split("#")[0];
+					if(uriColors.containsKey(prefix_a))
+					{
+						fond = uriColors.get(prefix_a);
+					}
+					else
+					{
+						Random rand = new Random();
+						fond = new Color(rand.nextInt(256), 
+		                         rand.nextInt(256),
+		                         rand.nextInt(256));
+						uriColors.put(prefix_a, fond);
+					}
+				}
+				entitea = new EntiteRDF(this, uri_entitea, fond);
 				entites.put(uri_entitea, entitea);
 				add(entitea);
 			}
 			EntiteRDF entitec = null;
 			String uri_entitec = o.get("c").toString();
+			String prefix_c = "";
 			if(entites.containsKey(uri_entitec))
 			{
 				entitec = entites.get(uri_entitec);
 			}
 			else
 			{
-				entitec = new EntiteRDF(this, uri_entitec);
+				Color fond = Color.white;
+				if(uri_entitec.contains("#"))
+				{
+					prefix_c = uri_entitec.split("#")[0];
+					if(uriColors.containsKey(prefix_c))
+					{
+						fond = uriColors.get(prefix_c);
+					}
+					else
+					{
+						Random rand = new Random();
+						fond = new Color(rand.nextInt(256), 
+		                         rand.nextInt(256),
+		                         rand.nextInt(256));
+						uriColors.put(prefix_c, fond);
+					}
+				}
+				entitec = new EntiteRDF(this, uri_entitec, fond);
 				entites.put(uri_entitec, entitec);
 				add(entitec);
 			}
@@ -79,6 +119,10 @@ public class ViewOwlComponent extends JLayeredPane {
 			{
 				String uri_entiteb = o.get("b").toString();
 				ProprieteRDF entiteb = new ProprieteRDF(uri_entiteb, entitea, entitec);
+				if(prefix_a.equals(prefix_c))
+				{
+					entiteb.setColor(uriColors.get(prefix_c));
+				}
 				if(proprietes.containsKey(uri_entiteb))
 				{
 					proprietes.get(uri_entiteb).add(entiteb);
@@ -137,7 +181,8 @@ public class ViewOwlComponent extends JLayeredPane {
 		setPreferredSize(dimension);
 		setSize(dimension);
 		setMinimumSize(dimension);
-
+		validate();
+		repaint();
 	}
 	
 	private Vector<EntiteRDF> getEntitesByNbPropriete()
@@ -159,23 +204,7 @@ public class ViewOwlComponent extends JLayeredPane {
 				res.add(entite);
 			}
 		}
-		for(int j=0; j<res.size(); j++)
-		{
-			System.out.println(res.get(j).getProprietes().size());
-		}
 		return res;
-	}
-	
-	public void dessine2(Model model)
-	{
-		removeAll();
-		NodeIterator ite = model.listObjects();
-		while(ite.hasNext())
-		{
-			System.out.println(ite.nextNode());
-		}
-		
-		
 	}
 	
 	public void lignesDessous()
