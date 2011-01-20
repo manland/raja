@@ -12,8 +12,9 @@ public class SelectQuery extends Query
 {
 
 	private String query; 
-	private Vector<String> selection = new Vector<String>();
-	private Vector<String> where = new Vector<String>();
+	protected Vector<String> selection = new Vector<String>();
+	protected Vector<String> where = new Vector<String>();
+	protected Vector<String> triplets = new Vector<String>();
 
 	public static final String DROITE = "droite";
 	public static final String GAUCHE = "gauche";
@@ -26,6 +27,7 @@ public class SelectQuery extends Query
 	{
 		where.removeAllElements();
 		selection.removeAllElements();
+		triplets.removeAllElements();
 		String req = "^SELECT ([\\?[\\w]+ ]+) WHERE ((\\{+((\\?[\\w]+ ?|[\\w]+:[\\w]+ ?){3} ?\\.? ?)+ ?\\}+( UNION )?)+)";
 
 		Pattern pattern = Pattern.compile(req);
@@ -42,7 +44,14 @@ public class SelectQuery extends Query
 				}
 				else
 				{
-					// on remplace les accolades par des espaces : 
+					// on rempli le vecteur de triplet en splitant par point :
+					String new_re = req_where.replaceAll("\\{|\\}|UNION|","");
+					
+					String [] tab_trip = new_re.split(" \\. ");
+					for(int i=0;i<tab_trip.length; i++){
+						triplets.add(tab_trip[i]);
+					}
+					// on remplace les accolades par des espaces :
 					String new_req = req_where.replaceAll("\\{|\\}|UNION|\\.", " ");
 					String req_where_final = new_req.replaceAll(" +"," ");
 					String [] tab_where = req_where_final.split(" ");
@@ -66,7 +75,7 @@ public class SelectQuery extends Query
 		}
 		else
 		{
-			throw new MalformedQueryException(query, "Requete mal formée requete : ");
+			throw new MalformedQueryException(query, "Requete mal formée requete dans Select");
 		}
 	}
 
@@ -184,7 +193,7 @@ public class SelectQuery extends Query
 			str_prefix+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
 		}
 
-		String fin = query.getQuery().substring(6);
+		String fin = query.getQuery().substring(7);
 		String str = str_prefix + "DESCRIBE "+fin;
 		sq.setQuery(str);
 		return sq;
@@ -192,11 +201,28 @@ public class SelectQuery extends Query
 
 	public static String getQueryWithPrefix(Vector<Pair<String, String>> prefix, SelectQuery q)
 	{
+//		String str_prefix = "";
+//		for(int i=0; i<prefix.size();i++)
+//		{					
+//			str_prefix+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
+//		}
+//		return str_prefix+q.getQuery();
+		
+		SelectQuery sq = new SelectQuery();
 		String str_prefix = "";
 		for(int i=0; i<prefix.size();i++)
 		{					
 			str_prefix+="PREFIX " + prefix.get(i).getFirst() + ":<" + prefix.get(i).getSecond() +">\n";
 		}
-		return str_prefix+q.getQuery();
+
+		String fin = q.getQuery().substring(7);
+		String str = str_prefix + "SELECT "+fin;
+		sq.setQuery(str);
+		return sq.getQuery();
+		
+	}
+	
+	public Vector<String> getTriplets(){
+		return triplets;
 	}
 }
