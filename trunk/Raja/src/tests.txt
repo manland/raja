@@ -1,20 +1,36 @@
 #SELECT ?a ?b ?c WHERE {?a ?b ?c}
+#Donne pour un pays d'europe, les maladies et l'année du recensement
+#SELECT ?nomMaladie ?annee WHERE {?idMaladie ?dansPays recensementEurope:France . ?idMaladie recensementEurope:RM_LIBELLE ?nomMaladie . ?idMaladie recensementEurope:RM_ID_RECENSEMENT ?idRec . ?idRec recensementEurope:RR_ANNEE ?annee}
 #
-#Donne pour un pays, les maladies et l'année du recensement
-SELECT ?nomMaladie ?annee WHERE {?idMaladie ?dansPays recensementEurope:France . ?idMaladie recensementEurope:RM_LIBELLE ?nomMaladie . ?idMaladie recensementEurope:RM_ID_RECENSEMENT ?idRec . ?idRec recensementEurope:RR_ANNEE ?annee}
+#Donne pour un pays d'europe de l'est, les maladies et l'année du recensement
+#SELECT ?nomMaladie ?annee WHERE {?idMaladie ?dansPays recensementEastEurope:Albanie . ?idMaladie recensementEastEurope:RM_LIBELLE ?nomMaladie . ?idMaladie recensementEastEurope:RM_ID_RECENSEMENT ?idRec . ?idRec recensementEastEurope:RR_ANNEE ?annee}
+#
+#Donne pour un pays d'europe, le virus concerné, et la souche :
+#SELECT ?nomMaladie ?virus ?souche WHERE {?nomMaladie ?b recensement:MALADIENOM . ?souche maladie:ESTORIGINEDE ?nomMaladie . ?idMaladie ?dansPays recensementEurope:France . ?idMaladie recensementEurope:RM_LIBELLE ?nomMaladie  . ?virus maladie:ESTFACTEURDE ?souche}
+#
+#Donne pour un pays d'europe de l'est, le virus concerné, et la souche :
+#SELECT ?nomMaladie ?virus ?souche WHERE {?nomMaladie ?b recensement:MALADIENOM . ?souche maladie:ESTORIGINEDE ?nomMaladie . ?idMaladie ?dansPays recensementEastEurope:Albanie . ?idMaladie recensementEastEurope:RM_LIBELLE ?nomMaladie  . ?virus maladie:ESTFACTEURDE ?souche}
+#
+# Requete select2, donne les virus et leur nom : 
+#SELECT2 ?virus ?nom WHERE {?virus ?b virus:VIRUS . ?virus virus:VV_NOMV ?nom}
+# pour toutes les maladies de recensement, donne leur virus et leur mode de transmission :
+SELECT ?nomMaladie ?virus ?modeT WHERE {?nomMaladie rdf:type recensement:MALADIENOM . ?souche maladie:ESTORIGINEDE ?nomMaladie . ?virus maladie:ESTFACTEURDE ?souche . ?modeT virus:VIRUS_TRANSMISSION ?virus}
+#######SELECT ?maladie ?nom ?id WHERE {?maladie rdf:type recensement:MALADIENOM . ?id recensementEurope:RM_LIBELLE ?maladie}
+################################################################
+# Donne pour chaque virus son mode de transmission
+#SELECT ?virus ?modeT WHERE {?virus virus:VIRUS_TRANSMISSION ?modeT}
+#
+# Pour donnes les maladies virales : 
+#SELECT ?maladie WHERE {?maladie rdf:type maladie:MALADIEVIRALE}
 #
 #Tous les recencements pour une maladie
-SELECT ?idRec ?annee WHERE {?idRec rdf:type recensement:RECENSEMENT . ?idRec recensementEurope:RR_ANNEE ?annee}
-#
-#INSERT INTO receurope.RECENSEMENT VALUES(159, 45, 2086)
-#INSERT INTO TRANSMISSION VALUES('jjjjjj')
-#
-# renvoit le nom d'une maladie, son pays, le virus responsable, son mode de transmission
-SELECT ?nomMal ?pays ?virus ?modeT WHERE {?nomMal ?b recensement:MALADIENOM . ?idMal recensement:RM_LIBELLE ?nomMal . ?idMal recensement:RM_LIBELLE_PAYS ?pays . ?souche maladie:ESTORIGINEDE ?nomMal . ?virus maladie:ESTFACTEURDE ?souche . ?virus virus:VIRUS_TRANSMISSION ?modeT}
+#SELECT ?idRec ?annee WHERE {?idRec rdf:type recensement:RECENSEMENT . ?idRec recensementEurope:RR_ANNEE ?annee}
 #
 #Pour chaque maladie, donne son virus et sa souche
-SELECT ?souche ?nomMal ?virus WHERE {?souche maladie:ESTORIGINEDE ?nomMal . ?virus maladie:ESTFACTEURDE ?souche}
+#SELECT ?souche ?nomMal ?virus WHERE {?souche maladie:ESTORIGINEDE ?nomMal . ?virus maladie:ESTFACTEURDE ?souche}
 #
-# Pour toutes les maladies, le pays dans lequel elles sont
-SELECT ?pays ?mal WHERE {?idMal recensement:RM_LIBELLE_PAYS ?pays . ?idMal recensement:RM_LIBELLE ?mal}
-SELECT ?a WHERE {?a rdf:type recensement:ZONE_OMS}
+# Pour toutes les maladies, le pays dans lequel elles sont, en europe
+#SELECT ?pays ?mal WHERE {?idMal recensementEurope:RM_LIBELLE_PAYS ?pays . ?idMal recensementEurope:RM_LIBELLE ?mal}
+#
+# Pour toutes les maladies, le pays dans lequel elles sont, en europe de l'est
+#SELECT ?pays ?mal WHERE {?idMal recensementEastEurope:RM_LIBELLE_PAYS ?pays . ?idMal recensementEastEurope:RM_LIBELLE ?mal}
