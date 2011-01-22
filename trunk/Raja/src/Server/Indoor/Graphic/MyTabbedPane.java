@@ -24,7 +24,7 @@ public class MyTabbedPane extends JTabbedPane
 		super();
 		try 
 		{
-			Server.getInstance().init("bin/config.xml", null);
+			Server.getInstance().init("ConfigReseauInterne/configAvecAudrey.xml", null);
 		} 
 		catch (DataBaseNotAccessibleException e) 
 		{
