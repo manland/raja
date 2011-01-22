@@ -17,15 +17,23 @@ public class VueTranslator extends Vue implements IListenerTranslator {
 	@Override
 	public void goIn(ITranslator adapter) 
 	{
-		isGoIn = true;
-		repaint();
+		if(isRunning)
+		{
+			isGoIn = true;
+			nbAller++;
+			repaint();
+		}
 	}
 
 	@Override
 	public void goOut(ITranslator adapter) 
 	{
-		isGoOut = true;
-		repaint();
+		if(isRunning)
+		{
+			isGoOut = true;
+			nbRetour++;
+			repaint();
+		}
 	}
 
 }

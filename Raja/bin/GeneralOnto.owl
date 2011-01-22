@@ -3,14 +3,58 @@
     xmlns:maladie="http://www.lirmm.fr/maladie#"
     xmlns:virus="http://www.lirmm.fr/virus#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:map="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#"
     xmlns:recensement="http://www.lirmm.fr/recensement#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
+    xmlns:recensementEastEurope="http://www.lirmm.fr/recensementEastEurope#"
+    xmlns:recensementEurope="http://www.lirmm.fr/recensementEurope#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:d2rq="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#" > 
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RM_POPULATION">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
+    <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#MALADIE"/>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEastEurope#RM_POPULATION"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@MALADIE.RM_POPULATION@@</d2rq:uriPattern>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEurope#RM_POPULATION"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@MALADIE.RM_POPULATION@@</d2rq:uriPattern>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensement#PAYS">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIEBACTERIENNE">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#MALADIE"/>
     <rdfs:subClassOf rdf:nodeID="A0"/>
     <rdfs:subClassOf rdf:nodeID="A1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#PAYS">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#PAYS"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#PAYS">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#ClassMap"/>
+    <d2rq:dataStorage rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#database"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@PAYS.RP_LIBELLE|urlify@@</d2rq:uriPattern>
+    <d2rq:class rdf:resource="http://www.lirmm.fr/recensementEastEurope#PAYS"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@PAYS.RP_LIBELLE|urlify@@</d2rq:uriPattern>
+    <d2rq:class rdf:resource="http://www.lirmm.fr/recensementEurope#PAYS"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#MALADIE">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#MALADIE"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.lirmm.fr/maladie#APRORIGINE"/>
+    <owl:someValuesFrom rdf:resource="http://www.lirmm.fr/virus#VIRUS"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RM_ID_RECENSEMENT">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
+    <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#MALADIE"/>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEastEurope#RM_ID_RECENSEMENT"/>
+    <d2rq:refersToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RECENSEMENT"/>
+    <d2rq:join>MALADIE.RM_ID_RECENSEMENT = RECENSEMENT.RR_ID</d2rq:join>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEurope#RM_ID_RECENSEMENT"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIEVIRALE">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -18,13 +62,9 @@
     <rdfs:subClassOf rdf:nodeID="A2"/>
     <rdfs:subClassOf rdf:nodeID="A1"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A0">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:onProperty rdf:resource="http://www.lirmm.fr/maladie#APRORIGINE"/>
-    <owl:someValuesFrom rdf:resource="http://www.lirmm.fr/virus#BACTERIE"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/maladie#MALADIE">
-    <owl:equivalentClass rdf:resource="http://www.lirmm.fr/recensement#MALADIE"/>
+    <owl:equivalentClass rdf:resource="http://www.lirmm.fr/recensement#MALADIENOM"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#MALADIENOM"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/virus#BACTERIE">
@@ -32,36 +72,173 @@
     <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#FACTEURBACTERIENS"/>
     <owl:equivalentClass rdf:resource="http://www.lirmm.fr/maladie#FACTEURBACTERIENS"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A2">
+  <rdf:Description rdf:nodeID="A0">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://www.lirmm.fr/maladie#APRORIGINE"/>
-    <owl:someValuesFrom rdf:resource="http://www.lirmm.fr/virus#VIRUS"/>
+    <owl:someValuesFrom rdf:resource="http://www.lirmm.fr/virus#BACTERIE"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RECENSEMENT">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#ClassMap"/>
+    <d2rq:dataStorage rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#database"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@RECENSEMENT.RR_ID@@</d2rq:uriPattern>
+    <d2rq:class rdf:resource="http://www.lirmm.fr/recensementEastEurope#RECENSEMENT"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@RECENSEMENT.RR_ID@@</d2rq:uriPattern>
+    <d2rq:class rdf:resource="http://www.lirmm.fr/recensementEurope#RECENSEMENT"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#APRORIGINE">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RZ_POPULATION">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
+    <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#ZONE_OMS"/>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEastEurope#RZ_POPULATION"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@ZONE_OMS.RZ_POPULATION@@</d2rq:uriPattern>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEurope#RZ_POPULATION"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@ZONE_OMS.RZ_POPULATION@@</d2rq:uriPattern>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#MALADIENOM">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#MALADIENOM"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#FACTEURVIRAUX">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#FACTEUR"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#ZONE_OMS">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#ZONE_OMS"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#FACTEUR">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RP_POPULATION">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
+    <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#PAYS"/>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEastEurope#RP_POPULATION"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@PAYS.RP_POPULATION@@</d2rq:uriPattern>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEurope#RP_POPULATION"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@PAYS.RP_POPULATION@@</d2rq:uriPattern>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEurope#RECENSEMENT">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#RECENSEMENT"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#ZONE_OMS">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#ClassMap"/>
+    <d2rq:dataStorage rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#database"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@ZONE_OMS.RZ_LIBELLE|urlify@@</d2rq:uriPattern>
+    <d2rq:class rdf:resource="http://www.lirmm.fr/recensementEastEurope#ZONE_OMS"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@ZONE_OMS.RZ_LIBELLE|urlify@@</d2rq:uriPattern>
+    <d2rq:class rdf:resource="http://www.lirmm.fr/recensementEurope#ZONE_OMS"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEastEurope#PAYS">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#PAYS"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEastEurope#MALADIE">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#MALADIE"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensement#ZONE_OMS">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensement#RECENSEMENT">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEastEurope#ZONE_OMS">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#ZONE_OMS"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#MALADIENOM">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#ClassMap"/>
+    <d2rq:dataStorage rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#database"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@MALADIE.RM_LIBELLE|urlify@@</d2rq:uriPattern>
+    <d2rq:class rdf:resource="http://www.lirmm.fr/recensementEastEurope#MALADIENOM"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@MALADIE.RM_LIBELLE|urlify@@</d2rq:uriPattern>
+    <d2rq:class rdf:resource="http://www.lirmm.fr/recensementEurope#MALADIENOM"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEastEurope#RECENSEMENT">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#RECENSEMENT"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#MALADIE">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#ClassMap"/>
+    <d2rq:dataStorage rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#database"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@MALADIE.RM_ID@@</d2rq:uriPattern>
+    <d2rq:class rdf:resource="http://www.lirmm.fr/recensementEastEurope#MALADIE"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@MALADIE.RM_ID@@</d2rq:uriPattern>
+    <d2rq:class rdf:resource="http://www.lirmm.fr/recensementEurope#MALADIE"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/recensement#MALADIE">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A1">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:onProperty rdf:resource="http://www.lirmm.fr/maladie#APRORIGINE"/>
-    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/virus#VIRUS">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#FACTEURVIRAUX"/>
     <owl:equivalentClass rdf:resource="http://www.lirmm.fr/maladie#FACTEURVIRAUX"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#APRORIGINE">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  <rdf:Description rdf:nodeID="A1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.lirmm.fr/maladie#APRORIGINE"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#FACTEURVIRAUX">
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensementEastEurope#MALADIENOM">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#FACTEUR"/>
+    <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/recensement#MALADIENOM"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#database">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#Database"/>
+    <d2rq:jdbcDriver>com.mysql.jdbc.Driver</d2rq:jdbcDriver>
+    <d2rq:jdbcDSN>jdbc:mysql://192.168.0.15/receasteurope</d2rq:jdbcDSN>
+    <d2rq:username>root</d2rq:username>
+    <d2rq:password>root</d2rq:password>
+    <d2rq:jdbcDSN>jdbc:mysql://192.168.0.15/receurope</d2rq:jdbcDSN>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.lirmm.fr/maladie#FACTEURBACTERIENS">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://www.lirmm.fr/maladie#FACTEUR"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.lirmm.fr/maladie#FACTEUR">
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RR_NBRE">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
+    <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RECENSEMENT"/>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEastEurope#RR_NBRE"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@RECENSEMENT.RR_NBRE@@</d2rq:uriPattern>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEurope#RR_NBRE"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@RECENSEMENT.RR_NBRE@@</d2rq:uriPattern>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RM_LIBELLE">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
+    <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#MALADIE"/>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEastEurope#RM_LIBELLE"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@MALADIE.RM_LIBELLE|urlify@@</d2rq:uriPattern>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEurope#RM_LIBELLE"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@MALADIE.RM_LIBELLE|urlify@@</d2rq:uriPattern>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RR_ANNEE">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
+    <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RECENSEMENT"/>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEastEurope#RR_ANNEE"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEastEurope#@@RECENSEMENT.RR_ANNEE@@</d2rq:uriPattern>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEurope#RR_ANNEE"/>
+    <d2rq:uriPattern>http://www.lirmm.fr/recensementEurope#@@RECENSEMENT.RR_ANNEE@@</d2rq:uriPattern>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.lirmm.fr/recensement#MALADIENOM">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RP_LIBELLE_ZO">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
+    <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#PAYS"/>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEastEurope#RP_LIBELLE_ZO"/>
+    <d2rq:refersToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#ZONE_OMS"/>
+    <d2rq:join>PAYS.RP_LIBELLE_ZO = ZONE_OMS.RZ_LIBELLE</d2rq:join>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEurope#RP_LIBELLE_ZO"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#RM_LIBELLE_PAYS">
+    <rdf:type rdf:resource="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#PropertyBridge"/>
+    <d2rq:belongsToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#MALADIE"/>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEastEurope#RM_LIBELLE_PAYS"/>
+    <d2rq:refersToClassMap rdf:resource="file:////home/audrey/Master/Master2/Semestre1/GestionDonnes/workspace/ProjetModelesOntologiques/fm.n3#PAYS"/>
+    <d2rq:join>MALADIE.RM_LIBELLE_PAYS = PAYS.RP_LIBELLE</d2rq:join>
+    <d2rq:property rdf:resource="http://www.lirmm.fr/recensementEurope#RM_LIBELLE_PAYS"/>
   </rdf:Description>
 </rdf:RDF>

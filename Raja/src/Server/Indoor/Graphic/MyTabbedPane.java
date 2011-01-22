@@ -24,11 +24,11 @@ public class MyTabbedPane extends JTabbedPane
 		super();
 		try 
 		{
-			Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt"));
+			Server.getInstance().init("bin/config.xml", null);
 		} 
 		catch (DataBaseNotAccessibleException e) 
 		{
-			JOptionPane.showMessageDialog(this, 
+			JOptionPane.showMessageDialog(this,
 				    e.getMessage(),
 				    e.getClass().getSimpleName(),
 				    JOptionPane.ERROR_MESSAGE);

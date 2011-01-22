@@ -41,3 +41,8 @@
 #
 # Pour toutes les maladies, le pays dans lequel elles sont, en europe de l'est
 #SELECT ?pays ?mal WHERE {?idMal recensementEastEurope:RM_LIBELLE_PAYS ?pays . ?idMal recensementEastEurope:RM_LIBELLE ?mal}
+
+INSERT INTO receurope.RECENSEMENT VALUES(12, 1, 2010)
+INSERT INTO receurope.MALADIE VALUES(12, 'Grippe', 400, 12, 'Espagne')
+DELETE FROM receurope.MALADIE WHERE RM_ID=12;
+DELETE FROM receurope.RECENSEMENT WHERE RR_ID=12;

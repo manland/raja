@@ -76,7 +76,10 @@ public abstract class Translator implements ITranslator
 				res = ModelFactory.createDefaultModel();
 			}
 		}
-		fireGoOut();
+		if(res != null)
+		{
+			fireGoOut();
+		}
 		return res;
 	}
 

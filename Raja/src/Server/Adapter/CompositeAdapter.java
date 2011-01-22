@@ -96,7 +96,6 @@ public class CompositeAdapter extends Adapter
 			fireGoOut();
 			return executeInsertAndUpdate(query);
 		}
-		fireGoOut();
 		return null;
 	}
 
@@ -214,8 +213,8 @@ public class CompositeAdapter extends Adapter
 						Resource t = qs.getResource("b");
 						if(db.getLocalName().equals(baseName) && t.getLocalName().equals(nom_table))
 						{
-							subAdapters.get(j).execute(query);
 							ok=true;
+							return subAdapters.get(j).execute(query);
 						}
 					}
 				}
@@ -230,8 +229,8 @@ public class CompositeAdapter extends Adapter
 						Resource rsc = qs.getResource("b");
 						if(rsc.getLocalName().equals(nom_table))
 						{
-							subAdapters.get(j).execute(query);
 							ok2=true;
+							return subAdapters.get(j).execute(query);
 						}
 					}
 				}

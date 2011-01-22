@@ -18,7 +18,9 @@ public class Vue extends JComponent {
 	protected Color retour = Color.green;
 	protected boolean isGoIn = false;
 	protected boolean isGoOut = false;
-	
+	protected int nbAller;
+	protected int nbRetour;
+	protected boolean isRunning;
 	public Vue(String nom, int x, int y)
 	{
 		this.nom = nom;
@@ -30,6 +32,9 @@ public class Vue extends JComponent {
 		setX(x);
 		setY(y);
 		setLocation(x, y);
+		nbAller = 0;
+		nbRetour = 0;
+		isRunning = false;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -57,6 +62,8 @@ public class Vue extends JComponent {
 			a_dessiner = a_dessiner.substring(0, 8) + "...";
 		}
 		g2d.drawString(a_dessiner, (getWidth()-(g2d.getFontMetrics().stringWidth(a_dessiner)))/2, (getHeight()/2)+(g2d.getFontMetrics().getHeight()/8));
+		g2d.drawString(""+nbAller, (getWidth()-(g2d.getFontMetrics().stringWidth(""+nbAller)))/4, (int)((getHeight()/4)*3.4)+(g2d.getFontMetrics().getHeight()/8));
+		g2d.drawString(""+nbRetour, ((getWidth()-(g2d.getFontMetrics().stringWidth(""+nbRetour)))/4)*3, (int)((getHeight()/4)*3.4)+(g2d.getFontMetrics().getHeight()/8));
 	}
 	
 	public void setX(int x) {
@@ -71,6 +78,14 @@ public class Vue extends JComponent {
 	{
 		isGoIn = false;
 		isGoOut = false;
+		nbAller = 0;
+		nbRetour = 0;
+		repaint();
+	}
+	
+	public void setRunning(boolean run)
+	{
+		isRunning = run;
 		repaint();
 	}
 

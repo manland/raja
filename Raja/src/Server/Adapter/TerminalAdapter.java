@@ -67,12 +67,13 @@ public class TerminalAdapter extends Adapter
 			{
 				SelectQuery sq = (SelectQuery)query;
 				Model schema_local = getLocalSchema();
-				if(sq.getWhere().size()==0)
+				if(sq.getWhere().size()==0)//pour ?a ?b ?c
 				{
 					fireGoOut();
 					return translator.exec(query);
 				}
-				else{
+				else
+				{
 					for(int i=0; i<sq.getWhere().size();i++)
 					{
 						Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), schema_local);
@@ -97,12 +98,13 @@ public class TerminalAdapter extends Adapter
 			{
 				SelectQuery2 sq = (SelectQuery2)query;
 				Model schema_local = getLocalSchema();
-				if(sq.getWhere().size()==0)
+				if(sq.getWhere().size()==0)//pour ?a ?b ?c
 				{
 					fireGoOut();
 					return translator.exec(query);
 				}
-				else{
+				else
+				{
 					for(int i=0; i<sq.getWhere().size();i++)
 					{
 						Model res_d = execQueryDescribe(SelectQuery.createDescribeQuery(getPrefix(), sq.getWhere().get(i), SelectQuery.DROITE).getQuery(), schema_local);
@@ -125,12 +127,22 @@ public class TerminalAdapter extends Adapter
 			}
 			else// insertQuery, DeleteQuery
 			{	
-				translator.exec(query);
+				Model model = translator.exec(query);
+				if(model != null)
+				{
+					fireGoOut();
+					return model;
+				}
+				else
+				{
+					return null;
+				}
 			}
 		}
 		catch (QueryParseException e)
 		{
 			System.err.println(e.getMessage() + " :: prefix=" + getPrefix());
+			return null;
 		}
 		fireGoOut();
 		return result_model;

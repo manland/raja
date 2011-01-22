@@ -13,19 +13,27 @@ public class VueTerminalAdapter extends Vue implements IListenerAdapter {
 		texte = Color.black;
 		bordure = Color.black;
 	}
-	
+
 	@Override
 	public void goIn(IAdapter adapter) 
 	{
-		isGoIn = true;
-		repaint();
+		if(isRunning)
+		{
+			isGoIn = true;
+			nbAller++;
+			repaint();
+		}
 	}
 
 	@Override
 	public void goOut(IAdapter adapter) 
 	{
-		isGoOut = true;
-		repaint();
+		if(isRunning)
+		{
+			isGoOut = true;
+			nbRetour++;
+			repaint();
+		}
 	}
 
 }
