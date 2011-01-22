@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import Query.Pair;
 import Server.Server;
 
+import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -44,7 +45,8 @@ public class ViewTabComponent extends JPanel {
 			ma_requete = ma_requete+"PREFIX "+prefix.get(i).getFirst()+":<"+prefix.get(i).getSecond()+">\n";
 		}
 		ma_requete = ma_requete + requete;
-		Query q = QueryFactory.create(ma_requete.replace("SELECT2", "SELECT"));
+		ma_requete = ma_requete.replace("SELECT2", "SELECT");
+		Query q = QueryFactory.create(ma_requete);
 		QueryExecution qexec = QueryExecutionFactory.create(q,model);
 		ResultSet rs = qexec.execSelect();
 		List var = rs.getResultVars();
@@ -52,6 +54,7 @@ public class ViewTabComponent extends JPanel {
 		Vector<Vector<String>> rowData = new Vector<Vector<String>>();
 		while(rs.hasNext())
 		{
+			System.out.println("lllaaa");
 			solution = rs.nextSolution();
 			Vector<String> data = new Vector<String>();
 			for(int i=0; i<var.size(); i++)

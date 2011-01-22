@@ -1,6 +1,6 @@
 @prefix map: <file:fm.n3#> .
 @prefix db: <> .
-@prefix r: <http://www.lirmm.fr/recensement#> .
+@prefix r: <http://www.lirmm.fr/recensementEastEurope#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -18,46 +18,46 @@ d2rq:password "root";
 # Table RECENSEMENT :
 map:RECENSEMENT a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@RECENSEMENT.RR_ID@@";
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@RECENSEMENT.RR_ID@@";
 	d2rq:class r:RECENSEMENT;
 	.
 	
 map:RR_NBRE a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:RECENSEMENT;
 	d2rq:property r:RR_NBRE;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@RECENSEMENT.RR_NBRE@@";
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@RECENSEMENT.RR_NBRE@@";
 	.
 	
 map:RR_ANNEE a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:RECENSEMENT;
 	d2rq:property r:RR_ANNEE;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@RECENSEMENT.RR_ANNEE@@";
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@RECENSEMENT.RR_ANNEE@@";
 	.
 	
 # Table ZONE_OMS :
 map:ZONE_OMS a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@ZONE_OMS.RZ_LIBELLE|urlify@@";
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@ZONE_OMS.RZ_LIBELLE|urlify@@";
 	d2rq:class r:ZONE_OMS;
 	.
 	
 map:RZ_POPULATION a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:ZONE_OMS;
 	d2rq:property r:RZ_POPULATION;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@ZONE_OMS.RZ_POPULATION@@";
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@ZONE_OMS.RZ_POPULATION@@";
 	.	
 	
 # Table PAYS :
 map:PAYS a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@PAYS.RP_LIBELLE|urlify@@";
-	d2rq:class r:ZONE_OMS;
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@PAYS.RP_LIBELLE|urlify@@";
+	d2rq:class r:PAYS;
 	.
 
 map:RP_POPULATION a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:PAYS;
 	d2rq:property r:RP_POPULATION;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@PAYS.RP_POPULATION@@";
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@PAYS.RP_POPULATION@@";
 	.	
 	
 map:RP_LIBELLE_ZO a d2rq:PropertyBridge;
@@ -70,20 +70,20 @@ map:RP_LIBELLE_ZO a d2rq:PropertyBridge;
 # Table MALADIE :
 map:MALADIE a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@MALADIE.RM_ID@@";
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@MALADIE.RM_ID@@";
 	d2rq:class r:MALADIE;
 	.
 
 map:RM_LIBELLE a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:MALADIE;
 	d2rq:property r:RM_LIBELLE;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@MALADIE.RM_LIBELLE|urlify@@";
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@MALADIE.RM_LIBELLE|urlify@@";
 	.
 
 map:RM_POPULATION a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:MALADIE;
 	d2rq:property r:RM_POPULATION;
-	d2rq:uriPattern "http://www.lirmm.fr/recensement#@@MALADIE.RM_POPULATION@@";
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@MALADIE.RM_POPULATION@@";
 	.
 
 map:RM_ID_RECENSEMENT a d2rq:PropertyBridge;
@@ -100,3 +100,8 @@ map:RM_LIBELLE_PAYS a d2rq:PropertyBridge;
 	d2rq:join "MALADIE.RM_LIBELLE_PAYS = PAYS.RP_LIBELLE";
 	.
 
+map:MALADIENOM a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "http://www.lirmm.fr/recensementEastEurope#@@MALADIE.RM_LIBELLE|urlify@@";
+	d2rq:class r:MALADIENOM;
+	.

@@ -103,12 +103,9 @@ public class Server {
 		if(res != null)
 		{
 			m.add(res);
+			fireFinish(req);
 		}
-//		Query q = QueryFactory.create(SelectQuery.getQueryWithPrefix(mediatorLike.getPrefix(), (SelectQuery)req).replace("SELECT", "DESCRIBE")) ;
-//		QueryExecution qexec = QueryExecutionFactory.create(q,m.getBaseModel()) ;
-		fireFinish(req);
-//		return qexec.execDescribe() ;
-		return res;
+		return m;
 	}
 
 	/**

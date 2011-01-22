@@ -53,12 +53,6 @@ public class ViewServerComponent extends JLayeredPane implements IVisiteur
 		x = 0;
 		y = 50;
 		
-		for(Component compo : getComponents())
-		{
-			Vue v = (Vue)compo;
-			v.clean();
-		}
-		
 		positions = new HashMap<IAdapter, Pair<Integer, Integer>>();
 		positionsTranslator = new HashMap<ITranslator, Pair<Integer,Integer>>();
 		
@@ -102,6 +96,26 @@ public class ViewServerComponent extends JLayeredPane implements IVisiteur
 	
 	private HashMap<IAdapter, Pair<Integer, Integer>> positions;
 	private HashMap<ITranslator, Pair<Integer, Integer>> positionsTranslator;
+	
+	public void redessine()
+	{
+		for(Component compo : getComponents())
+		{
+			Vue v = (Vue)compo;
+			v.setRunning(true);
+			v.clean();
+		}
+	}
+	
+	public void stopDessin()
+	{
+		for(Component compo : getComponents())
+		{
+			Vue v = (Vue)compo;
+			v.setRunning(false);
+		}
+		
+	}
 	
 	@Override
 	public void visitBeforeCompositeAdapter(CompositeAdapter compositeAdapter) 

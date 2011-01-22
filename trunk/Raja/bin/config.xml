@@ -24,6 +24,14 @@
         <uri>http://www.lirmm.fr/virus#</uri>
       </P>
       <P>
+        <nom>recensementEurope</nom>
+        <uri>http://www.lirmm.fr/recensementEurope#</uri>
+      </P>
+      <P>
+        <nom>recensementEastEurope</nom>
+        <uri>http://www.lirmm.fr/recensementEastEurope#</uri>
+      </P>
+      <P>
         <nom>recensement</nom>
         <uri>http://www.lirmm.fr/recensement#</uri>
       </P>
@@ -56,7 +64,6 @@
             <Traducteur>
               <N3>
                 <URL>bin/MaladieFacteurMapping.n3</URL>
-                <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
                 <Prefix>
                   <P>
                     <nom>rdf</nom>
@@ -90,7 +97,6 @@
             <Traducteur>
               <N3>
                 <URL>bin/VirusTransmissionMapping.n3</URL>
-                <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
                 <Prefix>
                   <P>
                     <nom>rdf</nom>
@@ -122,7 +128,7 @@
           </TerminalAdapter>
       </CompositeAdapter>
       <CompositeAdapter><!-- Adaptateur Recenssement -->
-        <OWL url="bin/recencement.owl" />
+        <OWL url="bin/recensement.owl" />
         <Prefix>
           <P>
             <nom>rdf</nom>
@@ -137,6 +143,14 @@
             <uri>http://www.w3.org/2002/07/owl#</uri>
           </P>
           <P>
+            <nom>recensementEurope</nom>
+            <uri>http://www.lirmm.fr/recensementEurope#</uri>
+          </P>
+          <P>
+            <nom>recensementEastEurope</nom>
+            <uri>http://www.lirmm.fr/recensementEastEurope#</uri>
+          </P>
+          <P>
             <nom>recensement</nom>
             <uri>http://www.lirmm.fr/recensement#</uri>
           </P>
@@ -145,7 +159,6 @@
           <Traducteur>
             <N3>
               <URL>RecencementMapping.n3</URL>
-              <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
               <Prefix>
                 <P>
                   <nom>rdf</nom>
@@ -158,6 +171,10 @@
                 <P>
                   <nom>owl</nom>
                   <uri>http://www.w3.org/2002/07/owl#</uri>
+                </P>
+                <P>
+                  <nom>recensementEurope</nom>
+                  <uri>http://www.lirmm.fr/recensementEurope#</uri>
                 </P>
                 <P>
                   <nom>recensement</nom>
@@ -179,7 +196,6 @@
           <Traducteur>
             <N3>
               <URL>Recencement2Mapping.n3</URL>
-              <GetMetaInfo>DESCRIBE ?a ?ressources ?c WHERE{{?a rdf:type owl:Class . ?a rdf:type rdfs:Class} UNION {?a rdf:type owl:Class . ?b rdfs:subClassOf ?a} }</GetMetaInfo>
               <Prefix>
                 <P>
                   <nom>rdf</nom>
@@ -192,6 +208,10 @@
                 <P>
                   <nom>owl</nom>
                   <uri>http://www.w3.org/2002/07/owl#</uri>
+                </P>
+                <P>
+                  <nom>recensementEastEurope</nom>
+                  <uri>http://www.lirmm.fr/recensementEastEurope#</uri>
                 </P>
                 <P>
                   <nom>recensement</nom>

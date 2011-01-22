@@ -19,15 +19,23 @@ public class VueCompositeAdapter extends Vue implements IListenerAdapter
 	@Override
 	public void goIn(IAdapter adapter) 
 	{
-		isGoIn = true;
-		repaint();
+		if(isRunning)
+		{
+			isGoIn = true;
+			nbAller++;
+			repaint();
+		}
 	}
 
 	@Override
 	public void goOut(IAdapter adapter) 
 	{
-		isGoOut = true;
-		repaint();
+		if(isRunning)
+		{
+			isGoOut = true;
+			nbRetour++;
+			repaint();
+		}
 	}
 
 }
