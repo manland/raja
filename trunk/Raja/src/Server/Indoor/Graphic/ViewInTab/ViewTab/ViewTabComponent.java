@@ -54,7 +54,6 @@ public class ViewTabComponent extends JPanel {
 		Vector<Vector<String>> rowData = new Vector<Vector<String>>();
 		while(rs.hasNext())
 		{
-			System.out.println("lllaaa");
 			solution = rs.nextSolution();
 			Vector<String> data = new Vector<String>();
 			for(int i=0; i<var.size(); i++)

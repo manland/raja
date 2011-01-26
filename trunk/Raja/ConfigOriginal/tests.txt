@@ -1,0 +1,48 @@
+#SELECT ?a ?b ?c WHERE {?a ?b ?c}
+#Donne pour un pays d'europe, les maladies et l'année du recensement
+#SELECT ?nomMaladie ?annee WHERE {?idMaladie ?dansPays recensementEurope:France . ?idMaladie recensementEurope:RM_LIBELLE ?nomMaladie . ?idMaladie recensementEurope:RM_ID_RECENSEMENT ?idRec . ?idRec recensementEurope:RR_ANNEE ?annee}
+#
+#Donne pour un pays d'europe de l'est, les maladies et l'année du recensement
+#SELECT ?nomMaladie ?annee WHERE {?idMaladie ?dansPays recensementEastEurope:Albanie . ?idMaladie recensementEastEurope:RM_LIBELLE ?nomMaladie . ?idMaladie recensementEastEurope:RM_ID_RECENSEMENT ?idRec . ?idRec recensementEastEurope:RR_ANNEE ?annee}
+#
+#Donne pour un pays d'europe, le virus concerné, et la souche :
+#SELECT ?nomMaladie ?virus ?souche WHERE {?nomMaladie ?b recensement:MALADIENOM . ?souche maladie:ESTORIGINEDE ?nomMaladie . ?idMaladie ?dansPays recensementEurope:France . ?idMaladie recensementEurope:RM_LIBELLE ?nomMaladie  . ?virus maladie:ESTFACTEURDE ?souche}
+#
+#Donne pour un pays d'europe de l'est, le virus concerné, et la souche :
+#SELECT ?nomMaladie ?virus ?souche WHERE {?nomMaladie ?b recensement:MALADIENOM . ?souche maladie:ESTORIGINEDE ?nomMaladie . ?idMaladie ?dansPays recensementEastEurope:France . ?idMaladie recensementEastEurope:RM_LIBELLE ?nomMaladie . ?virus maladie:ESTFACTEURDE ?souche}
+#
+# Requete select2, donne les virus et leur nom : 
+#SELECT2 ?virus ?nom WHERE {?virus ?b virus:VIRUS . ?virus virus:VV_NOMV ?nom}
+#
+# pour toutes les maladies de recensement, donne leur virus et leur mode de transmission :
+#### FAIT SAUTER SELECT ?nomMaladie ?virus ?modeT WHERE {?nomMaladie rdf:type recensement:MALADIENOM . ?souche maladie:ESTORIGINEDE ?nomMaladie . ?virus maladie:ESTFACTEURDE ?souche . ?modeT virus:VIRUS_TRANSMISSION ?virus}
+#
+# Pour une maladie, son id de recensement
+#SELECT ?maladie ?nom ?id WHERE {?maladie rdf:type recensement:MALADIENOM . ?id recensementEurope:RM_LIBELLE ?maladie}
+################################################################
+# Requete select Donne pour chaque virus son mode de transmission et son nom et sa famille :
+#SELECT2 ?virus ?nom ?famille ?modeT WHERE {?virus virus:VIRUS_TRANSMISSION ?modeT . ?virus virus:VV_NOMV ?nom . ?virus virus:VV_NOMFA ?famille}
+#SELECT ?virus ?nom ?famille ?modeT WHERE {?virus virus:VIRUS_TRANSMISSION ?modeT . ?virus virus:VV_NOMV ?nom . ?virus virus:VV_NOMFA ?famille}
+#
+# Pour donnes les maladies virales : 
+#SELECT ?maladie ?facteur ?nomFacteur WHERE {?maladie rdf:type maladie:MALADIE . ?souche maladie:ESTORIGINEDE ?maladie . ?facteur maladie:ESTFACTEURDE ?souche . ?facteur maladie:MF_TYPEFACTEUR maladie:Virus}
+#
+#Tous les recencements pour une maladie, l'annee et le pays
+#SELECT ?idRec ?annee ?pays WHERE {?idRec rdf:type recensement:RECENSEMENT . ?idMal recensementEurope:RM_ID_RECENSEMENT ?idRec . ?idMal recensementEurope:RM_LIBELLE recensementEurope:Dengue . ?idMal recensementEurope:RM_LIBELLE_PAYS ?pays . ?idRec recensementEurope:RR_ANNEE ?annee}
+#
+#Tous les recencements pour une maladie, l'annee et le pays en europe de l'est
+#SELECT ?idRec ?annee ?pays WHERE {?idRec rdf:type recensement:RECENSEMENT . ?idMal recensementEastEurope:RM_ID_RECENSEMENT ?idRec . ?idMal recensementEastEurope:RM_LIBELLE recensementEastEurope:Dengue . ?idMal recensementEastEurope:RM_LIBELLE_PAYS ?pays . ?idRec recensementEastEurope:RR_ANNEE ?annee}
+#
+#Pour chaque maladie, donne son virus et sa souche
+#SELECT ?nomMal ?souche ?virus WHERE {?souche maladie:ESTORIGINEDE ?nomMal . ?virus maladie:ESTFACTEURDE ?souche}
+#
+# Pour toutes les maladies, le pays dans lequel elles sont, en europe
+#SELECT ?pays ?mal WHERE {?idMal recensementEurope:RM_LIBELLE_PAYS ?pays . ?idMal recensementEurope:RM_LIBELLE ?mal}
+#
+# Pour toutes les maladies, le pays dans lequel elles sont, en europe de l'est
+#SELECT ?pays ?mal WHERE {?idMal recensementEastEurope:RM_LIBELLE_PAYS ?pays . ?idMal recensementEastEurope:RM_LIBELLE ?mal}
+
+INSERT INTO receurope.RECENSEMENT VALUES(12, 1, 2010)
+INSERT INTO receurope.MALADIE VALUES(12, 'Grippe', 400, 12, 'Espagne')
+DELETE FROM receurope.MALADIE WHERE RM_ID=12;
+DELETE FROM receurope.RECENSEMENT WHERE RR_ID=12;

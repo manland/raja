@@ -162,7 +162,6 @@ public class TerminalAdapter extends Adapter
 			QuerySolution qs = result.nextSolution();
 			Resource rsc = qs.getResource("a");
 			Resource b = qs.getResource("b");
-			System.out.println("TERMINAL OK"+rsc.getURI()+"   b  "+b+"  prop "+prop);
 			if(rsc.getLocalName().equals(p))
 			{
 				for(int i=0;i<getPrefix().size();i++){
@@ -170,7 +169,6 @@ public class TerminalAdapter extends Adapter
 					String rr = "SELECT ?a ?b WHERE {?a "+getPrefix().get(i).getFirst()+":"+p+" ?b}";
 					q.parseQuery(rr);
 					q.setQuery(rr);
-					System.out.println("reque === "+q.getQuery());
 					Model m = translator.exec(q);
 					if(m!=null){
 						if(!m.isEmpty()){
