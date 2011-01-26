@@ -45,7 +45,7 @@ public class MySqlTranslator extends Translator
 		catch (SQLException e) 
 		{
 			isConnect = false;
-			throw new DataBaseNotAccessibleException(database, "The database isn't connectable, modify the config.xml = "+e.getMessage());
+			throw new DataBaseNotAccessibleException(database, "The database "+dataBase.getAddress()+"/"+dataBase.getDatabaseName()+" isn't connectable, modify the config file = "+e.getMessage());
 		}
 	}
 

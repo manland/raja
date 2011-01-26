@@ -6,7 +6,7 @@ import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 
-class IndoorConsole implements IInDoor {
+public class IndoorConsole implements IInDoor {
 
 	@Override
 	public String read() {

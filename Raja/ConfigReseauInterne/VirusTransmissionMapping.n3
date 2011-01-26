@@ -8,7 +8,7 @@
 
 map:database a d2rq:Database;
 d2rq:jdbcDriver "oracle.jdbc.driver.OracleDriver";
-d2rq:jdbcDSN "jdbc:oracle:thin:@10.42.43.1:1521:XE";
+d2rq:jdbcDSN "jdbc:oracle:thin:@10.42.43.39:1521:XE";
 d2rq:username "dbuser";
 d2rq:password "dbuser";
 .

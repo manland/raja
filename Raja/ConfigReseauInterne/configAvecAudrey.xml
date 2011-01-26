@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <raja>
   <CompositeAdapter><!-- Adaptateur général : contenant le schéma global -->
-    <OWL url="bin/GeneralOnto.owl" />
+    <OWL url="ConfigReseauInterne/GeneralOnto.owl" />
     <Prefix>
       <P>
         <nom>rdf</nom>
@@ -37,7 +37,7 @@
       </P>
     </Prefix>
       <CompositeAdapter><!-- Adaptateur MaladieVirus -->
-        <OWL url="bin/maladiesVirus.owl" />
+        <OWL url="ConfigReseauInterne/maladiesVirus.owl" />
         <Prefix>
           <P>
             <nom>rdf</nom>
@@ -63,7 +63,7 @@
           <TerminalAdapter><!-- Adaptateur Maladie -->
             <Traducteur>
               <N3>
-                <URL>ConfigAudrey/MaladieFacteurMapping-Audrey.n3</URL>
+                <URL>ConfigReseauInterne/MaladieFacteurMapping-Audrey.n3</URL>
                 <Prefix>
                   <P>
                     <nom>rdf</nom>
@@ -84,11 +84,11 @@
                 </Prefix>
               </N3>
               <Database>
-                <dataBaseName>MALADIE</dataBaseName>
-                <address>10.42.43.98</address>
+                <dataBaseName>facteurmaladie</dataBaseName>
+                <address>10.42.43.94</address>
                 <userName>root</userName>
                 <port>1186</port>
-                <password>audreybd</password>
+                <password>root</password>
                 <type>mysql</type>
               </Database>
             </Traducteur>  
@@ -96,7 +96,7 @@
           <TerminalAdapter><!-- Adaptateur Virus -->
             <Traducteur>
               <N3>
-                <URL>VirusTransmissionMapping.n3</URL>
+                <URL>ConfigReseauInterne/VirusTransmissionMapping.n3</URL>
                 <Prefix>
                   <P>
                     <nom>rdf</nom>
@@ -118,7 +118,7 @@
               </N3>
               <Database>
                 <dataBaseName>XE</dataBaseName>
-                <address>10.42.43.94</address>
+                <address>10.42.43.39</address>
                 <userName>dbuser</userName>
                 <port>1521</port>
                 <password>dbuser</password>
@@ -128,7 +128,7 @@
           </TerminalAdapter>
       </CompositeAdapter>
       <CompositeAdapter><!-- Adaptateur Recenssement -->
-        <OWL url="bin/recensement.owl" />
+        <OWL url="ConfigReseauInterne/recensement.owl" />
         <Prefix>
           <P>
             <nom>rdf</nom>
@@ -158,7 +158,7 @@
         <TerminalAdapter>
           <Traducteur>
             <N3>
-              <URL>RecencementMapping.n3</URL>
+              <URL>ConfigReseauInterne/RecencementMapping.n3</URL>
               <Prefix>
                 <P>
                   <nom>rdf</nom>
@@ -195,7 +195,7 @@
         <TerminalAdapter>
           <Traducteur>
             <N3>
-              <URL>Recencement2Mapping.n3</URL>
+              <URL>ConfigReseauInterne/Recencement2Mapping.n3</URL>
               <Prefix>
                 <P>
                   <nom>rdf</nom>

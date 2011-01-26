@@ -16,6 +16,7 @@ import Query.Pair;
 import Query.SelectQuery;
 import Server.Adapter.CompositeAdapter;
 import Server.Indoor.IInDoor;
+import Server.Indoor.IndoorConsole;
 import Server.Indoor.IndoorFile;
 
 import com.hp.hpl.jena.ontology.OntModel;
@@ -242,7 +243,7 @@ public class Server {
 	{
 		try 
 		{
-			if(Server.getInstance().init("bin/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt")))
+			if(Server.getInstance().init("ConfigOriginal/config.xml", new IndoorFile("bin/tests.txt","bin/out.txt")))
 			{
 				System.out.println("########  GLOBAL SCHEMA  ########");
 				Server.getInstance().getGlobalSchema().write(System.out);
