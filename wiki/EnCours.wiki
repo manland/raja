@@ -1,5 +1,5 @@
 #summary Qui fait quoi en ce moment ?
-#labels Phase-QA,Featured
+#labels Phase-QA
 
 = Introduction =
 
